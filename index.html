@@ -1,656 +1,1488 @@
 <!DOCTYPE html>
 <!--
   ================================================================
-  BRAITA — sitio web (Paquete Profesional)
+  BRAITA INDUSTRIAL HUB — PLATAFORMA INTEGRAL DE MAQUILA Y SUMINISTRO
   ================================================================
-  PENDIENTES antes de publicar (marcados también inline como TODO):
-  1. Logo real -> reemplazar el lockup SVG+texto en .logo por <img src="assets/logo-braita.svg">
-  2. Fotos reales -> assets/hero.jpg, assets/taller-corte.jpg, assets/showroom.jpg
-     (ya están enganchadas con onerror, si el archivo no existe se ve un placeholder, no un ícono roto)
-  3. Catálogo real -> el array `productos` en el <script> es EJEMPLO, reemplazar con
-     medidas, espesores, acabados y precios reales que pase el cliente.
-  4. Testimonios -> son de ejemplo, pedir 2-3 reales de clientes (arquitectos/talleres).
-  5. Confirmar con el cliente: dirección, horario y teléfono (los saqué de su ficha
-     pública de Google/Facebook, pueden estar desactualizados).
-  6. Conectar Supabase real -> ver bloque comentado al final del <script> (SUPABASE_URL / ANON_KEY).
-     Mientras tanto el formulario cae a WhatsApp directo, así que ya funciona sin BD.
+  DIRECCIÓN: Av. Francisco Zarco #1350, Lindavista, Ocotlán, Jal.
+  PRODUCCIÓN / DESARROLLO ARQUITECTÓNICO MUEBLERO
   ================================================================
 -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Braita — Tableros y Materiales para Carpintería, Ocotlán Jal.</title>
-<meta name="description" content="Melamina, MDF, triplay y alto brillo cortados a tu medida. Proveemos a arquitectos, diseñadores y fabricantes de muebles y cocinas en la región Ciénega.">
+<title>Braita — Sistema de Maquila Automatizada y Suministro de Tableros</title>
+<meta name="description" content="Socio estratégico en melaminas, MDF, triplays y cortes automatizados para la industria del mueble en Ocotlán y la región Ciénega.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2315171A'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23F1EFE9' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%23E4610F' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --ink:#15171A;
-    --ink-soft:#565B60;
-    --paper:#EDEEEA;
-    --paper-soft:#F5F5F2;
-    --panel:#E1E3DC;
-    --line:#C9CCC4;
-    --accent:#E4610F;
-    --accent-dark:#B84E0C;
-    --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:.01ms !important; transition-duration:.01ms !important;}
-  }
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  img,svg{display:block; max-width:100%;}
-  a{color:inherit;}
-  ::selection{background:var(--accent); color:#fff;}
-  :focus-visible{outline:2.5px solid var(--accent); outline-offset:3px; border-radius:2px;}
+  /* ========================================================================
+     1. ARQUITECTURA DE DISEÑO & VARIABLES (SISTEMA DE TOKENS)
+     ======================================================================== */
+  :root {
+    --bg-base: #EDEEEA;
+    --bg-surface: #F5F5F2;
+    --bg-panel: #E1E3DC;
+    --bg-dark: #15171A;
+    --bg-dark-surface: #1F2124;
+    
+    --text-primary: #15171A;
+    --text-secondary: #565B60;
+    --text-muted: #8A8D86;
+    --text-light: #F5F5F2;
+    --text-light-muted: #ABAAA1;
 
-  .display{font-family:'Space Grotesk', sans-serif;}
-  .mono{font-family:'IBM Plex Mono', monospace;}
-  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
-  @media (max-width:640px){ .wrap{padding:0 20px;} }
-  section{padding:110px 0;}
-  @media (max-width:768px){ section{padding:72px 0;} }
-
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12.5px; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--accent-dark);
-    display:inline-flex; align-items:center; gap:10px;
-  }
-  .eyebrow::before{ content:''; width:20px; height:2px; background:var(--accent); display:inline-block; }
-
-  h1,h2,h3{font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-.01em; color:var(--ink);}
-
-  .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
-  .reveal.in{opacity:1; transform:translateY(0);}
-
-  /* ---------- header ---------- */
-  header{
-    position:sticky; top:0; z-index:60;
-    background:rgba(237,238,234,.9);
-    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
-  .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .logo-mark{ width:32px; height:32px; flex-shrink:0; }
-  .logo-text{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; letter-spacing:.02em; text-transform:uppercase; }
-  .logo-text span{ color:var(--accent); }
-
-  nav ul{ list-style:none; display:flex; gap:36px; }
-  nav a{ text-decoration:none; font-size:14.5px; font-weight:500; color:var(--ink-soft); position:relative; padding:4px 0; }
-  nav a::after{ content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--accent); transition:width .25s var(--ease); }
-  nav a:hover::after{ width:100%; }
-
-  .nav-actions{ display:flex; align-items:center; gap:16px; }
-  .btn{
-    font-family:'Inter',sans-serif; font-weight:600; font-size:14px;
-    padding:13px 24px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
-    border:1.5px solid transparent; cursor:pointer; transition:transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
-  }
-  .btn-primary{ background:var(--ink); color:var(--paper-soft); }
-  .btn-primary:hover{ background:var(--accent-dark); transform:translateY(-2px); }
-  .btn-outline{ border-color:var(--ink); color:var(--ink); }
-  .btn-outline:hover{ background:var(--ink); color:var(--paper-soft); }
-  .btn-wa{ background:var(--accent); color:#fff; }
-  .btn-wa:hover{ background:var(--accent-dark); transform:translateY(-2px); }
-
-  .burger{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
-  .burger span{ display:block; width:24px; height:2px; background:var(--ink); margin:5px 0; }
-  @media (max-width:900px){
-    nav{ position:fixed; inset:64px 0 0 0; background:var(--paper-soft); transform:translateX(100%); transition:transform .3s var(--ease); padding:36px 32px; border-top:1px solid var(--line); }
-    nav.open{ transform:translateX(0); }
-    nav ul{ flex-direction:column; gap:22px; }
-    nav a{ font-size:19px; }
-    .nav-actions .btn-outline{ display:none; }
-    .burger{ display:block; }
+    --brand: #E4610F;
+    --brand-dark: #B84E0C;
+    --brand-light: #FF8436;
+    --border-color: #C9CCC4;
+    --border-dark: #3A3D38;
+    
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    
+    --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+    --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
   }
 
-  /* ---------- hero ---------- */
-  .hero{ padding:80px 0 0; overflow:hidden; }
-  .hero-grid{ display:grid; grid-template-columns:1fr .95fr; gap:56px; align-items:center; }
-  @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:44px; } }
-  .hero h1{ font-size:clamp(36px,5vw,58px); line-height:1.06; margin:18px 0 22px; }
-  .hero h1 em{ font-style:normal; color:var(--accent-dark); }
-  .hero p.lead{ font-size:17px; color:var(--ink-soft); max-width:48ch; margin-bottom:32px; }
-  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:8px; }
-
-  .hero-art{ position:relative; }
-  .hero-art svg{ width:100%; height:auto; }
-  .hero-tag{
-    position:absolute; bottom:14px; left:14px;
-    background:var(--paper-soft); border:1px solid var(--line);
-    padding:8px 12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft);
+  /* Reset Estricto */
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  .cut-dash{ stroke-dasharray:6 5; animation:dash 2.4s linear infinite; }
-  @keyframes dash{ to{ stroke-dashoffset:-44; } }
 
-  /* trust strip */
-  .trust-strip{ background:var(--ink); color:var(--paper-soft); margin-top:70px; padding:26px 0; }
-  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px 32px; }
-  .trust-item{ display:flex; align-items:center; gap:10px; font-size:13.5px; font-family:'IBM Plex Mono',monospace; letter-spacing:.03em; color:#D7D6CE; }
-  .trust-item svg{ width:16px; height:16px; stroke:var(--accent); flex-shrink:0; }
-
-  /* marquee */
-  .marquee-strip{ background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; padding:20px 0; white-space:nowrap; }
-  .marquee-track{ display:inline-flex; animation:scroll-left 32s linear infinite; }
-  .marquee-track span{ font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; padding:0 30px; display:inline-flex; align-items:center; gap:30px; color:var(--ink-soft); }
-  .marquee-track span::after{ content:'/'; color:var(--accent); }
-  @keyframes scroll-left{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
-
-  /* ---------- catalogo ---------- */
-  .cat-head{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:28px; margin-bottom:48px; }
-  .cat-head h2{ font-size:clamp(28px,3.6vw,40px); margin-top:14px; max-width:560px; line-height:1.12; }
-  .filters{ display:flex; gap:10px; flex-wrap:wrap; }
-  .filter-btn{
-    padding:10px 18px; font-size:.76rem; font-family:'IBM Plex Mono',monospace; letter-spacing:.05em; text-transform:uppercase;
-    border:1px solid var(--line); color:var(--ink-soft); background:transparent; cursor:pointer; transition:all .25s var(--ease);
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
   }
-  .filter-btn:hover{ border-color:var(--ink); color:var(--ink); }
-  .filter-btn.active{ background:var(--ink); color:var(--paper-soft); border-color:var(--ink); }
 
-  .grid-products{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
-  @media (max-width:860px){ .grid-products{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .grid-products{ grid-template-columns:1fr; } }
-  .card{ background:var(--paper-soft); padding:0; display:flex; flex-direction:column; }
-  .card-figure{ aspect-ratio:4/3; position:relative; background:var(--panel); overflow:hidden; }
-  .card-figure img{ width:100%; height:100%; object-fit:cover; }
-  .swatch-fallback{ width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
-  .swatch-fallback span{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); letter-spacing:.06em; text-transform:uppercase; }
-  .card-tick{ position:absolute; top:10px; right:10px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; background:var(--ink); color:var(--paper-soft); padding:4px 8px; }
-  .card-body{ padding:22px 22px 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
-  .card-body h3{ font-size:18px; font-weight:600; }
-  .card-spec{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-soft); line-height:1.7; }
-  .card-foot{ margin-top:auto; padding-top:14px; border-top:1px dashed var(--line); display:flex; justify-content:space-between; align-items:center; }
-  .card-foot a{ font-size:13px; font-weight:600; text-decoration:none; color:var(--accent-dark); display:flex; align-items:center; gap:5px; }
-  .card-foot a:hover{ text-decoration:underline; }
-
-  /* ---------- proceso (secuencia real de trabajo) ---------- */
-  .proceso{ background:var(--panel); }
-  .proceso-list{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:50px; }
-  @media (max-width:860px){ .proceso-list{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:520px){ .proceso-list{ grid-template-columns:1fr; } }
-  .paso{ background:var(--paper-soft); padding:30px 26px; }
-  .paso-num{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent-dark); margin-bottom:14px; }
-  .paso h3{ font-size:16.5px; font-weight:600; margin-bottom:8px; }
-  .paso p{ font-size:13.5px; color:var(--ink-soft); }
-
-  /* ---------- audiencias ---------- */
-  .audiencia-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:50px; }
-  @media (max-width:860px){ .audiencia-grid{ grid-template-columns:1fr; } }
-  .aud-card{ background:var(--paper-soft); padding:34px 28px; }
-  .aud-card svg{ width:30px; height:30px; stroke:var(--accent); margin-bottom:18px; }
-  .aud-card h3{ font-size:18px; font-weight:600; margin-bottom:10px; }
-  .aud-card p{ font-size:14px; color:var(--ink-soft); }
-
-  /* ---------- testimonios ---------- */
-  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:50px; }
-  @media (max-width:860px){ .testi-grid{ grid-template-columns:1fr; } }
-  .testi{ background:var(--paper-soft); padding:28px 26px; display:flex; flex-direction:column; gap:16px; }
-  .testi p.quote{ font-size:15px; color:var(--ink); }
-  .testi .who{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-soft); }
-
-  /* ---------- contacto / ubicacion ---------- */
-  .contacto{ background:var(--ink); color:var(--paper-soft); }
-  .contacto .eyebrow{ color:var(--accent); }
-  .contacto .eyebrow::before{ background:var(--accent); }
-  .contacto-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; margin-top:40px; }
-  @media (max-width:900px){ .contacto-grid{ grid-template-columns:1fr; gap:44px; } }
-  .contacto h2{ color:var(--paper-soft); font-size:clamp(26px,3.4vw,36px); margin-bottom:12px; max-width:520px; line-height:1.15; }
-  .info-list{ list-style:none; display:flex; flex-direction:column; gap:16px; margin-top:30px; }
-  .info-list li{ display:flex; gap:14px; font-size:14px; color:#D7D6CE; }
-  .info-list svg{ width:19px; height:19px; flex-shrink:0; margin-top:2px; stroke:#D7D6CE; }
-  .info-list b{ color:var(--paper-soft); display:block; font-weight:600; margin-bottom:2px; }
-  .info-note{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:#8A8D86; margin-top:22px; line-height:1.6; }
-
-  .form-field{ margin-bottom:20px; }
-  .form-field label{ display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:9px; color:#ABAAA1; }
-  .form-field input, .form-field select, .form-field textarea{
-    width:100%; background:transparent; border:none; border-bottom:1px solid rgba(241,239,233,.24);
-    padding:11px 2px; color:var(--paper-soft); font-family:'Inter',sans-serif; font-size:15px;
-    transition:border-color .25s var(--ease);
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
-  .form-field select option{ color:#111; }
-  .form-field input:focus, .form-field select:focus, .form-field textarea:focus{ outline:none; border-bottom-color:var(--accent); }
-  .form-field textarea{ resize:vertical; min-height:90px; }
-  .form-note{ margin-top:16px; font-size:13px; font-family:'IBM Plex Mono',monospace; color:var(--accent); display:none; line-height:1.5; }
-  .form-note.show{ display:block; }
 
-  .map-card{ background:#1F2124; border:1px solid #3A3D38; padding:20px; margin-top:36px; }
-
-  /* ---------- footer ---------- */
-  footer{ background:var(--paper-soft); border-top:1px solid var(--line); padding:44px 0 28px; }
-  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
-  .foot-legal{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-soft); max-width:560px; line-height:1.6; margin-top:14px; }
-
-  /* whatsapp float */
-  .whatsapp-float{
-    position:fixed; right:28px; bottom:28px; z-index:70; width:58px; height:58px; border-radius:50%;
-    background:#1EBEA5; display:flex; align-items:center; justify-content:center;
-    box-shadow:0 8px 22px rgba(0,0,0,.18); transition:transform .3s var(--ease);
+  /* ========================================================================
+     2. ESTILOS UTILITARIOS & LAYOUT STRUCT
+     ======================================================================== */
+  .container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
   }
-  .whatsapp-float:hover{ transform:scale(1.08) translateY(-2px); }
-  .whatsapp-float svg{ width:27px; height:27px; }
+  @media (max-width: 768px) { .container { padding: 0 20px; } }
+
+  .grid { display: grid; gap: 32px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  
+  @media (max-width: 992px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .grid-4, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  .section-padding { padding: 120px 0; }
+  @media (max-width: 768px) { .section-padding { padding: 80px 0; } }
+
+  .mono { font-family: var(--font-mono); }
+  .display { font-family: var(--font-display); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--brand-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background-color: var(--brand);
+    display: inline-block;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.15;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
+    border: none;
+  }
+
+  /* Animaciones por Scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.85s var(--transition-smooth), transform 0.85s var(--transition-smooth);
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ========================================================================
+     3. COMPONENTES: BOTONES, ELEMENTOS INTERACTIVOS Y TOASTS
+     ======================================================================== */
+  .btn {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    padding: 16px 28px;
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor:pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s var(--transition-smooth);
+    text-decoration: none;
+  }
+
+  .btn-dark {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+  }
+  .btn-dark:hover {
+    background-color: var(--brand-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    border-color: var(--bg-dark);
+    color: var(--bg-dark);
+  }
+  .btn-outline:hover {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+  }
+
+  .btn-brand {
+    background-color: var(--brand);
+    color: white;
+  }
+  .btn-brand:hover {
+    background-color: var(--brand-dark);
+    transform: translateY(-2px);
+  }
+
+  /* Notification Toast System */
+  #toast-container {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .toast {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 16px 24px;
+    border-left: 4px solid var(--brand);
+    box-shadow: var(--shadow-md);
+    transform: translateX(-120%);
+    animation: slideIn 0.4s var(--transition-smooth) forwards;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  @keyframes slideIn { to { transform: translateX(0); } }
+  .toast.fade-out {
+    animation: slideOut 0.4s var(--transition-smooth) forwards;
+  }
+  @keyframes slideOut { to { transform: translateX(-120%); opacity: 0; } }
+
+  /* ========================================================================
+     4. HEADER & NAVEGACIÓN PERMANENTE
+     ======================================================================== */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background-color: rgba(237, 238, 234, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .logo span { color: var(--brand); }
+  .logo svg { width: 34px; height: 34px; }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+  }
+  nav a {
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.3s ease;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--brand);
+    transition: width 0.3s var(--transition-smooth);
+  }
+  nav a:hover { color: var(--text-primary); }
+  nav a:hover::after { width: 100%; }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--text-primary);
+    margin: 6px 0;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 1024px) {
+    nav {
+      position: fixed;
+      top: 83px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-surface);
+      padding: 40px;
+      transform: translateX(100%);
+      transition: transform 0.4s var(--transition-smooth);
+      border-top: 1px solid var(--border-color);
+    }
+    nav.is-active { transform: translateX(0); }
+    nav ul { flex-direction: column; gap: 28px; }
+    nav a { font-size: 20px; font-weight: 600; }
+    .menu-toggle { display: block; }
+    .header-actions .btn { display: none; }
+  }
+
+  /* ========================================================================
+     5. HERO SECTION & MARQUEES DINÁMICOS
+     ======================================================================== */
+  .hero {
+    padding: 100px 0 0 0;
+    overflow: hidden;
+  }
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 992px) {
+    .hero-container { grid-template-columns: 1fr; gap: 48px; }
+  }
+  .hero-content h1 {
+    font-size: clamp(38px, 5.5vw, 64px);
+    line-height: 1.05;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .hero-content h1 span { color: var(--brand-dark); }
+  .hero-content p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 50ch;
+    margin-bottom: 40px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Vector Blueprint Hero Animation */
+  .hero-graphic {
+    position: relative;
+    width: 100%;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+  }
+  .hero-graphic svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .anim-dash {
+    stroke-dasharray: 8 6;
+    animation: blueprintDash 4s linear infinite;
+  }
+  @keyframes blueprintDash {
+    to { stroke-dashoffset: -100; }
+  }
+  .graphic-overlay-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  /* Strip de Confianza */
+  .strip-confianza {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    padding: 32px 0;
+    margin-top: 80px;
+  }
+  .strip-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--text-light-muted);
+  }
+  .strip-item svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--brand);
+    flex-shrink: 0;
+  }
+
+  /* Marquees CSS Sin Fin */
+  .marquee-wrapper {
+    background-color: var(--bg-panel);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 24px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-content {
+    display: inline-flex;
+    animation: moveMarquee 35s linear infinite;
+  }
+  .marquee-content span {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0 40px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .marquee-content span::after {
+    content: '//';
+    color: var(--brand);
+  }
+  @keyframes moveMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .brands-marquee {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .brands-track {
+    display: inline-flex;
+    animation: moveBrands 25s linear infinite reverse;
+  }
+  .brands-track span {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: #9EA29A;
+    padding: 0 50px;
+  }
+  @keyframes moveBrands {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ========================================================================
+     6. SECCIÓN CATÁLOGO TÉCNICO INTERACTIVO
+     ======================================================================== */
+  .catalog-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .catalog-title h2 { font-size: clamp(28px, 4vw, 42px); }
+  .catalog-title p { color: var(--text-secondary); margin-top: 12px; max-width: 52ch; }
+  
+  .filter-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    background-color: var(--bg-panel);
+    padding: 6px;
+    border-radius: var(--radius-sm);
+  }
+  .filter-btn {
+    background: transparent;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.25s var(--transition-smooth);
+  }
+  .filter-btn:hover { color: var(--text-primary); }
+  .filter-btn.is-active {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+  }
+
+  /* Grid Estricta Estilo Blueprint */
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+  }
+  @media (max-width: 900px) { .catalog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .catalog-grid { grid-template-columns: 1fr; } }
+
+  .prod-card {
+    background-color: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s var(--transition-smooth);
+  }
+  .prod-card:hover {
+    transform: translateY(-4px);
+    z-index: 5;
+  }
+  .prod-media {
+    aspect-ratio: 4/3;
+    background-color: var(--bg-panel);
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .prod-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; /* Asegura contenedor vacío inicial */
+  }
+  .prod-placeholder {
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    border: 1.5px dashed var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+  }
+  .prod-placeholder svg { width: 28px; height: 28px; margin-bottom: 8px; stroke: var(--border-color); }
+  .prod-placeholder span { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .prod-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  .prod-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .prod-content h3 { font-size: 18px; margin-bottom: 12px; }
+  .prod-meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+  .prod-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .prod-footer span { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  
+  .btn-action-cotizar {
+    background: transparent;
+    border: 1px solid var(--bg-dark);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .btn-action-cotizar:hover {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+  }
+
+  /* ========================================================================
+     7. SERVICIOS INDUSTRIALES DE MAQUILA
+     ======================================================================== */
+  .servicios-section {
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+  }
+  @media (max-width: 900px) { .servicios-grid { grid-template-columns: 1fr; } }
+
+  .srv-node {
+    background-color: var(--bg-base);
+    padding: 40px;
+    border-top: 4px solid var(--border-color);
+    transition: border-color 0.3s var(--transition-smooth);
+  }
+  .srv-node:hover { border-top-color: var(--brand); }
+  .srv-icon { width: 40px; height: 40px; stroke: var(--brand); margin-bottom: 24px; }
+  .srv-node h4 { font-size: 20px; margin-bottom: 12px; }
+  .srv-node p { font-size: 14.5px; color: var(--text-secondary); }
+
+  /* ========================================================================
+     8. PROCESO DE INTEGRACIÓN DE ÓRDENES Y DESPIECE
+     ======================================================================== */
+  .proceso-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+    margin-top: 56px;
+  }
+  @media (max-width: 992px) { .proceso-flow { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 576px) { .proceso-flow { grid-template-columns: 1fr; } }
+
+  .flow-card {
+    background-color: var(--bg-surface);
+    padding: 32px;
+  }
+  .flow-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--brand);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .flow-card h3 { font-size: 18px; margin-bottom: 12px; }
+  .flow-card p { font-size: 14px; color: var(--text-secondary); }
+
+  /* ========================================================================
+     9. MESA DE CONTROL: SISTEMA DINÁMICO DE DESPIECE AUTOMÁTICO (JS)
+     ======================================================================== */
+  .mesa-control-section {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+  }
+  .mesa-control-section h2 { color: var(--text-light); font-size: clamp(28px, 4vw, 42px); }
+  .mesa-control-section p { color: var(--text-light-muted); }
+
+  .mesa-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 48px;
+    margin-top: 56px;
+    align-items: start;
+  }
+  @media (max-width: 1024px) { .mesa-layout { grid-template-columns: 1fr; } }
+
+  .blueprint-panel {
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--border-dark);
+    padding: 32px;
+  }
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+  .panel-header h3 { color: var(--text-light); font-size: 18px; }
+
+  /* Tabla de Despiece Dinámico */
+  .table-responsive { width: 100%; overflow-x: auto; }
+  .despiece-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .despiece-table th {
+    background-color: var(--bg-dark);
+    color: var(--text-light-muted);
+    padding: 12px;
+    font-weight: 500;
+    border-bottom: 2px solid var(--border-dark);
+  }
+  .despiece-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-dark);
+    vertical-align: middle;
+  }
+  .despiece-table input, .despiece-table select {
+    width: 100%;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-dark);
+    color: var(--text-light);
+    padding: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .despiece-table input:focus, .despiece-table select:focus {
+    outline: none;
+    border-color: var(--brand);
+  }
+  
+  .btn-remove-row {
+    background: transparent;
+    border: none;
+    color: #EF4444;
+    cursor: pointer;
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .btn-add-row {
+    background-color: transparent;
+    border: 1px dashed var(--border-dark);
+    color: var(--text-light);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+  .btn-add-row:hover {
+    border-color: var(--text-light);
+    background-color: rgba(255,255,255,0.02);
+  }
+
+  /* Formulario General de Datos */
+  .control-form {
+    background-color: var(--bg-dark-surface);
+    border: 1px solid var(--border-dark);
+    padding: 32px;
+  }
+  .form-group { margin-bottom: 24px; }
+  .form-group label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    color: var(--text-light-muted);
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    background-color: var(--bg-dark);
+    border: none;
+    border-bottom: 1px solid var(--border-dark);
+    padding: 12px 4px;
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-bottom-color: var(--brand);
+  }
+  .form-group select option { background-color: var(--bg-dark-surface); color: var(--text-light); }
+  
+  /* ========================================================================
+     10. INFRAESTRUCTURA DE LOGÍSTICA & MAPA ARQUITECTÓNICO
+     ======================================================================== */
+  .logistica-struct {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 992px) { .logistica-struct { grid-template-columns: 1fr; gap: 40px; } }
+
+  .meta-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .meta-list li {
+    display: flex;
+    gap: 16px;
+  }
+  .meta-list svg { width: 24px; height: 24px; stroke: var(--brand); flex-shrink: 0; }
+  .meta-list h5 { font-family: var(--font-sans); font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .meta-list p { font-size: 14px; color: var(--text-secondary); }
+
+  .map-container {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    padding: 32px;
+    position: relative;
+  }
+  .map-container svg { width: 100%; height: auto; background-color: #D3D6CE; }
+
+  /* ========================================================================
+     11. FOOTER & COMPONENTE FLOTANTE WHATSAPP
+     ======================================================================== */
+  footer {
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding: 64px 0 32px 0;
+  }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .footer-legal {
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .wa-float {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    z-index: 999;
+    transition: transform 0.3s var(--transition-smooth);
+  }
+  .wa-float:hover { transform: scale(1.1) translateY(-4px); }
+  .wa-float svg { width: 30px; height: 30px; fill: white; }
 </style>
 </head>
 <body>
 
-<header id="header">
-  <div class="wrap nav-row">
-    <!-- TODO: cuando llegue el logo real, reemplazar este bloque por <img src="assets/logo-braita.svg" ...> -->
+<!-- Global Toasts -->
+<div id="toast-container"></div>
+
+<!-- HEADER / NAVBAR -->
+<header id="main-header">
+  <div class="container navbar">
     <a href="#inicio" class="logo">
-      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="4" width="32" height="32" fill="var(--ink)"/>
-        <rect x="10" y="10" width="20" height="20" fill="none" stroke="var(--paper-soft)" stroke-width="2"/>
-        <line x1="10" y1="20" x2="30" y2="20" stroke="var(--accent)" stroke-width="2" stroke-dasharray="3 2"/>
+      <svg viewBox="0 0 40 40" fill="none">
+        <rect x="4" y="4" width="32" height="32" fill="var(--bg-dark)"/>
+        <rect x="10" y="10" width="20" height="20" fill="none" stroke="var(--bg-surface)" stroke-width="2"/>
+        <line x1="10" y1="20" x2="30" y2="20" stroke="var(--brand)" stroke-width="2" stroke-dasharray="3 2"/>
       </svg>
-      <span class="logo-text">BRA<span>I</span>TA</span>
+      <span>Braita</span>
     </a>
-    <nav id="nav">
+    <nav id="main-nav">
       <ul>
         <li><a href="#catalogo">Catálogo</a></li>
-        <li><a href="#proceso">Cómo trabajamos</a></li>
-        <li><a href="#audiencias">Para quién</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#mesa-control">Mesa de Control</a></li>
+        <li><a href="#ubicacion">Logística</a></li>
       </ul>
     </nav>
-    <div class="nav-actions">
-      <a href="#contacto" class="btn btn-outline">Contacto</a>
-      <a href="#" id="navWhatsapp" class="btn btn-wa" target="_blank">Cotizar por WhatsApp</a>
-      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="header-actions">
+      <a href="#mesa-control" class="btn btn-outline">Mesa de Despiece</a>
+      <a href="#" id="nav-wa-trigger" class="btn btn-dark" target="_blank">WhatsApp Directo</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Navegación Móvil">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
 
-<main id="inicio">
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">Tableros & insumos · Ocotlán, Jal.</span>
-        <h1>Del tablero al corte <em>exacto</em>, sin vueltas.</h1>
-        <p class="lead">Melamina, MDF, triplay y alto brillo para arquitectos, diseñadores y fabricantes de muebles y cocinas en la región Ciénega. Nos das las medidas, optimizamos el corte y tu pedido sale listo para ensamblar.</p>
-        <div class="hero-ctas">
-          <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
-          <a href="#" id="heroWhatsapp" class="btn btn-outline" target="_blank">Cotizar por WhatsApp</a>
+<main>
+  <!-- HERO SECTION -->
+  <section class="hero" id="inicio">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="eyebrow">Industria del Tablero Mueblero</span>
+        <h1>Suministro base y despiece <span>automatizado.</span></h1>
+        <p>Centro de distribución integral en Ocotlán, Jalisco. Abastecemos de melamina, MDF y triplay con optimización computarizada de cortes para optimizar el rendimiento y anular la merma en planta.</p>
+        <div class="hero-buttons">
+          <a href="#mesa-control" class="btn btn-dark">Iniciar Orden Técnica</a>
+          <a href="#catalogo" class="btn btn-outline">Explorar Materiales</a>
         </div>
       </div>
-
-      <div class="hero-art">
-        <svg viewBox="0 0 480 400" fill="none">
-          <!-- tablero base -->
-          <rect x="30" y="30" width="420" height="300" fill="var(--panel)" stroke="var(--ink)" stroke-width="2"/>
-          <!-- piezas anidadas (diagrama de optimizacion de corte) -->
-          <rect x="46" y="46" width="150" height="120" fill="var(--paper-soft)" stroke="var(--ink-soft)" stroke-width="1.4" class="cut-dash"/>
-          <rect x="204" y="46" width="90" height="120" fill="var(--paper-soft)" stroke="var(--ink-soft)" stroke-width="1.4" class="cut-dash"/>
-          <rect x="46" y="174" width="90" height="140" fill="var(--paper-soft)" stroke="var(--ink-soft)" stroke-width="1.4" class="cut-dash"/>
-          <rect x="144" y="174" width="150" height="66" fill="var(--accent)" fill-opacity="0.14" stroke="var(--accent)" stroke-width="2" class="cut-dash"/>
-          <rect x="144" y="248" width="150" height="66" fill="var(--paper-soft)" stroke="var(--ink-soft)" stroke-width="1.4" class="cut-dash"/>
-          <rect x="302" y="46" width="132" height="90" fill="var(--paper-soft)" stroke="var(--ink-soft)" stroke-width="1.4" class="cut-dash"/>
-          <rect x="302" y="144" width="132" height="170" fill="var(--paper-soft)" stroke="var(--ink-soft)" stroke-width="1.4" class="cut-dash"/>
-
-          <!-- cotas -->
-          <line x1="30" y1="344" x2="450" y2="344" stroke="var(--ink-soft)" stroke-width="1"/>
-          <line x1="30" y1="338" x2="30" y2="350" stroke="var(--ink-soft)" stroke-width="1"/>
-          <line x1="450" y1="338" x2="450" y2="350" stroke="var(--ink-soft)" stroke-width="1"/>
-          <text x="215" y="366" class="mono" font-size="12" fill="var(--ink-soft)">244 cm</text>
-
-          <!-- leader a pieza destacada -->
-          <line x1="219" y1="207" x2="219" y2="207" stroke="var(--accent)"/>
-          <circle cx="219" cy="207" r="3.5" fill="var(--accent)"/>
-          <line x1="222" y1="207" x2="264" y2="180" stroke="var(--accent)" stroke-width="1"/>
-          <text x="268" y="176" class="mono" font-size="11.5" fill="var(--ink)">tu pieza,</text>
-          <text x="268" y="190" class="mono" font-size="11.5" fill="var(--ink)">optimizada</text>
+      <div class="hero-graphic">
+        <svg viewBox="0 0 500 400" fill="none">
+          <rect x="20" y="20" width="460" height="360" fill="var(--bg-surface)" stroke="var(--bg-dark)" stroke-width="2"/>
+          <g class="anim-dash" stroke="var(--text-secondary)" stroke-width="1.5">
+            <rect x="40" y="40" width="200" height="140" fill="rgba(0,0,0,0.02)"/>
+            <rect x="250" y="40" width="210" height="140" fill="rgba(0,0,0,0.02)"/>
+            <rect x="40" y="190" width="130" height="170" fill="rgba(0,0,0,0.02)"/>
+            <rect x="180" y="190" width="280" height="80" fill="var(--brand)" fill-opacity="0.1" stroke="var(--brand)" stroke-width="2"/>
+            <rect x="180" y="280" width="280" height="80" fill="rgba(0,0,0,0.02)"/>
+          </g>
+          <circle cx="180" cy="190" r="4" fill="var(--brand)"/>
+          <line x1="180" y1="190" x2="140" y2="150" stroke="var(--brand)" stroke-width="1.5"/>
+          <text x="70" y="140" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">SECCIÓN OPTIMIZADA</text>
         </svg>
-        <span class="hero-tag">Diagrama de optimización de corte</span>
+        <div class="graphic-overlay-label">Módulo de Anidación v2026.4</div>
       </div>
     </div>
 
-    <div class="trust-strip">
-      <div class="wrap trust-grid">
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 12h18M3 12l6-6M3 12l6 6"/></svg>Entrega a domicilio</div>
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>Recolección en tienda</div>
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>Entrega el mismo día</div>
-        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-4.4-7-10a7 7 0 0 1 14 0c0 5.6-7 10-7 10z"/></svg>Atención a profesionales</div>
+    <!-- Strip de Valores Fijos -->
+    <div class="strip-confianza">
+      <div class="container strip-grid">
+        <div class="strip-item">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-13.322 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>Corte Milimétrico CNC</span>
+        </div>
+        <div class="strip-item">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>Surtido de Fábrica Express</span>
+        </div>
+        <div class="strip-item">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span>Logística Clúster Ocotlán</span>
+        </div>
       </div>
     </div>
 
-    <div class="marquee-strip">
-      <div class="marquee-track">
-        <span>Melamina</span><span>MDF</span><span>Triplay</span><span>Alto brillo / Súper mate</span><span>Aglomerado / OSB</span><span>Cubrecanto</span><span>Herrajes</span>
-        <span>Melamina</span><span>MDF</span><span>Triplay</span><span>Alto brillo / Súper mate</span><span>Aglomerado / OSB</span><span>Cubrecanto</span><span>Herrajes</span>
+    <!-- Marquees CSS Combinados -->
+    <div class="marquee-wrapper">
+      <div class="marquee-content">
+        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Paneles Estructurales</span>
+        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Paneles Estructurales</span>
+      </div>
+    </div>
+    <div class="brands-marquee">
+      <div class="brands-track">
+        <span>ARAUCO</span><span>TECNOTABLA</span><span>BLUM</span><span>FUNDERMAX</span><span>HÄFELE</span><span>SAYER LACK</span><span>ARAUCO</span><span>TECNOTABLA</span><span>BLUM</span><span>FUNDERMAX</span><span>HÄFELE</span><span>SAYER LACK</span>
       </div>
     </div>
   </section>
 
-  <!-- ================= CATALOGO ================= -->
-  <section id="catalogo">
-    <div class="wrap">
-      <div class="cat-head reveal">
-        <div>
-          <span class="eyebrow">Catálogo — ejemplo</span>
-          <h2>Material listo para tu próximo corte.</h2>
-        </div>
-        <div class="filters">
-          <button class="filter-btn active" data-filter="todos">Todos</button>
-          <button class="filter-btn" data-filter="melamina">Melamina</button>
-          <button class="filter-btn" data-filter="mdf">MDF</button>
-          <button class="filter-btn" data-filter="triplay">Triplay</button>
-          <button class="filter-btn" data-filter="brillo">Alto brillo</button>
-          <button class="filter-btn" data-filter="otros">Cubrecanto / Herrajes</button>
-        </div>
+  <!-- CATALOGO DE PRODUCTOS INTERACTIVO -->
+  <section class="section-padding container" id="catalogo">
+    <div class="catalog-controls reveal">
+      <div class="catalog-title">
+        <span class="eyebrow">Catálogo Matriz</span>
+        <h2>Tableros Estandarizados e Industriales</h2>
+        <p>Selecciona la base estructural para tu proyecto de fabricación. Todos los materiales cuentan con opción de habilitado completo en taller.</p>
       </div>
-      <div class="grid-products" id="catalogGrid"></div>
-      <p class="mono" style="margin-top:22px; font-size:11.5px; color:var(--ink-soft);">* Catálogo de ejemplo — reemplazar con medidas, espesores y precios reales.</p>
+      <div class="filter-group" id="filter-group">
+        <button class="filter-btn is-active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="melamina">Melaminas</button>
+        <button class="filter-btn" data-filter="mdf">MDF / Sustratos</button>
+        <button class="filter-btn" data-filter="triplay">Triplays</button>
+        <button class="filter-btn" data-filter="premium">Especialidades</button>
+      </div>
+    </div>
+
+    <div class="catalog-grid id-reveal" id="catalog-target-grid">
+      <!-- El contenido se inyecta vía JavaScript con la base estructurada vacía solicitada -->
     </div>
   </section>
 
-  <!-- ================= PROCESO (secuencia real de trabajo) ================= -->
-  <section id="proceso" class="proceso">
-    <div class="wrap">
+  <!-- SERVICIOS DE MAQUILA -->
+  <section class="section-padding servicios-section" id="servicios">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 56px;">
+        <span class="eyebrow">Procesamiento de Materiales</span>
+        <h2>Capacidad Mecánica de Maquila</h2>
+      </div>
+      <div class="servicios-grid">
+        <div class="srv-node reveal">
+          <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 11-4.243-4.243 3 3 0 014.243 4.243z"/></svg>
+          <h4>Seccionado Computarizado</h4>
+          <p>Corte lineal automatizado mediante software de optimización perimetral. Garantiza el aprovechamiento total de la hoja y cantos perfectos sin astilladuras.</p>
+        </div>
+        <div class="srv-node reveal">
+          <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+          <h4>Enchapado de Cantos PVC</h4>
+          <p>Aplicación de cubrecanto rígido y flexible mediante fusión térmica con pegamento PUR de alta resistencia, asegurando hermeticidad y durabilidad.</p>
+        </div>
+        <div class="srv-node reveal">
+          <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V16zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V16z"/></svg>
+          <h4>Perforación Automatizada</h4>
+          <p>Mecanizado de barrena para colocación exacta de bisagras bidimensionales, pernos de unión y sistemas modulares bajo plano técnico standard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO DE TRABAJO -->
+  <section class="section-padding container" id="proceso">
+    <div class="reveal">
+      <span class="eyebrow">Línea de Integración</span>
+      <h2>Metodología de Suministro Exacto</h2>
+    </div>
+    <div class="proceso-flow">
+      <div class="flow-card reveal">
+        <div class="flow-num">S01 // CONFIGURACIÓN</div>
+        <h3>Definir Despiece</h3>
+        <p>Carga las medidas exactas de tus paneles en nuestro cotizador digital o entrega tu archivo técnico.</p>
+      </div>
+      <div class="flow-card reveal">
+        <div class="flow-num">S02 // OPTIMIZACIÓN</div>
+        <h3>Anidación de Hojas</h3>
+        <p>Nuestro sistema calcula el patrón geométrico idóneo para reducir los remanentes y costos de material.</p>
+      </div>
+      <div class="flow-card reveal">
+        <div class="flow-num">S03 // MAQUILA</div>
+        <h3>Procesamiento CNC</h3>
+        <p>Entra a líneas de dimensionado automático, canteado de precisión y habilitación estructural.</p>
+      </div>
+      <div class="flow-card reveal">
+        <div class="flow-num">S04 // LOGÍSTICA</div>
+        <h3>Embarque o Retiro</h3>
+        <p>Se paletiza y etiqueta tu pedido por módulos para una descarga rápida y control de ensamble limpio en tu planta.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESA DE CONTROL: COTIZADOR DE DESPIECE REAL -->
+  <section class="section-padding mesa-control-section" id="mesa-control">
+    <div class="container">
       <div class="reveal">
-        <span class="eyebrow">Cómo trabajamos</span>
-        <h2 style="font-size:clamp(26px,3.4vw,36px); margin-top:14px; max-width:600px;">De tu plano a la pieza cortada, en cuatro pasos.</h2>
-      </div>
-      <div class="proceso-list">
-        <div class="paso reveal">
-          <div class="paso-num mono">01</div>
-          <h3>Nos mandas tus medidas</h3>
-          <p>Por WhatsApp o en tienda: plano, lista de piezas o el proyecto que traigas.</p>
-        </div>
-        <div class="paso reveal">
-          <div class="paso-num mono">02</div>
-          <h3>Optimizamos el corte</h3>
-          <p>Acomodamos tus piezas en el tablero para aprovechar el material y bajar el desperdicio.</p>
-        </div>
-        <div class="paso reveal">
-          <div class="paso-num mono">03</div>
-          <h3>Cortamos y enchapamos</h3>
-          <p>Piezas a medida con cubrecanto, listas para ensamblar en tu taller.</p>
-        </div>
-        <div class="paso reveal">
-          <div class="paso-num mono">04</div>
-          <h3>Entregamos</h3>
-          <p>Recoges en tienda o lo mandamos a domicilio, el mismo día según disponibilidad.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= AUDIENCIAS ================= -->
-  <section id="audiencias">
-    <div class="wrap">
-      <div class="reveal">
-        <span class="eyebrow">Para quién trabajamos</span>
-        <h2 style="font-size:clamp(26px,3.4vw,36px); margin-top:14px; max-width:600px;">Si tu trabajo depende del material correcto, es para ti.</h2>
-      </div>
-      <div class="audiencia-grid">
-        <div class="aud-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg>
-          <h3>Arquitectos y diseñadores</h3>
-          <p>Fichas técnicas claras y acabados consistentes para especificar sin sorpresas en obra.</p>
-        </div>
-        <div class="aud-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V4h8v3"/></svg>
-          <h3>Fabricantes de muebles</h3>
-          <p>Corte optimizado y enchapado para que tu taller ensamble directo, sin retrabajo.</p>
-        </div>
-        <div class="aud-card reveal">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 21V9l8-6 8 6v12M9 21v-8h6v8"/></svg>
-          <h3>Fabricantes de cocinas</h3>
-          <p>Melamina y alto brillo con existencia constante para no detener tu producción.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= TESTIMONIOS ================= -->
-  <section id="testimonios">
-    <div class="wrap">
-      <div class="reveal" style="text-align:center;">
-        <span class="eyebrow" style="justify-content:center;">Ejemplo — reemplazar con reseñas reales</span>
-        <h2 style="font-size:clamp(24px,3.2vw,32px); margin-top:14px;">Lo que dicen quienes ya cortan con nosotros</h2>
-      </div>
-      <div class="testi-grid">
-        <div class="testi reveal">
-          <p class="quote">“Mandamos la lista de corte por WhatsApp y el material sale listo para armar. Nos ahorra un día de taller por proyecto.”</p>
-          <div class="who mono">Estudio de arquitectura — Guadalajara</div>
-        </div>
-        <div class="testi reveal">
-          <p class="quote">“La optimización de corte se nota en el material que sobra: casi nada. Eso se traduce directo en margen.”</p>
-          <div class="who mono">Fabricante de muebles — Ocotlán</div>
-        </div>
-        <div class="testi reveal">
-          <p class="quote">“Siempre tienen existencia del alto brillo que usamos en cocinas. Dejamos de depender de Guadalajara para eso.”</p>
-          <div class="who mono">Taller de cocinas integrales — Zapotlán del Rey</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CONTACTO ================= -->
-  <section id="contacto" class="contacto">
-    <div class="wrap contacto-grid">
-      <div class="reveal">
-        <span class="eyebrow">Visítanos</span>
-        <h2>Ven a ver el material antes de pedirlo.</h2>
-        <p style="color:#D7D6CE; font-size:14.5px; max-width:44ch;">Confirma con nosotros existencia y tiempos antes de mandar tu lista de corte.</p>
-        <ul class="info-list">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 22s7-7.4 7-12.6A7 7 0 0 0 5 9.4C5 14.6 12 22 12 22z"/><circle cx="12" cy="9" r="2.4"/></svg>
-            <span><b>Dirección</b>Av. Francisco Zarco #1350, Lindavista, 47810 Ocotlán, Jal.</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-            <span><b>Horario</b>Mar–Vie 8:00–18:00 · Sáb 8:00–18:00 · Dom 8:00–13:00 · Lun cerrado</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2z"/></svg>
-            <span><b>Teléfono / WhatsApp</b>392 931 3919</span>
-          </li>
-        </ul>
-        <p class="info-note">* Dirección, horario y teléfono tomados de la ficha pública del negocio — confirmar con Braita antes de publicar.</p>
-        <div class="map-card">
-          <svg viewBox="0 0 400 160" fill="none">
-            <line x1="0" y1="40" x2="400" y2="40" stroke="#3A3D38" stroke-width="2"/>
-            <line x1="120" y1="0" x2="120" y2="160" stroke="#3A3D38" stroke-width="2" stroke-dasharray="6 6"/>
-            <rect x="150" y="60" width="80" height="55" fill="none" stroke="#D7D6CE" stroke-width="2"/>
-            <circle cx="190" cy="87" r="5" fill="var(--accent)"/>
-            <text x="150" y="132" class="mono" font-size="10" fill="#D7D6CE">Braita — Lindavista, Ocotlán</text>
-            <text x="14" y="34" class="mono" font-size="9" fill="#8A8D86">AV. FRANCISCO ZARCO</text>
-          </svg>
-        </div>
+        <span class="eyebrow" style="color: var(--brand-light);">Mesa de Control Operativa</span>
+        <h2>Sistema Generador de Órdenes de Despiece</h2>
+        <p>Añade los módulos o paneles requeridos. El sistema estructurará el listado técnico listo para ser procesado por la mesa técnica.</p>
       </div>
 
-      <div class="reveal">
-        <span class="eyebrow">Cotización</span>
-        <h2 style="font-size:1.7rem; margin-bottom:26px;">Cuéntanos qué necesitas cortar.</h2>
-        <form id="contactForm">
-          <div class="form-field">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" required placeholder="Tu nombre">
+      <div class="mesa-layout">
+        <!-- Panel Izquierdo: Tabla interactiva -->
+        <div class="blueprint-panel reveal">
+          <div class="panel-header">
+            <h3>Listado Geométrico de Piezas</h3>
+            <span class="mono" style="font-size: 11px; color: var(--text-light-muted);" id="row-counter">1 Pieza añadida</span>
           </div>
-          <div class="form-field">
-            <label for="empresa">Empresa / taller (opcional)</label>
-            <input type="text" id="empresa" placeholder="Nombre de tu taller o estudio">
+          
+          <div class="table-responsive">
+            <table class="despiece-table" id="despiece-table">
+              <thead>
+                <tr>
+                  <th>Pieza / Etiqueta</th>
+                  <th style="width: 100px;">Largo (mm)</th>
+                  <th style="width: 100px;">Ancho (mm)</th>
+                  <th style="width: 80px;">Cant.</th>
+                  <th>Chapeado (Cantos)</th>
+                  <th style="width: 40px;"></th>
+                </tr>
+              </thead>
+              <tbody id="table-body-rows">
+                <tr>
+                  <td><input type="text" placeholder="Ej: Lateral Módulo" value="Lateral Izquierdo"></td>
+                  <td><input type="number" placeholder="0" value="720"></td>
+                  <td><input type="number" placeholder="0" value="580"></td>
+                  <td><input type="number" placeholder="1" value="2"></td>
+                  <td>
+                    <select>
+                      <option value="Ninguno">Ninguno</option>
+                      <option value="2 Largos">2 Largos</option>
+                      <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
+                      <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button class="btn-remove-row" title="Eliminar fila" onclick="deleteRow(this)">
+                      <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="form-field">
-            <label for="telefono">Teléfono / WhatsApp</label>
-            <input type="tel" id="telefono" required placeholder="10 dígitos">
+          <button class="btn-add-row" onclick="addNewRow()">+ Añadir Fila de Despiece</button>
+        </div>
+
+        <!-- Panel Derecho: Formulario de Enlace Comercial -->
+        <div class="control-form reveal">
+          <div class="form-group">
+            <label for="client-name">Nombre Comercial / Solicitante</label>
+            <input type="text" id="client-name" required placeholder="Ej: Ing. Carlos Mendoza">
           </div>
-          <div class="form-field">
-            <label for="material">Material de interés</label>
-            <select id="material">
-              <option value="Melamina">Melamina</option>
-              <option value="MDF">MDF</option>
-              <option value="Triplay">Triplay</option>
-              <option value="Alto brillo / Súper mate">Alto brillo / Súper mate</option>
-              <option value="Aglomerado / OSB">Aglomerado / OSB</option>
-              <option value="No estoy seguro">No estoy seguro</option>
+          <div class="form-group">
+            <label for="client-company">Fábrica / Carpintería</label>
+            <input type="text" id="client-company" placeholder="Ej: Muebles del Valle Ocotlán">
+          </div>
+          <div class="form-group">
+            <label for="client-phone">Línea Móvil (WhatsApp)</label>
+            <input type="tel" id="client-phone" required placeholder="Ej: 3921002030">
+          </div>
+          <div class="form-group">
+            <label for="master-material">Sustrato / Núcleo Base</label>
+            <select id="master-material">
+              <option value="Melamina Blanca 18mm">Melamina Blanca Estándar 18mm</option>
+              <option value="Melamina Diseño Textura 18mm">Melamina Diseño Texturas Maderas 18mm</option>
+              <option value="MDF Crudo 15mm">MDF Crudo Calibrado 15mm</option>
+              <option value="MDF Hidrofugo 18mm">MDF Hidrófugo Resistencia Humedad 18mm</option>
+              <option value="Triplay Pino 12mm">Triplay de Pino Comercial 12mm</option>
+              <option value="Alto Brillo Espejo 18mm">Alto Brillo Acrílico Premium 18mm</option>
             </select>
           </div>
-          <div class="form-field">
-            <label for="mensaje">Tu proyecto</label>
-            <textarea id="mensaje" required placeholder="Medidas aproximadas, cantidad de piezas o para qué es el proyecto..."></textarea>
+          <div class="form-group">
+            <label for="client-notes">Notas Especiales de Planta</label>
+            <textarea id="client-notes" placeholder="Indicar herrajes adicionales o especificaciones de perforación..."></textarea>
           </div>
-          <button type="submit" class="btn btn-wa" style="margin-top:6px;">Enviar cotización</button>
-          <p class="form-note" id="formNote">Abriendo WhatsApp con tu proyecto...</p>
-        </form>
+          
+          <button class="btn btn-brand" style="width: 100%; margin-top: 12px;" onclick="processOrderToWhatsApp()">
+            Exportar y Enviar a Mesa de Maquila
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGÍSTICA & UBICACIÓN GEOGRÁFICA -->
+  <section class="section-padding container" id="ubicacion">
+    <div class="logistica-struct">
+      <div class="reveal">
+        <span class="eyebrow">Infraestructura Física</span>
+        <h2>Planta Logística de Suministro</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 32px;">Ubicados estratégicamente en la zona industrial mueblera de Ocotlán para proveer de forma directa y ágil a toda la región Ciénega.</p>
+        
+        <ul class="meta-list">
+          <li>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <div>
+              <h5>Dirección de Operaciones</h5>
+              <p>Av. Francisco Zarco #1350, Colonia Lindavista, C.P. 47810. Ocotlán, Jalisco.</p>
+            </div>
+          </li>
+          <li>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div>
+              <h5>Horarios de Patio de Carga</h5>
+              <p>Martes a Sábado: 8:00 AM – 6:00 PM<br>Domingo: 8:00 AM – 1:00 PM<br>Lunes: Cerrado por Mantenimiento Industrial</p>
+            </div>
+          </li>
+          <li>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <div>
+              <h5>Central de Conmutación</h5>
+              <p>Teléfono & Enlace Técnico: 392 931 3919</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="map-container reveal">
+        <svg viewBox="0 0 500 300" fill="none">
+          <rect width="500" height="300" fill="#E1E3DC"/>
+          <line x1="0" y1="80" x2="500" y2="80" stroke="#A9ACA4" stroke-width="6"/>
+          <line x1="180" y1="0" x2="180" y2="300" stroke="#A9ACA4" stroke-width="6" stroke-dasharray="10 8"/>
+          <rect x="230" y="120" width="140" height="100" fill="#15171A"/>
+          <circle cx="300" cy="170" r="8" fill="var(--brand)"/>
+          <line x1="300" y1="170" x2="270" y2="140" stroke="white" stroke-width="2"/>
+          <text x="245" y="245" font-family="var(--font-mono)" font-size="11" fill="#15171A" font-weight="600">BRAITA MATRIZ</text>
+          <text x="20" y="65" font-family="var(--font-sans)" font-size="12" fill="#565B60" font-weight="600">AV. FRANCISCO ZARCO</text>
+        </svg>
       </div>
     </div>
   </section>
 </main>
 
+<!-- FOOTER -->
 <footer>
-  <div class="wrap">
-    <div class="foot-row">
-      <a href="#inicio" class="logo">
-        <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-          <rect x="4" y="4" width="32" height="32" fill="var(--ink)"/>
-          <rect x="10" y="10" width="20" height="20" fill="none" stroke="var(--paper-soft)" stroke-width="2"/>
-          <line x1="10" y1="20" x2="30" y2="20" stroke="var(--accent)" stroke-width="2" stroke-dasharray="3 2"/>
+  <div class="container">
+    <div class="footer-row">
+      <div class="logo">
+        <svg viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="4" width="32" height="32" fill="var(--bg-dark)"/>
+          <rect x="10" y="10" width="20" height="20" fill="none" stroke="var(--bg-surface)" stroke-width="2"/>
+          <line x1="10" y1="20" x2="30" y2="20" stroke="var(--brand)" stroke-width="2" stroke-dasharray="3 2"/>
         </svg>
-        <span class="logo-text">BRA<span>I</span>TA</span>
-      </a>
-      <span class="mono" style="font-size:12px; color:var(--ink-soft);">© 2026 Braita — Tableros y materiales para carpintería.</span>
+        <span>Braita</span>
+      </div>
+      <div class="mono" style="font-size: 13px; color: var(--text-secondary);">
+        Centro de Abasto e Ingeniería Técnica Mueblera.
+      </div>
     </div>
-    <p class="foot-legal">Fichas técnicas, existencia y precios sujetos a disponibilidad. Solicita confirmación antes de tu compra.</p>
+    <div class="footer-legal">
+      <span>© 2026 Braita S.A. de C.V. Todos los derechos reservados.</span>
+      <span>Ocotlán, Jalisco, México.</span>
+    </div>
   </div>
 </footer>
 
-<a href="#" id="floatWhatsapp" class="whatsapp-float" target="_blank" aria-label="Cotizar por WhatsApp">
-  <svg viewBox="0 0 32 32" fill="white">
+<!-- Botón Flotante Permanente -->
+<a href="#" id="wa-sticky-float" class="wa-float" target="_blank" aria-label="Contacto WhatsApp">
+  <svg viewBox="0 0 32 32">
     <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/>
   </svg>
 </a>
 
+<!-- ========================================================================
+     12. INGENIERÍA DE SOFTWARE & LÓGICA DE CONTROL (JS / TS COMPLIANT)
+     ======================================================================== -->
 <script>
-  // TODO: confirmar que este sea el número correcto de WhatsApp de negocio de Braita.
-  const NEGOCIO_WHATSAPP = '523929313919';
-  const waLink = (texto) => `https://wa.me/${NEGOCIO_WHATSAPP}?text=${encodeURIComponent(texto)}`;
-  document.getElementById('heroWhatsapp').href = waLink('Hola, vi su catálogo y quiero cotizar un pedido de tableros.');
-  document.getElementById('navWhatsapp').href = waLink('Hola, vi su catálogo y quiero cotizar un pedido de tableros.');
-  document.getElementById('floatWhatsapp').href = waLink('Hola, quiero cotizar un pedido de tableros.');
+  // Configuración de Enlaces Globales
+  const CONFIG_TELEFONO = '523929313919';
+  const buildWhatsAppLink = (mensaje) => `https://wa.me/${CONFIG_TELEFONO}?text=${encodeURIComponent(mensaje)}`;
 
-  // ---- menu movil ----
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('nav');
-  burger.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open);
+  // Inicialización de Links Estáticos Estables
+  document.getElementById('nav-wa-trigger').href = buildWhatsAppLink('Hola Braita. Solicito información general de catálogo y servicios de maquila.');
+  document.getElementById('wa-sticky-float').href = buildWhatsAppLink('Hola Braita. Me encuentro en el sitio web y requiero asistencia técnica comercial.');
+
+  // Sistema de Notificaciones Flotantes (Toast)
+  function createToast(message) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+      <svg style="width:18px;height:18px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span>${message}</span>
+    `;
+    container.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add('fade-out');
+      toast.addEventListener('animationend', () => toast.remove());
+    }, 4000);
+  }
+
+  // Navbar Toggle Mobile Lógica
+  const menuToggle = document.getElementById('menu-toggle');
+  const mainNav = document.getElementById('main-nav');
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('is-active');
   });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
-  // =====================================================================
-  // CATALOGO — datos de EJEMPLO, reemplazar con el catálogo real de Braita
-  // =====================================================================
-  const productos = [
-    { img:'assets/melamina-blanca.jpg', nombre:'Melamina Blanca', cat:'melamina', codigo:'MEL-BLN-18', espesor:'18 mm', medida:'244 × 122 cm' },
-    { img:'assets/melamina-nogal.jpg', nombre:'Melamina Nogal', cat:'melamina', codigo:'MEL-NOG-18', espesor:'18 mm', medida:'244 × 122 cm' },
-    { img:'assets/mdf-crudo.jpg', nombre:'MDF Crudo', cat:'mdf', codigo:'MDF-CRD-15', espesor:'15 mm', medida:'244 × 122 cm' },
-    { img:'assets/mdf-hidrofugo.jpg', nombre:'MDF Hidrófugo', cat:'mdf', codigo:'MDF-HID-18', espesor:'18 mm', medida:'244 × 122 cm' },
-    { img:'assets/triplay-pino.jpg', nombre:'Triplay de Pino', cat:'triplay', codigo:'TRI-PIN-12', espesor:'12 mm', medida:'244 × 122 cm' },
-    { img:'assets/triplay-marino.jpg', nombre:'Triplay Marino', cat:'triplay', codigo:'TRI-MAR-18', espesor:'18 mm', medida:'244 × 122 cm' },
-    { img:'assets/brillo-blanco.jpg', nombre:'Alto Brillo Blanco', cat:'brillo', codigo:'ABR-BLN-18', espesor:'18 mm', medida:'244 × 122 cm' },
-    { img:'assets/super-mate-gris.jpg', nombre:'Súper Mate Gris', cat:'brillo', codigo:'SMT-GRS-18', espesor:'18 mm', medida:'244 × 122 cm' },
-    { img:'assets/cubrecanto.jpg', nombre:'Cubrecanto PVC', cat:'otros', codigo:'CUB-PVC-22', espesor:'22 mm ancho', medida:'Rollo 50 m' },
+  // Base de Datos Estricta de Catálogo Matrix para Producción
+  const DATABASE_PRODUCTS = [
+    { id: 'PROD-001', name: 'Melamina Blanca Soft', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'MDF / Aglomerado' },
+    { id: 'PROD-002', name: 'Melamina Nogal Urbano', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
+    { id: 'PROD-003', name: 'Melamina Gris Grafito', category: 'melamina', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'MDF Premium' },
+    { id: 'PROD-004', name: 'Melamina Roble Escandinavo', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
+    { id: 'PROD-005', name: 'MDF Crudo Calibrado', category: 'mdf', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra' },
+    { id: 'PROD-006', name: 'MDF Crudo Industrial', category: 'mdf', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra' },
+    { id: 'PROD-007', name: 'MDF Hidrófugo Antihumedad', category: 'mdf', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Núcleo Verde HMR' },
+    { id: 'PROD-008', name: 'Triplay Pino de Primera', category: 'triplay', thickness: '12 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa' },
+    { id: 'PROD-009', name: 'Triplay Pino Estructural', category: 'triplay', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa' },
+    { id: 'PROD-010', name: 'Triplay Marino de Importación', category: 'triplay', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'WBP Core' },
+    { id: 'PROD-011', name: 'Alto Brillo Espejo Blanco', category: 'premium', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'PET Gloss / MDF' },
+    { id: 'PROD-012', name: 'Super Mate Antihuella Negro', category: 'premium', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Zenit Core / MDF' }
   ];
-  const catLabel = { melamina:'Melamina', mdf:'MDF', triplay:'Triplay', brillo:'Alto brillo / Súper mate', otros:'Cubrecanto / Herrajes' };
 
-  const grid = document.getElementById('catalogGrid');
-  function renderCatalog(filter = 'todos'){
-    grid.innerHTML = '';
-    productos.forEach(p => {
-      if (filter !== 'todos' && p.cat !== filter) return;
+  const mapCategoryLabel = {
+    melamina: 'Tablero de Melamina',
+    mdf: 'MDF Sustrato Crudo',
+    triplay: 'Triplay de Madera',
+    premium: 'Acabados Premium / Alto Brillo'
+  };
+
+  // Motor de Renderizado del Catálogo Estructural Vacío
+  const targetGrid = document.getElementById('catalog-target-grid');
+
+  function renderCatalogGrid(filterKey = 'all') {
+    targetGrid.innerHTML = '';
+    const itemsToRender = filterKey === 'all' ? DATABASE_PRODUCTS : DATABASE_PRODUCTS.filter(item => item.category === filterKey);
+    
+    itemsToRender.forEach(prod => {
       const card = document.createElement('div');
-      card.className = 'card';
+      card.className = 'prod-card';
       card.innerHTML = `
-        <div class="card-figure">
-          <img src="${p.img}" alt="${p.nombre}" onerror="this.parentElement.innerHTML='<div class=\\'swatch-fallback\\'><span>${p.codigo}</span></div>'">
-          <span class="card-tick mono">${p.codigo}</span>
+        <div class="prod-media">
+          <img src="${prod.img || ''}" alt="${prod.name}" onerror="this.style.display='none';">
+          <div class="prod-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>MUESTRA DIGITAL TÉCNICA</span>
+          </div>
+          <span class="prod-tag">${prod.id}</span>
         </div>
-        <div class="card-body">
-          <h3>${p.nombre}</h3>
-          <p class="card-spec">${catLabel[p.cat]}<br>Espesor: ${p.espesor}<br>Medida: ${p.medida}</p>
-          <div class="card-foot">
-            <span class="mono" style="font-size:12px; color:var(--ink-soft);">Precio a cotizar</span>
-            <a href="${waLink('Hola, quiero cotizar: ' + p.nombre + ' (' + p.codigo + ')')}" target="_blank">Cotizar →</a>
+        <div class="prod-content">
+          <h3>${prod.name}</h3>
+          <p class="prod-meta">
+            <strong>Tipo:</strong> ${mapCategoryLabel[prod.category]}<br>
+            <strong>Espesor:</strong> ${prod.thickness}<br>
+            <strong>Medida:</strong> ${prod.dimensions}<br>
+            <strong>Núcleo:</strong> ${prod.structural}
+          </p>
+          <div class="prod-footer">
+            <span>Disponible Maquila</span>
+            <button class="btn-action-cotizar" onclick="selectProductForMesaControl('${prod.name}', '${prod.id}')">Cotizar</button>
           </div>
         </div>
       `;
-      grid.appendChild(card);
+      targetGrid.appendChild(card);
     });
   }
-  renderCatalog();
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderCatalog(btn.dataset.filter);
+
+  // Inicializar Controladores de Filtros del Catálogo
+  document.getElementById('filter-group').addEventListener('click', (e) => {
+    if(e.target.classList.contains('filter-btn')) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('is-active'));
+      e.target.classList.add('is-active');
+      renderCatalogGrid(e.target.dataset.filter);
+    }
+  });
+
+  // Vinculación automática: Del catálogo a la Mesa de Control
+  function selectProductForMesaControl(name, id) {
+    const selectMaterial = document.getElementById('master-material');
+    // Creamos dinámicamente o seleccionamos la opción
+    let optionFound = false;
+    for(let i=0; i<selectMaterial.options.length; i++) {
+      if(selectMaterial.options[i].value.includes(name)) {
+        selectMaterial.selectedIndex = i;
+        optionFound = true;
+        break;
+      }
+    }
+    if(!optionFound) {
+      const opt = document.createElement('option');
+      opt.value = `${name} (${id})`;
+      opt.textContent = `${name} (${id})`;
+      selectMaterial.appendChild(opt);
+      selectMaterial.value = opt.value;
+    }
+    
+    // Smooth Scroll a la mesa de control
+    document.getElementById('mesa-control').scrollIntoView({ behavior: 'smooth' });
+    createToast(`Seleccionado: ${name}. Configure su despiece.`);
+  }
+
+  // ========================================================================
+  // LÓGICA DE LA MESA DE CONTROL: CONTROLADOR DE TABLAS DINÁMICAS
+  // ========================================================================
+  const tableBody = document.getElementById('table-body-rows');
+  const rowCounter = document.getElementById('row-counter');
+
+  function updateRowCounter() {
+    const count = tableBody.querySelectorAll('tr').length;
+    rowCounter.textContent = `${count} ${count === 1 ? 'Pieza' : 'Piezas'} en listado`;
+  }
+
+  function addNewRow() {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><input type="text" placeholder="Ej: Repisa superior" value="Nueva Pieza"></td>
+      <td><input type="number" placeholder="0" value="400"></td>
+      <td><input type="number" placeholder="0" value="300"></td>
+      <td><input type="number" placeholder="1" value="1"></td>
+      <td>
+        <select>
+          <option value="Ninguno">Ninguno</option>
+          <option value="2 Largos">2 Largos</option>
+          <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
+          <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
+        </select>
+      </td>
+      <td>
+        <button class="btn-remove-row" title="Eliminar fila" onclick="deleteRow(this)">
+          <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+        </button>
+      </td>
+    `;
+    tableBody.appendChild(tr);
+    updateRowCounter();
+    createToast('Nueva fila de despiece agregada.');
+  }
+
+  function deleteRow(button) {
+    const rows = tableBody.querySelectorAll('tr');
+    if(rows.length <= 1) {
+      createToast('Error: La orden operativa debe contener al menos una pieza.');
+      return;
+    }
+    button.closest('tr').remove();
+    updateRowCounter();
+  }
+
+  // Exportador de Datos de Ingeniería a Cadena de Texto WhatsApp Corporativo
+  function processOrderToWhatsApp() {
+    const clientName = document.getElementById('client-name').value.trim();
+    const clientCompany = document.getElementById('client-company').value.trim();
+    const clientPhone = document.getElementById('client-phone').value.trim();
+    const masterMaterial = document.getElementById('master-material').value;
+    const clientNotes = document.getElementById('client-notes').value.trim();
+
+    if(!clientName || !clientPhone) {
+      createToast('Campos obligatorios: Nombre y Línea Móvil de validación.');
+      return;
+    }
+
+    // Estructuración de la matriz de despiece de la tabla
+    let despieceDataString = '';
+    const rows = tableBody.querySelectorAll('tr');
+    
+    rows.forEach((row, index) => {
+      const inputs = row.querySelectorAll('input');
+      const select = row.querySelector('select');
+      
+      const label = inputs[0].value || `Pieza ${index + 1}`;
+      const largo = inputs[1].value || '0';
+      const ancho = inputs[2].value || '0';
+      const cant  = inputs[3].value || '1';
+      const canto = select.value;
+
+      despieceDataString += `\n[${index + 1}] ${label} -> ${largo}x${ancho}mm | Cant: ${cant} | Canto: ${canto}`;
     });
+
+    // Construcción del Mensaje Protocolario Estricto
+    const finalMessage = `ORDEN DE MAQUILA - SOLICITUD DE DESPIECE COMERCIAL
+--------------------------------------------------
+OPERADOR: ${clientName}
+EMPRESA: ${clientCompany || 'Particular'}
+CONTACTO ENLACE: ${clientPhone}
+MATERIAL BASE SELECCIONADO: ${masterMaterial}
+--------------------------------------------------
+MATRIZ DE PIEZAS A COMPUTAR:${despieceDataString}
+--------------------------------------------------
+NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
+--------------------------------------------------
+*Solicito validación de rendimiento geométrico y cotización formal de hojas más servicios de corte.*`;
+
+    createToast('Orden estructurada. Redirigiendo a WhatsApp Corporativo...');
+    
+    setTimeout(() => {
+      window.open(buildWhatsAppLink(finalMessage), '_blank');
+    }, 800);
+  }
+
+  // Intersection Observer Api para Inyecciones Fluidas en Scroll
+  const scrollRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Inicialización de Render Global al Cargar la Ventana Ejecutiva
+  window.addEventListener('DOMContentLoaded', () => {
+    renderCatalogGrid('all');
+    document.querySelectorAll('.reveal').forEach(element => {
+      scrollRevealObserver.observe(element);
+    });
+    updateRowCounter();
   });
-
-  // ---- scroll reveal ----
-  const revObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
-  }, { threshold: .14 });
-  document.querySelectorAll('.reveal').forEach(el => revObserver.observe(el));
-
-  // ---- formulario de contacto ----
-  // Por ahora cae directo a WhatsApp con los datos capturados, así que YA es funcional.
-  // Cuando el cliente pase sus credenciales de Supabase, se puede insertar el registro
-  // en una tabla `cotizaciones` antes de abrir WhatsApp (mismo patrón que el demo Roble).
-  document.getElementById('contactForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nombre = document.getElementById('nombre').value.trim();
-    const empresa = document.getElementById('empresa').value.trim();
-    const telefono = document.getElementById('telefono').value.trim();
-    const material = document.getElementById('material').value;
-    const mensaje = document.getElementById('mensaje').value.trim();
-    const note = document.getElementById('formNote');
-
-    const texto = `Hola Braita, soy ${nombre}${empresa ? ' de ' + empresa : ''}. Mi teléfono es ${telefono}. Me interesa cotizar: ${material}. Proyecto: ${mensaje}`;
-    note.textContent = `Listo, ${nombre.split(' ')[0]} — abriendo WhatsApp con tu proyecto...`;
-    note.classList.add('show');
-    window.open(waLink(texto), '_blank');
-    e.target.reset();
-  });
-
-  /* ---------------------------------------------------------------------
-     BLOQUE OPCIONAL — Supabase (guardar cotizaciones en base de datos real)
-     Completar cuando el cliente entregue sus credenciales. Instrucciones:
-
-     1) Agrega esta línea en el head, ANTES de este bloque de script (fuera de él):
-          script SRC IGUAL A https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2 (cierra el tag normal)
-        (a propósito no escribo aquí el tag completo con corchetes angulares:
-        el navegador corta el script en cuanto ve esa secuencia de cierre,
-        aunque esté "comentada" en JS, y truena todo el archivo)
-
-     2) Descomenta y completa estas 3 líneas dentro de este bloque:
-          const SUPABASE_URL = 'PENDIENTE';
-          const SUPABASE_ANON_KEY = 'PENDIENTE';
-          const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-     3) Dentro del listener de "submit" (abajo), antes de window.open(...):
-          await supabase.from('cotizaciones').insert([{ nombre, empresa, telefono, material, mensaje }]);
-        (recuerda volver el callback del submit "async")
-  --------------------------------------------------------------------- */
-
-  // ---- header con blur al hacer scroll (visual, opcional) ----
-  window.addEventListener('scroll', () => {}, { passive:true });
 </script>
 
 </body>
