@@ -888,6 +888,183 @@
   }
   .wa-float:hover { transform: scale(1.1) translateY(-4px); }
   .wa-float svg { width: 30px; height: 30px; fill: white; }
+
+  /* ========================================================================
+     13. TEXTURA DE GRANO + TAG DE HOJA TÉCNICA (ACABADO PREMIUM)
+     ======================================================================== */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 3000;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='130'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .sheet-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .sheet-tag .num {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 3px 9px;
+  }
+  .sheet-tag .eyebrow { margin-bottom: 0; }
+  .mesa-control-section .sheet-tag .num { border-color: var(--border-dark); color: var(--text-light-muted); }
+
+  /* Tilt sutil en tarjetas al mover el mouse */
+  .prod-card, .srv-node, .flow-card { will-change: transform; }
+
+  /* ========================================================================
+     14. PANEL DE ADMINISTRADOR: HISTORIAL DE ÓRDENES (SUPABASE)
+     ======================================================================== */
+  .admin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+  .admin-link:hover { color: var(--brand-dark); }
+  .admin-link::before { content: '●'; font-size: 8px; color: #3F7D4C; }
+
+  .panel-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(21, 23, 26, 0.7);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 20px;
+    overflow-y: auto;
+  }
+  .panel-overlay.open { display: flex; }
+  .panel-modal {
+    background: var(--bg-surface);
+    width: 100%;
+    max-width: 960px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.4);
+  }
+  .panel-head {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    padding: 28px 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .panel-head .eyebrow { color: var(--brand-light); margin-bottom: 8px; }
+  .panel-head .eyebrow::before { background: var(--brand-light); }
+  .panel-head h3 { color: var(--text-light); font-size: 22px; }
+  .panel-close {
+    background: rgba(245,245,242,0.08);
+    border: none;
+    color: var(--text-light);
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .panel-close:hover { background: var(--brand-dark); }
+
+  .panel-login { max-width: 340px; margin: 0 auto; padding: 48px 32px; text-align: center; }
+  .panel-login h4 { font-size: 19px; margin: 12px 0 26px; }
+  .panel-field { margin-bottom: 16px; text-align: left; }
+  .panel-field label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 7px;
+  }
+  .panel-field input {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--border-color);
+    padding: 10px 2px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    background: transparent;
+    color: var(--text-primary);
+  }
+  .panel-field input:focus { outline: none; border-bottom-color: var(--brand); }
+  .panel-login .btn { width: 100%; margin-top: 8px; }
+  .panel-login-error {
+    display: none;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #C0392B;
+  }
+  .panel-login-error.show { display: block; }
+
+  .panel-body { padding: 32px 34px; }
+  .panel-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+    margin-bottom: 28px;
+  }
+  .panel-stat { background: var(--bg-panel); padding: 20px 24px; }
+  .panel-stat .num { font-family: var(--font-display); font-weight: 700; font-size: 28px; }
+  .panel-stat .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    display: block;
+  }
+  .panel-table-wrap { width: 100%; overflow-x: auto; }
+  .panel-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .panel-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 12px 10px;
+    border-bottom: 2px solid var(--text-primary);
+  }
+  .panel-table td {
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+  }
+  .panel-table td.piezas-cell {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    max-width: 260px;
+    white-space: pre-line;
+    line-height: 1.6;
+  }
+  .panel-table select {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 6px 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+  }
+  .panel-empty { text-align: center; color: var(--text-secondary); padding: 40px 0; font-size: 14px; }
+
 </style>
 </head>
 <body>
@@ -930,7 +1107,7 @@
   <section class="hero" id="inicio">
     <div class="container hero-container">
       <div class="hero-content">
-        <span class="eyebrow">Industria del Tablero Mueblero</span>
+        <div class="sheet-tag"><span class="num">HOJA 01/06</span><span class="eyebrow">Industria del Tablero Mueblero</span></div>
         <h1>Suministro base y despiece <span>automatizado.</span></h1>
         <p>Centro de distribución integral en Ocotlán, Jalisco. Abastecemos de melamina, MDF y triplay con optimización computarizada de cortes para optimizar el rendimiento y anular la merma en planta.</p>
         <div class="hero-buttons">
@@ -992,7 +1169,7 @@
   <section class="section-padding container" id="catalogo">
     <div class="catalog-controls reveal">
       <div class="catalog-title">
-        <span class="eyebrow">Catálogo Matriz</span>
+        <div class="sheet-tag"><span class="num">HOJA 02/06</span><span class="eyebrow">Catálogo Matriz</span></div>
         <h2>Tableros Estandarizados e Industriales</h2>
         <p>Selecciona la base estructural para tu proyecto de fabricación. Todos los materiales cuentan con opción de habilitado completo en taller.</p>
       </div>
@@ -1005,7 +1182,7 @@
       </div>
     </div>
 
-    <div class="catalog-grid id-reveal" id="catalog-target-grid">
+    <div class="catalog-grid" id="catalog-target-grid">
       <!-- El contenido se inyecta vía JavaScript con la base estructurada vacía solicitada -->
     </div>
   </section>
@@ -1014,7 +1191,7 @@
   <section class="section-padding servicios-section" id="servicios">
     <div class="container">
       <div class="reveal" style="margin-bottom: 56px;">
-        <span class="eyebrow">Procesamiento de Materiales</span>
+        <div class="sheet-tag"><span class="num">HOJA 03/06</span><span class="eyebrow">Procesamiento de Materiales</span></div>
         <h2>Capacidad Mecánica de Maquila</h2>
       </div>
       <div class="servicios-grid">
@@ -1040,7 +1217,7 @@
   <!-- PROCESO DE TRABAJO -->
   <section class="section-padding container" id="proceso">
     <div class="reveal">
-      <span class="eyebrow">Línea de Integración</span>
+      <div class="sheet-tag"><span class="num">HOJA 04/06</span><span class="eyebrow">Línea de Integración</span></div>
       <h2>Metodología de Suministro Exacto</h2>
     </div>
     <div class="proceso-flow">
@@ -1071,7 +1248,7 @@
   <section class="section-padding mesa-control-section" id="mesa-control">
     <div class="container">
       <div class="reveal">
-        <span class="eyebrow" style="color: var(--brand-light);">Mesa de Control Operativa</span>
+        <div class="sheet-tag"><span class="num">HOJA 05/06</span><span class="eyebrow" style="color: var(--brand-light);">Mesa de Control Operativa</span></div>
         <h2>Sistema Generador de Órdenes de Despiece</h2>
         <p>Añade los módulos o paneles requeridos. El sistema estructurará el listado técnico listo para ser procesado por la mesa técnica.</p>
       </div>
@@ -1164,7 +1341,7 @@
   <section class="section-padding container" id="ubicacion">
     <div class="logistica-struct">
       <div class="reveal">
-        <span class="eyebrow">Infraestructura Física</span>
+        <div class="sheet-tag"><span class="num">HOJA 06/06</span><span class="eyebrow">Infraestructura Física</span></div>
         <h2>Planta Logística de Suministro</h2>
         <p style="color: var(--text-secondary); margin-bottom: 32px;">Ubicados estratégicamente en la zona industrial mueblera de Ocotlán para proveer de forma directa y ágil a toda la región Ciénega.</p>
         
@@ -1229,8 +1406,51 @@
       <span>© 2026 Braita S.A. de C.V. Todos los derechos reservados.</span>
       <span>Ocotlán, Jalisco, México.</span>
     </div>
+    <div style="margin-top: 18px;">
+      <a href="#" id="openPanel" class="admin-link">Ver historial de pedidos (panel administrador)</a>
+    </div>
   </div>
 </footer>
+
+<!-- PANEL DE ADMINISTRADOR: HISTORIAL DE ÓRDENES -->
+<div class="panel-overlay" id="panelOverlay">
+  <div class="panel-modal">
+    <div class="panel-head">
+      <div>
+        <span class="eyebrow">Panel Braita</span>
+        <h3>Historial de Órdenes de Despiece</h3>
+      </div>
+      <button class="panel-close" id="closePanel" aria-label="Cerrar">&times;</button>
+    </div>
+
+    <div id="panelLoginBox" class="panel-login">
+      <span class="eyebrow" style="color: var(--brand-dark);">Acceso administrador</span>
+      <h4>Inicia sesión para ver las órdenes</h4>
+      <div class="panel-field"><label for="panelLoginEmail">Correo</label><input type="email" id="panelLoginEmail"></div>
+      <div class="panel-field"><label for="panelLoginPassword">Contraseña</label><input type="password" id="panelLoginPassword"></div>
+      <button class="btn btn-dark" id="panelLoginBtn" type="button">Entrar</button>
+      <p class="panel-login-error" id="panelLoginError">Correo o contraseña incorrectos.</p>
+    </div>
+
+    <div id="panelContentBox" class="panel-body" style="display:none;">
+      <div class="panel-stats">
+        <div class="panel-stat"><span class="num">0</span><span class="label" id="statTotalLabel">Órdenes totales</span></div>
+        <div class="panel-stat"><span class="num" id="statNuevasVal">0</span><span class="label">Sin atender</span></div>
+        <div class="panel-stat"><span class="num" id="statHoyVal">0</span><span class="label">Recibidas hoy</span></div>
+      </div>
+      <div class="panel-table-wrap">
+        <table class="panel-table">
+          <thead>
+            <tr><th>Fecha</th><th>Solicitante</th><th>Empresa</th><th>Teléfono</th><th>Material</th><th>Piezas</th><th>Estado</th></tr>
+          </thead>
+          <tbody id="panelBodyRows"></tbody>
+        </table>
+      </div>
+      <p class="panel-empty" id="panelEmptyMsg" style="display:none;">Aún no hay órdenes registradas. Envía una desde la Mesa de Control para ver cómo aparece aquí.</p>
+      <button class="btn btn-outline" id="panelLogoutBtn" type="button" style="margin-top: 20px;">Cerrar sesión</button>
+    </div>
+  </div>
+</div>
 
 <!-- Botón Flotante Permanente -->
 <a href="#" id="wa-sticky-float" class="wa-float" target="_blank" aria-label="Contacto WhatsApp">
@@ -1242,6 +1462,7 @@
 <!-- ========================================================================
      12. INGENIERÍA DE SOFTWARE & LÓGICA DE CONTROL (JS / TS COMPLIANT)
      ======================================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   // Configuración de Enlaces Globales
   const CONFIG_TELEFONO = '523929313919';
@@ -1309,7 +1530,6 @@
       card.className = 'prod-card';
       card.innerHTML = `
         <div class="prod-media">
-          <img src="${prod.img || ''}" alt="${prod.name}" onerror="this.style.display='none';">
           <div class="prod-placeholder">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             <span>MUESTRA DIGITAL TÉCNICA</span>
@@ -1416,7 +1636,7 @@
   }
 
   // Exportador de Datos de Ingeniería a Cadena de Texto WhatsApp Corporativo
-  function processOrderToWhatsApp() {
+  async function processOrderToWhatsApp() {
     const clientName = document.getElementById('client-name').value.trim();
     const clientCompany = document.getElementById('client-company').value.trim();
     const clientPhone = document.getElementById('client-phone').value.trim();
@@ -1430,6 +1650,7 @@
 
     // Estructuración de la matriz de despiece de la tabla
     let despieceDataString = '';
+    const piezasArray = [];
     const rows = tableBody.querySelectorAll('tr');
     
     rows.forEach((row, index) => {
@@ -1443,6 +1664,7 @@
       const canto = select.value;
 
       despieceDataString += `\n[${index + 1}] ${label} -> ${largo}x${ancho}mm | Cant: ${cant} | Canto: ${canto}`;
+      piezasArray.push({ label, largo, ancho, cant, canto });
     });
 
     // Construcción del Mensaje Protocolario Estricto
@@ -1458,6 +1680,22 @@ MATRIZ DE PIEZAS A COMPUTAR:${despieceDataString}
 NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
 --------------------------------------------------
 *Solicito validación de rendimiento geométrico y cotización formal de hojas más servicios de corte.*`;
+
+    // Guarda la orden en la base de datos del negocio (si Supabase está disponible)
+    if (typeof guardarOrdenEnSupabase === 'function') {
+      try {
+        await guardarOrdenEnSupabase({
+          nombre: clientName,
+          empresa: clientCompany || 'Particular',
+          telefono: clientPhone,
+          material: masterMaterial,
+          notas: clientNotes || '',
+          piezas: piezasArray,
+        });
+      } catch (err) {
+        console.error('No se pudo guardar la orden en la base de datos:', err);
+      }
+    }
 
     createToast('Orden estructurada. Redirigiendo a WhatsApp Corporativo...');
     
@@ -1482,7 +1720,176 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       scrollRevealObserver.observe(element);
     });
     updateRowCounter();
+    initTiltCards();
   });
+
+  // ---- Tilt sutil al mover el mouse sobre tarjetas (catálogo, servicios, proceso) ----
+  function initTiltCards() {
+    document.querySelectorAll('.prod-card, .srv-node, .flow-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(700px) rotateX(${(-y * 3).toFixed(2)}deg) rotateY(${(x * 3).toFixed(2)}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  }
+  // El catálogo se re-renderiza al filtrar, así que hay que re-enganchar el tilt cada vez
+  document.getElementById('filter-group').addEventListener('click', () => setTimeout(initTiltCards, 0));
+
+  // ==================================================================
+  // SUPABASE — guardado de órdenes + panel de administrador
+  // Reemplaza estos dos valores con los de tu propio proyecto Supabase:
+  // Settings → API → Project URL / anon public key
+  //
+  // Tabla necesaria en Supabase (créala en el SQL Editor):
+  //
+  //   create table pedidos_maquila (
+  //     id uuid primary key default gen_random_uuid(),
+  //     fecha timestamptz default now(),
+  //     nombre text,
+  //     empresa text,
+  //     telefono text,
+  //     material text,
+  //     notas text,
+  //     piezas jsonb,
+  //     estado text default 'nuevo'
+  //   );
+  //   alter table pedidos_maquila enable row level security;
+  //   create policy "Cualquiera puede crear una orden" on pedidos_maquila
+  //     for insert to anon with check (true);
+  //   create policy "Solo administradores autenticados pueden ver" on pedidos_maquila
+  //     for select to authenticated using (true);
+  //   create policy "Solo administradores autenticados pueden actualizar" on pedidos_maquila
+  //     for update to authenticated using (true);
+  // ==================================================================
+  let guardarOrdenEnSupabase = null;
+
+  try {
+    const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
+    const SUPABASE_ANON_KEY = 'TU-LLAVE-ANON-PUBLICA';
+
+    if (typeof window.supabase === 'undefined') {
+      throw new Error('El script de Supabase no cargó.');
+    }
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    guardarOrdenEnSupabase = async function (orden) {
+      const { error } = await supabase.from('pedidos_maquila').insert([{
+        nombre: orden.nombre,
+        empresa: orden.empresa,
+        telefono: orden.telefono,
+        material: orden.material,
+        notas: orden.notas,
+        piezas: orden.piezas,
+        estado: 'nuevo',
+      }]);
+      if (error) throw error;
+    };
+
+    // ---- Abrir panel: revisa si ya hay sesión iniciada ----
+    document.getElementById('openPanel').addEventListener('click', async (e) => {
+      e.preventDefault();
+      document.getElementById('panelOverlay').classList.add('open');
+      const { data } = await supabase.auth.getSession();
+      if (data.session) { mostrarPanelContenido(); cargarOrdenes(); }
+      else { mostrarPanelLogin(); }
+    });
+    document.getElementById('closePanel').addEventListener('click', () => {
+      document.getElementById('panelOverlay').classList.remove('open');
+    });
+    document.getElementById('panelOverlay').addEventListener('click', (e) => {
+      if (e.target.id === 'panelOverlay') e.target.classList.remove('open');
+    });
+
+    function mostrarPanelLogin() {
+      document.getElementById('panelLoginBox').style.display = 'block';
+      document.getElementById('panelContentBox').style.display = 'none';
+    }
+    function mostrarPanelContenido() {
+      document.getElementById('panelLoginBox').style.display = 'none';
+      document.getElementById('panelContentBox').style.display = 'block';
+    }
+
+    document.getElementById('panelLoginBtn').addEventListener('click', async () => {
+      const email = document.getElementById('panelLoginEmail').value.trim();
+      const password = document.getElementById('panelLoginPassword').value;
+      const errorEl = document.getElementById('panelLoginError');
+      try {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        errorEl.classList.remove('show');
+        mostrarPanelContenido();
+        cargarOrdenes();
+      } catch (err) {
+        errorEl.textContent = err.message || 'Correo o contraseña incorrectos.';
+        errorEl.classList.add('show');
+      }
+    });
+    document.getElementById('panelLogoutBtn').addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      mostrarPanelLogin();
+    });
+
+    async function cargarOrdenes() {
+      try {
+        const { data, error } = await supabase
+          .from('pedidos_maquila')
+          .select('*')
+          .order('fecha', { ascending: false });
+        if (error) throw error;
+        renderPanelOrdenes(data || []);
+      } catch (err) {
+        console.error('Error cargando órdenes:', err);
+      }
+    }
+
+    function renderPanelOrdenes(lista) {
+      const hoy = new Date().toDateString();
+      document.querySelector('#statTotalLabel').parentElement.querySelector('.num').textContent = lista.length;
+      document.getElementById('statNuevasVal').textContent = lista.filter(o => o.estado === 'nuevo').length;
+      document.getElementById('statHoyVal').textContent = lista.filter(o => new Date(o.fecha).toDateString() === hoy).length;
+      document.getElementById('panelEmptyMsg').style.display = lista.length ? 'none' : 'block';
+
+      document.getElementById('panelBodyRows').innerHTML = lista.map(o => {
+        const piezasTexto = (o.piezas || []).map(p => `${p.label}: ${p.largo}x${p.ancho}mm ×${p.cant}`).join('\n');
+        return `
+        <tr>
+          <td class="mono" style="font-size:11.5px;">${new Date(o.fecha).toLocaleDateString('es-MX', { day: '2-digit', month: 'short' })}</td>
+          <td>${o.nombre}</td>
+          <td>${o.empresa}</td>
+          <td class="mono" style="font-size:12px;">${o.telefono}</td>
+          <td style="font-size:12.5px;">${o.material}</td>
+          <td class="piezas-cell">${piezasTexto || '—'}</td>
+          <td>
+            <select data-id="${o.id}">
+              <option value="nuevo" ${o.estado === 'nuevo' ? 'selected' : ''}>Nuevo</option>
+              <option value="cotizado" ${o.estado === 'cotizado' ? 'selected' : ''}>Cotizado</option>
+              <option value="confirmado" ${o.estado === 'confirmado' ? 'selected' : ''}>Confirmado</option>
+              <option value="entregado" ${o.estado === 'entregado' ? 'selected' : ''}>Entregado</option>
+            </select>
+          </td>
+        </tr>
+      `;
+      }).join('');
+    }
+
+    document.getElementById('panelBodyRows').addEventListener('change', async (e) => {
+      if (e.target.tagName !== 'SELECT') return;
+      await supabase.from('pedidos_maquila').update({ estado: e.target.value }).eq('id', e.target.dataset.id);
+    });
+
+  } catch (err) {
+    console.error('No se pudo inicializar el panel de administrador:', err);
+    const openPanelLink = document.getElementById('openPanel');
+    if (openPanelLink) {
+      openPanelLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        createToast('El panel de administrador aún no está configurado con tu base de datos.');
+      });
+    }
+  }
 </script>
 
 </body>
