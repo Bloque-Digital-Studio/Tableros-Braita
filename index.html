@@ -439,6 +439,19 @@
   .panel-table td.piezas-cell{ font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); max-width:250px; white-space:pre-line; line-height:1.6; }
   .panel-table select{ font-family:var(--font-mono); font-size:11.5px; padding:6px 8px; border:1px solid var(--border-color); background:var(--bg-surface); }
   .panel-empty{ text-align:center; color:var(--text-secondary); padding:40px 0; font-size:14px; }
+
+  /* Color de bloque por estado del pedido */
+  .panel-table tr.row-pendiente{ background:#FEF3E2; }
+  .panel-table tr.row-pendiente:hover{ background:#FCE7C8; }
+  .panel-table tr.row-pendiente td:first-child{ border-left:3px solid #D97706; }
+
+  .panel-table tr.row-aceptado{ background:#E7F6EC; }
+  .panel-table tr.row-aceptado:hover{ background:#D3EFDC; }
+  .panel-table tr.row-aceptado td:first-child{ border-left:3px solid #16A34A; }
+
+  .panel-table tr.row-rechazado{ background:#FCEAEA; }
+  .panel-table tr.row-rechazado:hover{ background:#F9D9D9; }
+  .panel-table tr.row-rechazado td:first-child{ border-left:3px solid #DC2626; }
 </style>
 </head>
 <body>
@@ -1048,8 +1061,8 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
   let guardarOrdenEnSupabase = null;
 
   try {
-    const SUPABASE_URL = 'https://gtpmffjzbiwghaibiprv.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0cG1mZmp6Yml3Z2hhaWJpcHJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NTM3MzYsImV4cCI6MjA5OTEyOTczNn0.SB8QRRiUlh1mNEfH3rDfkxYSk-A--dWF_77jZE8sseM';
+    const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
+    const SUPABASE_ANON_KEY = 'TU-LLAVE-ANON-PUBLICA';
     if (typeof window.supabase === 'undefined') throw new Error('El script de Supabase no cargó.');
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -1093,6 +1106,12 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       } catch (err) { console.error('Error cargando órdenes:', err); }
     }
 
+    function grupoDeEstado(estado) {
+      if (estado === 'confirmado' || estado === 'entregado') return 'row-aceptado';
+      if (estado === 'rechazado') return 'row-rechazado';
+      return 'row-pendiente'; // nuevo, cotizado
+    }
+
     function renderPanelOrdenes(lista) {
       const hoy = new Date().toDateString();
       document.querySelector('#statTotalLabel').parentElement.querySelector('.num').textContent = lista.length;
@@ -1102,7 +1121,7 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
 
       document.getElementById('panelBodyRows').innerHTML = lista.map(o => {
         const piezasTexto = (o.piezas || []).map(p => `${p.label}: ${p.largo}x${p.ancho}mm ×${p.cant}`).join('\n');
-        return `<tr>
+        return `<tr class="${grupoDeEstado(o.estado)}">
           <td class="mono" style="font-size:11px;">${new Date(o.fecha).toLocaleDateString('es-MX', { day: '2-digit', month: 'short' })}</td>
           <td>${o.nombre}</td><td>${o.empresa}</td>
           <td class="mono" style="font-size:11.5px;">${o.telefono}</td>
@@ -1113,6 +1132,7 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
             <option value="cotizado" ${o.estado==='cotizado'?'selected':''}>Cotizado</option>
             <option value="confirmado" ${o.estado==='confirmado'?'selected':''}>Confirmado</option>
             <option value="entregado" ${o.estado==='entregado'?'selected':''}>Entregado</option>
+            <option value="rechazado" ${o.estado==='rechazado'?'selected':''}>Rechazado</option>
           </select></td>
         </tr>`;
       }).join('');
@@ -1121,6 +1141,7 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
     document.getElementById('panelBodyRows').addEventListener('change', async (e) => {
       if (e.target.tagName !== 'SELECT') return;
       await supabase.from('pedidos_maquila').update({ estado: e.target.value }).eq('id', e.target.dataset.id);
+      cargarOrdenes();
     });
 
   } catch (err) {
