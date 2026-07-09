@@ -1048,8 +1048,8 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
   let guardarOrdenEnSupabase = null;
 
   try {
-    const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
-    const SUPABASE_ANON_KEY = 'TU-LLAVE-ANON-PUBLICA';
+    const SUPABASE_URL = 'https://gtpmffjzbiwghaibiprv.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0cG1mZmp6Yml3Z2hhaWJpcHJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NTM3MzYsImV4cCI6MjA5OTEyOTczNn0.SB8QRRiUlh1mNEfH3rDfkxYSk-A--dWF_77jZE8sseM';
     if (typeof window.supabase === 'undefined') throw new Error('El script de Supabase no cargó.');
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
