@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <!--
   ================================================================
-  BRAITA INDUSTRIAL HUB — PLATAFORMA INTEGRAL DE MAQUILA Y SUMINISTRO
-  ================================================================
-  DIRECCIÓN: Av. Francisco Zarco #1350, Lindavista, Ocotlán, Jal.
-  PRODUCCIÓN / DESARROLLO ARQUITECTÓNICO MUEBLERO
+  BRAITA INDUSTRIAL HUB — v2 (Sistema de diseño: Industrial Blueprint)
   ================================================================
 -->
 <html lang="es">
@@ -13,1173 +10,523 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Braita — Sistema de Maquila Automatizada y Suministro de Tableros</title>
 <meta name="description" content="Socio estratégico en melaminas, MDF, triplays y cortes automatizados para la industria del mueble en Ocotlán y la región Ciénega.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2315171A'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23F1EFE9' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%23E4610F' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%230F172A'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23F1F5F9' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%23C2410C' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-  :root {
-    --bg-base: #EDEEEA;
-    --bg-surface: #F5F5F2;
-    --bg-panel: #E1E3DC;
-    --bg-dark: #15171A;
-    --bg-dark-surface: #1F2124;
-    
-    --text-primary: #15171A;
-    --text-secondary: #565B60;
-    --text-muted: #8A8D86;
-    --text-light: #F5F5F2;
-    --text-light-muted: #ABAAA1;
+  /* ======================================================================
+     TOKENS — Sistema "Industrial Blueprint"
+     ====================================================================== */
+  :root{
+    --bg-base:#F1F5F9;
+    --bg-surface:#FFFFFF;
+    --bg-surface-low:#F8FAFC;
+    --bg-panel:#E2E8F0;
+    --bg-dark:#0F172A;
+    --bg-dark-surface:#1E293B;
 
-    --brand: #E4610F;
-    --brand-dark: #B84E0C;
-    --brand-light: #FF8436;
-    --border-color: #C9CCC4;
-    --border-dark: #3A3D38;
-    
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-sans: 'Inter', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    
-    --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-    --radius-sm: 2px;
-    --radius-md: 4px;
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
-    --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
-  }
+    --text-primary:#0F172A;
+    --text-secondary:#475569;
+    --text-muted:#94A3B8;
+    --text-light:#F1F5F9;
+    --text-light-muted:#94A3B8;
 
-  *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --brand:#C2410C;
+    --brand-dark:#9A3412;
+    --brand-light:#EA580C;
+
+    --border-color:#CBD5E1;
+    --border-strong:#94A3B8;
+    --border-dark:#334155;
+
+    --font-display:'Montserrat', sans-serif;
+    --font-sans:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+
+    --ease: cubic-bezier(0.16,1,0.3,1);
+    --shadow-sm: 0 2px 10px rgba(15,23,42,.06);
+    --shadow-md: 0 20px 48px rgba(15,23,42,.14);
   }
 
-  html {
-    scroll-behavior: smooth;
-    text-size-adjust: 100%;
+  *,*::before,*::after{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg-base);
+    color:var(--text-primary);
+    font-family:var(--font-sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .material-symbols-outlined{
+    font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+    font-size:20px; line-height:1; vertical-align:middle; display:inline-block;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  .container{ width:100%; max-width:1320px; margin:0 auto; padding:0 40px; }
+  @media (max-width:768px){ .container{ padding:0 20px; } }
+  .section-padding{ padding:96px 0; }
+  @media (max-width:768px){ .section-padding{ padding:64px 0; } }
+  .mono{ font-family:var(--font-mono); }
+  .display{ font-family:var(--font-display); }
+
+  /* Grid técnico de fondo, muy sutil */
+  body{
+    background-image:
+      linear-gradient(to right, rgba(148,163,184,0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148,163,184,0.08) 1px, transparent 1px);
+    background-size:18px 18px;
   }
 
-  body {
-    background-color: var(--bg-base);
-    color: var(--text-primary);
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+  /* Textura de grano */
+  body::before{
+    content:'';
+    position:fixed; inset:0; z-index:3000; pointer-events:none;
+    opacity:.03; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='130'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 
-  .container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 40px;
+  /* Sello fijo tipo hoja de plano, esquina superior derecha */
+  .sheet-stamp{
+    position:fixed; top:18px; right:22px; z-index:150;
+    font-family:var(--font-mono); font-size:10.5px; line-height:1.5;
+    color:var(--text-muted); text-align:right; pointer-events:none;
   }
-  @media (max-width: 768px) { .container { padding: 0 20px; } }
+  @media (max-width:900px){ .sheet-stamp{ display:none; } }
 
-  .grid { display: grid; gap: 32px; }
-  .grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .grid-4 { grid-template-columns: repeat(4, 1fr); }
-  
-  @media (max-width: 992px) {
-    .grid-4 { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: repeat(2, 1fr); }
-    .grid-2 { grid-template-columns: 1fr; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--brand);
   }
-  @media (max-width: 640px) {
-    .grid-4, .grid-3 { grid-template-columns: 1fr; }
+  .sheet-tag{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .sheet-tag .num{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.06em;
+    color:var(--text-secondary); border:1px solid var(--border-color); padding:2px 8px;
   }
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:700; color:var(--text-primary); line-height:1.15; }
 
-  .section-padding { padding: 120px 0; }
-  @media (max-width: 768px) { .section-padding { padding: 80px 0; } }
+  /* Marcas de registro (esquinas de plano) */
+  .reg-box{ position:relative; }
+  .reg-mark{ position:absolute; width:13px; height:13px; border:1px solid var(--border-strong); pointer-events:none; }
+  .reg-tl{ top:-7px; left:-7px; border-right:none; border-bottom:none; }
+  .reg-tr{ top:-7px; right:-7px; border-left:none; border-bottom:none; }
+  .reg-bl{ bottom:-7px; left:-7px; border-right:none; border-top:none; }
+  .reg-br{ bottom:-7px; right:-7px; border-left:none; border-top:none; }
 
-  .mono { font-family: var(--font-mono); }
-  .display { font-family: var(--font-display); }
+  /* Línea de cota superior */
+  .dim-top{ position:relative; }
+  .dim-top::before, .dim-top::after{
+    content:''; position:absolute; top:-14px; width:1px; height:14px; background:var(--border-strong);
+  }
+  .dim-top::before{ left:0; }
+  .dim-top::after{ right:0; }
 
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--brand-dark);
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .eyebrow::before {
-    content: '';
-    width: 24px;
-    height: 2px;
-    background-color: var(--brand);
-    display: inline-block;
-  }
+  /* Reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.active{ opacity:1; transform:translateY(0); }
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.15;
-  }
+  /* Scrollbar técnica */
+  ::-webkit-scrollbar{ width:9px; }
+  ::-webkit-scrollbar-track{ background:var(--bg-base); }
+  ::-webkit-scrollbar-thumb{ background:var(--border-strong); }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--brand); }
 
-  .divider {
-    width: 100%;
-    height: 1px;
-    background-color: var(--border-color);
-    border: none;
+  /* ======================================================================
+     BOTONES — esquinas rectas, corte técnico en el primario
+     ====================================================================== */
+  .btn{
+    font-family:var(--font-mono); font-size:13px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.06em;
+    padding:15px 26px; border:1.5px solid transparent;
+    cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    transition:all .25s var(--ease); text-decoration:none; cursor:crosshair;
   }
+  .btn-dark{ background:var(--bg-dark); color:var(--text-light); }
+  .btn-dark:hover{ background:var(--brand-dark); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
+  .btn-outline{ background:transparent; border-color:var(--bg-dark); color:var(--bg-dark); }
+  .btn-outline:hover{ background:var(--bg-dark); color:var(--text-light); }
+  .btn-brand{
+    background:var(--brand); color:#fff;
+    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+  }
+  .btn-brand:hover{ background:var(--brand-dark); transform:translateY(-2px); }
+  .btn:active{ transform:scale(.96); }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.85s var(--transition-smooth), transform 0.85s var(--transition-smooth);
+  /* Toasts */
+  #toast-container{ position:fixed; bottom:28px; left:28px; z-index:1000; display:flex; flex-direction:column; gap:12px; }
+  .toast{
+    background:var(--bg-dark); color:var(--text-light); font-family:var(--font-mono); font-size:13px;
+    padding:16px 22px; border-left:3px solid var(--brand); box-shadow:var(--shadow-md);
+    transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards;
+    display:flex; align-items:center; gap:14px; max-width:340px;
   }
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  @keyframes slideIn{ to{ transform:translateX(0); } }
+  .toast.fade-out{ animation:slideOut .4s var(--ease) forwards; }
+  @keyframes slideOut{ to{ transform:translateX(-120%); opacity:0; } }
 
-  .btn {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    padding: 16px 28px;
-    border: 1.5px solid transparent;
-    border-radius: var(--radius-sm);
-    cursor:pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.3s var(--transition-smooth);
-    text-decoration: none;
+  /* ======================================================================
+     HEADER
+     ====================================================================== */
+  header{
+    position:sticky; top:0; z-index:500;
+    background:rgba(241,245,249,.88); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-color);
   }
-
-  .btn-dark {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
+  .navbar{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
+  .logo{ display:flex; align-items:center; gap:12px; cursor:crosshair; }
+  .logo-mark{ width:36px; height:36px; }
+  .logo span{ font-family:var(--font-display); font-weight:800; font-size:21px; color:var(--brand); letter-spacing:-.01em; }
+  nav ul{ display:flex; list-style:none; gap:36px; }
+  nav a{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:600; text-transform:uppercase; letter-spacing:.06em;
+    color:var(--text-secondary); padding-bottom:4px; border-bottom:2px solid transparent; transition:all .25s var(--ease);
   }
-  .btn-dark:hover {
-    background-color: var(--brand-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .btn-outline {
-    background-color: transparent;
-    border-color: var(--bg-dark);
-    color: var(--bg-dark);
-  }
-  .btn-outline:hover {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-  }
-
-  .btn-brand {
-    background-color: var(--brand);
-    color: white;
-  }
-  .btn-brand:hover {
-    background-color: var(--brand-dark);
-    transform: translateY(-2px);
-  }
-
-  #toast-container {
-    position: fixed;
-    bottom: 32px;
-    left: 32px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .toast {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    font-family: var(--font-mono);
-    font-size: 13px;
-    padding: 16px 24px;
-    border-left: 4px solid var(--brand);
-    box-shadow: var(--shadow-md);
-    transform: translateX(-120%);
-    animation: slideIn 0.4s var(--transition-smooth) forwards;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  @keyframes slideIn { to { transform: translateX(0); } }
-  .toast.fade-out {
-    animation: slideOut 0.4s var(--transition-smooth) forwards;
-  }
-  @keyframes slideOut { to { transform: translateX(-120%); opacity: 0; } }
-
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 500;
-    background-color: rgba(237, 238, 234, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.3s ease;
-  }
-  .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 0;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 22px;
-    text-transform: uppercase;
-    color: var(--text-primary);
-  }
-  .logo span { color: var(--brand); }
-  .logo svg { width: 34px; height: 34px; }
-
-  nav ul {
-    display: flex;
-    list-style: none;
-    gap: 40px;
-  }
-  nav a {
-    font-family: var(--font-sans);
-    font-size: 14.5px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    position: relative;
-    padding: 6px 0;
-    transition: color 0.3s ease;
-  }
-  nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--brand);
-    transition: width 0.3s var(--transition-smooth);
-  }
-  nav a:hover { color: var(--text-primary); }
-  nav a:hover::after { width: 100%; }
-
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
-  .menu-toggle span {
-    display: block;
-    width: 26px;
-    height: 2px;
-    background-color: var(--text-primary);
-    margin: 6px 0;
-    transition: all 0.3s ease;
-  }
-
-  @media (max-width: 1024px) {
-    nav {
-      position: fixed;
-      top: 83px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: var(--bg-surface);
-      padding: 40px;
-      transform: translateX(100%);
-      transition: transform 0.4s var(--transition-smooth);
-      border-top: 1px solid var(--border-color);
+  nav a:hover, nav a.is-active{ color:var(--brand); border-bottom-color:var(--brand); }
+  @media (max-width:1024px){
+    nav{
+      display:block; position:fixed; top:78px; left:0; right:0; bottom:0;
+      background:var(--bg-surface); border-top:1px solid var(--border-color);
+      padding:36px; transform:translateX(100%); transition:transform .35s var(--ease); z-index:400;
     }
-    nav.is-active { transform: translateX(0); }
-    nav ul { flex-direction: column; gap: 28px; }
-    nav a { font-size: 20px; font-weight: 600; }
-    .menu-toggle { display: block; }
-    .header-actions .btn { display: none; }
+    nav.is-active{ transform:translateX(0); }
+    nav ul{ flex-direction:column; gap:26px; }
+    nav a{ font-size:16px; }
+    .header-actions .btn{ display:none; }
+  }
+  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
+  .menu-toggle span{ display:block; width:24px; height:2px; background:var(--text-primary); margin:6px 0; }
+  @media (max-width:1024px){ .menu-toggle{ display:block; } .header-actions .btn{ display:none; } }
+
+  /* ======================================================================
+     HERO
+     ====================================================================== */
+  .hero{ padding:56px 0 0; }
+  .hero-panel{
+    position:relative; background:var(--bg-panel); border:1px solid var(--border-color);
+    padding:56px 44px; display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;
+  }
+  @media (max-width:992px){ .hero-panel{ grid-template-columns:1fr; padding:40px 26px; } }
+  .hero-eyebrow-row{ display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .hero-eyebrow-row .line{ width:44px; height:1px; background:var(--brand); }
+  .hero h1{ font-size:clamp(32px, 4.6vw, 52px); line-height:1.08; letter-spacing:-.01em; text-transform:uppercase; }
+  .hero p.lead{ margin:22px 0 30px; font-size:16.5px; color:var(--text-secondary); max-width:52ch; }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-stats{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:38px; }
+  .hero-stat{ border-left:2px solid var(--brand); padding-left:14px; }
+  .hero-stat .k{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-secondary); }
+  .hero-stat .v{ font-family:var(--font-mono); font-size:17px; font-weight:600; color:var(--text-primary); margin-top:4px; }
+
+  /* Mockup de anidación (nesting) con línea de escaneo */
+  .nest-frame{
+    position:relative; aspect-ratio:4/3; background:var(--bg-surface);
+    border:1px solid var(--border-color); padding:10px; display:flex; flex-wrap:wrap; gap:2px; overflow:hidden;
+  }
+  .nest-piece{
+    background:var(--bg-surface-low); border:1px solid var(--border-color);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:11px; color:var(--text-secondary);
+  }
+  .nest-piece.filled{ background:var(--bg-panel); color:var(--text-primary); font-weight:600; }
+  .nest-scan{ position:absolute; left:0; right:0; height:1.5px; background:var(--brand); box-shadow:0 0 8px var(--brand); animation:scanline 2.6s linear infinite; }
+  @keyframes scanline{ 0%{ top:0; opacity:1; } 95%{ opacity:1; } 100%{ top:100%; opacity:0; } }
+  .nest-caption{ margin-top:14px; font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-align:center; text-transform:uppercase; letter-spacing:.06em; }
+
+  /* Marquees */
+  .marquee-wrapper{
+    background:var(--bg-panel); border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color);
+    padding:18px 0; overflow:hidden; white-space:nowrap; margin-top:0;
+  }
+  .marquee-content{ display:inline-flex; animation:moveMarquee 34s linear infinite; }
+  .marquee-content span{
+    font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.08em;
+    padding:0 34px; color:var(--text-secondary); display:flex; align-items:center; gap:34px;
+  }
+  .marquee-content span::after{ content:'//'; color:var(--brand); }
+  @keyframes moveMarquee{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+
+  /* ======================================================================
+     CATÁLOGO
+     ====================================================================== */
+  .catalog-controls{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:44px; flex-wrap:wrap; gap:22px; border-bottom:1px solid var(--border-color); padding-bottom:22px; }
+  .catalog-title h2{ font-size:clamp(24px,3.2vw,34px); text-transform:uppercase; }
+  .filter-group{ display:flex; gap:6px; flex-wrap:wrap; }
+  .filter-btn{
+    background:transparent; border:1px solid var(--border-color); font-family:var(--font-mono); font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.04em; padding:9px 16px; cursor:crosshair; color:var(--text-secondary);
+    transition:all .2s var(--ease);
+  }
+  .filter-btn:hover{ border-color:var(--brand); color:var(--brand); }
+  .filter-btn.is-active{ background:var(--bg-dark); border-color:var(--bg-dark); color:var(--text-light); }
+
+  .catalog-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media (max-width:960px){ .catalog-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .catalog-grid{ grid-template-columns:1fr; } }
+
+  .prod-card{ background:var(--bg-surface-low); border:1px solid var(--border-color); transition:border-color .25s var(--ease), transform .25s var(--ease); }
+  .prod-card:hover{ border-color:var(--brand); transform:translateY(-3px); }
+  .prod-head{ padding:8px 14px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; background:var(--bg-surface); }
+  .prod-head .ref{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-secondary); }
+  .prod-head .material-symbols-outlined{ color:var(--text-secondary); font-size:18px; }
+  .prod-media{ height:170px; background:var(--bg-panel); padding:16px; display:flex; align-items:center; justify-content:center; }
+  .prod-placeholder{ width:100%; height:100%; border:1px solid var(--border-strong); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--text-muted); }
+  .prod-placeholder .material-symbols-outlined{ font-size:26px; }
+  .prod-placeholder span{ font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em; }
+  .prod-body{ padding:20px; }
+  .prod-body h3{ font-size:16.5px; text-transform:uppercase; margin-bottom:14px; }
+  .spec-row{ display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding:7px 0; font-family:var(--font-mono); font-size:12px; }
+  .spec-row .k{ color:var(--text-secondary); text-transform:uppercase; letter-spacing:.04em; }
+  .spec-row .v{ color:var(--text-primary); font-weight:600; }
+  .prod-footer{ display:flex; justify-content:space-between; align-items:center; margin-top:16px; }
+  .prod-footer span{ font-family:var(--font-mono); font-size:10.5px; color:var(--text-muted); text-transform:uppercase; }
+  .btn-cotizar{
+    background:transparent; border:1px solid var(--bg-dark); font-family:var(--font-mono); font-size:11px;
+    text-transform:uppercase; letter-spacing:.04em; padding:7px 14px; cursor:crosshair; transition:all .2s var(--ease);
+  }
+  .btn-cotizar:hover{ background:var(--bg-dark); color:var(--text-light); }
+
+  /* ======================================================================
+     SERVICIOS
+     ====================================================================== */
+  .servicios-section{ background:var(--bg-surface); border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color); position:relative; }
+  .servicios-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-top:44px; }
+  @media (max-width:900px){ .servicios-grid{ grid-template-columns:1fr; } }
+  .srv-node{ display:flex; flex-direction:column; gap:14px; }
+  .srv-icon-box{ width:46px; height:46px; border:2px solid var(--text-secondary); display:flex; align-items:center; justify-content:center; transition:border-color .25s var(--ease); }
+  .srv-node:hover .srv-icon-box{ border-color:var(--brand); }
+  .srv-node:hover .srv-icon-box .material-symbols-outlined{ color:var(--brand); }
+  .srv-icon-box .material-symbols-outlined{ color:var(--text-secondary); transition:color .25s var(--ease); }
+  .srv-node h4{ font-family:var(--font-mono); font-size:14.5px; text-transform:uppercase; letter-spacing:.02em; }
+  .srv-node p{ font-size:14px; color:var(--text-secondary); border-left:2px solid var(--border-color); padding-left:14px; }
+
+  /* ======================================================================
+     PROCESO
+     ====================================================================== */
+  .proceso-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-color); border:1px solid var(--border-color); margin-top:44px; }
+  @media (max-width:900px){ .proceso-flow{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .proceso-flow{ grid-template-columns:1fr; } }
+  .flow-card{ background:var(--bg-surface-low); padding:28px; position:relative; }
+  .flow-num{ font-family:var(--font-mono); font-size:11px; color:var(--brand); font-weight:700; letter-spacing:.05em; position:absolute; top:14px; right:16px; }
+  .flow-card h3{ font-size:16px; text-transform:uppercase; margin:16px 0 10px; }
+  .flow-card p{ font-size:13.5px; color:var(--text-secondary); }
+
+  /* ======================================================================
+     MESA DE CONTROL / COTIZADOR
+     ====================================================================== */
+  .mesa-control-section{ background:var(--bg-dark); color:var(--text-light); }
+  .mesa-control-section h2{ color:var(--text-light); text-transform:uppercase; }
+  .mesa-control-section p{ color:var(--text-light-muted); }
+  .mesa-control-section .eyebrow{ color:var(--brand-light); }
+
+  .mesa-layout{ display:grid; grid-template-columns:1.25fr .75fr; gap:40px; margin-top:44px; align-items:start; }
+  @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
+
+  .table-responsive{ width:100%; overflow-x:auto; border:1px solid var(--border-dark); }
+  .despiece-table{ width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:12.5px; text-align:left; }
+  .despiece-table thead tr{ background:var(--bg-dark-surface); }
+  .despiece-table th{ padding:12px; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-light-muted); font-weight:600; border-bottom:1px solid var(--border-dark); }
+  .despiece-table td{ padding:10px 12px; border-bottom:1px solid var(--border-dark); vertical-align:middle; }
+  .despiece-table tbody tr{ transition:background .2s ease; }
+  .despiece-table tbody tr:hover{ background:rgba(255,255,255,.02); }
+  .despiece-table input, .despiece-table select{
+    width:100%; background:transparent; border:none; border-bottom:1px solid var(--border-dark);
+    color:var(--text-light); padding:6px 2px; font-family:var(--font-mono); font-size:12.5px;
+  }
+  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-bottom-color:var(--brand); }
+  .despiece-table select option{ background:var(--bg-dark-surface); }
+  .btn-remove-row{ background:transparent; border:none; color:#F87171; cursor:pointer; padding:4px; display:inline-flex; }
+  .btn-add-row{
+    background:transparent; border:1px dashed var(--border-dark); color:var(--text-light);
+    font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.04em;
+    padding:12px; width:100%; cursor:crosshair; transition:all .2s ease;
+  }
+  .btn-add-row:hover{ border-color:var(--text-light); background:rgba(255,255,255,.02); }
+
+  .control-form{ background:var(--bg-dark-surface); border:1px solid var(--border-dark); padding:28px; }
+  .form-group{ margin-bottom:22px; }
+  .form-group label{ display:block; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-light-muted); margin-bottom:8px; }
+  .form-group input, .form-group select, .form-group textarea{
+    width:100%; background:var(--bg-dark); border:none; border-bottom:1px solid var(--border-dark);
+    padding:11px 4px; color:var(--text-light); font-family:var(--font-sans); font-size:14.5px;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-bottom-color:var(--brand); }
+  .form-group select option{ background:var(--bg-dark-surface); }
+
+  .resumen-panel{ border:1px solid var(--border-dark); background:var(--bg-dark-surface); padding:22px 24px; margin-top:20px; }
+  .resumen-row{ display:flex; justify-content:space-between; border-bottom:1px solid var(--border-dark); padding:9px 0; font-family:var(--font-mono); font-size:12.5px; }
+  .resumen-row:last-of-type{ border-bottom:none; }
+  .resumen-row .k{ color:var(--text-light-muted); text-transform:uppercase; letter-spacing:.04em; }
+  .resumen-row .v{ color:var(--text-light); font-weight:600; }
+
+  /* ======================================================================
+     LOGÍSTICA
+     ====================================================================== */
+  .logistica-struct{ display:grid; grid-template-columns:.85fr 1.15fr; gap:56px; align-items:start; }
+  @media (max-width:960px){ .logistica-struct{ grid-template-columns:1fr; gap:36px; } }
+  .meta-list{ list-style:none; display:flex; flex-direction:column; gap:22px; margin-top:26px; }
+  .meta-list li{ display:flex; gap:16px; }
+  .meta-list .material-symbols-outlined{ color:var(--brand); flex-shrink:0; }
+  .meta-list h5{ font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
+  .meta-list p{ font-size:14px; color:var(--text-secondary); }
+
+  .map-panel{ background:var(--bg-dark); border:1px solid var(--border-dark); position:relative; overflow:hidden; }
+  .map-panel svg{ width:100%; height:auto; display:block; }
+  .map-coord{
+    position:absolute; bottom:14px; left:14px; background:rgba(15,23,42,.85); border:1px solid var(--border-dark);
+    color:var(--text-light); font-family:var(--font-mono); font-size:10.5px; padding:6px 10px; text-transform:uppercase; letter-spacing:.04em;
   }
 
-  .hero {
-    padding: 100px 0 0 0;
-    overflow: hidden;
-  }
-  .hero-container {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 64px;
-    align-items: center;
-  }
-  @media (max-width: 992px) {
-    .hero-container { grid-template-columns: 1fr; gap: 48px; }
-  }
-  .hero-content h1 {
-    font-size: clamp(38px, 5.5vw, 64px);
-    line-height: 1.05;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
-  }
-  .hero-content h1 span { color: var(--brand-dark); }
-  .hero-content p {
-    font-size: 18px;
-    color: var(--text-secondary);
-    max-width: 50ch;
-    margin-bottom: 40px;
-  }
-  .hero-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
+  /* ======================================================================
+     FOOTER
+     ====================================================================== */
+  footer{ background:var(--bg-dark); color:var(--text-light); border-top:1px solid var(--border-dark); padding:64px 0 32px; }
+  .footer-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:36px; padding-bottom:34px; border-bottom:1px solid var(--border-dark); }
+  @media (max-width:860px){ .footer-grid{ grid-template-columns:1fr; gap:26px; } }
+  .footer-brand .display{ font-size:22px; color:var(--text-light); letter-spacing:-.01em; }
+  .footer-brand .mono{ font-size:11px; color:var(--text-light-muted); text-transform:uppercase; letter-spacing:.05em; display:block; margin-top:6px; }
+  .footer-links{ display:flex; flex-direction:column; gap:10px; font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; }
+  .footer-links a{ color:var(--text-light-muted); transition:color .2s ease; }
+  .footer-links a:hover{ color:var(--brand-light); }
+  .admin-link{ display:inline-flex; align-items:center; gap:8px; }
+  .admin-link::before{ content:'●'; font-size:7px; color:#4ADE80; }
+  .footer-legal{ padding-top:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-family:var(--font-mono); font-size:11px; color:var(--text-light-muted); text-transform:uppercase; letter-spacing:.03em; }
+  .reg-marks-row{ display:flex; gap:8px; opacity:.5; }
 
-  .hero-graphic {
-    position: relative;
-    width: 100%;
-    background-color: var(--bg-panel);
-    border: 1px solid var(--border-color);
+  /* ======================================================================
+     WHATSAPP FLOTANTE
+     ====================================================================== */
+  .wa-float{
+    position:fixed; bottom:28px; right:28px; z-index:900; width:58px; height:58px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-md);
+    transition:transform .25s var(--ease); cursor:crosshair;
   }
-  .hero-graphic svg {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .anim-dash {
-    stroke-dasharray: 8 6;
-    animation: blueprintDash 4s linear infinite;
-  }
-  @keyframes blueprintDash {
-    to { stroke-dashoffset: -100; }
-  }
-  .graphic-overlay-label {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    padding: 6px 12px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-  }
+  .wa-float:hover{ transform:scale(1.08); }
+  .wa-float svg{ width:28px; height:28px; fill:#fff; }
 
-  .strip-confianza {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    padding: 32px 0;
-    margin-top: 80px;
-  }
-  .strip-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-  .strip-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-mono);
-    font-size: 13.5px;
-    color: var(--text-light-muted);
-  }
-  .strip-item svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--brand);
-    flex-shrink: 0;
-  }
-
-  .marquee-wrapper {
-    background-color: var(--bg-panel);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    padding: 24px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .marquee-content {
-    display: inline-flex;
-    animation: moveMarquee 35s linear infinite;
-  }
-  .marquee-content span {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0 40px;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-  .marquee-content span::after {
-    content: '//';
-    color: var(--brand);
-  }
-  @keyframes moveMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .brands-marquee {
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-    padding: 16px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .brands-track {
-    display: inline-flex;
-    animation: moveBrands 25s linear infinite reverse;
-  }
-  .brands-track span {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 18px;
-    color: #9EA29A;
-    padding: 0 50px;
-  }
-  @keyframes moveBrands {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .catalog-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-  .catalog-title h2 { font-size: clamp(28px, 4vw, 42px); }
-  .catalog-title p { color: var(--text-secondary); margin-top: 12px; max-width: 52ch; }
-  
-  .filter-group {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    background-color: var(--bg-panel);
-    padding: 6px;
-    border-radius: var(--radius-sm);
-  }
-  .filter-btn {
-    background: transparent;
-    border: none;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    padding: 10px 18px;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: all 0.25s var(--transition-smooth);
-  }
-  .filter-btn:hover { color: var(--text-primary); }
-  .filter-btn.is-active {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-  }
-
-  .catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background-color: var(--border-color);
-    border: 1px solid var(--border-color);
-  }
-  @media (max-width: 900px) { .catalog-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .catalog-grid { grid-template-columns: 1fr; } }
-
-  .prod-card {
-    background-color: var(--bg-surface);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: transform 0.3s var(--transition-smooth);
-  }
-  .prod-card:hover {
-    transform: translateY(-4px);
-    z-index: 5;
-  }
-  .prod-media {
-    aspect-ratio: 4/3;
-    background-color: var(--bg-panel);
-    position: relative;
-    border-bottom: 1px solid var(--border-color);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .prod-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-  }
-  .prod-placeholder {
-    width: calc(100% - 24px);
-    height: calc(100% - 24px);
-    border: 1.5px dashed var(--border-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-  }
-  .prod-placeholder svg { width: 28px; height: 28px; margin-bottom: 8px; stroke: var(--border-color); }
-  .prod-placeholder span { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-
-  .prod-tag {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    padding: 4px 8px;
-  }
-  .prod-content {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-  .prod-content h3 { font-size: 18px; margin-bottom: 12px; }
-  .prod-meta {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: 24px;
-  }
-  .prod-footer {
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px dashed var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .prod-footer span { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
-  
-  .btn-action-cotizar {
-    background: transparent;
-    border: 1px solid var(--bg-dark);
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .btn-action-cotizar:hover {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-  }
-
-  .servicios-section {
-    background-color: var(--bg-surface);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-  }
-  .servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background-color: var(--border-color);
-    border: 1px solid var(--border-color);
-  }
-  @media (max-width: 900px) { .servicios-grid { grid-template-columns: 1fr; } }
-
-  .srv-node {
-    background-color: var(--bg-base);
-    padding: 40px;
-    border-top: 4px solid var(--border-color);
-    transition: border-color 0.3s var(--transition-smooth);
-  }
-  .srv-node:hover { border-top-color: var(--brand); }
-  .srv-icon { width: 40px; height: 40px; stroke: var(--brand); margin-bottom: 24px; }
-  .srv-node h4 { font-size: 20px; margin-bottom: 12px; }
-  .srv-node p { font-size: 14.5px; color: var(--text-secondary); }
-
-  .proceso-flow {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background-color: var(--border-color);
-    border: 1px solid var(--border-color);
-    margin-top: 56px;
-  }
-  @media (max-width: 992px) { .proceso-flow { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 576px) { .proceso-flow { grid-template-columns: 1fr; } }
-
-  .flow-card {
-    background-color: var(--bg-surface);
-    padding: 32px;
-  }
-  .flow-num {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--brand);
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  .flow-card h3 { font-size: 18px; margin-bottom: 12px; }
-  .flow-card p { font-size: 14px; color: var(--text-secondary); }
-
-  .mesa-control-section {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-  }
-  .mesa-control-section h2 { color: var(--text-light); font-size: clamp(28px, 4vw, 42px); }
-  .mesa-control-section p { color: var(--text-light-muted); }
-
-  .mesa-layout {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 48px;
-    margin-top: 56px;
-    align-items: start;
-  }
-  @media (max-width: 1024px) { .mesa-layout { grid-template-columns: 1fr; } }
-
-  .blueprint-panel {
-    background-color: var(--bg-dark-surface);
-    border: 1px solid var(--border-dark);
-    padding: 32px;
-  }
-  .panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border-dark);
-    padding-bottom: 16px;
-    margin-bottom: 24px;
-  }
-  .panel-header h3 { color: var(--text-light); font-size: 18px; }
-
-  .table-responsive { width: 100%; overflow-x: auto; }
-  .despiece-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  .despiece-table th {
-    background-color: var(--bg-dark);
-    color: var(--text-light-muted);
-    padding: 12px;
-    font-weight: 500;
-    border-bottom: 2px solid var(--border-dark);
-  }
-  .despiece-table td {
-    padding: 8px 12px;
-    border-bottom: 1px solid var(--border-dark);
-    vertical-align: middle;
-  }
-  .despiece-table input, .despiece-table select {
-    width: 100%;
-    background-color: var(--bg-dark);
-    border: 1px solid var(--border-dark);
-    color: var(--text-light);
-    padding: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-  }
-  .despiece-table input:focus, .despiece-table select:focus {
-    outline: none;
-    border-color: var(--brand);
-  }
-  
-  .btn-remove-row {
-    background: transparent;
-    border: none;
-    color: #EF4444;
-    cursor: pointer;
-    padding: 4px;
-    display: inline-flex;
-    align-items: center;
-  }
-  .btn-add-row {
-    background-color: transparent;
-    border: 1px dashed var(--border-dark);
-    color: var(--text-light);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 10px 16px;
-    cursor: pointer;
-    width: 100%;
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-  }
-  .btn-add-row:hover {
-    border-color: var(--text-light);
-    background-color: rgba(255,255,255,0.02);
-  }
-
-  .control-form {
-    background-color: var(--bg-dark-surface);
-    border: 1px solid var(--border-dark);
-    padding: 32px;
-  }
-  .form-group { margin-bottom: 24px; }
-  .form-group label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
-    color: var(--text-light-muted);
-  }
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    background-color: var(--bg-dark);
-    border: none;
-    border-bottom: 1px solid var(--border-dark);
-    padding: 12px 4px;
-    color: var(--text-light);
-    font-family: var(--font-sans);
-    font-size: 15px;
-    transition: border-color 0.3s ease;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: none;
-    border-bottom-color: var(--brand);
-  }
-  .form-group select option { background-color: var(--bg-dark-surface); color: var(--text-light); }
-  
-  .logistica-struct {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 64px;
-    align-items: start;
-  }
-  @media (max-width: 992px) { .logistica-struct { grid-template-columns: 1fr; gap: 40px; } }
-
-  .meta-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  .meta-list li {
-    display: flex;
-    gap: 16px;
-  }
-  .meta-list svg { width: 24px; height: 24px; stroke: var(--brand); flex-shrink: 0; }
-  .meta-list h5 { font-family: var(--font-sans); font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-  .meta-list p { font-size: 14px; color: var(--text-secondary); }
-
-  .map-container {
-    background-color: var(--bg-panel);
-    border: 1px solid var(--border-color);
-    padding: 32px;
-    position: relative;
-  }
-  .map-container svg { width: 100%; height: auto; background-color: #D3D6CE; }
-
-  footer {
-    background-color: var(--bg-surface);
-    border-top: 1px solid var(--border-color);
-    padding: 64px 0 32px 0;
-  }
-  .footer-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 32px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--border-color);
-  }
-  .footer-legal {
-    padding-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-
-  .wa-float {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    background-color: #25D366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-md);
-    z-index: 999;
-    transition: transform 0.3s var(--transition-smooth);
-  }
-  .wa-float:hover { transform: scale(1.1) translateY(-4px); }
-  .wa-float svg { width: 30px; height: 30px; fill: white; }
-
-  body::before {
-    content: '';
-    position: fixed; inset: 0; z-index: 3000;
-    pointer-events: none;
-    opacity: 0.035;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='130'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
-  .sheet-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .sheet-tag .num {
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    letter-spacing: 0.08em;
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    padding: 3px 9px;
-  }
-  .sheet-tag .eyebrow { margin-bottom: 0; }
-  .mesa-control-section .sheet-tag .num { border-color: var(--border-dark); color: var(--text-light-muted); }
-
-  .prod-card, .srv-node, .flow-card { will-change: transform; }
-
-  .admin-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--text-muted);
-  }
-  .admin-link:hover { color: var(--brand-dark); }
-  .admin-link::before { content: '●'; font-size: 8px; color: #3F7D4C; }
-
-  .panel-overlay {
-    position: fixed; inset: 0; z-index: 2000;
-    background: rgba(21, 23, 26, 0.7);
-    display: none;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 48px 20px;
-    overflow-y: auto;
-  }
-  .panel-overlay.open { display: flex; }
-  .panel-modal {
-    background: var(--bg-surface);
-    width: 100%;
-    max-width: 960px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: 0 40px 90px rgba(0,0,0,0.4);
-  }
-  .panel-head {
-    background: var(--bg-dark);
-    color: var(--text-light);
-    padding: 28px 34px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-  }
-  .panel-head .eyebrow { color: var(--brand-light); margin-bottom: 8px; }
-  .panel-head .eyebrow::before { background: var(--brand-light); }
-  .panel-head h3 { color: var(--text-light); font-size: 22px; }
-  .panel-close {
-    background: rgba(245,245,242,0.08);
-    border: none;
-    color: var(--text-light);
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    font-size: 20px;
-    line-height: 1;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .panel-close:hover { background: var(--brand-dark); }
-
-  .panel-login { max-width: 340px; margin: 0 auto; padding: 48px 32px; text-align: center; }
-  .panel-login h4 { font-size: 19px; margin: 12px 0 26px; }
-  .panel-field { margin-bottom: 16px; text-align: left; }
-  .panel-field label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
-    margin-bottom: 7px;
-  }
-  .panel-field input {
-    width: 100%;
-    border: none;
-    border-bottom: 1.5px solid var(--border-color);
-    padding: 10px 2px;
-    font-family: var(--font-sans);
-    font-size: 15px;
-    background: transparent;
-    color: var(--text-primary);
-  }
-  .panel-field input:focus { outline: none; border-bottom-color: var(--brand); }
-  .panel-login .btn { width: 100%; margin-top: 8px; }
-  .panel-login-error {
-    display: none;
-    margin-top: 14px;
-    font-size: 13px;
-    color: #C0392B;
-  }
-  .panel-login-error.show { display: block; }
-
-  .panel-body { padding: 32px 34px; }
-  .panel-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border-color);
-    border: 1px solid var(--border-color);
-    margin-bottom: 28px;
-  }
-  .panel-stat { background: var(--bg-panel); padding: 20px 24px; }
-  .panel-stat .num { font-family: var(--font-display); font-weight: 700; font-size: 28px; }
-  .panel-stat .label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    margin-top: 4px;
-    display: block;
-  }
-  .panel-table-wrap { width: 100%; overflow-x: auto; }
-  .panel-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .panel-table th {
-    text-align: left;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    padding: 12px 10px;
-    border-bottom: 2px solid var(--text-primary);
-  }
-  .panel-table td {
-    padding: 14px 10px;
-    border-bottom: 1px solid var(--border-color);
-    vertical-align: top;
-  }
-  .panel-table td.piezas-cell {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-secondary);
-    max-width: 260px;
-    white-space: pre-line;
-    line-height: 1.6;
-  }
-  .panel-table select {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 6px 8px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-surface);
-  }
-  .panel-empty { text-align: center; color: var(--text-secondary); padding: 40px 0; font-size: 14px; }
-
-  /* ========================================================================
-     15. BARRA DE PROGRESO DE SCROLL
-     ======================================================================== */
-  #scroll-progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 3px;
-    width: 0%;
-    background: linear-gradient(90deg, var(--brand-dark), var(--brand-light));
-    z-index: 1200;
-    transition: width 0.1s linear;
-  }
-
-  /* ========================================================================
-     16. RESUMEN EN VIVO — MESA DE CONTROL (calculadora de material)
-     ======================================================================== */
-  .summary-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background-color: var(--border-dark);
-    border: 1px solid var(--border-dark);
-    margin-top: 20px;
-  }
-  @media (max-width: 480px) { .summary-strip { grid-template-columns: 1fr; } }
-  .summary-item {
-    background-color: var(--bg-dark);
-    padding: 16px 18px;
-    text-align: center;
-  }
-  .summary-num {
-    display: block;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 24px;
-    color: var(--brand-light);
-  }
-  .summary-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-light-muted);
-    margin-top: 4px;
-  }
-  .btn-copy-summary {
-    background: transparent;
-    border: 1px solid var(--border-dark);
-    color: var(--text-light-muted);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 10px 16px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 12px;
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-  }
-  .btn-copy-summary:hover { border-color: var(--text-light); color: var(--text-light); }
-
+  /* ======================================================================
+     PANEL DE ADMINISTRADOR
+     ====================================================================== */
+  .panel-overlay{ position:fixed; inset:0; z-index:2000; background:rgba(15,23,42,.72); display:none; align-items:flex-start; justify-content:center; padding:48px 20px; overflow-y:auto; }
+  .panel-overlay.open{ display:flex; }
+  .panel-modal{ background:var(--bg-surface); width:100%; max-width:1000px; box-shadow:var(--shadow-md); }
+  .panel-head{ background:var(--bg-dark); color:var(--text-light); padding:26px 32px; display:flex; justify-content:space-between; align-items:flex-start; }
+  .panel-head .eyebrow{ color:var(--brand-light); }
+  .panel-head h3{ color:var(--text-light); font-size:21px; text-transform:uppercase; margin-top:8px; }
+  .panel-close{ background:rgba(241,245,249,.1); border:none; color:var(--text-light); width:34px; height:34px; font-size:19px; cursor:pointer; }
+  .panel-close:hover{ background:var(--brand-dark); }
+  .panel-login{ max-width:340px; margin:0 auto; padding:48px 30px; text-align:center; }
+  .panel-login h4{ font-size:17px; text-transform:uppercase; margin:12px 0 24px; }
+  .panel-field{ margin-bottom:16px; text-align:left; }
+  .panel-field label{ display:block; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-secondary); margin-bottom:7px; }
+  .panel-field input{ width:100%; border:none; border-bottom:1.5px solid var(--border-color); padding:10px 2px; font-family:var(--font-sans); font-size:14.5px; background:transparent; }
+  .panel-field input:focus{ outline:none; border-bottom-color:var(--brand); }
+  .panel-login .btn{ width:100%; margin-top:8px; justify-content:center; }
+  .panel-login-error{ display:none; margin-top:14px; font-size:12.5px; color:#DC2626; }
+  .panel-login-error.show{ display:block; }
+  .panel-body{ padding:30px 32px; }
+  .panel-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-color); border:1px solid var(--border-color); margin-bottom:26px; }
+  .panel-stat{ background:var(--bg-panel); padding:18px 22px; }
+  .panel-stat .num{ font-family:var(--font-display); font-weight:800; font-size:26px; }
+  .panel-stat .label{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); display:block; margin-top:4px; }
+  .panel-table-wrap{ width:100%; overflow-x:auto; border:1px solid var(--border-color); }
+  .panel-table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+  .panel-table th{ text-align:left; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); padding:12px 10px; border-bottom:2px solid var(--text-primary); background:var(--bg-surface-low); }
+  .panel-table td{ padding:13px 10px; border-bottom:1px solid var(--border-color); vertical-align:top; }
+  .panel-table td.piezas-cell{ font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); max-width:250px; white-space:pre-line; line-height:1.6; }
+  .panel-table select{ font-family:var(--font-mono); font-size:11.5px; padding:6px 8px; border:1px solid var(--border-color); background:var(--bg-surface); }
+  .panel-empty{ text-align:center; color:var(--text-secondary); padding:40px 0; font-size:14px; }
 </style>
 </head>
 <body>
 
-<div id="scroll-progress"></div>
 <div id="toast-container"></div>
+
+<div class="sheet-stamp mono">
+  BRAITA // SISTEMA V2<br>
+  ESCALA 1:1 · REV 2.0
+</div>
 
 <header id="main-header">
   <div class="container navbar">
     <a href="#inicio" class="logo">
-      <svg viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="4" width="32" height="32" fill="var(--bg-dark)"/>
-        <rect x="10" y="10" width="20" height="20" fill="none" stroke="var(--bg-surface)" stroke-width="2"/>
-        <line x1="10" y1="20" x2="30" y2="20" stroke="var(--brand)" stroke-width="2" stroke-dasharray="3 2"/>
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <rect x="2" y="2" width="36" height="36" fill="var(--bg-dark)"/>
+        <rect x="9" y="9" width="22" height="22" fill="none" stroke="var(--bg-surface)" stroke-width="2"/>
+        <line x1="9" y1="20" x2="31" y2="20" stroke="var(--brand)" stroke-width="2" stroke-dasharray="3 2"/>
       </svg>
-      <span>Braita</span>
+      <span>BRAITA</span>
     </a>
     <nav id="main-nav">
       <ul>
-        <li><a href="#catalogo">Catálogo</a></li>
-        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#suministro">Suministro</a></li>
+        <li><a href="#maquila">Maquila</a></li>
         <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#mesa-control">Mesa de Control</a></li>
+        <li><a href="#cotizador">Cotizador</a></li>
         <li><a href="#ubicacion">Logística</a></li>
       </ul>
     </nav>
     <div class="header-actions">
-      <a href="#mesa-control" class="btn btn-outline">Mesa de Despiece</a>
-      <a href="#" id="nav-wa-trigger" class="btn btn-dark" target="_blank">WhatsApp Directo</a>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Navegación Móvil">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="#cotizador" class="btn btn-brand">Cotizar</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <main>
+  <!-- HERO -->
   <section class="hero" id="inicio">
-    <div class="container hero-container">
-      <div class="hero-content">
-        <div class="sheet-tag"><span class="num">HOJA 01/06</span><span class="eyebrow">Industria del Tablero Mueblero</span></div>
-        <h1>Suministro base y despiece <span>automatizado.</span></h1>
-        <p>Centro de distribución integral en Ocotlán, Jalisco. Abastecemos de melamina, MDF y triplay, y optimizamos el corte de tu pedido para aprovechar mejor cada hoja y reducir la merma.</p>
-        <div class="hero-buttons">
-          <a href="#mesa-control" class="btn btn-dark">Iniciar Orden Técnica</a>
-          <a href="#catalogo" class="btn btn-outline">Explorar Materiales</a>
-        </div>
-      </div>
-      <div class="hero-graphic">
-        <svg viewBox="0 0 500 400" fill="none">
-          <rect x="20" y="20" width="460" height="360" fill="var(--bg-surface)" stroke="var(--bg-dark)" stroke-width="2"/>
-          <g class="anim-dash" stroke="var(--text-secondary)" stroke-width="1.5">
-            <rect x="40" y="40" width="200" height="140" fill="rgba(0,0,0,0.02)"/>
-            <rect x="250" y="40" width="210" height="140" fill="rgba(0,0,0,0.02)"/>
-            <rect x="40" y="190" width="130" height="170" fill="rgba(0,0,0,0.02)"/>
-            <rect x="180" y="190" width="280" height="80" fill="var(--brand)" fill-opacity="0.1" stroke="var(--brand)" stroke-width="2"/>
-            <rect x="180" y="280" width="280" height="80" fill="rgba(0,0,0,0.02)"/>
-          </g>
-          <circle cx="180" cy="190" r="4" fill="var(--brand)"/>
-          <line x1="180" y1="190" x2="140" y2="150" stroke="var(--brand)" stroke-width="1.5"/>
-          <text x="70" y="140" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">SECCIÓN OPTIMIZADA</text>
-        </svg>
-        <div class="graphic-overlay-label">Vista de aprovechamiento de hoja</div>
-      </div>
-    </div>
+    <div class="container">
+      <div class="hero-panel reg-box reveal active">
+        <div class="reg-mark reg-tl"></div><div class="reg-mark reg-tr"></div>
+        <div class="reg-mark reg-bl"></div><div class="reg-mark reg-br"></div>
 
-    <div class="strip-confianza">
-      <div class="container strip-grid">
-        <div class="strip-item">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-13.322 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <span>Corte a la Medida</span>
+        <div>
+          <div class="hero-eyebrow-row"><span class="line"></span><span class="eyebrow">Sistema de Optimización</span></div>
+          <h1>Máxima precisión en corte y suministro</h1>
+          <p class="lead">Centro de distribución integral en Ocotlán, Jalisco. Abastecemos melamina, MDF y triplay con optimización computarizada de cortes para anular la merma en planta.</p>
+          <div class="hero-actions">
+            <a href="#cotizador" class="btn btn-dark">Iniciar Orden Técnica</a>
+            <a href="#suministro" class="btn btn-outline">Explorar Materiales</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat"><div class="k">Tolerancia</div><div class="v">+/- 0.5mm</div></div>
+            <div class="hero-stat"><div class="k">Optimización Promedio</div><div class="v">92% de la hoja</div></div>
+            <div class="hero-stat"><div class="k">Entrega Express</div><div class="v">24–48 hrs</div></div>
+            <div class="hero-stat"><div class="k">Cobertura</div><div class="v">Región Ciénega</div></div>
+          </div>
         </div>
-        <div class="strip-item">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          <span>Surtido de Fábrica Express</span>
-        </div>
-        <div class="strip-item">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          <span>Logística Clúster Ocotlán</span>
+
+        <div>
+          <div class="nest-frame">
+            <div class="nest-scan"></div>
+            <div class="nest-piece filled" style="width:48%; height:60%;">P-01</div>
+            <div class="nest-piece" style="width:48%; height:28%;">P-02</div>
+            <div class="nest-piece" style="width:48%; height:28%;">P-03</div>
+            <div class="nest-piece filled" style="width:100%; height:34%;">P-04 · OPTIMIZADO</div>
+          </div>
+          <div class="nest-caption">Módulo de Anidación — Vista de Aprovechamiento</div>
         </div>
       </div>
     </div>
 
     <div class="marquee-wrapper">
       <div class="marquee-content">
-        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Paneles Estructurales</span>
-        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Paneles Estructurales</span>
-      </div>
-    </div>
-    <!-- TODO: confirmar con el cliente qué municipios cubre realmente la entrega, esto es un ejemplo con la zona Ciénega -->
-    <div class="brands-marquee">
-      <div class="brands-track">
-        <span>OCOTLÁN</span><span>ZAPOTLÁN DEL REY</span><span>LA BARCA</span><span>ATOTONILCO EL ALTO</span><span>PONCITLÁN</span><span>JAMAY</span><span>OCOTLÁN</span><span>ZAPOTLÁN DEL REY</span><span>LA BARCA</span><span>ATOTONILCO EL ALTO</span><span>PONCITLÁN</span><span>JAMAY</span>
+        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Ocotlán · Zapotlán del Rey · La Barca</span>
+        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Ocotlán · Zapotlán del Rey · La Barca</span>
       </div>
     </div>
   </section>
 
-  <section class="section-padding container" id="catalogo">
+  <!-- CATALOGO -->
+  <section class="section-padding container" id="suministro">
     <div class="catalog-controls reveal">
       <div class="catalog-title">
-        <div class="sheet-tag"><span class="num">HOJA 02/06</span><span class="eyebrow">Catálogo Matriz</span></div>
-        <h2>Tableros Estandarizados e Industriales</h2>
-        <p>Selecciona la base estructural para tu proyecto de fabricación. Todos los materiales cuentan con opción de habilitado completo en taller.</p>
+        <div class="sheet-tag"><span class="num">HOJA 01/05</span><span class="eyebrow">Suministro</span></div>
+        <h2>Catálogo de Materiales</h2>
       </div>
       <div class="filter-group" id="filter-group">
         <button class="filter-btn is-active" data-filter="all">Todos</button>
@@ -1189,99 +536,81 @@
         <button class="filter-btn" data-filter="premium">Especialidades</button>
       </div>
     </div>
-
-    <div class="catalog-grid" id="catalog-target-grid">
-    </div>
+    <div class="catalog-grid" id="catalog-target-grid"></div>
   </section>
 
-  <section class="section-padding servicios-section" id="servicios">
+  <!-- SERVICIOS -->
+  <section class="section-padding servicios-section" id="maquila">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 56px;">
-        <div class="sheet-tag"><span class="num">HOJA 03/06</span><span class="eyebrow">Procesamiento de Materiales</span></div>
-        <h2>Capacidad Mecánica de Maquila</h2>
+      <div class="reveal">
+        <div class="sheet-tag"><span class="num">HOJA 02/05</span><span class="eyebrow">Maquila</span></div>
+        <h2>Ingeniería de Procesos</h2>
       </div>
       <div class="servicios-grid">
         <div class="srv-node reveal">
-          <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 11-4.243-4.243 3 3 0 014.243 4.243z"/></svg>
-          <h4>Corte de Precisión</h4>
-          <p>Cortamos cada pieza a tus medidas exactas y acomodamos el listado para aprovechar mejor la hoja, con cantos limpios y sin astilladuras.</p>
+          <div class="srv-icon-box"><span class="material-symbols-outlined">precision_manufacturing</span></div>
+          <h4>Corte CNC</h4>
+          <p>Corte automatizado con sierras seccionadoras de control numérico. Precisión sub-milimétrica que elimina astilladuras y garantiza escuadrías perfectas.</p>
         </div>
         <div class="srv-node reveal">
-          <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
-          <h4>Enchapado de Cantos PVC</h4>
-          <p>Aplicación de cubrecanto rígido y flexible mediante fusión térmica con pegamento PUR de alta resistencia, asegurando hermeticidad y durabilidad.</p>
+          <div class="srv-icon-box"><span class="material-symbols-outlined">straighten</span></div>
+          <h4>Enchapado de Cantos</h4>
+          <p>Aplicación de canto PVC/ABS con adhesivo PUR de poliuretano, para máxima resistencia a la humedad y un acabado sin línea de pegamento visible.</p>
         </div>
         <div class="srv-node reveal">
-          <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V16zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V16z"/></svg>
-          <h4>Perforación a Medida</h4>
-          <p>Colocamos las perforaciones para bisagras, pernos de unión y sistemas modulares según el plano técnico que nos compartas.</p>
+          <div class="srv-icon-box"><span class="material-symbols-outlined">radio_button_checked</span></div>
+          <h4>Perforación Múltiple</h4>
+          <p>Mecanizado de agujeros para sistema 32, bisagras cazoleta y ensambles minifix, ejecutado bajo parámetros técnicos exactos.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- PROCESO -->
   <section class="section-padding container" id="proceso">
     <div class="reveal">
-      <div class="sheet-tag"><span class="num">HOJA 04/06</span><span class="eyebrow">Línea de Integración</span></div>
+      <div class="sheet-tag"><span class="num">HOJA 03/05</span><span class="eyebrow">Línea de Integración</span></div>
       <h2>Metodología de Suministro Exacto</h2>
     </div>
     <div class="proceso-flow">
-      <div class="flow-card reveal">
-        <div class="flow-num">S01 // CONFIGURACIÓN</div>
-        <h3>Definir Despiece</h3>
-        <p>Carga las medidas exactas de tus paneles en nuestro cotizador digital o entrega tu archivo técnico.</p>
-      </div>
-      <div class="flow-card reveal">
-        <div class="flow-num">S02 // OPTIMIZACIÓN</div>
-        <h3>Optimización de Corte</h3>
-        <p>Acomodamos tus piezas en el tablero para aprovechar mejor el material y bajar tanto el desperdicio como el costo.</p>
-      </div>
-      <div class="flow-card reveal">
-        <div class="flow-num">S03 // MAQUILA</div>
-        <h3>Corte y Habilitado</h3>
-        <p>Se corta, cantea y habilita cada pieza según tu listado, lista para llegar a ensamble.</p>
-      </div>
-      <div class="flow-card reveal">
-        <div class="flow-num">S04 // LOGÍSTICA</div>
-        <h3>Embarque o Retiro</h3>
-        <p>Se paletiza y etiqueta tu pedido por módulos para una descarga rápida y control de ensamble limpio en tu planta.</p>
-      </div>
+      <div class="flow-card reveal"><span class="flow-num">REF. 01</span><h3>Configuración</h3><p>Carga las medidas exactas de tus paneles en el cotizador digital.</p></div>
+      <div class="flow-card reveal"><span class="flow-num">REF. 02</span><h3>Optimización</h3><p>El sistema calcula el patrón de anidación para reducir remanentes.</p></div>
+      <div class="flow-card reveal"><span class="flow-num">REF. 03</span><h3>Maquila</h3><p>Entra a líneas de corte automático, canteado y habilitación estructural.</p></div>
+      <div class="flow-card reveal"><span class="flow-num">REF. 04</span><h3>Logística</h3><p>Se paletiza y etiqueta tu pedido por módulos para descarga rápida.</p></div>
     </div>
   </section>
 
-  <section class="section-padding mesa-control-section" id="mesa-control">
+  <!-- MESA DE CONTROL / COTIZADOR -->
+  <section class="section-padding mesa-control-section" id="cotizador">
     <div class="container">
       <div class="reveal">
-        <div class="sheet-tag"><span class="num">HOJA 05/06</span><span class="eyebrow" style="color: var(--brand-light);">Mesa de Control Operativa</span></div>
-        <h2>Sistema Generador de Órdenes de Despiece</h2>
-        <p>Añade los módulos o paneles requeridos. El sistema estructurará el listado técnico listo para ser procesado por la mesa técnica.</p>
+        <div class="sheet-tag"><span class="num">HOJA 04/05</span><span class="eyebrow">Mesa de Control Operativa</span></div>
+        <h2>Despiece Técnico</h2>
+        <p>Añade los módulos requeridos. El sistema estructura el listado técnico y calcula el resumen de material.</p>
       </div>
 
       <div class="mesa-layout">
-        <div class="blueprint-panel reveal">
-          <div class="panel-header">
-            <h3>Listado Geométrico de Piezas</h3>
-            <span class="mono" style="font-size: 11px; color: var(--text-light-muted);" id="row-counter">1 Pieza añadida</span>
-          </div>
-          
+        <div class="reveal">
           <div class="table-responsive">
             <table class="despiece-table" id="despiece-table">
               <thead>
                 <tr>
+                  <th style="width:44px;">ID</th>
                   <th>Pieza / Etiqueta</th>
-                  <th style="width: 100px;">Largo (mm)</th>
-                  <th style="width: 100px;">Ancho (mm)</th>
-                  <th style="width: 80px;">Cant.</th>
-                  <th>Chapeado (Cantos)</th>
-                  <th style="width: 40px;"></th>
+                  <th style="width:100px;">Largo (mm)</th>
+                  <th style="width:100px;">Ancho (mm)</th>
+                  <th style="width:70px;">Cant.</th>
+                  <th>Canto</th>
+                  <th style="width:36px;"></th>
                 </tr>
               </thead>
               <tbody id="table-body-rows">
                 <tr>
-                  <td><input type="text" placeholder="Ej: Lateral Módulo" value="Lateral Izquierdo"></td>
-                  <td><input type="number" placeholder="0" value="720"></td>
-                  <td><input type="number" placeholder="0" value="580"></td>
-                  <td><input type="number" placeholder="1" value="2"></td>
+                  <td class="mono" style="color:var(--text-light-muted);">001</td>
+                  <td><input type="text" value="Lateral Izquierdo"></td>
+                  <td><input type="number" value="720"></td>
+                  <td><input type="number" value="580"></td>
+                  <td><input type="number" value="2"></td>
                   <td>
                     <select>
                       <option value="Ninguno">Ninguno</option>
@@ -1290,115 +619,73 @@
                       <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
                     </select>
                   </td>
-                  <td>
-                    <button class="btn-remove-row" title="Eliminar fila" onclick="deleteRow(this)">
-                      <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                    </button>
-                  </td>
+                  <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined" style="font-size:18px;">delete</span></button></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <button class="btn-add-row" onclick="addNewRow()">+ Añadir Fila de Despiece</button>
-
-          <div class="summary-strip" id="summaryStrip">
-            <div class="summary-item">
-              <span class="summary-num" id="sumPiezas">0</span>
-              <span class="summary-label">Piezas totales</span>
-            </div>
-            <div class="summary-item">
-              <span class="summary-num" id="sumArea">0.00 m²</span>
-              <span class="summary-label">Área total</span>
-            </div>
-            <div class="summary-item">
-              <span class="summary-num" id="sumTableros">0</span>
-              <span class="summary-label">Tableros aprox.*</span>
-            </div>
+          <div style="margin-top:14px;">
+            <button class="btn-add-row" onclick="addNewRow()">+ Añadir Fila de Despiece</button>
           </div>
-          <p class="mono" style="font-size:10.5px; color:var(--text-light-muted); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma. Es una referencia rápida, no sustituye la optimización real de corte que hacemos al procesar tu orden.</p>
-          <button class="btn-copy-summary" type="button" onclick="copiarResumen()">Copiar resumen del pedido</button>
         </div>
 
-        <div class="control-form reveal">
-          <div class="form-group">
-            <label for="client-name">Nombre Comercial / Solicitante</label>
-            <input type="text" id="client-name" required placeholder="Ej: Ing. Carlos Mendoza">
+        <div class="reveal">
+          <div class="control-form">
+            <div class="form-group"><label for="client-name">Nombre Comercial / Solicitante</label><input type="text" id="client-name" required placeholder="Ej: Ing. Carlos Mendoza"></div>
+            <div class="form-group"><label for="client-company">Fábrica / Carpintería</label><input type="text" id="client-company" placeholder="Ej: Muebles del Valle Ocotlán"></div>
+            <div class="form-group"><label for="client-phone">Línea Móvil (WhatsApp)</label><input type="tel" id="client-phone" required placeholder="Ej: 3921002030"></div>
+            <div class="form-group">
+              <label for="master-material">Sustrato / Núcleo Base</label>
+              <select id="master-material">
+                <option value="Melamina Blanca 18mm">Melamina Blanca Estándar 18mm</option>
+                <option value="Melamina Diseño Textura 18mm">Melamina Diseño Texturas Maderas 18mm</option>
+                <option value="MDF Crudo 15mm">MDF Crudo Calibrado 15mm</option>
+                <option value="MDF Hidrofugo 18mm">MDF Hidrófugo Resistencia Humedad 18mm</option>
+                <option value="Triplay Pino 12mm">Triplay de Pino Comercial 12mm</option>
+                <option value="Alto Brillo Espejo 18mm">Alto Brillo Acrílico Premium 18mm</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="client-notes">Notas Especiales de Planta</label><textarea id="client-notes" placeholder="Herrajes adicionales, especificaciones de perforación..."></textarea></div>
           </div>
-          <div class="form-group">
-            <label for="client-company">Fábrica / Carpintería</label>
-            <input type="text" id="client-company" placeholder="Ej: Muebles del Valle Ocotlán">
+
+          <div class="resumen-panel">
+            <div class="resumen-row"><span class="k">Total Piezas</span><span class="v" id="resTotalPiezas">0</span></div>
+            <div class="resumen-row"><span class="k">Metros Lineales de Canto</span><span class="v" id="resMetrosCanto">0 m</span></div>
+            <div class="resumen-row"><span class="k">Tableros Est. (1220×2440)</span><span class="v" id="resTablerosEst">0</span></div>
           </div>
-          <div class="form-group">
-            <label for="client-phone">Línea Móvil (WhatsApp)</label>
-            <input type="tel" id="client-phone" required placeholder="Ej: 3921002030">
-          </div>
-          <div class="form-group">
-            <label for="master-material">Sustrato / Núcleo Base</label>
-            <select id="master-material">
-              <option value="Melamina Blanca 18mm">Melamina Blanca Estándar 18mm</option>
-              <option value="Melamina Diseño Textura 18mm">Melamina Diseño Texturas Maderas 18mm</option>
-              <option value="MDF Crudo 15mm">MDF Crudo Calibrado 15mm</option>
-              <option value="MDF Hidrofugo 18mm">MDF Hidrófugo Resistencia Humedad 18mm</option>
-              <option value="Triplay Pino 12mm">Triplay de Pino Comercial 12mm</option>
-              <option value="Alto Brillo Espejo 18mm">Alto Brillo Acrílico Premium 18mm</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="client-notes">Notas Especiales de Planta</label>
-            <textarea id="client-notes" placeholder="Indicar herrajes adicionales o especificaciones de perforación..."></textarea>
-          </div>
-          
-          <button class="btn btn-brand" style="width: 100%; margin-top: 12px;" onclick="processOrderToWhatsApp()">
-            Exportar y Enviar a Mesa de Maquila
-          </button>
+
+          <button class="btn btn-brand" style="width:100%; margin-top:16px;" onclick="processOrderToWhatsApp()">Exportar y Enviar a Mesa de Maquila</button>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- LOGÍSTICA -->
   <section class="section-padding container" id="ubicacion">
     <div class="logistica-struct">
       <div class="reveal">
-        <div class="sheet-tag"><span class="num">HOJA 06/06</span><span class="eyebrow">Infraestructura Física</span></div>
+        <div class="sheet-tag"><span class="num">HOJA 05/05</span><span class="eyebrow">Infraestructura Física</span></div>
         <h2>Planta Logística de Suministro</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 32px;">Ubicados estratégicamente en la zona industrial mueblera de Ocotlán para proveer de forma directa y ágil a toda la región Ciénega.</p>
-        
+        <p style="color:var(--text-secondary); margin-top:14px;">Ubicados estratégicamente en la zona industrial mueblera de Ocotlán para proveer de forma directa y ágil a toda la región Ciénega.</p>
         <ul class="meta-list">
-          <li>
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <div>
-              <h5>Dirección de Operaciones</h5>
-              <p>Av. Francisco Zarco #1350, Colonia Lindavista, C.P. 47810. Ocotlán, Jalisco.</p>
-            </div>
-          </li>
-          <li>
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <div>
-              <h5>Horarios de Patio de Carga</h5>
-              <p>Martes a Sábado: 8:00 AM – 6:00 PM<br>Domingo: 8:00 AM – 1:00 PM<br>Lunes: Cerrado por Mantenimiento Industrial</p>
-            </div>
-          </li>
-          <li>
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            <div>
-              <h5>Central de Conmutación</h5>
-              <p>Teléfono & Enlace Técnico: 392 931 3919</p>
-            </div>
-          </li>
+          <li><span class="material-symbols-outlined">location_on</span><div><h5>Dirección de Operaciones</h5><p>Av. Francisco Zarco #1350, Colonia Lindavista, C.P. 47810. Ocotlán, Jalisco.</p></div></li>
+          <li><span class="material-symbols-outlined">schedule</span><div><h5>Horarios de Patio de Carga</h5><p>Martes a Sábado: 8:00 AM – 6:00 PM<br>Domingo: 8:00 AM – 1:00 PM<br>Lunes: Cerrado por Mantenimiento</p></div></li>
+          <li><span class="material-symbols-outlined">call</span><div><h5>Central de Conmutación</h5><p>Teléfono & Enlace Técnico: 392 931 3919</p></div></li>
         </ul>
       </div>
-
-      <div class="map-container reveal">
-        <svg viewBox="0 0 500 300" fill="none">
-          <rect width="500" height="300" fill="#E1E3DC"/>
-          <line x1="0" y1="80" x2="500" y2="80" stroke="#A9ACA4" stroke-width="6"/>
-          <line x1="180" y1="0" x2="180" y2="300" stroke="#A9ACA4" stroke-width="6" stroke-dasharray="10 8"/>
-          <rect x="230" y="120" width="140" height="100" fill="#15171A"/>
-          <circle cx="300" cy="170" r="8" fill="var(--brand)"/>
-          <line x1="300" y1="170" x2="270" y2="140" stroke="white" stroke-width="2"/>
-          <text x="245" y="245" font-family="var(--font-mono)" font-size="11" fill="#15171A" font-weight="600">BRAITA MATRIZ</text>
-          <text x="20" y="65" font-family="var(--font-sans)" font-size="12" fill="#565B60" font-weight="600">AV. FRANCISCO ZARCO</text>
+      <div class="map-panel reveal">
+        <svg viewBox="0 0 500 320" fill="none">
+          <rect width="500" height="320" fill="#0F172A"/>
+          <line x1="0" y1="90" x2="500" y2="90" stroke="#334155" stroke-width="2"/>
+          <line x1="190" y1="0" x2="190" y2="320" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
+          <line x1="0" y1="220" x2="500" y2="220" stroke="#1E293B" stroke-width="1"/>
+          <rect x="230" y="130" width="150" height="100" fill="#1E293B" stroke="#334155"/>
+          <circle cx="305" cy="180" r="6" fill="var(--brand)"/>
+          <line x1="305" y1="180" x2="270" y2="145" stroke="var(--brand)" stroke-width="1.5"/>
+          <text x="240" y="255" font-family="JetBrains Mono" font-size="11" fill="#F1F5F9" font-weight="600">BRAITA MATRIZ</text>
+          <text x="20" y="75" font-family="JetBrains Mono" font-size="11" fill="#94A3B8">AV. FRANCISCO ZARCO</text>
         </svg>
+        <div class="map-coord mono">Coord: 20.3335° N, 102.7715° W</div>
       </div>
     </div>
   </section>
@@ -1406,48 +693,50 @@
 
 <footer>
   <div class="container">
-    <div class="footer-row">
-      <div class="logo">
-        <svg viewBox="0 0 40 40" fill="none">
-          <rect x="4" y="4" width="32" height="32" fill="var(--bg-dark)"/>
-          <rect x="10" y="10" width="20" height="20" fill="none" stroke="var(--bg-surface)" stroke-width="2"/>
-          <line x1="10" y1="20" x2="30" y2="20" stroke="var(--brand)" stroke-width="2" stroke-dasharray="3 2"/>
-        </svg>
-        <span>Braita</span>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="display">BRAITA</span>
+        <span class="mono">Industrial S.A. de C.V.</span>
+        <span class="mono">L-S: 08:00 – 18:00</span>
       </div>
-      <div class="mono" style="font-size: 13px; color: var(--text-secondary);">
-        Centro de Abasto e Ingeniería Técnica Mueblera.
+      <div class="footer-links">
+        <a href="#suministro">Suministro</a>
+        <a href="#maquila">Maquila</a>
+        <a href="#cotizador">Cotizador</a>
+      </div>
+      <div class="footer-links" style="align-items:flex-start;">
+        <a href="#" id="openPanel" class="admin-link">Panel Administrador</a>
+        <span class="mono" style="color:var(--text-light-muted); opacity:.7;">Sheet 01/01</span>
       </div>
     </div>
     <div class="footer-legal">
       <span>© 2026 Braita S.A. de C.V. Todos los derechos reservados.</span>
-      <span>Ocotlán, Jalisco, México.</span>
-    </div>
-    <div style="margin-top: 18px;">
-      <a href="#" id="openPanel" class="admin-link">Ver historial de pedidos (panel administrador)</a>
+      <div class="reg-marks-row"><span class="material-symbols-outlined" style="font-size:14px;">close</span><span class="material-symbols-outlined" style="font-size:14px;">close</span><span class="material-symbols-outlined" style="font-size:14px;">close</span></div>
     </div>
   </div>
 </footer>
 
+<a href="#" id="wa-sticky-float" class="wa-float" target="_blank" aria-label="Contacto WhatsApp">
+  <svg viewBox="0 0 32 32">
+    <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/>
+  </svg>
+</a>
+
+<!-- PANEL DE ADMINISTRADOR -->
 <div class="panel-overlay" id="panelOverlay">
   <div class="panel-modal">
     <div class="panel-head">
-      <div>
-        <span class="eyebrow">Panel Braita</span>
-        <h3>Historial de Órdenes de Despiece</h3>
-      </div>
+      <div><span class="eyebrow mono">Panel Braita</span><h3>Historial de Órdenes de Despiece</h3></div>
       <button class="panel-close" id="closePanel" aria-label="Cerrar">&times;</button>
     </div>
-
     <div id="panelLoginBox" class="panel-login">
-      <span class="eyebrow" style="color: var(--brand-dark);">Acceso administrador</span>
+      <span class="eyebrow" style="color:var(--brand);">Acceso Administrador</span>
       <h4>Inicia sesión para ver las órdenes</h4>
       <div class="panel-field"><label for="panelLoginEmail">Correo</label><input type="email" id="panelLoginEmail"></div>
       <div class="panel-field"><label for="panelLoginPassword">Contraseña</label><input type="password" id="panelLoginPassword"></div>
       <button class="btn btn-dark" id="panelLoginBtn" type="button">Entrar</button>
       <p class="panel-login-error" id="panelLoginError">Correo o contraseña incorrectos.</p>
     </div>
-
     <div id="panelContentBox" class="panel-body" style="display:none;">
       <div class="panel-stats">
         <div class="panel-stat"><span class="num">0</span><span class="label" id="statTotalLabel">Órdenes totales</span></div>
@@ -1456,103 +745,78 @@
       </div>
       <div class="panel-table-wrap">
         <table class="panel-table">
-          <thead>
-            <tr><th>Fecha</th><th>Solicitante</th><th>Empresa</th><th>Teléfono</th><th>Material</th><th>Piezas</th><th>Estado</th></tr>
-          </thead>
+          <thead><tr><th>Fecha</th><th>Solicitante</th><th>Empresa</th><th>Teléfono</th><th>Material</th><th>Piezas</th><th>Estado</th></tr></thead>
           <tbody id="panelBodyRows"></tbody>
         </table>
       </div>
-      <p class="panel-empty" id="panelEmptyMsg" style="display:none;">Aún no hay órdenes registradas. Envía una desde la Mesa de Control para ver cómo aparece aquí.</p>
-      <button class="btn btn-outline" id="panelLogoutBtn" type="button" style="margin-top: 20px;">Cerrar sesión</button>
+      <p class="panel-empty" id="panelEmptyMsg" style="display:none;">Aún no hay órdenes registradas.</p>
+      <button class="btn btn-outline" id="panelLogoutBtn" type="button" style="margin-top:20px;">Cerrar sesión</button>
     </div>
   </div>
 </div>
 
-<a href="#" id="wa-sticky-float" class="wa-float" target="_blank" aria-label="Contacto WhatsApp">
-  <svg viewBox="0 0 32 32">
-    <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/>
-  </svg>
-</a>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const CONFIG_TELEFONO = '523921266110';
+  const CONFIG_TELEFONO = '523929313919';
   const buildWhatsAppLink = (mensaje) => `https://wa.me/${CONFIG_TELEFONO}?text=${encodeURIComponent(mensaje)}`;
-
-  document.getElementById('nav-wa-trigger').href = buildWhatsAppLink('Hola Braita. Solicito información general de catálogo y servicios de maquila.');
-  document.getElementById('wa-sticky-float').href = buildWhatsAppLink('Hola Braita. Me encuentro en el sitio web y requiero asistencia técnica comercial.');
 
   function createToast(message) {
     const container = document.getElementById('toast-container');
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `
-      <svg style="width:18px;height:18px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span>${message}</span>
-    `;
+    toast.innerHTML = `<span class="material-symbols-outlined" style="font-size:18px;">info</span><span>${message}</span>`;
     container.appendChild(toast);
-    setTimeout(() => {
-      toast.classList.add('fade-out');
-      toast.addEventListener('animationend', () => toast.remove());
-    }, 4000);
+    setTimeout(() => { toast.classList.add('fade-out'); toast.addEventListener('animationend', () => toast.remove()); }, 4200);
   }
 
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('main-nav');
-  menuToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('is-active');
-  });
+  menuToggle.addEventListener('click', () => mainNav.classList.toggle('is-active'));
+  mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('is-active')));
 
+  // Catálogo
   const DATABASE_PRODUCTS = [
-    { id: 'PROD-001', name: 'Melamina Blanca Soft', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'MDF / Aglomerado' },
-    { id: 'PROD-002', name: 'Melamina Nogal Urbano', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
-    { id: 'PROD-003', name: 'Melamina Gris Grafito', category: 'melamina', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'MDF Premium' },
-    { id: 'PROD-004', name: 'Melamina Roble Escandinavo', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
-    { id: 'PROD-005', name: 'MDF Crudo Calibrado', category: 'mdf', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra' },
-    { id: 'PROD-006', name: 'MDF Crudo Industrial', category: 'mdf', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra' },
-    { id: 'PROD-007', name: 'MDF Hidrófugo Antihumedad', category: 'mdf', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Núcleo Verde HMR' },
-    { id: 'PROD-008', name: 'Triplay Pino de Primera', category: 'triplay', thickness: '12 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa' },
-    { id: 'PROD-009', name: 'Triplay Pino Estructural', category: 'triplay', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa' },
-    { id: 'PROD-010', name: 'Triplay Marino de Importación', category: 'triplay', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'WBP Core' },
-    { id: 'PROD-011', name: 'Alto Brillo Espejo Blanco', category: 'premium', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'PET Gloss / MDF' },
-    { id: 'PROD-012', name: 'Super Mate Antihuella Negro', category: 'premium', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Zenit Core / MDF' }
+    { id: 'PROD-001', name: 'Melamina Blanca Soft', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'MDF / Aglomerado' },
+    { id: 'PROD-002', name: 'Melamina Nogal Urbano', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
+    { id: 'PROD-003', name: 'Melamina Gris Grafito', category: 'melamina', icon: 'layers', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'MDF Premium' },
+    { id: 'PROD-004', name: 'Melamina Roble Escandinavo', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
+    { id: 'PROD-005', name: 'MDF Crudo Calibrado', category: 'mdf', icon: 'view_in_ar', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra' },
+    { id: 'PROD-006', name: 'MDF Crudo Industrial', category: 'mdf', icon: 'view_in_ar', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra' },
+    { id: 'PROD-007', name: 'MDF Hidrófugo Antihumedad', category: 'mdf', icon: 'view_in_ar', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Núcleo Verde HMR' },
+    { id: 'PROD-008', name: 'Triplay Pino de Primera', category: 'triplay', icon: 'texture', thickness: '12 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa' },
+    { id: 'PROD-009', name: 'Triplay Pino Estructural', category: 'triplay', icon: 'texture', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa' },
+    { id: 'PROD-010', name: 'Triplay Marino de Importación', category: 'triplay', icon: 'texture', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'WBP Core' },
+    { id: 'PROD-011', name: 'Alto Brillo Espejo Blanco', category: 'premium', icon: 'auto_awesome', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'PET Gloss / MDF' },
+    { id: 'PROD-012', name: 'Super Mate Antihuella Negro', category: 'premium', icon: 'auto_awesome', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Zenit Core / MDF' }
   ];
-
-  const mapCategoryLabel = {
-    melamina: 'Tablero de Melamina',
-    mdf: 'MDF Sustrato Crudo',
-    triplay: 'Triplay de Madera',
-    premium: 'Acabados Premium / Alto Brillo'
-  };
-
+  const mapCategoryLabel = { melamina: 'Melamina', mdf: 'MDF Sustrato', triplay: 'Triplay', premium: 'Alto Brillo' };
   const targetGrid = document.getElementById('catalog-target-grid');
 
   function renderCatalogGrid(filterKey = 'all') {
     targetGrid.innerHTML = '';
-    const itemsToRender = filterKey === 'all' ? DATABASE_PRODUCTS : DATABASE_PRODUCTS.filter(item => item.category === filterKey);
-    
-    itemsToRender.forEach(prod => {
+    const items = filterKey === 'all' ? DATABASE_PRODUCTS : DATABASE_PRODUCTS.filter(p => p.category === filterKey);
+    items.forEach(prod => {
       const card = document.createElement('div');
       card.className = 'prod-card';
       card.innerHTML = `
-        <div class="prod-media">
-          <div class="prod-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-            <span>MUESTRA DIGITAL TÉCNICA</span>
-          </div>
-          <span class="prod-tag">${prod.id}</span>
+        <div class="prod-head">
+          <span class="ref mono">REF. ${prod.id}</span>
+          <span class="material-symbols-outlined">${prod.icon}</span>
         </div>
-        <div class="prod-content">
+        <div class="prod-media">
+          <div class="prod-placeholder dim-top">
+            <span class="material-symbols-outlined">image</span>
+            <span>Muestra Técnica</span>
+          </div>
+        </div>
+        <div class="prod-body">
           <h3>${prod.name}</h3>
-          <p class="prod-meta">
-            <strong>Tipo:</strong> ${mapCategoryLabel[prod.category]}<br>
-            <strong>Espesor:</strong> ${prod.thickness}<br>
-            <strong>Medida:</strong> ${prod.dimensions}<br>
-            <strong>Núcleo:</strong> ${prod.structural}
-          </p>
+          <div class="spec-row"><span class="k">Espesor</span><span class="v">${prod.thickness}</span></div>
+          <div class="spec-row"><span class="k">Formato</span><span class="v">${prod.dimensions}</span></div>
+          <div class="spec-row"><span class="k">Núcleo</span><span class="v">${prod.structural}</span></div>
           <div class="prod-footer">
-            <span>Disponible Maquila</span>
-            <button class="btn-action-cotizar" onclick="selectProductForMesaControl('${prod.name}', '${prod.id}')">Cotizar</button>
+            <span>${mapCategoryLabel[prod.category]}</span>
+            <button class="btn-cotizar" onclick="selectProductForMesaControl('${prod.name}')">Cotizar</button>
           </div>
         </div>
       `;
@@ -1561,50 +825,73 @@
   }
 
   document.getElementById('filter-group').addEventListener('click', (e) => {
-    if(e.target.classList.contains('filter-btn')) {
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('is-active'));
+    if (e.target.classList.contains('filter-btn')) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
       e.target.classList.add('is-active');
       renderCatalogGrid(e.target.dataset.filter);
     }
   });
 
-  function selectProductForMesaControl(name, id) {
-    const selectMaterial = document.getElementById('master-material');
-    let optionFound = false;
-    for(let i=0; i<selectMaterial.options.length; i++) {
-      if(selectMaterial.options[i].value.includes(name)) {
-        selectMaterial.selectedIndex = i;
-        optionFound = true;
-        break;
-      }
+  function selectProductForMesaControl(name) {
+    const select = document.getElementById('master-material');
+    let found = false;
+    for (let i = 0; i < select.options.length; i++) {
+      if (select.options[i].value.includes(name)) { select.selectedIndex = i; found = true; break; }
     }
-    if(!optionFound) {
+    if (!found) {
       const opt = document.createElement('option');
-      opt.value = `${name} (${id})`;
-      opt.textContent = `${name} (${id})`;
-      selectMaterial.appendChild(opt);
-      selectMaterial.value = opt.value;
+      opt.value = name; opt.textContent = name;
+      select.appendChild(opt); select.value = name;
     }
-    
-    document.getElementById('mesa-control').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
     createToast(`Seleccionado: ${name}. Configure su despiece.`);
   }
 
+  // Mesa de control
   const tableBody = document.getElementById('table-body-rows');
-  const rowCounter = document.getElementById('row-counter');
+  let rowIdCounter = 1;
 
-  function updateRowCounter() {
-    const count = tableBody.querySelectorAll('tr').length;
-    rowCounter.textContent = `${count} ${count === 1 ? 'Pieza' : 'Piezas'} en listado`;
+  function actualizarIds() {
+    tableBody.querySelectorAll('tr').forEach((row, i) => {
+      row.querySelector('td.mono').textContent = String(i + 1).padStart(3, '0');
+    });
+  }
+
+  function calcularResumen() {
+    const rows = tableBody.querySelectorAll('tr');
+    let totalPiezas = 0, metrosCanto = 0, areaTotalMm2 = 0;
+    rows.forEach(row => {
+      const inputs = row.querySelectorAll('input');
+      const select = row.querySelector('select');
+      const largo = Number(inputs[1].value) || 0;
+      const ancho = Number(inputs[2].value) || 0;
+      const cant = Number(inputs[3].value) || 0;
+      const canto = select.value;
+      totalPiezas += cant;
+      areaTotalMm2 += largo * ancho * cant;
+      let cantoMm = 0;
+      if (canto === '2 Largos') cantoMm = 2 * largo;
+      else if (canto === '1 Largo 1 Ancho') cantoMm = largo + ancho;
+      else if (canto === 'Perimetral (4 lados)') cantoMm = 2 * (largo + ancho);
+      metrosCanto += cantoMm * cant;
+    });
+    const sheetAreaMm2 = 1220 * 2440;
+    const tablerosEst = areaTotalMm2 > 0 ? Math.ceil((areaTotalMm2 * 1.15) / sheetAreaMm2) : 0;
+
+    document.getElementById('resTotalPiezas').textContent = totalPiezas;
+    document.getElementById('resMetrosCanto').textContent = (metrosCanto / 1000).toFixed(1) + ' m';
+    document.getElementById('resTablerosEst').textContent = tablerosEst;
   }
 
   function addNewRow() {
+    rowIdCounter++;
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><input type="text" placeholder="Ej: Repisa superior" value="Nueva Pieza"></td>
-      <td><input type="number" placeholder="0" value="400"></td>
-      <td><input type="number" placeholder="0" value="300"></td>
-      <td><input type="number" placeholder="1" value="1"></td>
+      <td class="mono" style="color:var(--text-light-muted);">000</td>
+      <td><input type="text" value="Nueva Pieza"></td>
+      <td><input type="number" value="400"></td>
+      <td><input type="number" value="300"></td>
+      <td><input type="number" value="1"></td>
       <td>
         <select>
           <option value="Ninguno">Ninguno</option>
@@ -1613,28 +900,24 @@
           <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
         </select>
       </td>
-      <td>
-        <button class="btn-remove-row" title="Eliminar fila" onclick="deleteRow(this)">
-          <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-        </button>
-      </td>
+      <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined" style="font-size:18px;">delete</span></button></td>
     `;
     tableBody.appendChild(tr);
-    updateRowCounter();
-    calcSummary();
+    actualizarIds();
+    calcularResumen();
     createToast('Nueva fila de despiece agregada.');
   }
 
   function deleteRow(button) {
     const rows = tableBody.querySelectorAll('tr');
-    if(rows.length <= 1) {
-      createToast('Error: La orden operativa debe contener al menos una pieza.');
-      return;
-    }
+    if (rows.length <= 1) { createToast('La orden debe contener al menos una pieza.'); return; }
     button.closest('tr').remove();
-    updateRowCounter();
-    calcSummary();
+    actualizarIds();
+    calcularResumen();
   }
+
+  tableBody.addEventListener('input', calcularResumen);
+  tableBody.addEventListener('change', calcularResumen);
 
   async function processOrderToWhatsApp() {
     const clientName = document.getElementById('client-name').value.trim();
@@ -1643,25 +926,18 @@
     const masterMaterial = document.getElementById('master-material').value;
     const clientNotes = document.getElementById('client-notes').value.trim();
 
-    if(!clientName || !clientPhone) {
-      createToast('Campos obligatorios: Nombre y Línea Móvil de validación.');
-      return;
-    }
+    if (!clientName || !clientPhone) { createToast('Campos obligatorios: Nombre y Línea Móvil.'); return; }
 
     let despieceDataString = '';
     const piezasArray = [];
-    const rows = tableBody.querySelectorAll('tr');
-    
-    rows.forEach((row, index) => {
+    tableBody.querySelectorAll('tr').forEach((row, index) => {
       const inputs = row.querySelectorAll('input');
       const select = row.querySelector('select');
-      
       const label = inputs[0].value || `Pieza ${index + 1}`;
       const largo = inputs[1].value || '0';
       const ancho = inputs[2].value || '0';
-      const cant  = inputs[3].value || '1';
+      const cant = inputs[3].value || '1';
       const canto = select.value;
-
       despieceDataString += `\n[${index + 1}] ${label} -> ${largo}x${ancho}mm | Cant: ${cant} | Canto: ${canto}`;
       piezasArray.push({ label, largo, ancho, cant, canto });
     });
@@ -1681,148 +957,76 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
 
     if (typeof guardarOrdenEnSupabase === 'function') {
       try {
-        await guardarOrdenEnSupabase({
-          nombre: clientName,
-          empresa: clientCompany || 'Particular',
-          telefono: clientPhone,
-          material: masterMaterial,
-          notas: clientNotes || '',
-          piezas: piezasArray,
-        });
-      } catch (err) {
-        console.error('No se pudo guardar la orden en la base de datos:', err);
-      }
+        await guardarOrdenEnSupabase({ nombre: clientName, empresa: clientCompany || 'Particular', telefono: clientPhone, material: masterMaterial, notas: clientNotes || '', piezas: piezasArray });
+      } catch (err) { console.error('No se pudo guardar la orden:', err); }
     }
 
-    createToast('Orden estructurada. Redirigiendo a WhatsApp Corporativo...');
-    
-    setTimeout(() => {
-      window.open(buildWhatsAppLink(finalMessage), '_blank');
-    }, 800);
+    createToast('Orden estructurada. Redirigiendo a WhatsApp...');
+    setTimeout(() => window.open(buildWhatsAppLink(finalMessage), '_blank'), 800);
   }
 
+  // Reveal on scroll
   const scrollRevealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
   }, { threshold: 0.1 });
 
-  window.addEventListener('DOMContentLoaded', () => {
-    renderCatalogGrid('all');
-    document.querySelectorAll('.reveal').forEach(element => {
-      scrollRevealObserver.observe(element);
-    });
-    updateRowCounter();
-    calcSummary();
-    // Servicios y proceso son estáticos: se inicializan UNA sola vez.
-    initTiltCards('.srv-node, .flow-card');
-    // El catálogo se re-renderiza al filtrar, así que se inicializa aparte cada vez.
-    initTiltCards('.prod-card');
-  });
-
-  // Recibe un selector para no volver a pegar listeners sobre nodos que ya los tienen
-  // (antes se re-enganchaba TODO -incluyendo tarjetas que nunca se destruyen- en cada
-  // click de filtro, acumulando listeners duplicados sobre los mismos elementos).
-  function initTiltCards(selector) {
-    document.querySelectorAll(selector).forEach(card => {
+  // Tilt sutil en tarjetas
+  function initTiltCards() {
+    document.querySelectorAll('.prod-card, .flow-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(700px) rotateX(${(-y * 3).toFixed(2)}deg) rotateY(${(x * 3).toFixed(2)}deg) translateY(-4px)`;
+        card.style.transform = `perspective(700px) rotateX(${(-y * 2.5).toFixed(2)}deg) rotateY(${(x * 2.5).toFixed(2)}deg) translateY(-3px)`;
       });
       card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
   }
-  document.getElementById('filter-group').addEventListener('click', () => setTimeout(() => initTiltCards('.prod-card'), 0));
+  document.getElementById('filter-group').addEventListener('click', () => setTimeout(initTiltCards, 0));
 
-  // ========================================================================
-  // RESUMEN EN VIVO DE LA MESA DE CONTROL (calculadora de material)
-  // ========================================================================
-  const AREA_TABLERO_M2 = 2.44 * 1.22; // tablero estándar 244 x 122 cm
-  const FACTOR_MERMA = 1.15; // 15% de desperdicio estimado, referencia rápida
+  window.addEventListener('DOMContentLoaded', () => {
+    renderCatalogGrid('all');
+    document.querySelectorAll('.reveal').forEach(el => scrollRevealObserver.observe(el));
+    calcularResumen();
+    initTiltCards();
 
-  function calcSummary() {
-    const rows = tableBody.querySelectorAll('tr');
-    let totalPiezas = 0;
-    let areaTotalM2 = 0;
+    document.getElementById('nav-wa-trigger')?.setAttribute('href', buildWhatsAppLink('Hola Braita. Solicito información general de catálogo y servicios de maquila.'));
+    document.getElementById('wa-sticky-float').href = buildWhatsAppLink('Hola Braita. Me encuentro en el sitio web y requiero asistencia técnica comercial.');
+  });
 
-    rows.forEach(row => {
-      const inputs = row.querySelectorAll('input');
-      const largoMM = parseFloat(inputs[1].value) || 0;
-      const anchoMM = parseFloat(inputs[2].value) || 0;
-      const cant = parseFloat(inputs[3].value) || 0;
-      totalPiezas += cant;
-      areaTotalM2 += (largoMM * anchoMM * cant) / 1000000;
-    });
-
-    const tablerosEstimados = areaTotalM2 > 0
-      ? Math.ceil((areaTotalM2 * FACTOR_MERMA) / AREA_TABLERO_M2)
-      : 0;
-
-    document.getElementById('sumPiezas').textContent = totalPiezas;
-    document.getElementById('sumArea').textContent = `${areaTotalM2.toFixed(2)} m²`;
-    document.getElementById('sumTableros').textContent = tablerosEstimados;
-  }
-  // Delegación de eventos: cubre filas nuevas sin tener que re-enganchar nada.
-  tableBody.addEventListener('input', calcSummary);
-  tableBody.addEventListener('change', calcSummary);
-
-  function copiarResumen() {
-    const rows = tableBody.querySelectorAll('tr');
-    let texto = 'RESUMEN DE PEDIDO — BRAITA\n';
-    texto += '--------------------------------\n';
-    rows.forEach((row, i) => {
-      const inputs = row.querySelectorAll('input');
-      const select = row.querySelector('select');
-      texto += `[${i + 1}] ${inputs[0].value} -> ${inputs[1].value}x${inputs[2].value}mm | Cant: ${inputs[3].value} | Canto: ${select.value}\n`;
-    });
-    texto += '--------------------------------\n';
-    texto += `${document.getElementById('sumPiezas').textContent} piezas · ${document.getElementById('sumArea').textContent} · ~${document.getElementById('sumTableros').textContent} tablero(s) estimados\n`;
-    texto += 'Material: ' + document.getElementById('master-material').value;
-
-    navigator.clipboard.writeText(texto).then(() => {
-      createToast('Resumen copiado al portapapeles.');
-    }).catch(() => {
-      createToast('No se pudo copiar automáticamente, selecciona el texto manualmente.');
-    });
-  }
-
-  // ========================================================================
-  // BARRA DE PROGRESO DE SCROLL
-  // ========================================================================
-  const scrollProgressBar = document.getElementById('scroll-progress');
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    scrollProgressBar.style.width = pct + '%';
-  }, { passive: true });
-
+  // ==================================================================
+  // SUPABASE — guardado de órdenes + panel de administrador
+  // Reemplaza estos dos valores con los de tu propio proyecto Supabase:
+  // Settings → API → Project URL / anon public key
+  //
+  // Tabla necesaria (créala en el SQL Editor de Supabase):
+  //
+  //   create table pedidos_maquila (
+  //     id uuid primary key default gen_random_uuid(),
+  //     fecha timestamptz default now(),
+  //     nombre text, empresa text, telefono text, material text,
+  //     notas text, piezas jsonb, estado text default 'nuevo'
+  //   );
+  //   alter table pedidos_maquila enable row level security;
+  //   create policy "Cualquiera puede crear una orden" on pedidos_maquila
+  //     for insert to anon with check (true);
+  //   create policy "Solo administradores autenticados pueden ver" on pedidos_maquila
+  //     for select to authenticated using (true);
+  //   create policy "Solo administradores autenticados pueden actualizar" on pedidos_maquila
+  //     for update to authenticated using (true);
+  // ==================================================================
   let guardarOrdenEnSupabase = null;
 
-  // Confirmado con el cliente: este proyecto de Supabase SÍ es de Braita/Bloque Digital.
-  // (project ref: gtpmffjzbiwghaibiprv). No se toca sin avisar.
   try {
-    const SUPABASE_URL = 'https://gtpmffjzbiwghaibiprv.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0cG1mZmp6Yml3Z2hhaWJpcHJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NTM3MzYsImV4cCI6MjA5OTEyOTczNn0.SB8QRRiUlh1mNEfH3rDfkxYSk-A--dWF_77jZE8sseM';
-
-    if (typeof window.supabase === 'undefined') {
-      throw new Error('El script de Supabase no cargó.');
-    }
+    const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
+    const SUPABASE_ANON_KEY = 'TU-LLAVE-ANON-PUBLICA';
+    if (typeof window.supabase === 'undefined') throw new Error('El script de Supabase no cargó.');
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     guardarOrdenEnSupabase = async function (orden) {
       const { error } = await supabase.from('pedidos_maquila').insert([{
-        nombre: orden.nombre,
-        empresa: orden.empresa,
-        telefono: orden.telefono,
-        material: orden.material,
-        notas: orden.notas,
-        piezas: orden.piezas,
-        estado: 'nuevo',
+        nombre: orden.nombre, empresa: orden.empresa, telefono: orden.telefono,
+        material: orden.material, notas: orden.notas, piezas: orden.piezas, estado: 'nuevo',
       }]);
       if (error) throw error;
     };
@@ -1831,24 +1035,13 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       e.preventDefault();
       document.getElementById('panelOverlay').classList.add('open');
       const { data } = await supabase.auth.getSession();
-      if (data.session) { mostrarPanelContenido(); cargarOrdenes(); }
-      else { mostrarPanelLogin(); }
+      if (data.session) { mostrarPanelContenido(); cargarOrdenes(); } else { mostrarPanelLogin(); }
     });
-    document.getElementById('closePanel').addEventListener('click', () => {
-      document.getElementById('panelOverlay').classList.remove('open');
-    });
-    document.getElementById('panelOverlay').addEventListener('click', (e) => {
-      if (e.target.id === 'panelOverlay') e.target.classList.remove('open');
-    });
+    document.getElementById('closePanel').addEventListener('click', () => document.getElementById('panelOverlay').classList.remove('open'));
+    document.getElementById('panelOverlay').addEventListener('click', (e) => { if (e.target.id === 'panelOverlay') e.target.classList.remove('open'); });
 
-    function mostrarPanelLogin() {
-      document.getElementById('panelLoginBox').style.display = 'block';
-      document.getElementById('panelContentBox').style.display = 'none';
-    }
-    function mostrarPanelContenido() {
-      document.getElementById('panelLoginBox').style.display = 'none';
-      document.getElementById('panelContentBox').style.display = 'block';
-    }
+    function mostrarPanelLogin() { document.getElementById('panelLoginBox').style.display = 'block'; document.getElementById('panelContentBox').style.display = 'none'; }
+    function mostrarPanelContenido() { document.getElementById('panelLoginBox').style.display = 'none'; document.getElementById('panelContentBox').style.display = 'block'; }
 
     document.getElementById('panelLoginBtn').addEventListener('click', async () => {
       const email = document.getElementById('panelLoginEmail').value.trim();
@@ -1857,30 +1050,17 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       try {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        errorEl.classList.remove('show');
-        mostrarPanelContenido();
-        cargarOrdenes();
-      } catch (err) {
-        errorEl.textContent = err.message || 'Correo o contraseña incorrectos.';
-        errorEl.classList.add('show');
-      }
+        errorEl.classList.remove('show'); mostrarPanelContenido(); cargarOrdenes();
+      } catch (err) { errorEl.textContent = err.message || 'Correo o contraseña incorrectos.'; errorEl.classList.add('show'); }
     });
-    document.getElementById('panelLogoutBtn').addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      mostrarPanelLogin();
-    });
+    document.getElementById('panelLogoutBtn').addEventListener('click', async () => { await supabase.auth.signOut(); mostrarPanelLogin(); });
 
     async function cargarOrdenes() {
       try {
-        const { data, error } = await supabase
-          .from('pedidos_maquila')
-          .select('*')
-          .order('fecha', { ascending: false });
+        const { data, error } = await supabase.from('pedidos_maquila').select('*').order('fecha', { ascending: false });
         if (error) throw error;
         renderPanelOrdenes(data || []);
-      } catch (err) {
-        console.error('Error cargando órdenes:', err);
-      }
+      } catch (err) { console.error('Error cargando órdenes:', err); }
     }
 
     function renderPanelOrdenes(lista) {
@@ -1892,24 +1072,19 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
 
       document.getElementById('panelBodyRows').innerHTML = lista.map(o => {
         const piezasTexto = (o.piezas || []).map(p => `${p.label}: ${p.largo}x${p.ancho}mm ×${p.cant}`).join('\n');
-        return `
-        <tr>
-          <td class="mono" style="font-size:11.5px;">${new Date(o.fecha).toLocaleDateString('es-MX', { day: '2-digit', month: 'short' })}</td>
-          <td>${o.nombre}</td>
-          <td>${o.empresa}</td>
-          <td class="mono" style="font-size:12px;">${o.telefono}</td>
-          <td style="font-size:12.5px;">${o.material}</td>
+        return `<tr>
+          <td class="mono" style="font-size:11px;">${new Date(o.fecha).toLocaleDateString('es-MX', { day: '2-digit', month: 'short' })}</td>
+          <td>${o.nombre}</td><td>${o.empresa}</td>
+          <td class="mono" style="font-size:11.5px;">${o.telefono}</td>
+          <td style="font-size:12px;">${o.material}</td>
           <td class="piezas-cell">${piezasTexto || '—'}</td>
-          <td>
-            <select data-id="${o.id}">
-              <option value="nuevo" ${o.estado === 'nuevo' ? 'selected' : ''}>Nuevo</option>
-              <option value="cotizado" ${o.estado === 'cotizado' ? 'selected' : ''}>Cotizado</option>
-              <option value="confirmado" ${o.estado === 'confirmado' ? 'selected' : ''}>Confirmado</option>
-              <option value="entregado" ${o.estado === 'entregado' ? 'selected' : ''}>Entregado</option>
-            </select>
-          </td>
-        </tr>
-      `;
+          <td><select data-id="${o.id}">
+            <option value="nuevo" ${o.estado==='nuevo'?'selected':''}>Nuevo</option>
+            <option value="cotizado" ${o.estado==='cotizado'?'selected':''}>Cotizado</option>
+            <option value="confirmado" ${o.estado==='confirmado'?'selected':''}>Confirmado</option>
+            <option value="entregado" ${o.estado==='entregado'?'selected':''}>Entregado</option>
+          </select></td>
+        </tr>`;
       }).join('');
     }
 
@@ -1920,15 +1095,8 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
 
   } catch (err) {
     console.error('No se pudo inicializar el panel de administrador:', err);
-    const openPanelLink = document.getElementById('openPanel');
-    if (openPanelLink) {
-      openPanelLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        createToast('El panel de administrador aún no está configurado con tu base de datos.');
-      });
-    }
+    document.getElementById('openPanel')?.addEventListener('click', (e) => { e.preventDefault(); createToast('El panel de administrador aún no está configurado.'); });
   }
 </script>
-
 </body>
 </html>
