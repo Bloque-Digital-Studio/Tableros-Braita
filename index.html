@@ -776,18 +776,18 @@
 
   // Catálogo
   const DATABASE_PRODUCTS = [
-    { id: 'PROD-001', name: 'Melamina Blanca Soft', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'MDF / Aglomerado' },
-    { id: 'PROD-002', name: 'Melamina Nogal Urbano', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
-    { id: 'PROD-003', name: 'Melamina Gris Grafito', category: 'melamina', icon: 'layers', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'MDF Premium' },
-    { id: 'PROD-004', name: 'Melamina Roble Escandinavo', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
-    { id: 'PROD-005', name: 'MDF Crudo Calibrado', category: 'mdf', icon: 'view_in_ar', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra' },
-    { id: 'PROD-006', name: 'MDF Crudo Industrial', category: 'mdf', icon: 'view_in_ar', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra' },
-    { id: 'PROD-007', name: 'MDF Hidrófugo Antihumedad', category: 'mdf', icon: 'view_in_ar', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Núcleo Verde HMR' },
-    { id: 'PROD-008', name: 'Triplay Pino de Primera', category: 'triplay', icon: 'texture', thickness: '12 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa' },
-    { id: 'PROD-009', name: 'Triplay Pino Estructural', category: 'triplay', icon: 'texture', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa' },
-    { id: 'PROD-010', name: 'Triplay Marino de Importación', category: 'triplay', icon: 'texture', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'WBP Core' },
-    { id: 'PROD-011', name: 'Alto Brillo Espejo Blanco', category: 'premium', icon: 'auto_awesome', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'PET Gloss / MDF' },
-    { id: 'PROD-012', name: 'Super Mate Antihuella Negro', category: 'premium', icon: 'auto_awesome', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Zenit Core / MDF' }
+    { id: 'PROD-001', name: 'Melamina Blanca Soft', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'MDF / Aglomerado', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-002', name: 'Melamina Nogal Urbano', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-003', name: 'Melamina Gris Grafito', category: 'melamina', icon: 'layers', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'MDF Premium', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-004', name: 'Melamina Roble Escandinavo', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-005', name: 'MDF Crudo Calibrado', category: 'mdf', icon: 'view_in_ar', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-006', name: 'MDF Crudo Industrial', category: 'mdf', icon: 'view_in_ar', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-007', name: 'MDF Hidrófugo Antihumedad', category: 'mdf', icon: 'view_in_ar', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Núcleo Verde HMR', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-008', name: 'Triplay Pino de Primera', category: 'triplay', icon: 'texture', thickness: '12 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-009', name: 'Triplay Pino Estructural', category: 'triplay', icon: 'texture', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-010', name: 'Triplay Marino de Importación', category: 'triplay', icon: 'texture', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'WBP Core', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-011', name: 'Alto Brillo Espejo Blanco', category: 'premium', icon: 'auto_awesome', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'PET Gloss / MDF', largoMm: 2440, anchoMm: 1220 },
+    { id: 'PROD-012', name: 'Super Mate Antihuella Negro', category: 'premium', icon: 'auto_awesome', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Zenit Core / MDF', largoMm: 2440, anchoMm: 1220 }
   ];
   const mapCategoryLabel = { melamina: 'Melamina', mdf: 'MDF Sustrato', triplay: 'Triplay', premium: 'Alto Brillo' };
   const targetGrid = document.getElementById('catalog-target-grid');
@@ -816,7 +816,7 @@
           <div class="spec-row"><span class="k">Núcleo</span><span class="v">${prod.structural}</span></div>
           <div class="prod-footer">
             <span>${mapCategoryLabel[prod.category]}</span>
-            <button class="btn-cotizar" onclick="selectProductForMesaControl('${prod.name}')">Cotizar</button>
+            <button class="btn-cotizar" onclick="selectProductForMesaControl('${prod.id}')">Cotizar</button>
           </div>
         </div>
       `;
@@ -832,19 +832,49 @@
     }
   });
 
-  function selectProductForMesaControl(name) {
+  function selectProductForMesaControl(prodId) {
+    const prod = DATABASE_PRODUCTS.find(p => p.id === prodId);
+    if (!prod) return;
+
     const select = document.getElementById('master-material');
     let found = false;
     for (let i = 0; i < select.options.length; i++) {
-      if (select.options[i].value.includes(name)) { select.selectedIndex = i; found = true; break; }
+      if (select.options[i].value.includes(prod.name)) { select.selectedIndex = i; found = true; break; }
     }
     if (!found) {
       const opt = document.createElement('option');
-      opt.value = name; opt.textContent = name;
-      select.appendChild(opt); select.value = name;
+      opt.value = prod.name; opt.textContent = prod.name;
+      select.appendChild(opt); select.value = prod.name;
     }
+
+    rellenarMesaConProducto(prod);
+
     document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
-    createToast(`Seleccionado: ${name}. Configure su despiece.`);
+    createToast(`Mesa rellenada con: ${prod.name} (${prod.largoMm}×${prod.anchoMm}mm). Ajusta las medidas de tus piezas.`);
+  }
+
+  function rellenarMesaConProducto(prod) {
+    tableBody.innerHTML = '';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="mono" style="color:var(--text-light-muted);">001</td>
+      <td><input type="text" value="${prod.name} (hoja completa)"></td>
+      <td><input type="number" value="${prod.largoMm}"></td>
+      <td><input type="number" value="${prod.anchoMm}"></td>
+      <td><input type="number" value="1"></td>
+      <td>
+        <select>
+          <option value="Ninguno" selected>Ninguno</option>
+          <option value="2 Largos">2 Largos</option>
+          <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
+          <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
+        </select>
+      </td>
+      <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined" style="font-size:18px;">delete</span></button></td>
+    `;
+    tableBody.appendChild(tr);
+    actualizarIds();
+    calcularResumen();
   }
 
   // Mesa de control
