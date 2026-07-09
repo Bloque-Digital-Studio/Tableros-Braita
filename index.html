@@ -20,9 +20,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  /* ========================================================================
-     1. ARQUITECTURA DE DISEÑO & VARIABLES (SISTEMA DE TOKENS)
-     ======================================================================== */
   :root {
     --bg-base: #EDEEEA;
     --bg-surface: #F5F5F2;
@@ -53,7 +50,6 @@
     --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
   }
 
-  /* Reset Estricto */
   *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -76,9 +72,6 @@
     overflow-x: hidden;
   }
 
-  /* ========================================================================
-     2. ESTILOS UTILITARIOS & LAYOUT STRUCT
-     ======================================================================== */
   .container {
     width: 100%;
     max-width: 1280px;
@@ -141,7 +134,6 @@
     border: none;
   }
 
-  /* Animaciones por Scroll */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -152,9 +144,6 @@
     transform: translateY(0);
   }
 
-  /* ========================================================================
-     3. COMPONENTES: BOTONES, ELEMENTOS INTERACTIVOS Y TOASTS
-     ======================================================================== */
   .btn {
     font-family: var(--font-sans);
     font-size: 14px;
@@ -202,7 +191,6 @@
     transform: translateY(-2px);
   }
 
-  /* Notification Toast System */
   #toast-container {
     position: fixed;
     bottom: 32px;
@@ -232,9 +220,6 @@
   }
   @keyframes slideOut { to { transform: translateX(-120%); opacity: 0; } }
 
-  /* ========================================================================
-     4. HEADER & NAVEGACIÓN PERMANENTE
-     ======================================================================== */
   header {
     position: sticky;
     top: 0;
@@ -333,9 +318,6 @@
     .header-actions .btn { display: none; }
   }
 
-  /* ========================================================================
-     5. HERO SECTION & MARQUEES DINÁMICOS
-     ======================================================================== */
   .hero {
     padding: 100px 0 0 0;
     overflow: hidden;
@@ -368,7 +350,6 @@
     flex-wrap: wrap;
   }
 
-  /* Vector Blueprint Hero Animation */
   .hero-graphic {
     position: relative;
     width: 100%;
@@ -399,7 +380,6 @@
     text-transform: uppercase;
   }
 
-  /* Strip de Confianza */
   .strip-confianza {
     background-color: var(--bg-dark);
     color: var(--text-light);
@@ -428,7 +408,6 @@
     flex-shrink: 0;
   }
 
-  /* Marquees CSS Sin Fin */
   .marquee-wrapper {
     background-color: var(--bg-panel);
     border-top: 1px solid var(--border-color);
@@ -484,9 +463,6 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* ========================================================================
-     6. SECCIÓN CATÁLOGO TÉCNICO INTERACTIVO
-     ======================================================================== */
   .catalog-controls {
     display: flex;
     justify-content: space-between;
@@ -523,7 +499,6 @@
     color: var(--text-light);
   }
 
-  /* Grid Estricta Estilo Blueprint */
   .catalog-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -559,7 +534,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: none; /* Asegura contenedor vacío inicial */
+    display: none;
   }
   .prod-placeholder {
     width: calc(100% - 24px);
@@ -623,9 +598,6 @@
     color: var(--text-light);
   }
 
-  /* ========================================================================
-     7. SERVICIOS INDUSTRIALES DE MAQUILA
-     ======================================================================== */
   .servicios-section {
     background-color: var(--bg-surface);
     border-top: 1px solid var(--border-color);
@@ -651,9 +623,6 @@
   .srv-node h4 { font-size: 20px; margin-bottom: 12px; }
   .srv-node p { font-size: 14.5px; color: var(--text-secondary); }
 
-  /* ========================================================================
-     8. PROCESO DE INTEGRACIÓN DE ÓRDENES Y DESPIECE
-     ======================================================================== */
   .proceso-flow {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -679,9 +648,6 @@
   .flow-card h3 { font-size: 18px; margin-bottom: 12px; }
   .flow-card p { font-size: 14px; color: var(--text-secondary); }
 
-  /* ========================================================================
-     9. MESA DE CONTROL: SISTEMA DINÁMICO DE DESPIECE AUTOMÁTICO (JS)
-     ======================================================================== */
   .mesa-control-section {
     background-color: var(--bg-dark);
     color: var(--text-light);
@@ -713,7 +679,6 @@
   }
   .panel-header h3 { color: var(--text-light); font-size: 18px; }
 
-  /* Tabla de Despiece Dinámico */
   .table-responsive { width: 100%; overflow-x: auto; }
   .despiece-table {
     width: 100%;
@@ -775,7 +740,6 @@
     background-color: rgba(255,255,255,0.02);
   }
 
-  /* Formulario General de Datos */
   .control-form {
     background-color: var(--bg-dark-surface);
     border: 1px solid var(--border-dark);
@@ -808,9 +772,6 @@
   }
   .form-group select option { background-color: var(--bg-dark-surface); color: var(--text-light); }
   
-  /* ========================================================================
-     10. INFRAESTRUCTURA DE LOGÍSTICA & MAPA ARQUITECTÓNICO
-     ======================================================================== */
   .logistica-struct {
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
@@ -841,9 +802,6 @@
   }
   .map-container svg { width: 100%; height: auto; background-color: #D3D6CE; }
 
-  /* ========================================================================
-     11. FOOTER & COMPONENTE FLOTANTE WHATSAPP
-     ======================================================================== */
   footer {
     background-color: var(--bg-surface);
     border-top: 1px solid var(--border-color);
@@ -889,9 +847,6 @@
   .wa-float:hover { transform: scale(1.1) translateY(-4px); }
   .wa-float svg { width: 30px; height: 30px; fill: white; }
 
-  /* ========================================================================
-     13. TEXTURA DE GRANO + TAG DE HOJA TÉCNICA (ACABADO PREMIUM)
-     ======================================================================== */
   body::before {
     content: '';
     position: fixed; inset: 0; z-index: 3000;
@@ -918,12 +873,8 @@
   .sheet-tag .eyebrow { margin-bottom: 0; }
   .mesa-control-section .sheet-tag .num { border-color: var(--border-dark); color: var(--text-light-muted); }
 
-  /* Tilt sutil en tarjetas al mover el mouse */
   .prod-card, .srv-node, .flow-card { will-change: transform; }
 
-  /* ========================================================================
-     14. PANEL DE ADMINISTRADOR: HISTORIAL DE ÓRDENES (SUPABASE)
-     ======================================================================== */
   .admin-link {
     display: inline-flex;
     align-items: center;
@@ -1065,14 +1016,74 @@
   }
   .panel-empty { text-align: center; color: var(--text-secondary); padding: 40px 0; font-size: 14px; }
 
+  /* ========================================================================
+     15. BARRA DE PROGRESO DE SCROLL
+     ======================================================================== */
+  #scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--brand-dark), var(--brand-light));
+    z-index: 1200;
+    transition: width 0.1s linear;
+  }
+
+  /* ========================================================================
+     16. RESUMEN EN VIVO — MESA DE CONTROL (calculadora de material)
+     ======================================================================== */
+  .summary-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background-color: var(--border-dark);
+    border: 1px solid var(--border-dark);
+    margin-top: 20px;
+  }
+  @media (max-width: 480px) { .summary-strip { grid-template-columns: 1fr; } }
+  .summary-item {
+    background-color: var(--bg-dark);
+    padding: 16px 18px;
+    text-align: center;
+  }
+  .summary-num {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--brand-light);
+  }
+  .summary-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-light-muted);
+    margin-top: 4px;
+  }
+  .btn-copy-summary {
+    background: transparent;
+    border: 1px solid var(--border-dark);
+    color: var(--text-light-muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 12px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+  .btn-copy-summary:hover { border-color: var(--text-light); color: var(--text-light); }
+
 </style>
 </head>
 <body>
 
-<!-- Global Toasts -->
+<div id="scroll-progress"></div>
 <div id="toast-container"></div>
 
-<!-- HEADER / NAVBAR -->
 <header id="main-header">
   <div class="container navbar">
     <a href="#inicio" class="logo">
@@ -1103,13 +1114,12 @@
 </header>
 
 <main>
-  <!-- HERO SECTION -->
   <section class="hero" id="inicio">
     <div class="container hero-container">
       <div class="hero-content">
         <div class="sheet-tag"><span class="num">HOJA 01/06</span><span class="eyebrow">Industria del Tablero Mueblero</span></div>
         <h1>Suministro base y despiece <span>automatizado.</span></h1>
-        <p>Centro de distribución integral en Ocotlán, Jalisco. Abastecemos de melamina, MDF y triplay con optimización computarizada de cortes para optimizar el rendimiento y anular la merma en planta.</p>
+        <p>Centro de distribución integral en Ocotlán, Jalisco. Abastecemos de melamina, MDF y triplay, y optimizamos el corte de tu pedido para aprovechar mejor cada hoja y reducir la merma.</p>
         <div class="hero-buttons">
           <a href="#mesa-control" class="btn btn-dark">Iniciar Orden Técnica</a>
           <a href="#catalogo" class="btn btn-outline">Explorar Materiales</a>
@@ -1129,16 +1139,15 @@
           <line x1="180" y1="190" x2="140" y2="150" stroke="var(--brand)" stroke-width="1.5"/>
           <text x="70" y="140" font-family="var(--font-mono)" font-size="11" fill="var(--text-muted)">SECCIÓN OPTIMIZADA</text>
         </svg>
-        <div class="graphic-overlay-label">Módulo de Anidación v2026.4</div>
+        <div class="graphic-overlay-label">Vista de aprovechamiento de hoja</div>
       </div>
     </div>
 
-    <!-- Strip de Valores Fijos -->
     <div class="strip-confianza">
       <div class="container strip-grid">
         <div class="strip-item">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-13.322 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <span>Corte Milimétrico CNC</span>
+          <span>Corte a la Medida</span>
         </div>
         <div class="strip-item">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -1151,21 +1160,20 @@
       </div>
     </div>
 
-    <!-- Marquees CSS Combinados -->
     <div class="marquee-wrapper">
       <div class="marquee-content">
         <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Paneles Estructurales</span>
         <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Paneles Estructurales</span>
       </div>
     </div>
+    <!-- TODO: confirmar con el cliente qué municipios cubre realmente la entrega, esto es un ejemplo con la zona Ciénega -->
     <div class="brands-marquee">
       <div class="brands-track">
-        <span>ARAUCO</span><span>TECNOTABLA</span><span>BLUM</span><span>FUNDERMAX</span><span>HÄFELE</span><span>SAYER LACK</span><span>ARAUCO</span><span>TECNOTABLA</span><span>BLUM</span><span>FUNDERMAX</span><span>HÄFELE</span><span>SAYER LACK</span>
+        <span>OCOTLÁN</span><span>ZAPOTLÁN DEL REY</span><span>LA BARCA</span><span>ATOTONILCO EL ALTO</span><span>PONCITLÁN</span><span>JAMAY</span><span>OCOTLÁN</span><span>ZAPOTLÁN DEL REY</span><span>LA BARCA</span><span>ATOTONILCO EL ALTO</span><span>PONCITLÁN</span><span>JAMAY</span>
       </div>
     </div>
   </section>
 
-  <!-- CATALOGO DE PRODUCTOS INTERACTIVO -->
   <section class="section-padding container" id="catalogo">
     <div class="catalog-controls reveal">
       <div class="catalog-title">
@@ -1183,11 +1191,9 @@
     </div>
 
     <div class="catalog-grid" id="catalog-target-grid">
-      <!-- El contenido se inyecta vía JavaScript con la base estructurada vacía solicitada -->
     </div>
   </section>
 
-  <!-- SERVICIOS DE MAQUILA -->
   <section class="section-padding servicios-section" id="servicios">
     <div class="container">
       <div class="reveal" style="margin-bottom: 56px;">
@@ -1197,8 +1203,8 @@
       <div class="servicios-grid">
         <div class="srv-node reveal">
           <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 11-4.243-4.243 3 3 0 014.243 4.243z"/></svg>
-          <h4>Seccionado Computarizado</h4>
-          <p>Corte lineal automatizado mediante software de optimización perimetral. Garantiza el aprovechamiento total de la hoja y cantos perfectos sin astilladuras.</p>
+          <h4>Corte de Precisión</h4>
+          <p>Cortamos cada pieza a tus medidas exactas y acomodamos el listado para aprovechar mejor la hoja, con cantos limpios y sin astilladuras.</p>
         </div>
         <div class="srv-node reveal">
           <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
@@ -1207,14 +1213,13 @@
         </div>
         <div class="srv-node reveal">
           <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V16zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V16z"/></svg>
-          <h4>Perforación Automatizada</h4>
-          <p>Mecanizado de barrena para colocación exacta de bisagras bidimensionales, pernos de unión y sistemas modulares bajo plano técnico standard.</p>
+          <h4>Perforación a Medida</h4>
+          <p>Colocamos las perforaciones para bisagras, pernos de unión y sistemas modulares según el plano técnico que nos compartas.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESO DE TRABAJO -->
   <section class="section-padding container" id="proceso">
     <div class="reveal">
       <div class="sheet-tag"><span class="num">HOJA 04/06</span><span class="eyebrow">Línea de Integración</span></div>
@@ -1228,13 +1233,13 @@
       </div>
       <div class="flow-card reveal">
         <div class="flow-num">S02 // OPTIMIZACIÓN</div>
-        <h3>Anidación de Hojas</h3>
-        <p>Nuestro sistema calcula el patrón geométrico idóneo para reducir los remanentes y costos de material.</p>
+        <h3>Optimización de Corte</h3>
+        <p>Acomodamos tus piezas en el tablero para aprovechar mejor el material y bajar tanto el desperdicio como el costo.</p>
       </div>
       <div class="flow-card reveal">
         <div class="flow-num">S03 // MAQUILA</div>
-        <h3>Procesamiento CNC</h3>
-        <p>Entra a líneas de dimensionado automático, canteado de precisión y habilitación estructural.</p>
+        <h3>Corte y Habilitado</h3>
+        <p>Se corta, cantea y habilita cada pieza según tu listado, lista para llegar a ensamble.</p>
       </div>
       <div class="flow-card reveal">
         <div class="flow-num">S04 // LOGÍSTICA</div>
@@ -1244,7 +1249,6 @@
     </div>
   </section>
 
-  <!-- MESA DE CONTROL: COTIZADOR DE DESPIECE REAL -->
   <section class="section-padding mesa-control-section" id="mesa-control">
     <div class="container">
       <div class="reveal">
@@ -1254,7 +1258,6 @@
       </div>
 
       <div class="mesa-layout">
-        <!-- Panel Izquierdo: Tabla interactiva -->
         <div class="blueprint-panel reveal">
           <div class="panel-header">
             <h3>Listado Geométrico de Piezas</h3>
@@ -1297,9 +1300,25 @@
             </table>
           </div>
           <button class="btn-add-row" onclick="addNewRow()">+ Añadir Fila de Despiece</button>
+
+          <div class="summary-strip" id="summaryStrip">
+            <div class="summary-item">
+              <span class="summary-num" id="sumPiezas">0</span>
+              <span class="summary-label">Piezas totales</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-num" id="sumArea">0.00 m²</span>
+              <span class="summary-label">Área total</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-num" id="sumTableros">0</span>
+              <span class="summary-label">Tableros aprox.*</span>
+            </div>
+          </div>
+          <p class="mono" style="font-size:10.5px; color:var(--text-light-muted); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma. Es una referencia rápida, no sustituye la optimización real de corte que hacemos al procesar tu orden.</p>
+          <button class="btn-copy-summary" type="button" onclick="copiarResumen()">Copiar resumen del pedido</button>
         </div>
 
-        <!-- Panel Derecho: Formulario de Enlace Comercial -->
         <div class="control-form reveal">
           <div class="form-group">
             <label for="client-name">Nombre Comercial / Solicitante</label>
@@ -1337,7 +1356,6 @@
     </div>
   </section>
 
-  <!-- LOGÍSTICA & UBICACIÓN GEOGRÁFICA -->
   <section class="section-padding container" id="ubicacion">
     <div class="logistica-struct">
       <div class="reveal">
@@ -1386,7 +1404,6 @@
   </section>
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-row">
@@ -1412,7 +1429,6 @@
   </div>
 </footer>
 
-<!-- PANEL DE ADMINISTRADOR: HISTORIAL DE ÓRDENES -->
 <div class="panel-overlay" id="panelOverlay">
   <div class="panel-modal">
     <div class="panel-head">
@@ -1452,27 +1468,20 @@
   </div>
 </div>
 
-<!-- Botón Flotante Permanente -->
 <a href="#" id="wa-sticky-float" class="wa-float" target="_blank" aria-label="Contacto WhatsApp">
   <svg viewBox="0 0 32 32">
     <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/>
   </svg>
 </a>
 
-<!-- ========================================================================
-     12. INGENIERÍA DE SOFTWARE & LÓGICA DE CONTROL (JS / TS COMPLIANT)
-     ======================================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  // Configuración de Enlaces Globales
   const CONFIG_TELEFONO = '523921266110';
   const buildWhatsAppLink = (mensaje) => `https://wa.me/${CONFIG_TELEFONO}?text=${encodeURIComponent(mensaje)}`;
 
-  // Inicialización de Links Estáticos Estables
   document.getElementById('nav-wa-trigger').href = buildWhatsAppLink('Hola Braita. Solicito información general de catálogo y servicios de maquila.');
   document.getElementById('wa-sticky-float').href = buildWhatsAppLink('Hola Braita. Me encuentro en el sitio web y requiero asistencia técnica comercial.');
 
-  // Sistema de Notificaciones Flotantes (Toast)
   function createToast(message) {
     const container = document.getElementById('toast-container');
     const toast = document.createElement('div');
@@ -1488,14 +1497,12 @@
     }, 4000);
   }
 
-  // Navbar Toggle Mobile Lógica
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('main-nav');
   menuToggle.addEventListener('click', () => {
     mainNav.classList.toggle('is-active');
   });
 
-  // Base de Datos Estricta de Catálogo Matrix para Producción
   const DATABASE_PRODUCTS = [
     { id: 'PROD-001', name: 'Melamina Blanca Soft', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'MDF / Aglomerado' },
     { id: 'PROD-002', name: 'Melamina Nogal Urbano', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD' },
@@ -1518,7 +1525,6 @@
     premium: 'Acabados Premium / Alto Brillo'
   };
 
-  // Motor de Renderizado del Catálogo Estructural Vacío
   const targetGrid = document.getElementById('catalog-target-grid');
 
   function renderCatalogGrid(filterKey = 'all') {
@@ -1554,7 +1560,6 @@
     });
   }
 
-  // Inicializar Controladores de Filtros del Catálogo
   document.getElementById('filter-group').addEventListener('click', (e) => {
     if(e.target.classList.contains('filter-btn')) {
       document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('is-active'));
@@ -1563,10 +1568,8 @@
     }
   });
 
-  // Vinculación automática: Del catálogo a la Mesa de Control
   function selectProductForMesaControl(name, id) {
     const selectMaterial = document.getElementById('master-material');
-    // Creamos dinámicamente o seleccionamos la opción
     let optionFound = false;
     for(let i=0; i<selectMaterial.options.length; i++) {
       if(selectMaterial.options[i].value.includes(name)) {
@@ -1583,14 +1586,10 @@
       selectMaterial.value = opt.value;
     }
     
-    // Smooth Scroll a la mesa de control
     document.getElementById('mesa-control').scrollIntoView({ behavior: 'smooth' });
     createToast(`Seleccionado: ${name}. Configure su despiece.`);
   }
 
-  // ========================================================================
-  // LÓGICA DE LA MESA DE CONTROL: CONTROLADOR DE TABLAS DINÁMICAS
-  // ========================================================================
   const tableBody = document.getElementById('table-body-rows');
   const rowCounter = document.getElementById('row-counter');
 
@@ -1622,6 +1621,7 @@
     `;
     tableBody.appendChild(tr);
     updateRowCounter();
+    calcSummary();
     createToast('Nueva fila de despiece agregada.');
   }
 
@@ -1633,9 +1633,9 @@
     }
     button.closest('tr').remove();
     updateRowCounter();
+    calcSummary();
   }
 
-  // Exportador de Datos de Ingeniería a Cadena de Texto WhatsApp Corporativo
   async function processOrderToWhatsApp() {
     const clientName = document.getElementById('client-name').value.trim();
     const clientCompany = document.getElementById('client-company').value.trim();
@@ -1648,7 +1648,6 @@
       return;
     }
 
-    // Estructuración de la matriz de despiece de la tabla
     let despieceDataString = '';
     const piezasArray = [];
     const rows = tableBody.querySelectorAll('tr');
@@ -1667,7 +1666,6 @@
       piezasArray.push({ label, largo, ancho, cant, canto });
     });
 
-    // Construcción del Mensaje Protocolario Estricto
     const finalMessage = `ORDEN DE MAQUILA - SOLICITUD DE DESPIECE COMERCIAL
 --------------------------------------------------
 OPERADOR: ${clientName}
@@ -1681,7 +1679,6 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
 --------------------------------------------------
 *Solicito validación de rendimiento geométrico y cotización formal de hojas más servicios de corte.*`;
 
-    // Guarda la orden en la base de datos del negocio (si Supabase está disponible)
     if (typeof guardarOrdenEnSupabase === 'function') {
       try {
         await guardarOrdenEnSupabase({
@@ -1704,7 +1701,6 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
     }, 800);
   }
 
-  // Intersection Observer Api para Inyecciones Fluidas en Scroll
   const scrollRevealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting) {
@@ -1713,19 +1709,24 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
     });
   }, { threshold: 0.1 });
 
-  // Inicialización de Render Global al Cargar la Ventana Ejecutiva
   window.addEventListener('DOMContentLoaded', () => {
     renderCatalogGrid('all');
     document.querySelectorAll('.reveal').forEach(element => {
       scrollRevealObserver.observe(element);
     });
     updateRowCounter();
-    initTiltCards();
+    calcSummary();
+    // Servicios y proceso son estáticos: se inicializan UNA sola vez.
+    initTiltCards('.srv-node, .flow-card');
+    // El catálogo se re-renderiza al filtrar, así que se inicializa aparte cada vez.
+    initTiltCards('.prod-card');
   });
 
-  // ---- Tilt sutil al mover el mouse sobre tarjetas (catálogo, servicios, proceso) ----
-  function initTiltCards() {
-    document.querySelectorAll('.prod-card, .srv-node, .flow-card').forEach(card => {
+  // Recibe un selector para no volver a pegar listeners sobre nodos que ya los tienen
+  // (antes se re-enganchaba TODO -incluyendo tarjetas que nunca se destruyen- en cada
+  // click de filtro, acumulando listeners duplicados sobre los mismos elementos).
+  function initTiltCards(selector) {
+    document.querySelectorAll(selector).forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
@@ -1735,10 +1736,75 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
   }
-  // El catálogo se re-renderiza al filtrar, así que hay que re-enganchar el tilt cada vez
-  document.getElementById('filter-group').addEventListener('click', () => setTimeout(initTiltCards, 0));
+  document.getElementById('filter-group').addEventListener('click', () => setTimeout(() => initTiltCards('.prod-card'), 0));
+
+  // ========================================================================
+  // RESUMEN EN VIVO DE LA MESA DE CONTROL (calculadora de material)
+  // ========================================================================
+  const AREA_TABLERO_M2 = 2.44 * 1.22; // tablero estándar 244 x 122 cm
+  const FACTOR_MERMA = 1.15; // 15% de desperdicio estimado, referencia rápida
+
+  function calcSummary() {
+    const rows = tableBody.querySelectorAll('tr');
+    let totalPiezas = 0;
+    let areaTotalM2 = 0;
+
+    rows.forEach(row => {
+      const inputs = row.querySelectorAll('input');
+      const largoMM = parseFloat(inputs[1].value) || 0;
+      const anchoMM = parseFloat(inputs[2].value) || 0;
+      const cant = parseFloat(inputs[3].value) || 0;
+      totalPiezas += cant;
+      areaTotalM2 += (largoMM * anchoMM * cant) / 1000000;
+    });
+
+    const tablerosEstimados = areaTotalM2 > 0
+      ? Math.ceil((areaTotalM2 * FACTOR_MERMA) / AREA_TABLERO_M2)
+      : 0;
+
+    document.getElementById('sumPiezas').textContent = totalPiezas;
+    document.getElementById('sumArea').textContent = `${areaTotalM2.toFixed(2)} m²`;
+    document.getElementById('sumTableros').textContent = tablerosEstimados;
+  }
+  // Delegación de eventos: cubre filas nuevas sin tener que re-enganchar nada.
+  tableBody.addEventListener('input', calcSummary);
+  tableBody.addEventListener('change', calcSummary);
+
+  function copiarResumen() {
+    const rows = tableBody.querySelectorAll('tr');
+    let texto = 'RESUMEN DE PEDIDO — BRAITA\n';
+    texto += '--------------------------------\n';
+    rows.forEach((row, i) => {
+      const inputs = row.querySelectorAll('input');
+      const select = row.querySelector('select');
+      texto += `[${i + 1}] ${inputs[0].value} -> ${inputs[1].value}x${inputs[2].value}mm | Cant: ${inputs[3].value} | Canto: ${select.value}\n`;
+    });
+    texto += '--------------------------------\n';
+    texto += `${document.getElementById('sumPiezas').textContent} piezas · ${document.getElementById('sumArea').textContent} · ~${document.getElementById('sumTableros').textContent} tablero(s) estimados\n`;
+    texto += 'Material: ' + document.getElementById('master-material').value;
+
+    navigator.clipboard.writeText(texto).then(() => {
+      createToast('Resumen copiado al portapapeles.');
+    }).catch(() => {
+      createToast('No se pudo copiar automáticamente, selecciona el texto manualmente.');
+    });
+  }
+
+  // ========================================================================
+  // BARRA DE PROGRESO DE SCROLL
+  // ========================================================================
+  const scrollProgressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    scrollProgressBar.style.width = pct + '%';
+  }, { passive: true });
+
   let guardarOrdenEnSupabase = null;
 
+  // Confirmado con el cliente: este proyecto de Supabase SÍ es de Braita/Bloque Digital.
+  // (project ref: gtpmffjzbiwghaibiprv). No se toca sin avisar.
   try {
     const SUPABASE_URL = 'https://gtpmffjzbiwghaibiprv.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0cG1mZmp6Yml3Z2hhaWJpcHJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NTM3MzYsImV4cCI6MjA5OTEyOTczNn0.SB8QRRiUlh1mNEfH3rDfkxYSk-A--dWF_77jZE8sseM';
@@ -1761,7 +1827,6 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       if (error) throw error;
     };
 
-    // ---- Abrir panel: revisa si ya hay sesión iniciada ----
     document.getElementById('openPanel').addEventListener('click', async (e) => {
       e.preventDefault();
       document.getElementById('panelOverlay').classList.add('open');
