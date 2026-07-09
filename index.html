@@ -1465,7 +1465,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   // Configuración de Enlaces Globales
-  const CONFIG_TELEFONO = '523929313919';
+  const CONFIG_TELEFONO = '523921266110';
   const buildWhatsAppLink = (mensaje) => `https://wa.me/${CONFIG_TELEFONO}?text=${encodeURIComponent(mensaje)}`;
 
   // Inicialización de Links Estáticos Estables
@@ -1737,38 +1737,11 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
   }
   // El catálogo se re-renderiza al filtrar, así que hay que re-enganchar el tilt cada vez
   document.getElementById('filter-group').addEventListener('click', () => setTimeout(initTiltCards, 0));
-
-  // ==================================================================
-  // SUPABASE — guardado de órdenes + panel de administrador
-  // Reemplaza estos dos valores con los de tu propio proyecto Supabase:
-  // Settings → API → Project URL / anon public key
-  //
-  // Tabla necesaria en Supabase (créala en el SQL Editor):
-  //
-  //   create table pedidos_maquila (
-  //     id uuid primary key default gen_random_uuid(),
-  //     fecha timestamptz default now(),
-  //     nombre text,
-  //     empresa text,
-  //     telefono text,
-  //     material text,
-  //     notas text,
-  //     piezas jsonb,
-  //     estado text default 'nuevo'
-  //   );
-  //   alter table pedidos_maquila enable row level security;
-  //   create policy "Cualquiera puede crear una orden" on pedidos_maquila
-  //     for insert to anon with check (true);
-  //   create policy "Solo administradores autenticados pueden ver" on pedidos_maquila
-  //     for select to authenticated using (true);
-  //   create policy "Solo administradores autenticados pueden actualizar" on pedidos_maquila
-  //     for update to authenticated using (true);
-  // ==================================================================
   let guardarOrdenEnSupabase = null;
 
   try {
-    const SUPABASE_URL = 'https://TU-PROYECTO.supabase.co';
-    const SUPABASE_ANON_KEY = 'TU-LLAVE-ANON-PUBLICA';
+    const SUPABASE_URL = 'https://gtpmffjzbiwghaibiprv.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0cG1mZmp6Yml3Z2hhaWJpcHJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NTM3MzYsImV4cCI6MjA5OTEyOTczNn0.SB8QRRiUlh1mNEfH3rDfkxYSk-A--dWF_77jZE8sseM';
 
     if (typeof window.supabase === 'undefined') {
       throw new Error('El script de Supabase no cargó.');
