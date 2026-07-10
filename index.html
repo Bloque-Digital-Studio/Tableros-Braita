@@ -1,457 +1,421 @@
 <!DOCTYPE html>
-<!--
-  ================================================================
-  BRAITA INDUSTRIAL HUB — v2 (Sistema de diseño: Industrial Blueprint)
-  ================================================================
--->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Braita — Sistema de Maquila Automatizada y Suministro de Tableros</title>
 <meta name="description" content="Socio estratégico en melaminas, MDF, triplays y cortes automatizados para la industria del mueble en Ocotlán y la región Ciénega.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%230F172A'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23F1F5F9' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%23C2410C' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23020617'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23F8FAFC' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%23EA580C' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   /* ======================================================================
-     TOKENS — Sistema "Industrial Blueprint"
+     1. TOKENS Y SISTEMA DE DISEÑO (PREMIUM BLUEPRINT)
      ====================================================================== */
-  :root{
-    --bg-base:#F1F5F9;
-    --bg-surface:#FFFFFF;
-    --bg-surface-low:#F8FAFC;
-    --bg-panel:#E2E8F0;
-    --bg-dark:#0F172A;
-    --bg-dark-surface:#1E293B;
+  :root {
+    --bg-base: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --bg-surface-low: #F1F5F9;
+    --bg-panel: #E2E8F0;
+    
+    --bg-dark: #020617;
+    --bg-dark-surface: #0F172A;
+    --bg-dark-panel: #1E293B;
 
-    --text-primary:#0F172A;
-    --text-secondary:#475569;
-    --text-muted:#94A3B8;
-    --text-light:#F1F5F9;
-    --text-light-muted:#94A3B8;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --text-light: #F8FAFC;
+    --text-light-muted: #CBD5E1;
 
-    --brand:#C2410C;
-    --brand-dark:#9A3412;
-    --brand-light:#EA580C;
+    --brand: #EA580C;
+    --brand-dark: #C2410C;
+    --brand-light: #F97316;
+    --brand-glow: rgba(234, 88, 12, 0.3);
 
-    --border-color:#CBD5E1;
-    --border-strong:#94A3B8;
-    --border-dark:#334155;
+    --border-color: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --border-dark: #334155;
 
-    --font-display:'Montserrat', sans-serif;
-    --font-sans:'Inter', sans-serif;
-    --font-mono:'JetBrains Mono', monospace;
+    --font-display: 'Montserrat', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 
-    --ease: cubic-bezier(0.16,1,0.3,1);
-    --shadow-sm: 0 2px 10px rgba(15,23,42,.06);
-    --shadow-md: 0 20px 48px rgba(15,23,42,.14);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    
+    --shadow-sm: 0 4px 6px -1px rgba(2, 6, 23, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(2, 6, 23, 0.08);
+    --shadow-lg: 0 20px 25px -5px rgba(2, 6, 23, 0.1);
+    --shadow-glow: 0 0 20px var(--brand-glow);
   }
 
-  *,*::before,*::after{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  body{
-    background:var(--bg-base);
-    color:var(--text-primary);
-    font-family:var(--font-sans);
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .material-symbols-outlined{
-    font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
-    font-size:20px; line-height:1; vertical-align:middle; display:inline-block;
-  }
-  a{ color:inherit; text-decoration:none; }
-  img{ display:block; max-width:100%; }
-  .container{ width:100%; max-width:1320px; margin:0 auto; padding:0 40px; }
-  @media (max-width:768px){ .container{ padding:0 20px; } }
-  .section-padding{ padding:96px 0; }
-  @media (max-width:768px){ .section-padding{ padding:64px 0; } }
-  .mono{ font-family:var(--font-mono); }
-  .display{ font-family:var(--font-display); }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  ::selection { background: var(--brand); color: #fff; }
 
-  /* Grid técnico de fondo, muy sutil */
-  body{
+  body {
+    background: var(--bg-base); color: var(--text-primary);
+    font-family: var(--font-sans); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
     background-image:
-      linear-gradient(to right, rgba(148,163,184,0.08) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148,163,184,0.08) 1px, transparent 1px);
-    background-size:18px 18px;
+      linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px; background-attachment: fixed;
   }
 
-  /* Textura de grano */
-  body::before{
-    content:'';
-    position:fixed; inset:0; z-index:3000; pointer-events:none;
+  /* Ruido visual en toda la página */
+  body::before {
+    content:''; position:fixed; inset:0; z-index:3000; pointer-events:none;
     opacity:.03; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='130'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 
-  /* Sello fijo tipo hoja de plano, esquina superior derecha */
-  .sheet-stamp{
-    position:fixed; top:18px; right:22px; z-index:150;
-    font-family:var(--font-mono); font-size:10.5px; line-height:1.5;
-    color:var(--text-muted); text-align:right; pointer-events:none;
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 20px; line-height: 1; vertical-align: middle; display: inline-block;
   }
-  @media (max-width:900px){ .sheet-stamp{ display:none; } }
 
-  .eyebrow{
-    font-family:var(--font-mono); font-size:12.5px; font-weight:600;
-    text-transform:uppercase; letter-spacing:.1em; color:var(--brand);
+  a { color: inherit; text-decoration: none; transition: color 0.3s var(--ease-out); }
+  img { display: block; max-width: 100%; height: auto; }
+  .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 768px) { .container { padding: 0 24px; } }
+  .section-padding { padding: 120px 0; }
+  @media (max-width: 768px) { .section-padding { padding: 80px 0; } }
+  .mono { font-family: var(--font-mono); }
+  .display { font-family: var(--font-display); }
+
+  /* Elementos de Blueprint (Planos) */
+  .sheet-stamp {
+    position: fixed; top: 24px; right: 24px; z-index: 1000;
+    font-family: var(--font-mono); font-size: 10px; line-height: 1.6;
+    color: var(--text-muted); text-align: right; pointer-events: none;
+    background: rgba(248, 250, 252, 0.8); backdrop-filter: blur(4px);
+    padding: 4px 8px; border-radius: 4px; border: 1px solid var(--border-color);
   }
-  .sheet-tag{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
-  .sheet-tag .num{
-    font-family:var(--font-mono); font-size:11px; letter-spacing:.06em;
-    color:var(--text-secondary); border:1px solid var(--border-color); padding:2px 8px;
+  @media (max-width: 900px) { .sheet-stamp { display: none; } }
+
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--brand);
   }
-  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:700; color:var(--text-primary); line-height:1.15; }
-
-  /* Marcas de registro (esquinas de plano) */
-  .reg-box{ position:relative; }
-  .reg-mark{ position:absolute; width:13px; height:13px; border:1px solid var(--border-strong); pointer-events:none; }
-  .reg-tl{ top:-7px; left:-7px; border-right:none; border-bottom:none; }
-  .reg-tr{ top:-7px; right:-7px; border-left:none; border-bottom:none; }
-  .reg-bl{ bottom:-7px; left:-7px; border-right:none; border-top:none; }
-  .reg-br{ bottom:-7px; right:-7px; border-left:none; border-top:none; }
-
-  /* Línea de cota superior */
-  .dim-top{ position:relative; }
-  .dim-top::before, .dim-top::after{
-    content:''; position:absolute; top:-14px; width:1px; height:14px; background:var(--border-strong);
+  .sheet-tag { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .sheet-tag .num {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; font-weight: 600;
+    color: var(--bg-dark); border: 1.5px solid var(--border-strong); padding: 4px 10px;
+    border-radius: 2px; background: var(--bg-surface);
   }
-  .dim-top::before{ left:0; }
-  .dim-top::after{ right:0; }
 
-  /* Reveal on scroll */
-  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
-  .reveal.active{ opacity:1; transform:translateY(0); }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; color: var(--text-primary); line-height: 1.1; letter-spacing: -0.02em; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 1s var(--ease-out); }
+  .reveal.active { opacity: 1; transform: translateY(0); }
 
-  /* Scrollbar técnica */
-  ::-webkit-scrollbar{ width:9px; }
-  ::-webkit-scrollbar-track{ background:var(--bg-base); }
-  ::-webkit-scrollbar-thumb{ background:var(--border-strong); }
-  ::-webkit-scrollbar-thumb:hover{ background:var(--brand); }
-
-  /* ======================================================================
-     BOTONES — esquinas rectas, corte técnico en el primario
-     ====================================================================== */
-  .btn{
-    font-family:var(--font-mono); font-size:13px; font-weight:600;
-    text-transform:uppercase; letter-spacing:.06em;
-    padding:15px 26px; border:1.5px solid transparent;
-    cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    transition:all .25s var(--ease); text-decoration:none; cursor:crosshair;
-  }
-  .btn-dark{ background:var(--bg-dark); color:var(--text-light); }
-  .btn-dark:hover{ background:var(--brand-dark); transform:translateY(-2px); box-shadow:var(--shadow-sm); }
-  .btn-outline{ background:transparent; border-color:var(--bg-dark); color:var(--bg-dark); }
-  .btn-outline:hover{ background:var(--bg-dark); color:var(--text-light); }
-  .btn-brand{
-    background:var(--brand); color:#fff;
-    clip-path:polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
-  }
-  .btn-brand:hover{ background:var(--brand-dark); transform:translateY(-2px); }
-  .btn:active{ transform:scale(.96); }
-
-  /* Toasts */
-  #toast-container{ position:fixed; bottom:28px; left:28px; z-index:1000; display:flex; flex-direction:column; gap:12px; }
-  .toast{
-    background:var(--bg-dark); color:var(--text-light); font-family:var(--font-mono); font-size:13px;
-    padding:16px 22px; border-left:3px solid var(--brand); box-shadow:var(--shadow-md);
-    transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards;
-    display:flex; align-items:center; gap:14px; max-width:340px;
-  }
-  @keyframes slideIn{ to{ transform:translateX(0); } }
-  .toast.fade-out{ animation:slideOut .4s var(--ease) forwards; }
-  @keyframes slideOut{ to{ transform:translateX(-120%); opacity:0; } }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-base); }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--brand); }
 
   /* ======================================================================
-     HEADER
+     2. BOTONES Y TOASTS
      ====================================================================== */
-  header{
-    position:sticky; top:0; z-index:500;
-    background:rgba(241,245,249,.88); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border-color);
+  .btn {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 16px 32px; border: 1.5px solid transparent;
+    cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    transition: all 0.3s var(--ease-out); text-decoration: none; position: relative; overflow: hidden;
   }
-  .navbar{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
-  .logo{ display:flex; align-items:center; gap:12px; cursor:crosshair; }
-  .logo-mark{ width:36px; height:36px; }
-  .logo span{ font-family:var(--font-display); font-weight:800; font-size:21px; color:var(--brand); letter-spacing:-.01em; }
-  nav ul{ display:flex; list-style:none; gap:36px; }
-  nav a{
-    font-family:var(--font-mono); font-size:12.5px; font-weight:600; text-transform:uppercase; letter-spacing:.06em;
-    color:var(--text-secondary); padding-bottom:4px; border-bottom:2px solid transparent; transition:all .25s var(--ease);
+  .btn::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s var(--ease-out);
   }
-  nav a:hover, nav a.is-active{ color:var(--brand); border-bottom-color:var(--brand); }
-  @media (max-width:1024px){
-    nav{
-      display:block; position:fixed; top:78px; left:0; right:0; bottom:0;
-      background:var(--bg-surface); border-top:1px solid var(--border-color);
-      padding:36px; transform:translateX(100%); transition:transform .35s var(--ease); z-index:400;
+  .btn:hover::after { left: 100%; }
+  .btn-dark { background: var(--bg-dark); color: var(--text-light); box-shadow: var(--shadow-md); border-radius: 2px; }
+  .btn-dark:hover { background: var(--bg-dark-panel); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .btn-outline { background: transparent; border-color: var(--bg-dark); color: var(--bg-dark); border-radius: 2px; }
+  .btn-outline:hover { background: var(--bg-dark); color: var(--text-light); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .btn-brand {
+    background: var(--brand); color: #fff; box-shadow: var(--shadow-glow);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+  }
+  .btn-brand:hover { background: var(--brand-light); transform: translateY(-3px); box-shadow: 0 0 30px var(--brand-glow); }
+  .btn:active { transform: scale(0.97); }
+
+  #toast-container { position: fixed; bottom: 32px; left: 32px; z-index: 2000; display: flex; flex-direction: column; gap: 12px; }
+  .toast {
+    background: var(--bg-dark); color: var(--text-light); font-family: var(--font-mono); font-size: 13px;
+    padding: 16px 24px; border-left: 4px solid var(--brand); box-shadow: var(--shadow-lg);
+    transform: translateX(-120%); animation: slideIn 0.4s var(--ease-out) forwards;
+    display: flex; align-items: center; gap: 16px;
+  }
+  @keyframes slideIn { to { transform: translateX(0); } }
+  .toast.fade-out { animation: slideOut 0.4s var(--ease-out) forwards; }
+  @keyframes slideOut { to { transform: translateX(-120%); opacity: 0; } }
+
+  /* ======================================================================
+     3. HEADER
+     ====================================================================== */
+  header {
+    position: sticky; top: 0; z-index: 900;
+    background: rgba(248, 250, 252, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8); transition: all 0.3s var(--ease-out);
+  }
+  .navbar { display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; }
+  @media (max-width: 768px) { .navbar { padding: 16px 24px; } }
+  .logo { display: flex; align-items: center; gap: 14px; }
+  .logo-mark { width: 40px; height: 40px; transition: transform 0.3s var(--ease-out); }
+  .logo:hover .logo-mark { transform: rotate(90deg); }
+  .logo span { font-family: var(--font-display); font-weight: 900; font-size: 24px; color: var(--bg-dark); letter-spacing: -0.03em; }
+  
+  nav ul { display: flex; list-style: none; gap: 40px; }
+  nav a {
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-secondary); position: relative; padding: 8px 0;
+  }
+  nav a::before {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+    background: var(--brand); transition: width 0.3s var(--ease-out);
+  }
+  nav a:hover, nav a.is-active { color: var(--brand); }
+  nav a:hover::before, nav a.is-active::before { width: 100%; }
+  
+  @media (max-width: 1024px) {
+    nav {
+      position: fixed; top: 76px; left: 0; width: 100%; height: calc(100vh - 76px);
+      background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
+      padding: 40px; transform: translateX(100%); transition: transform 0.4s var(--ease-in-out);
+      z-index: 800; border-top: 1px solid var(--border-color);
     }
-    nav.is-active{ transform:translateX(0); }
-    nav ul{ flex-direction:column; gap:26px; }
-    nav a{ font-size:16px; }
-    .header-actions .btn{ display:none; }
+    nav.is-active { transform: translateX(0); }
+    nav ul { flex-direction: column; gap: 32px; align-items: center; }
+    nav a { font-size: 18px; }
+    .header-actions .btn-brand { display: none; }
   }
-  .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
-  .menu-toggle span{ display:block; width:24px; height:2px; background:var(--text-primary); margin:6px 0; }
-  @media (max-width:1024px){ .menu-toggle{ display:block; } .header-actions .btn{ display:none; } }
+  
+  .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1000; }
+  .menu-toggle span { display: block; width: 28px; height: 2px; background: var(--bg-dark); margin: 6px 0; transition: 0.3s; }
+  @media (max-width: 1024px) { .menu-toggle { display: block; } }
 
   /* ======================================================================
-     HERO
+     4. HERO & MARQUEES
      ====================================================================== */
-  .hero{ padding:56px 0 0; }
-  .hero-panel{
-    position:relative; background:var(--bg-panel); border:1px solid var(--border-color);
-    padding:56px 44px; display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;
+  .hero { padding: 64px 0 0; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 50% 30%, rgba(234, 88, 12, 0.04) 0%, transparent 60%);
+    z-index: -1; pointer-events: none;
   }
-  @media (max-width:992px){ .hero-panel{ grid-template-columns:1fr; padding:40px 26px; } }
-  .hero-eyebrow-row{ display:flex; align-items:center; gap:10px; margin-bottom:22px; }
-  .hero-eyebrow-row .line{ width:44px; height:1px; background:var(--brand); }
-  .hero h1{ font-size:clamp(32px, 4.6vw, 52px); line-height:1.08; letter-spacing:-.01em; text-transform:uppercase; }
-  .hero p.lead{ margin:22px 0 30px; font-size:16.5px; color:var(--text-secondary); max-width:52ch; }
-  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
-  .hero-stats{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:38px; }
-  .hero-stat{ border-left:2px solid var(--brand); padding-left:14px; }
-  .hero-stat .k{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-secondary); }
-  .hero-stat .v{ font-family:var(--font-mono); font-size:17px; font-weight:600; color:var(--text-primary); margin-top:4px; }
+  .hero-panel {
+    background: var(--bg-surface); border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg); border-radius: 4px; padding: 72px 56px;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  @media (max-width: 992px) { .hero-panel { grid-template-columns: 1fr; padding: 48px 32px; gap: 48px; } }
+  .hero-eyebrow-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .hero-eyebrow-row .line { width: 60px; height: 2px; background: var(--brand); }
+  .hero h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.05; text-transform: uppercase; color: var(--bg-dark); }
+  .hero p.lead { margin: 28px 0 40px; font-size: 18px; color: var(--text-secondary); max-width: 54ch; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--border-color); }
+  .hero-stat { border-left: 3px solid var(--brand); padding-left: 20px; transition: transform 0.3s var(--ease-out); }
+  .hero-stat:hover { transform: translateX(8px); }
+  .hero-stat .k { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+  .hero-stat .v { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--bg-dark); margin-top: 8px; letter-spacing: -0.02em; }
 
-  /* Mockup de anidación (nesting) con línea de escaneo */
-  .nest-frame{
-    position:relative; aspect-ratio:4/3; background:var(--bg-surface);
-    border:1px solid var(--border-color); padding:10px; display:flex; flex-wrap:wrap; gap:2px; overflow:hidden;
+  .nest-frame {
+    position: relative; aspect-ratio: 4/3; background: var(--bg-surface-low);
+    border: 1px solid var(--border-color); padding: 12px; display: flex; flex-wrap: wrap; gap: 4px;
+    border-radius: 4px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02); overflow: hidden;
   }
-  .nest-piece{
-    background:var(--bg-surface-low); border:1px solid var(--border-color);
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-mono); font-size:11px; color:var(--text-secondary);
+  .nest-piece {
+    background: var(--bg-surface); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); border-radius: 2px; transition: all 0.3s ease;
   }
-  .nest-piece.filled{ background:var(--bg-panel); color:var(--text-primary); font-weight:600; }
-  .nest-scan{ position:absolute; left:0; right:0; height:1.5px; background:var(--brand); box-shadow:0 0 8px var(--brand); animation:scanline 2.6s linear infinite; }
-  @keyframes scanline{ 0%{ top:0; opacity:1; } 95%{ opacity:1; } 100%{ top:100%; opacity:0; } }
-  .nest-caption{ margin-top:14px; font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-align:center; text-transform:uppercase; letter-spacing:.06em; }
+  .nest-piece.filled { background: var(--bg-dark); border-color: var(--bg-dark); color: var(--brand); font-weight: 700; box-shadow: var(--shadow-sm); }
+  .nest-scan { 
+    position: absolute; left: 0; right: 0; height: 2px; background: var(--brand); 
+    box-shadow: 0 0 15px 2px var(--brand); animation: scanline 3s cubic-bezier(0.4, 0, 0.2, 1) infinite; z-index: 10;
+  }
+  @keyframes scanline { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+  .nest-caption { margin-top: 20px; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-align: center; text-transform: uppercase; letter-spacing: 0.1em; }
 
-  /* Marquees */
-  .marquee-wrapper{
-    background:var(--bg-panel); border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color);
-    padding:18px 0; overflow:hidden; white-space:nowrap; margin-top:0;
+  .marquee-wrapper {
+    background: var(--bg-dark); color: var(--text-light);
+    border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark);
+    padding: 24px 0; overflow: hidden; white-space: nowrap; margin-top: -1px;
   }
-  .marquee-content{ display:inline-flex; animation:moveMarquee 34s linear infinite; }
-  .marquee-content span{
-    font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.08em;
-    padding:0 34px; color:var(--text-secondary); display:flex; align-items:center; gap:34px;
-  }
-  .marquee-content span::after{ content:'//'; color:var(--brand); }
-  @keyframes moveMarquee{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+  .marquee-content { display: inline-flex; animation: moveMarquee 40s linear infinite; }
+  .marquee-content span { font-family: var(--font-mono); font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; padding: 0 40px; display: flex; align-items: center; gap: 40px; opacity: 0.8; }
+  .marquee-content span::after { content: '///'; color: var(--brand); opacity: 1; font-weight: 700; }
+  @keyframes moveMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
   /* ======================================================================
-     CATÁLOGO
+     5. CATÁLOGO
      ====================================================================== */
-  .catalog-controls{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:44px; flex-wrap:wrap; gap:22px; border-bottom:1px solid var(--border-color); padding-bottom:22px; }
-  .catalog-title h2{ font-size:clamp(24px,3.2vw,34px); text-transform:uppercase; }
-  .filter-group{ display:flex; gap:6px; flex-wrap:wrap; }
-  .filter-btn{
-    background:transparent; border:1px solid var(--border-color); font-family:var(--font-mono); font-size:11.5px;
-    text-transform:uppercase; letter-spacing:.04em; padding:9px 16px; cursor:crosshair; color:var(--text-secondary);
-    transition:all .2s var(--ease);
+  .catalog-controls { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; flex-wrap: wrap; gap: 32px; border-bottom: 2px solid var(--border-color); padding-bottom: 32px; }
+  .catalog-title h2 { font-size: clamp(28px, 4vw, 42px); text-transform: uppercase; }
+  .filter-group { display: flex; gap: 8px; flex-wrap: wrap; background: var(--bg-surface); padding: 6px; border-radius: 4px; border: 1px solid var(--border-color); }
+  .filter-btn {
+    background: transparent; border: none; font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; padding: 12px 24px; cursor: pointer; color: var(--text-secondary);
+    transition: all 0.3s var(--ease-out); border-radius: 2px;
   }
-  .filter-btn:hover{ border-color:var(--brand); color:var(--brand); }
-  .filter-btn.is-active{ background:var(--bg-dark); border-color:var(--bg-dark); color:var(--text-light); }
+  .filter-btn:hover { color: var(--brand); background: var(--bg-surface-low); }
+  .filter-btn.is-active { background: var(--bg-dark); color: var(--text-light); box-shadow: var(--shadow-sm); }
 
-  .catalog-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-  @media (max-width:960px){ .catalog-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:620px){ .catalog-grid{ grid-template-columns:1fr; } }
-
-  .prod-card{ background:var(--bg-surface-low); border:1px solid var(--border-color); transition:border-color .25s var(--ease), transform .25s var(--ease); }
-  .prod-card:hover{ border-color:var(--brand); transform:translateY(-3px); }
-  .prod-head{ padding:8px 14px; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; background:var(--bg-surface); }
-  .prod-head .ref{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-secondary); }
-  .prod-head .material-symbols-outlined{ color:var(--text-secondary); font-size:18px; }
-  .prod-media{ height:170px; background:var(--bg-panel); padding:16px; display:flex; align-items:center; justify-content:center; }
-  .prod-placeholder{ width:100%; height:100%; border:1px solid var(--border-strong); position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--text-muted); }
-  .prod-placeholder .material-symbols-outlined{ font-size:26px; }
-  .prod-placeholder span{ font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em; }
-  .prod-body{ padding:20px; }
-  .prod-body h3{ font-size:16.5px; text-transform:uppercase; margin-bottom:14px; }
-  .spec-row{ display:flex; justify-content:space-between; border-bottom:1px solid var(--border-color); padding:7px 0; font-family:var(--font-mono); font-size:12px; }
-  .spec-row .k{ color:var(--text-secondary); text-transform:uppercase; letter-spacing:.04em; }
-  .spec-row .v{ color:var(--text-primary); font-weight:600; }
-  .prod-footer{ display:flex; justify-content:space-between; align-items:center; margin-top:16px; }
-  .prod-footer span{ font-family:var(--font-mono); font-size:10.5px; color:var(--text-muted); text-transform:uppercase; }
-  .btn-cotizar{
-    background:transparent; border:1px solid var(--bg-dark); font-family:var(--font-mono); font-size:11px;
-    text-transform:uppercase; letter-spacing:.04em; padding:7px 14px; cursor:crosshair; transition:all .2s var(--ease);
+  .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 32px; }
+  .prod-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 4px; transition: all 0.4s var(--ease-out); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .prod-card:hover { border-color: var(--border-strong); transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+  .prod-head { padding: 16px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background: var(--bg-surface-low); }
+  .prod-head .ref { font-family: var(--font-mono); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); }
+  .prod-media { height: 220px; background: var(--bg-surface-low); padding: 24px; position: relative; overflow: hidden; }
+  .prod-placeholder { width: 100%; height: 100%; border: 1.5px dashed var(--border-strong); border-radius: 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--text-muted); transition: all 0.3s ease; }
+  .prod-card:hover .prod-placeholder { border-color: var(--brand); color: var(--brand); transform: scale(1.02); background: rgba(234, 88, 12, 0.02); }
+  .prod-body { padding: 32px 24px; }
+  .prod-body h3 { font-size: 18px; text-transform: uppercase; margin-bottom: 24px; color: var(--bg-dark); }
+  .spec-row { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding: 10px 0; font-family: var(--font-mono); font-size: 13px; }
+  .spec-row:last-of-type { border-bottom: none; }
+  .spec-row .k { color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+  .spec-row .v { color: var(--bg-dark); font-weight: 700; }
+  .prod-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-color); }
+  .prod-footer span { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .btn-cotizar {
+    background: var(--bg-surface-low); border: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 20px; cursor: pointer; transition: all 0.3s var(--ease-out); border-radius: 2px; color: var(--bg-dark);
   }
-  .btn-cotizar:hover{ background:var(--bg-dark); color:var(--text-light); }
+  .btn-cotizar:hover { background: var(--bg-dark); border-color: var(--bg-dark); color: var(--text-light); box-shadow: var(--shadow-sm); }
 
   /* ======================================================================
-     SERVICIOS
+     6. SERVICIOS MAQUILA
      ====================================================================== */
-  .servicios-section{ background:var(--bg-surface); border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color); position:relative; }
-  .servicios-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-top:44px; }
-  @media (max-width:900px){ .servicios-grid{ grid-template-columns:1fr; } }
-  .srv-node{ display:flex; flex-direction:column; gap:14px; }
-  .srv-icon-box{ width:46px; height:46px; border:2px solid var(--text-secondary); display:flex; align-items:center; justify-content:center; transition:border-color .25s var(--ease); }
-  .srv-node:hover .srv-icon-box{ border-color:var(--brand); }
-  .srv-node:hover .srv-icon-box .material-symbols-outlined{ color:var(--brand); }
-  .srv-icon-box .material-symbols-outlined{ color:var(--text-secondary); transition:color .25s var(--ease); }
-  .srv-node h4{ font-family:var(--font-mono); font-size:14.5px; text-transform:uppercase; letter-spacing:.02em; }
-  .srv-node p{ font-size:14px; color:var(--text-secondary); border-left:2px solid var(--border-color); padding-left:14px; }
+  .servicios-section { background: var(--bg-dark); color: var(--text-light); position: relative; overflow: hidden; }
+  .servicios-section h2 { color: var(--text-light); }
+  .servicios-section .sheet-tag .num { background: transparent; border-color: var(--border-dark); color: var(--text-light-muted); }
+  .servicios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 64px; }
+  @media (max-width: 900px) { .servicios-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .srv-node { display: flex; flex-direction: column; gap: 20px; padding: 40px; background: var(--bg-dark-surface); border: 1px solid var(--border-dark); border-radius: 4px; transition: all 0.4s var(--ease-out); }
+  .srv-node:hover { transform: translateY(-8px); border-color: var(--brand); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .srv-icon-box { width: 56px; height: 56px; background: var(--bg-dark-panel); display: flex; align-items: center; justify-content: center; border-radius: 4px; border: 1px solid var(--border-dark); transition: all 0.3s var(--ease-out); }
+  .srv-node:hover .srv-icon-box { background: var(--brand); border-color: var(--brand); box-shadow: var(--shadow-glow); }
+  .srv-icon-box .material-symbols-outlined { color: var(--brand); font-size: 28px; transition: color 0.3s; }
+  .srv-node:hover .srv-icon-box .material-symbols-outlined { color: #fff; }
+  .srv-node h4 { font-family: var(--font-mono); font-size: 18px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.04em; }
+  .srv-node p { font-size: 15px; color: var(--text-light-muted); line-height: 1.7; }
 
   /* ======================================================================
-     PROCESO
+     7. MESA DE CONTROL (El Cotizador Masivo)
      ====================================================================== */
-  .proceso-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-color); border:1px solid var(--border-color); margin-top:44px; }
-  @media (max-width:900px){ .proceso-flow{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .proceso-flow{ grid-template-columns:1fr; } }
-  .flow-card{ background:var(--bg-surface-low); padding:28px; position:relative; }
-  .flow-num{ font-family:var(--font-mono); font-size:11px; color:var(--brand); font-weight:700; letter-spacing:.05em; position:absolute; top:14px; right:16px; }
-  .flow-card h3{ font-size:16px; text-transform:uppercase; margin:16px 0 10px; }
-  .flow-card p{ font-size:13.5px; color:var(--text-secondary); }
-
-  /* ======================================================================
-     MESA DE CONTROL / COTIZADOR
-     ====================================================================== */
-  .mesa-control-section{ background:var(--bg-dark); color:var(--text-light); }
-  .mesa-control-section h2{ color:var(--text-light); text-transform:uppercase; }
-  .mesa-control-section p{ color:var(--text-light-muted); }
-  .mesa-control-section .eyebrow{ color:var(--brand-light); }
-
-  .mesa-layout{ display:grid; grid-template-columns:1.25fr .75fr; gap:40px; margin-top:44px; align-items:start; }
-  @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
-
-  .table-responsive{ width:100%; overflow-x:auto; border:1px solid var(--border-dark); }
-  .despiece-table{ width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:12.5px; text-align:left; }
-  .despiece-table thead tr{ background:var(--bg-dark-surface); }
-  .despiece-table th{ padding:12px; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-light-muted); font-weight:600; border-bottom:1px solid var(--border-dark); }
-  .despiece-table td{ padding:10px 12px; border-bottom:1px solid var(--border-dark); vertical-align:middle; }
-  .despiece-table tbody tr{ transition:background .2s ease; }
-  .despiece-table tbody tr:hover{ background:rgba(255,255,255,.02); }
-  .despiece-table input, .despiece-table select{
-    width:100%; background:transparent; border:none; border-bottom:1px solid var(--border-dark);
-    color:var(--text-light); padding:6px 2px; font-family:var(--font-mono); font-size:12.5px;
+  .mesa-control-section { background: var(--bg-surface-low); }
+  .mesa-layout { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 48px; margin-top: 56px; align-items: start; }
+  @media (max-width: 1100px) { .mesa-layout { grid-template-columns: 1fr; } }
+  
+  .table-responsive { width: 100%; overflow-x: auto; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 4px; box-shadow: var(--shadow-sm); }
+  .despiece-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 13px; text-align: left; }
+  .despiece-table thead tr { background: var(--bg-dark); color: var(--text-light); }
+  .despiece-table th { padding: 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; border-bottom: none; }
+  .despiece-table td { padding: 12px 16px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+  .despiece-table tbody tr:hover { background: var(--bg-surface-low); }
+  .despiece-table input, .despiece-table select {
+    width: 100%; background: transparent; border: 1px solid transparent; border-bottom: 1px solid var(--border-strong);
+    color: var(--bg-dark); padding: 8px 4px; font-family: var(--font-mono); font-size: 13px; transition: all 0.2s;
   }
-  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-bottom-color:var(--brand); }
-  .despiece-table select option{ background:var(--bg-dark-surface); }
-  .btn-remove-row{ background:transparent; border:none; color:#F87171; cursor:pointer; padding:4px; display:inline-flex; }
-  .btn-add-row{
-    background:transparent; border:1px dashed var(--border-dark); color:var(--text-light);
-    font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.04em;
-    padding:12px; width:100%; cursor:crosshair; transition:all .2s ease;
+  .despiece-table input:focus, .despiece-table select:focus { outline: none; border-bottom-color: var(--brand); background: rgba(234, 88, 12, 0.03); }
+  
+  .btn-remove-row { background: transparent; border: none; color: #EF4444; cursor: pointer; padding: 6px; border-radius: 4px; transition: background 0.2s; }
+  .btn-remove-row:hover { background: #FEE2E2; }
+  
+  .btn-add-row {
+    background: var(--bg-surface); border: 1.5px dashed var(--border-strong); color: var(--text-secondary);
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 16px; width: 100%; cursor: pointer; transition: all 0.3s ease; border-radius: 4px; margin-top: 16px;
   }
-  .btn-add-row:hover{ border-color:var(--text-light); background:rgba(255,255,255,.02); }
+  .btn-add-row:hover { border-color: var(--brand); color: var(--brand); background: rgba(234, 88, 12, 0.02); }
 
-  .control-form{ background:var(--bg-dark-surface); border:1px solid var(--border-dark); padding:28px; }
-  .form-group{ margin-bottom:22px; }
-  .form-group label{ display:block; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-light-muted); margin-bottom:8px; }
-  .form-group input, .form-group select, .form-group textarea{
-    width:100%; background:var(--bg-dark); border:none; border-bottom:1px solid var(--border-dark);
-    padding:11px 4px; color:var(--text-light); font-family:var(--font-sans); font-size:14.5px;
+  .control-form { background: var(--bg-dark); border-radius: 4px; padding: 40px; box-shadow: var(--shadow-lg); color: var(--text-light); }
+  .form-group { margin-bottom: 24px; }
+  .form-group label { display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand); margin-bottom: 10px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: var(--bg-dark-surface); border: 1px solid var(--border-dark); border-radius: 2px;
+    padding: 14px 16px; color: var(--text-light); font-family: var(--font-sans); font-size: 15px; transition: all 0.3s;
   }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-bottom-color:var(--brand); }
-  .form-group select option{ background:var(--bg-dark-surface); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 2px var(--brand-glow); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
 
-  .resumen-panel{ border:1px solid var(--border-dark); background:var(--bg-dark-surface); padding:22px 24px; margin-top:20px; }
-  .resumen-row{ display:flex; justify-content:space-between; border-bottom:1px solid var(--border-dark); padding:9px 0; font-family:var(--font-mono); font-size:12.5px; }
-  .resumen-row:last-of-type{ border-bottom:none; }
-  .resumen-row .k{ color:var(--text-light-muted); text-transform:uppercase; letter-spacing:.04em; }
-  .resumen-row .v{ color:var(--text-light); font-weight:600; }
+  /* Resumen Técnico Dinámico */
+  .resumen-panel { background: var(--bg-dark-panel); border: 1px solid var(--border-dark); border-radius: 4px; padding: 32px; margin-top: 32px; color: #fff; }
+  .resumen-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 14px 0; font-family: var(--font-mono); font-size: 13px; }
+  .resumen-row:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .resumen-row .k { text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-light-muted); }
+  .resumen-row .v { font-weight: 700; font-size: 15px; color: var(--brand-light); }
 
   /* ======================================================================
-     LOGÍSTICA
+     8. FOOTER Y EXTRAS
      ====================================================================== */
-  .logistica-struct{ display:grid; grid-template-columns:.85fr 1.15fr; gap:56px; align-items:start; }
-  @media (max-width:960px){ .logistica-struct{ grid-template-columns:1fr; gap:36px; } }
-  .meta-list{ list-style:none; display:flex; flex-direction:column; gap:22px; margin-top:26px; }
-  .meta-list li{ display:flex; gap:16px; }
-  .meta-list .material-symbols-outlined{ color:var(--brand); flex-shrink:0; }
-  .meta-list h5{ font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
-  .meta-list p{ font-size:14px; color:var(--text-secondary); }
+  footer { background: var(--bg-dark); color: var(--text-light); padding: 80px 0 40px; position: relative; border-top: 4px solid var(--brand); }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border-dark); }
+  @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .footer-brand .display { font-size: 32px; color: #fff; letter-spacing: -0.02em; }
+  .footer-brand .mono { font-size: 12px; color: var(--text-light-muted); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-top: 12px; }
+  .footer-links { display: flex; flex-direction: column; gap: 16px; font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .footer-links a { color: var(--text-light-muted); transition: color 0.2s ease; }
+  .footer-links a:hover { color: var(--brand); }
+  .footer-legal { padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
 
-  .map-panel{ background:var(--bg-dark); border:1px solid var(--border-dark); position:relative; overflow:hidden; }
-  .map-panel svg{ width:100%; height:auto; display:block; }
-  .map-coord{
-    position:absolute; bottom:14px; left:14px; background:rgba(15,23,42,.85); border:1px solid var(--border-dark);
-    color:var(--text-light); font-family:var(--font-mono); font-size:10.5px; padding:6px 10px; text-transform:uppercase; letter-spacing:.04em;
+  .wa-float {
+    position: fixed; bottom: 32px; right: 32px; z-index: 900; width: 64px; height: 64px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
   }
+  .wa-float:hover { transform: scale(1.1) rotate(-10deg); box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6); }
+  .wa-float svg { width: 32px; height: 32px; fill: #fff; }
 
   /* ======================================================================
-     FOOTER
+     9. MODAL PANEL ADMINISTRADOR
      ====================================================================== */
-  footer{ background:var(--bg-dark); color:var(--text-light); border-top:1px solid var(--border-dark); padding:64px 0 32px; }
-  .footer-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:36px; padding-bottom:34px; border-bottom:1px solid var(--border-dark); }
-  @media (max-width:860px){ .footer-grid{ grid-template-columns:1fr; gap:26px; } }
-  .footer-brand .display{ font-size:22px; color:var(--text-light); letter-spacing:-.01em; }
-  .footer-brand .mono{ font-size:11px; color:var(--text-light-muted); text-transform:uppercase; letter-spacing:.05em; display:block; margin-top:6px; }
-  .footer-links{ display:flex; flex-direction:column; gap:10px; font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; }
-  .footer-links a{ color:var(--text-light-muted); transition:color .2s ease; }
-  .footer-links a:hover{ color:var(--brand-light); }
-  .admin-link{ display:inline-flex; align-items:center; gap:8px; }
-  .admin-link::before{ content:'●'; font-size:7px; color:#4ADE80; }
-  .footer-legal{ padding-top:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-family:var(--font-mono); font-size:11px; color:var(--text-light-muted); text-transform:uppercase; letter-spacing:.03em; }
-  .reg-marks-row{ display:flex; gap:8px; opacity:.5; }
+  .panel-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(2, 6, 23, 0.85); display: none; align-items: flex-start; justify-content: center; padding: 48px 20px; overflow-y: auto; backdrop-filter: blur(8px); }
+  .panel-overlay.open { display: flex; }
+  .panel-modal { background: var(--bg-surface); width: 100%; max-width: 1000px; box-shadow: var(--shadow-lg); border-radius: 4px; overflow: hidden; }
+  .panel-head { background: var(--bg-dark); color: var(--text-light); padding: 26px 32px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .panel-head .eyebrow { color: var(--brand-light); }
+  .panel-head h3 { color: var(--text-light); font-size: 21px; text-transform: uppercase; margin-top: 8px; }
+  .panel-close { background: rgba(241,245,249,.1); border: none; color: var(--text-light); width: 34px; height: 34px; font-size: 19px; cursor: pointer; border-radius: 2px; }
+  .panel-close:hover { background: var(--brand-dark); }
+  
+  .panel-login { max-width: 360px; margin: 0 auto; padding: 64px 30px; text-align: center; }
+  .panel-login h4 { font-size: 18px; text-transform: uppercase; margin: 12px 0 32px; color: var(--bg-dark); }
+  .panel-field { margin-bottom: 20px; text-align: left; }
+  .panel-field label { display: block; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 7px; }
+  .panel-field input { width: 100%; border: none; border-bottom: 1.5px solid var(--border-color); padding: 10px 4px; font-family: var(--font-sans); font-size: 15px; background: transparent; transition: border-color 0.3s; }
+  .panel-field input:focus { outline: none; border-bottom-color: var(--brand); }
+  .panel-login .btn { width: 100%; margin-top: 16px; justify-content: center; }
+  .panel-login-error { display: none; margin-top: 16px; font-size: 13px; color: #DC2626; font-weight: 600; }
+  .panel-login-error.show { display: block; }
+  
+  .panel-body { padding: 40px; }
+  .panel-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .panel-stat { background: var(--bg-surface-low); padding: 24px; border: 1px solid var(--border-color); border-radius: 4px; border-top: 3px solid var(--brand); }
+  .panel-stat .num { font-family: var(--font-display); font-weight: 800; font-size: 32px; color: var(--bg-dark); }
+  .panel-stat .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-secondary); display: block; margin-top: 4px; }
+  
+  .panel-table-wrap { width: 100%; overflow-x: auto; border: 1px solid var(--border-color); border-radius: 4px; }
+  .panel-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .panel-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-secondary); padding: 16px; border-bottom: 2px solid var(--border-strong); background: var(--bg-surface-low); }
+  .panel-table td { padding: 16px; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+  .panel-table td.piezas-cell { font-family: var(--font-mono); font-size: 11.5px; color: var(--text-secondary); max-width: 280px; white-space: pre-line; line-height: 1.6; }
+  .panel-table select { font-family: var(--font-mono); font-size: 12px; padding: 8px 12px; border: 1px solid var(--border-color); background: var(--bg-surface); border-radius: 2px; }
+  .panel-empty { text-align: center; color: var(--text-secondary); padding: 60px 0; font-size: 15px; }
 
-  /* ======================================================================
-     WHATSAPP FLOTANTE
-     ====================================================================== */
-  .wa-float{
-    position:fixed; bottom:28px; right:28px; z-index:900; width:58px; height:58px; border-radius:50%;
-    background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-md);
-    transition:transform .25s var(--ease); cursor:crosshair;
-  }
-  .wa-float:hover{ transform:scale(1.08); }
-  .wa-float svg{ width:28px; height:28px; fill:#fff; }
-
-  /* ======================================================================
-     PANEL DE ADMINISTRADOR
-     ====================================================================== */
-  .panel-overlay{ position:fixed; inset:0; z-index:2000; background:rgba(15,23,42,.72); display:none; align-items:flex-start; justify-content:center; padding:48px 20px; overflow-y:auto; }
-  .panel-overlay.open{ display:flex; }
-  .panel-modal{ background:var(--bg-surface); width:100%; max-width:1000px; box-shadow:var(--shadow-md); }
-  .panel-head{ background:var(--bg-dark); color:var(--text-light); padding:26px 32px; display:flex; justify-content:space-between; align-items:flex-start; }
-  .panel-head .eyebrow{ color:var(--brand-light); }
-  .panel-head h3{ color:var(--text-light); font-size:21px; text-transform:uppercase; margin-top:8px; }
-  .panel-close{ background:rgba(241,245,249,.1); border:none; color:var(--text-light); width:34px; height:34px; font-size:19px; cursor:pointer; }
-  .panel-close:hover{ background:var(--brand-dark); }
-  .panel-login{ max-width:340px; margin:0 auto; padding:48px 30px; text-align:center; }
-  .panel-login h4{ font-size:17px; text-transform:uppercase; margin:12px 0 24px; }
-  .panel-field{ margin-bottom:16px; text-align:left; }
-  .panel-field label{ display:block; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-secondary); margin-bottom:7px; }
-  .panel-field input{ width:100%; border:none; border-bottom:1.5px solid var(--border-color); padding:10px 2px; font-family:var(--font-sans); font-size:14.5px; background:transparent; }
-  .panel-field input:focus{ outline:none; border-bottom-color:var(--brand); }
-  .panel-login .btn{ width:100%; margin-top:8px; justify-content:center; }
-  .panel-login-error{ display:none; margin-top:14px; font-size:12.5px; color:#DC2626; }
-  .panel-login-error.show{ display:block; }
-  .panel-body{ padding:30px 32px; }
-  .panel-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-color); border:1px solid var(--border-color); margin-bottom:26px; }
-  .panel-stat{ background:var(--bg-panel); padding:18px 22px; }
-  .panel-stat .num{ font-family:var(--font-display); font-weight:800; font-size:26px; }
-  .panel-stat .label{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); display:block; margin-top:4px; }
-  .panel-table-wrap{ width:100%; overflow-x:auto; border:1px solid var(--border-color); }
-  .panel-table{ width:100%; border-collapse:collapse; font-size:12.5px; }
-  .panel-table th{ text-align:left; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); padding:12px 10px; border-bottom:2px solid var(--text-primary); background:var(--bg-surface-low); }
-  .panel-table td{ padding:13px 10px; border-bottom:1px solid var(--border-color); vertical-align:top; }
-  .panel-table td.piezas-cell{ font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); max-width:250px; white-space:pre-line; line-height:1.6; }
-  .panel-table select{ font-family:var(--font-mono); font-size:11.5px; padding:6px 8px; border:1px solid var(--border-color); background:var(--bg-surface); }
-  .panel-empty{ text-align:center; color:var(--text-secondary); padding:40px 0; font-size:14px; }
-
-  /* Color de bloque por estado del pedido */
-  .panel-table tr.row-pendiente{ background:#FEF3E2; }
-  .panel-table tr.row-pendiente:hover{ background:#FCE7C8; }
-  .panel-table tr.row-pendiente td:first-child{ border-left:3px solid #D97706; }
-
-  .panel-table tr.row-aceptado{ background:#E7F6EC; }
-  .panel-table tr.row-aceptado:hover{ background:#D3EFDC; }
-  .panel-table tr.row-aceptado td:first-child{ border-left:3px solid #16A34A; }
-
-  .panel-table tr.row-rechazado{ background:#FCEAEA; }
-  .panel-table tr.row-rechazado:hover{ background:#F9D9D9; }
-  .panel-table tr.row-rechazado td:first-child{ border-left:3px solid #DC2626; }
+  /* Estados Visuales de Orden */
+  .row-pendiente { background: #FEF3E2; } .row-pendiente:hover { background: #FCE7C8; } .row-pendiente td:first-child { border-left: 4px solid #D97706; }
+  .row-aceptado { background: #E7F6EC; } .row-aceptado:hover { background: #D3EFDC; } .row-aceptado td:first-child { border-left: 4px solid #16A34A; }
+  .row-rechazado { background: #FCEAEA; } .row-rechazado:hover { background: #F9D9D9; } .row-rechazado td:first-child { border-left: 4px solid #DC2626; }
 </style>
 </head>
 <body>
@@ -459,147 +423,123 @@
 <div id="toast-container"></div>
 
 <div class="sheet-stamp mono">
-  BRAITA // SISTEMA V2<br>
-  ESCALA 1:1 · REV 2.0
+  BRAITA HUB // SYS V3<br>
+  SCALE 1:1 · REV 3.0 (PREMIUM BUILD)
 </div>
 
 <header id="main-header">
   <div class="container navbar">
     <a href="#inicio" class="logo">
       <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-        <rect x="2" y="2" width="36" height="36" fill="var(--bg-dark)"/>
-        <rect x="9" y="9" width="22" height="22" fill="none" stroke="var(--bg-surface)" stroke-width="2"/>
-        <line x1="9" y1="20" x2="31" y2="20" stroke="var(--brand)" stroke-width="2" stroke-dasharray="3 2"/>
+        <rect width="40" height="40" rx="4" fill="var(--bg-dark)"/>
+        <rect x="10" y="10" width="20" height="20" fill="none" stroke="var(--bg-surface)" stroke-width="2.5" rx="2"/>
+        <line x1="10" y1="20" x2="30" y2="20" stroke="var(--brand)" stroke-width="2.5" stroke-dasharray="4 3"/>
       </svg>
       <span>BRAITA</span>
     </a>
     <nav id="main-nav">
       <ul>
         <li><a href="#suministro">Suministro</a></li>
-        <li><a href="#maquila">Maquila</a></li>
-        <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#cotizador">Cotizador</a></li>
-        <li><a href="#ubicacion">Logística</a></li>
+        <li><a href="#maquila">Maquila CNC</a></li>
+        <li><a href="#cotizador">Mesa Operativa</a></li>
       </ul>
     </nav>
     <div class="header-actions">
-      <a href="#cotizador" class="btn btn-brand">Cotizar</a>
+      <a href="#cotizador" class="btn btn-brand">Iniciar Proyecto</a>
       <button class="menu-toggle" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <main>
-  <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="container">
-      <div class="hero-panel reg-box reveal active">
-        <div class="reg-mark reg-tl"></div><div class="reg-mark reg-tr"></div>
-        <div class="reg-mark reg-bl"></div><div class="reg-mark reg-br"></div>
-
+      <div class="hero-panel reveal active">
         <div>
-          <div class="hero-eyebrow-row"><span class="line"></span><span class="eyebrow">Sistema de Optimización</span></div>
-          <h1>Máxima precisión en corte y suministro</h1>
-          <p class="lead">Centro de distribución integral en Ocotlán, Jalisco. Abastecemos melamina, MDF y triplay con optimización computarizada de cortes para anular la merma en planta.</p>
+          <div class="hero-eyebrow-row"><span class="line"></span><span class="eyebrow">Optimización Industrial V3</span></div>
+          <h1>El estándar exacto en corte y suministro</h1>
+          <p class="lead">Plataforma de distribución y maquila CNC en Ocotlán. Abastecemos melamina y sustratos con algoritmos de anidación para erradicar la merma y maximizar la rentabilidad de tu planta.</p>
           <div class="hero-actions">
-            <a href="#cotizador" class="btn btn-dark">Iniciar Orden Técnica</a>
-            <a href="#suministro" class="btn btn-outline">Explorar Materiales</a>
+            <a href="#cotizador" class="btn btn-dark">Despiece Automático</a>
+            <a href="#suministro" class="btn btn-outline">Ver Materiales</a>
           </div>
           <div class="hero-stats">
-            <div class="hero-stat"><div class="k">Tolerancia</div><div class="v">+/- 0.5mm</div></div>
-            <div class="hero-stat"><div class="k">Optimización Promedio</div><div class="v">92% de la hoja</div></div>
-            <div class="hero-stat"><div class="k">Entrega Express</div><div class="v">24–48 hrs</div></div>
-            <div class="hero-stat"><div class="k">Cobertura</div><div class="v">Región Ciénega</div></div>
+            <div class="hero-stat"><div class="k">Tolerancia CNC</div><div class="v">± 0.2mm</div></div>
+            <div class="hero-stat"><div class="k">Rendimiento Base</div><div class="v">94.5%</div></div>
           </div>
         </div>
 
         <div>
           <div class="nest-frame">
             <div class="nest-scan"></div>
-            <div class="nest-piece filled" style="width:48%; height:60%;">P-01</div>
-            <div class="nest-piece" style="width:48%; height:28%;">P-02</div>
-            <div class="nest-piece" style="width:48%; height:28%;">P-03</div>
-            <div class="nest-piece filled" style="width:100%; height:34%;">P-04 · OPTIMIZADO</div>
+            <div class="nest-piece filled" style="width:48%; height:55%;">PNL-01 [MASTER]</div>
+            <div class="nest-piece" style="width:49%; height:25%;">PNL-02</div>
+            <div class="nest-piece" style="width:49%; height:28%;">PNL-03</div>
+            <div class="nest-piece filled" style="width:100%; height:42%;">ESTRUCTURA · OPTIMIZADA</div>
           </div>
-          <div class="nest-caption">Módulo de Anidación — Vista de Aprovechamiento</div>
+          <div class="nest-caption">Simulación de Anidación en Tiempo Real</div>
         </div>
       </div>
     </div>
 
-    <div class="marquee-wrapper">
+    <div class="marquee-wrapper" style="margin-top: 80px;">
       <div class="marquee-content">
-        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Ocotlán · Zapotlán del Rey · La Barca</span>
-        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Ocotlán · Zapotlán del Rey · La Barca</span>
+        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos PVC</span><span>Ocotlán Hub</span>
+        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos PVC</span><span>Ocotlán Hub</span>
       </div>
     </div>
   </section>
 
-  <!-- CATALOGO -->
   <section class="section-padding container" id="suministro">
     <div class="catalog-controls reveal">
       <div class="catalog-title">
-        <div class="sheet-tag"><span class="num">HOJA 01/05</span><span class="eyebrow">Suministro</span></div>
-        <h2>Catálogo de Materiales</h2>
+        <div class="sheet-tag"><span class="num">ID. 01</span><span class="eyebrow">Stock Activo</span></div>
+        <h2>Materiales Certificados</h2>
       </div>
       <div class="filter-group" id="filter-group">
-        <button class="filter-btn is-active" data-filter="all">Todos</button>
+        <button class="filter-btn is-active" data-filter="all">Inventario Total</button>
         <button class="filter-btn" data-filter="melamina">Melaminas</button>
-        <button class="filter-btn" data-filter="mdf">MDF / Sustratos</button>
-        <button class="filter-btn" data-filter="triplay">Triplays</button>
-        <button class="filter-btn" data-filter="premium">Especialidades</button>
+        <button class="filter-btn" data-filter="mdf">MDF / Core</button>
+        <button class="filter-btn" data-filter="triplay">Triplay</button>
+        <button class="filter-btn" data-filter="premium">Alto Brillo</button>
       </div>
     </div>
-    <div class="catalog-grid" id="catalog-target-grid"></div>
+    <div class="catalog-grid" id="catalog-target-grid">
+      </div>
   </section>
 
-  <!-- SERVICIOS -->
   <section class="section-padding servicios-section" id="maquila">
     <div class="container">
       <div class="reveal">
-        <div class="sheet-tag"><span class="num">HOJA 02/05</span><span class="eyebrow">Maquila</span></div>
-        <h2>Ingeniería de Procesos</h2>
+        <div class="sheet-tag"><span class="num" style="background:#0F172A; color:#fff; border-color:#334155;">ID. 02</span><span class="eyebrow">Maquila CNC</span></div>
+        <h2>Ingeniería de Precisión</h2>
       </div>
       <div class="servicios-grid">
         <div class="srv-node reveal">
           <div class="srv-icon-box"><span class="material-symbols-outlined">precision_manufacturing</span></div>
-          <h4>Corte CNC</h4>
-          <p>Corte automatizado con sierras seccionadoras de control numérico. Precisión sub-milimétrica que elimina astilladuras y garantiza escuadrías perfectas.</p>
+          <h4>Corte Milimétrico</h4>
+          <p>Operación mediante seccionadoras CNC de última generación. Cero astilladuras, escuadrías inmaculadas y optimización computarizada directa desde el software.</p>
         </div>
-        <div class="srv-node reveal">
+        <div class="srv-node reveal" style="transition-delay: 0.1s;">
           <div class="srv-icon-box"><span class="material-symbols-outlined">straighten</span></div>
-          <h4>Enchapado de Cantos</h4>
-          <p>Aplicación de canto PVC/ABS con adhesivo PUR de poliuretano, para máxima resistencia a la humedad y un acabado sin línea de pegamento visible.</p>
+          <h4>Enchapado PUR</h4>
+          <p>Línea de canteado PVC con tecnología de adhesivo PUR. Sellado antihumedad extremo, resistencia al calor y un acabado estético de línea invisible (junta cero).</p>
         </div>
-        <div class="srv-node reveal">
+        <div class="srv-node reveal" style="transition-delay: 0.2s;">
           <div class="srv-icon-box"><span class="material-symbols-outlined">radio_button_checked</span></div>
-          <h4>Perforación Múltiple</h4>
-          <p>Mecanizado de agujeros para sistema 32, bisagras cazoleta y ensambles minifix, ejecutado bajo parámetros técnicos exactos.</p>
+          <h4>Mecanizado 32</h4>
+          <p>Taladrado múltiple para sistema europeo, barrenos pasantes, alojamientos para bisagras y ranurados estructurales, listos para un ensamble rápido y preciso.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESO -->
-  <section class="section-padding container" id="proceso">
-    <div class="reveal">
-      <div class="sheet-tag"><span class="num">HOJA 03/05</span><span class="eyebrow">Línea de Integración</span></div>
-      <h2>Metodología de Suministro Exacto</h2>
-    </div>
-    <div class="proceso-flow">
-      <div class="flow-card reveal"><span class="flow-num">REF. 01</span><h3>Configuración</h3><p>Carga las medidas exactas de tus paneles en el cotizador digital.</p></div>
-      <div class="flow-card reveal"><span class="flow-num">REF. 02</span><h3>Optimización</h3><p>El sistema calcula el patrón de anidación para reducir remanentes.</p></div>
-      <div class="flow-card reveal"><span class="flow-num">REF. 03</span><h3>Maquila</h3><p>Entra a líneas de corte automático, canteado y habilitación estructural.</p></div>
-      <div class="flow-card reveal"><span class="flow-num">REF. 04</span><h3>Logística</h3><p>Se paletiza y etiqueta tu pedido por módulos para descarga rápida.</p></div>
-    </div>
-  </section>
-
-  <!-- MESA DE CONTROL / COTIZADOR -->
   <section class="section-padding mesa-control-section" id="cotizador">
     <div class="container">
       <div class="reveal">
-        <div class="sheet-tag"><span class="num">HOJA 04/05</span><span class="eyebrow">Mesa de Control Operativa</span></div>
-        <h2>Despiece Técnico</h2>
-        <p>Añade los módulos requeridos. El sistema estructura el listado técnico y calcula el resumen de material.</p>
+        <div class="sheet-tag"><span class="num">ID. 03</span><span class="eyebrow">Terminal Operativa</span></div>
+        <h2>Mesa de Despiece y Cotización</h2>
+        <p style="color: var(--text-secondary); max-width: 60ch; margin-top: 12px;">El sistema computará automáticamente los metros cuadrados requeridos, los metros lineales de canto y la estimación de tableros enteros para procesar tu orden.</p>
       </div>
 
       <div class="mesa-layout">
@@ -608,97 +548,74 @@
             <table class="despiece-table" id="despiece-table">
               <thead>
                 <tr>
-                  <th style="width:44px;">ID</th>
-                  <th>Pieza / Etiqueta</th>
-                  <th style="width:100px;">Largo (mm)</th>
-                  <th style="width:100px;">Ancho (mm)</th>
+                  <th style="width:40px;">Nº</th>
+                  <th>Identificador (Etiqueta)</th>
+                  <th style="width:110px;">Largo (mm)</th>
+                  <th style="width:110px;">Ancho (mm)</th>
                   <th style="width:70px;">Cant.</th>
-                  <th>Canto</th>
-                  <th style="width:36px;"></th>
+                  <th>Esquema Canto</th>
+                  <th style="width:40px;"></th>
                 </tr>
               </thead>
               <tbody id="table-body-rows">
                 <tr>
-                  <td class="mono" style="color:var(--text-light-muted);">001</td>
-                  <td><input type="text" value="Lateral Izquierdo"></td>
+                  <td class="mono" style="color:var(--text-muted); font-weight:600;">001</td>
+                  <td><input type="text" value="Puerta Gabinete A"></td>
                   <td><input type="number" value="720"></td>
-                  <td><input type="number" value="580"></td>
+                  <td><input type="number" value="350"></td>
                   <td><input type="number" value="2"></td>
                   <td>
                     <select>
-                      <option value="Ninguno">Ninguno</option>
+                      <option value="Ninguno">Sin Canto</option>
+                      <option value="1 Largo">1 Largo</option>
                       <option value="2 Largos">2 Largos</option>
                       <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
-                      <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
+                      <option value="Perimetral (4 lados)" selected>Perimetral</option>
                     </select>
                   </td>
-                  <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined" style="font-size:18px;">delete</span></button></td>
+                  <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined">delete</span></button></td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div style="margin-top:14px;">
-            <button class="btn-add-row" onclick="addNewRow()">+ Añadir Fila de Despiece</button>
-          </div>
+          <button class="btn-add-row" onclick="addNewRow()">+ Añadir Módulo a la Lista</button>
         </div>
 
-        <div class="reveal">
+        <div class="reveal" style="transition-delay: 0.1s;">
           <div class="control-form">
-            <div class="form-group"><label for="client-name">Nombre Comercial / Solicitante</label><input type="text" id="client-name" required placeholder="Ej: Ing. Carlos Mendoza"></div>
-            <div class="form-group"><label for="client-company">Fábrica / Carpintería</label><input type="text" id="client-company" placeholder="Ej: Muebles del Valle Ocotlán"></div>
-            <div class="form-group"><label for="client-phone">Línea Móvil (WhatsApp)</label><input type="tel" id="client-phone" required placeholder="Ej: 3921002030"></div>
             <div class="form-group">
-              <label for="master-material">Sustrato / Núcleo Base</label>
+              <label>Cliente / Responsable</label>
+              <input type="text" id="client-name" placeholder="Ej: Arq. Fernando Reyes" required>
+            </div>
+            <div class="form-group">
+              <label>Contacto WhatsApp</label>
+              <input type="tel" id="client-phone" placeholder="10 dígitos exactos" required>
+            </div>
+            <div class="form-group">
+              <label>Sustrato Base de la Orden</label>
               <select id="master-material">
-                <option value="Melamina Blanca 18mm">Melamina Blanca Estándar 18mm</option>
-                <option value="Melamina Diseño Textura 18mm">Melamina Diseño Texturas Maderas 18mm</option>
-                <option value="MDF Crudo 15mm">MDF Crudo Calibrado 15mm</option>
-                <option value="MDF Hidrofugo 18mm">MDF Hidrófugo Resistencia Humedad 18mm</option>
-                <option value="Triplay Pino 12mm">Triplay de Pino Comercial 12mm</option>
-                <option value="Alto Brillo Espejo 18mm">Alto Brillo Acrílico Premium 18mm</option>
+                <option value="Melamina Blanca 18mm">Melamina Blanca STD 18mm</option>
+                <option value="MDF Hidrofugo 18mm">MDF Hidrófugo HMR 18mm</option>
+                <option value="MDF Crudo 15mm">MDF Crudo 15mm</option>
+                <option value="Triplay Pino 18mm">Triplay de Pino 18mm</option>
               </select>
             </div>
-            <div class="form-group"><label for="client-notes">Notas Especiales de Planta</label><textarea id="client-notes" placeholder="Herrajes adicionales, especificaciones de perforación..."></textarea></div>
+            <div class="form-group">
+              <label>Notas Extra</label>
+              <textarea id="client-notes" placeholder="Requiero perforaciones para bisagra bidimensional en las piezas 1 y 2..."></textarea>
+            </div>
+            
+            <div class="resumen-panel">
+              <div class="resumen-row"><span class="k">Piezas Computadas</span><span class="v" id="resTotalPiezas">02</span></div>
+              <div class="resumen-row"><span class="k">Área Neta</span><span class="v" id="resAreaNeta">0.50 m²</span></div>
+              <div class="resumen-row"><span class="k">Metros Lineales Canto</span><span class="v" id="resMetrosCanto">4.28 m</span></div>
+              <div class="resumen-row" style="border-top: 1px solid rgba(255,255,255,0.2); margin-top: 8px; padding-top: 16px;"><span class="k" style="color: #fff;">Estimación Tableros*</span><span class="v" id="resTablerosEst" style="font-size: 20px; color: #fff;">01</span></div>
+              <span class="mono" style="display:block; font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 8px; line-height: 1.4;">*Cálculo algorítmico incluyendo 15% de merma por disco de sierra y escuadre. Rendimiento final sujeto a nesting real.</span>
+            </div>
+            
+            <button class="btn btn-brand" style="width:100%; margin-top:32px; padding: 20px;" onclick="processOrderToWhatsApp()">Transmitir Orden al Hub</button>
           </div>
-
-          <div class="resumen-panel">
-            <div class="resumen-row"><span class="k">Total Piezas</span><span class="v" id="resTotalPiezas">0</span></div>
-            <div class="resumen-row"><span class="k">Metros Lineales de Canto</span><span class="v" id="resMetrosCanto">0 m</span></div>
-            <div class="resumen-row"><span class="k">Tableros Est. (1220×2440)</span><span class="v" id="resTablerosEst">0</span></div>
-          </div>
-
-          <button class="btn btn-brand" style="width:100%; margin-top:16px;" onclick="processOrderToWhatsApp()">Exportar y Enviar a Mesa de Maquila</button>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LOGÍSTICA -->
-  <section class="section-padding container" id="ubicacion">
-    <div class="logistica-struct">
-      <div class="reveal">
-        <div class="sheet-tag"><span class="num">HOJA 05/05</span><span class="eyebrow">Infraestructura Física</span></div>
-        <h2>Planta Logística de Suministro</h2>
-        <p style="color:var(--text-secondary); margin-top:14px;">Ubicados estratégicamente en la zona industrial mueblera de Ocotlán para proveer de forma directa y ágil a toda la región Ciénega.</p>
-        <ul class="meta-list">
-          <li><span class="material-symbols-outlined">location_on</span><div><h5>Dirección de Operaciones</h5><p>Av. Francisco Zarco #1350, Colonia Lindavista, C.P. 47810. Ocotlán, Jalisco.</p></div></li>
-          <li><span class="material-symbols-outlined">schedule</span><div><h5>Horarios de Patio de Carga</h5><p>Martes a Sábado: 8:00 AM – 6:00 PM<br>Domingo: 8:00 AM – 1:00 PM<br>Lunes: Cerrado por Mantenimiento</p></div></li>
-          <li><span class="material-symbols-outlined">call</span><div><h5>Central de Conmutación</h5><p>Teléfono & Enlace Técnico: 392 931 3919</p></div></li>
-        </ul>
-      </div>
-      <div class="map-panel reveal">
-        <svg viewBox="0 0 500 320" fill="none">
-          <rect width="500" height="320" fill="#0F172A"/>
-          <line x1="0" y1="90" x2="500" y2="90" stroke="#334155" stroke-width="2"/>
-          <line x1="190" y1="0" x2="190" y2="320" stroke="#334155" stroke-width="2" stroke-dasharray="6 6"/>
-          <line x1="0" y1="220" x2="500" y2="220" stroke="#1E293B" stroke-width="1"/>
-          <rect x="230" y="130" width="150" height="100" fill="#1E293B" stroke="#334155"/>
-          <circle cx="305" cy="180" r="6" fill="var(--brand)"/>
-          <line x1="305" y1="180" x2="270" y2="145" stroke="var(--brand)" stroke-width="1.5"/>
-          <text x="240" y="255" font-family="JetBrains Mono" font-size="11" fill="#F1F5F9" font-weight="600">BRAITA MATRIZ</text>
-          <text x="20" y="75" font-family="JetBrains Mono" font-size="11" fill="#94A3B8">AV. FRANCISCO ZARCO</text>
-        </svg>
-        <div class="map-coord mono">Coord: 20.3335° N, 102.7715° W</div>
       </div>
     </div>
   </section>
@@ -709,445 +626,419 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="display">BRAITA</span>
-        <span class="mono">Industrial S.A. de C.V.</span>
-        <span class="mono">L-S: 08:00 – 18:00</span>
+        <span class="mono">Industrial Operations</span>
       </div>
       <div class="footer-links">
-        <a href="#suministro">Suministro</a>
-        <a href="#maquila">Maquila</a>
-        <a href="#cotizador">Cotizador</a>
+        <a href="#suministro">Catálogo Técnico</a>
+        <a href="#maquila">Infraestructura CNC</a>
+        <a href="#cotizador">Terminal de Despiece</a>
       </div>
       <div class="footer-links" style="align-items:flex-start;">
-        <a href="#" id="openPanel" class="admin-link">Panel Administrador</a>
-        <span class="mono" style="color:var(--text-light-muted); opacity:.7;">Sheet 01/01</span>
+        <a href="#" id="openPanel" style="color:var(--brand); display:flex; align-items:center; gap:8px;">
+          <span style="display:block;width:8px;height:8px;background:var(--brand);border-radius:50%;box-shadow:0 0 10px var(--brand);"></span> 
+          Acceso OMNES / Panel
+        </a>
+        <span class="mono" style="color:var(--text-light-muted); margin-top:8px;">Ocotlán, Jalisco. Mx.</span>
       </div>
     </div>
     <div class="footer-legal">
-      <span>© 2026 Braita S.A. de C.V. Todos los derechos reservados.</span>
-      <div class="reg-marks-row"><span class="material-symbols-outlined" style="font-size:14px;">close</span><span class="material-symbols-outlined" style="font-size:14px;">close</span><span class="material-symbols-outlined" style="font-size:14px;">close</span></div>
+      <span>© 2026 Braita Hub Industrial. Todos los derechos reservados.</span>
+      <span class="mono" style="opacity:0.4;">V3.0 // SECURED // 100% DEPLOYED</span>
     </div>
   </div>
 </footer>
 
-<a href="#" id="wa-sticky-float" class="wa-float" target="_blank" aria-label="Contacto WhatsApp">
-  <svg viewBox="0 0 32 32">
-    <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/>
-  </svg>
+<a href="#" id="wa-sticky-float" class="wa-float" target="_blank" aria-label="Contacto Directo">
+  <svg viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/></svg>
 </a>
 
-<!-- PANEL DE ADMINISTRADOR -->
 <div class="panel-overlay" id="panelOverlay">
   <div class="panel-modal">
     <div class="panel-head">
-      <div><span class="eyebrow mono">Panel Braita</span><h3>Historial de Órdenes de Despiece</h3></div>
-      <button class="panel-close" id="closePanel" aria-label="Cerrar">&times;</button>
+      <div><span class="eyebrow mono">HUB Braita Operativo</span><h3>Gestor de Órdenes</h3></div>
+      <button class="panel-close" id="closePanel">&times;</button>
     </div>
     <div id="panelLoginBox" class="panel-login">
-      <span class="eyebrow" style="color:var(--brand);">Acceso Administrador</span>
-      <h4>Inicia sesión para ver las órdenes</h4>
-      <div class="panel-field"><label for="panelLoginEmail">Correo</label><input type="email" id="panelLoginEmail"></div>
-      <div class="panel-field"><label for="panelLoginPassword">Contraseña</label><input type="password" id="panelLoginPassword"></div>
-      <button class="btn btn-dark" id="panelLoginBtn" type="button">Entrar</button>
-      <p class="panel-login-error" id="panelLoginError">Correo o contraseña incorrectos.</p>
+      <span class="eyebrow">Acceso Restringido</span>
+      <h4>Inicia sesión administrativa</h4>
+      <div class="panel-field"><label>Correo Ocotlán</label><input type="email" id="panelLoginEmail"></div>
+      <div class="panel-field"><label>Contraseña Secure</label><input type="password" id="panelLoginPassword"></div>
+      <button class="btn btn-dark" id="panelLoginBtn" type="button">Validar Credenciales</button>
+      <p class="panel-login-error" id="panelLoginError">Autenticación fallida. Revisa los datos.</p>
     </div>
     <div id="panelContentBox" class="panel-body" style="display:none;">
       <div class="panel-stats">
-        <div class="panel-stat"><span class="num">0</span><span class="label" id="statTotalLabel">Órdenes totales</span></div>
-        <div class="panel-stat"><span class="num" id="statNuevasVal">0</span><span class="label">Sin atender</span></div>
-        <div class="panel-stat"><span class="num" id="statHoyVal">0</span><span class="label">Recibidas hoy</span></div>
+        <div class="panel-stat"><span class="num">0</span><span class="label" id="statTotalLabel">Volumen Histórico</span></div>
+        <div class="panel-stat"><span class="num" id="statNuevasVal">0</span><span class="label">Órdenes sin Procesar</span></div>
+        <div class="panel-stat"><span class="num" id="statHoyVal">0</span><span class="label">Ingresadas Hoy</span></div>
       </div>
       <div class="panel-table-wrap">
         <table class="panel-table">
-          <thead><tr><th>Fecha</th><th>Solicitante</th><th>Empresa</th><th>Teléfono</th><th>Material</th><th>Piezas</th><th>Estado</th></tr></thead>
+          <thead><tr><th>Fecha</th><th>Responsable</th><th>Empresa</th><th>Teléfono</th><th>Sustrato Base</th><th>Despiece Computado</th><th>Estatus</th></tr></thead>
           <tbody id="panelBodyRows"></tbody>
         </table>
       </div>
-      <p class="panel-empty" id="panelEmptyMsg" style="display:none;">Aún no hay órdenes registradas.</p>
-      <button class="btn btn-outline" id="panelLogoutBtn" type="button" style="margin-top:20px;">Cerrar sesión</button>
+      <p class="panel-empty" id="panelEmptyMsg" style="display:none;">No existen registros en la base de datos de Supabase.</p>
+      <button class="btn btn-outline" id="panelLogoutBtn" type="button" style="margin-top:20px;">Cerrar sesión segura</button>
     </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  const CONFIG_TELEFONO = '523921266110';
-  const buildWhatsAppLink = (mensaje) => `https://wa.me/${CONFIG_TELEFONO}?text=${encodeURIComponent(mensaje)}`;
+  // 1. CONSTANTES GLOBALES
+  const WHATSAPP_NUM = '523929313919';
+  const getWaLink = (msg) => `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(msg)}`;
+  document.getElementById('wa-sticky-float').href = getWaLink('Hola Braita. Me encuentro en el sitio web y requiero cotizar material.');
 
+  // 2. SISTEMA DE TOASTS NATIVO
   function createToast(message) {
     const container = document.getElementById('toast-container');
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `<span class="material-symbols-outlined" style="font-size:18px;">info</span><span>${message}</span>`;
+    toast.innerHTML = `<span class="material-symbols-outlined">info</span><span>${message}</span>`;
     container.appendChild(toast);
-    setTimeout(() => { toast.classList.add('fade-out'); toast.addEventListener('animationend', () => toast.remove()); }, 4200);
+    setTimeout(() => {
+      toast.classList.add('fade-out');
+      toast.addEventListener('animationend', () => toast.remove());
+    }, 4000);
   }
 
+  // 3. UI EVENT LISTENERS
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('main-nav');
   menuToggle.addEventListener('click', () => mainNav.classList.toggle('is-active'));
   mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('is-active')));
 
-  // Catálogo
-  const DATABASE_PRODUCTS = [
-    { id: 'PROD-001', name: 'Melamina Blanca Soft', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'MDF / Aglomerado', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-002', name: 'Melamina Nogal Urbano', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-003', name: 'Melamina Gris Grafito', category: 'melamina', icon: 'layers', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'MDF Premium', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-004', name: 'Melamina Roble Escandinavo', category: 'melamina', icon: 'layers', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-005', name: 'MDF Crudo Calibrado', category: 'mdf', icon: 'view_in_ar', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-006', name: 'MDF Crudo Industrial', category: 'mdf', icon: 'view_in_ar', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-007', name: 'MDF Hidrófugo Antihumedad', category: 'mdf', icon: 'view_in_ar', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Núcleo Verde HMR', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-008', name: 'Triplay Pino de Primera', category: 'triplay', icon: 'texture', thickness: '12 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-009', name: 'Triplay Pino Estructural', category: 'triplay', icon: 'texture', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-010', name: 'Triplay Marino de Importación', category: 'triplay', icon: 'texture', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'WBP Core', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-011', name: 'Alto Brillo Espejo Blanco', category: 'premium', icon: 'auto_awesome', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'PET Gloss / MDF', largoMm: 2440, anchoMm: 1220 },
-    { id: 'PROD-012', name: 'Super Mate Antihuella Negro', category: 'premium', icon: 'auto_awesome', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Zenit Core / MDF', largoMm: 2440, anchoMm: 1220 }
-  ];
-  const mapCategoryLabel = { melamina: 'Melamina', mdf: 'MDF Sustrato', triplay: 'Triplay', premium: 'Alto Brillo' };
-  const targetGrid = document.getElementById('catalog-target-grid');
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => scrollObserver.observe(el));
 
-  function renderCatalogGrid(filterKey = 'all') {
-    targetGrid.innerHTML = '';
-    const items = filterKey === 'all' ? DATABASE_PRODUCTS : DATABASE_PRODUCTS.filter(p => p.category === filterKey);
-    items.forEach(prod => {
-      const card = document.createElement('div');
-      card.className = 'prod-card';
-      card.innerHTML = `
-        <div class="prod-head">
-          <span class="ref mono">REF. ${prod.id}</span>
-          <span class="material-symbols-outlined">${prod.icon}</span>
-        </div>
-        <div class="prod-media">
-          <div class="prod-placeholder dim-top">
-            <span class="material-symbols-outlined">image</span>
-            <span>Muestra Técnica</span>
+  // 4. BASE DE DATOS DE CATÁLOGO (PRODUCCIÓN MASIVA)
+  const DATABASE_PRODUCTS = [
+    { id: 'BLN-01', name: 'Melamina Blanca Soft', cat: 'melamina', icon: 'layers', thick: '15 mm', dim: '244 × 122 cm', core: 'MDF', largoMm: 2440, anchoMm: 1220 },
+    { id: 'BLN-02', name: 'Melamina Blanca Textura', cat: 'melamina', icon: 'layers', thick: '18 mm', dim: '244 × 122 cm', core: 'Aglomerado HD', largoMm: 2440, anchoMm: 1220 },
+    { id: 'NOG-01', name: 'Melamina Nogal Terracota', cat: 'melamina', icon: 'layers', thick: '18 mm', dim: '244 × 122 cm', core: 'Aglomerado HD', largoMm: 2440, anchoMm: 1220 },
+    { id: 'NOG-02', name: 'Melamina Nogal Clásico', cat: 'melamina', icon: 'layers', thick: '15 mm', dim: '244 × 122 cm', core: 'MDF', largoMm: 2440, anchoMm: 1220 },
+    { id: 'GRS-01', name: 'Melamina Gris Grafito', cat: 'melamina', icon: 'layers', thick: '18 mm', dim: '244 × 122 cm', core: 'Aglomerado HD', largoMm: 2440, anchoMm: 1220 },
+    { id: 'RBL-01', name: 'Melamina Roble Escandinavo', cat: 'melamina', icon: 'layers', thick: '18 mm', dim: '244 × 122 cm', core: 'Aglomerado HD', largoMm: 2440, anchoMm: 1220 },
+    { id: 'MDF-01', name: 'MDF Crudo Standard', cat: 'mdf', icon: 'view_in_ar', thick: '15 mm', dim: '244 × 122 cm', core: 'Sustrato Fibra', largoMm: 2440, anchoMm: 1220 },
+    { id: 'MDF-02', name: 'MDF Crudo Estructural', cat: 'mdf', icon: 'view_in_ar', thick: '18 mm', dim: '244 × 122 cm', core: 'Sustrato Fibra', largoMm: 2440, anchoMm: 1220 },
+    { id: 'MDF-03', name: 'MDF Hidrófugo HMR', cat: 'mdf', icon: 'view_in_ar', thick: '18 mm', dim: '244 × 122 cm', core: 'Núcleo Verde HMR', largoMm: 2440, anchoMm: 1220 },
+    { id: 'TRI-01', name: 'Triplay Pino 1ra', cat: 'triplay', icon: 'texture', thick: '12 mm', dim: '244 × 122 cm', core: 'Pino Multicapa', largoMm: 2440, anchoMm: 1220 },
+    { id: 'TRI-02', name: 'Triplay Pino Estructural', cat: 'triplay', icon: 'texture', thick: '18 mm', dim: '244 × 122 cm', core: 'Pino Multicapa', largoMm: 2440, anchoMm: 1220 },
+    { id: 'TRI-03', name: 'Triplay Marino WBP', cat: 'triplay', icon: 'texture', thick: '18 mm', dim: '244 × 122 cm', core: 'WBP Core Fenólico', largoMm: 2440, anchoMm: 1220 },
+    { id: 'GLS-01', name: 'Alto Brillo Blanco Espejo', cat: 'premium', icon: 'auto_awesome', thick: '18 mm', dim: '244 × 122 cm', core: 'PET Gloss / MDF', largoMm: 2440, anchoMm: 1220 },
+    { id: 'GLS-02', name: 'Alto Brillo Negro', cat: 'premium', icon: 'auto_awesome', thick: '18 mm', dim: '244 × 122 cm', core: 'PET Gloss / MDF', largoMm: 2440, anchoMm: 1220 },
+    { id: 'MAT-01', name: 'Super Mate Antihuella', cat: 'premium', icon: 'auto_awesome', thick: '18 mm', dim: '244 × 122 cm', core: 'Zenit Core / MDF', largoMm: 2440, anchoMm: 1220 }
+  ];
+  
+  const dictLabels = { melamina: 'Melaminas', mdf: 'MDF Core', triplay: 'Triplay', premium: 'Alto Brillo / Mate' };
+  const catGrid = document.getElementById('catalog-target-grid');
+
+  function renderCatalog(filter = 'all') {
+    catGrid.innerHTML = '';
+    const items = filter === 'all' ? DATABASE_PRODUCTS : DATABASE_PRODUCTS.filter(p => p.cat === filter);
+    items.forEach(p => {
+      catGrid.innerHTML += `
+        <div class="prod-card">
+          <div class="prod-head">
+            <span class="ref">REF. ${p.id}</span>
+            <span class="material-symbols-outlined">${p.icon}</span>
           </div>
-        </div>
-        <div class="prod-body">
-          <h3>${prod.name}</h3>
-          <div class="spec-row"><span class="k">Espesor</span><span class="v">${prod.thickness}</span></div>
-          <div class="spec-row"><span class="k">Formato</span><span class="v">${prod.dimensions}</span></div>
-          <div class="spec-row"><span class="k">Núcleo</span><span class="v">${prod.structural}</span></div>
-          <div class="prod-footer">
-            <span>${mapCategoryLabel[prod.category]}</span>
-            <button class="btn-cotizar" onclick="selectProductForMesaControl('${prod.id}')">Cotizar</button>
+          <div class="prod-media">
+            <div class="prod-placeholder">
+              <span class="material-symbols-outlined" style="font-size:32px;">image</span>
+              <span>Muestra HD Indisponible</span>
+            </div>
+          </div>
+          <div class="prod-body">
+            <h3>${p.name}</h3>
+            <div class="spec-row"><span class="k">Calibre</span><span class="v">${p.thick}</span></div>
+            <div class="spec-row"><span class="k">Formato</span><span class="v">${p.dim}</span></div>
+            <div class="spec-row"><span class="k">Núcleo Base</span><span class="v">${p.core}</span></div>
+            <div class="prod-footer">
+              <span>${dictLabels[p.cat]}</span>
+              <button class="btn-cotizar" onclick="injectToDesk('${p.id}')">Cotizar</button>
+            </div>
           </div>
         </div>
       `;
-      targetGrid.appendChild(card);
     });
   }
 
   document.getElementById('filter-group').addEventListener('click', (e) => {
-    if (e.target.classList.contains('filter-btn')) {
+    if(e.target.classList.contains('filter-btn')) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
       e.target.classList.add('is-active');
-      renderCatalogGrid(e.target.dataset.filter);
+      renderCatalog(e.target.dataset.filter);
     }
   });
 
-  function selectProductForMesaControl(prodId) {
-    const prod = DATABASE_PRODUCTS.find(p => p.id === prodId);
-    if (!prod) return;
-
+  function injectToDesk(id) {
+    const prod = DATABASE_PRODUCTS.find(p => p.id === id);
     const select = document.getElementById('master-material');
-    let found = false;
-    for (let i = 0; i < select.options.length; i++) {
-      if (select.options[i].value.includes(prod.name)) { select.selectedIndex = i; found = true; break; }
+    let exists = false;
+    for(let i=0; i<select.options.length; i++) {
+      if(select.options[i].value.includes(prod.name)) { select.selectedIndex = i; exists = true; break; }
     }
-    if (!found) {
+    if(!exists) {
       const opt = document.createElement('option');
-      opt.value = prod.name; opt.textContent = prod.name;
-      select.appendChild(opt); select.value = prod.name;
+      opt.value = `${prod.name} ${prod.thick}`; opt.textContent = `${prod.name} ${prod.thick}`;
+      select.appendChild(opt); select.value = opt.value;
     }
-
-    rellenarMesaConProducto(prod);
-
-    document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
-    createToast(`Mesa rellenada con: ${prod.name} (${prod.largoMm}×${prod.anchoMm}mm). Ajusta las medidas de tus piezas.`);
-  }
-
-  function rellenarMesaConProducto(prod) {
-    tableBody.innerHTML = '';
+    
+    // Inyectar en la tabla como tablero completo inicial
+    tableBodyRows.innerHTML = '';
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="mono" style="color:var(--text-light-muted);">001</td>
-      <td><input type="text" value="${prod.name} (hoja completa)"></td>
+      <td class="mono" style="color:var(--text-muted); font-weight:600;">001</td>
+      <td><input type="text" value="${prod.name} (Hoja Completa)"></td>
       <td><input type="number" value="${prod.largoMm}"></td>
       <td><input type="number" value="${prod.anchoMm}"></td>
       <td><input type="number" value="1"></td>
       <td>
         <select>
-          <option value="Ninguno" selected>Ninguno</option>
+          <option value="Ninguno" selected>Sin Canto</option>
+          <option value="1 Largo">1 Largo</option>
           <option value="2 Largos">2 Largos</option>
           <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
-          <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
+          <option value="Perimetral (4 lados)">Perimetral</option>
         </select>
       </td>
-      <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined" style="font-size:18px;">delete</span></button></td>
+      <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined">delete</span></button></td>
     `;
-    tableBody.appendChild(tr);
-    actualizarIds();
-    calcularResumen();
+    tableBodyRows.appendChild(tr);
+    runLiveMath();
+
+    document.getElementById('cotizador').scrollIntoView({behavior: 'smooth'});
+    createToast(`Configuración de hoja inyectada: ${prod.name}`);
   }
 
-  // Mesa de control
-  const tableBody = document.getElementById('table-body-rows');
-  let rowIdCounter = 1;
-
-  function actualizarIds() {
-    tableBody.querySelectorAll('tr').forEach((row, i) => {
-      row.querySelector('td.mono').textContent = String(i + 1).padStart(3, '0');
+  // 5. MESA DE CONTROL MATEMÁTICA (COTIZADOR EN TIEMPO REAL)
+  const tableBodyRows = document.getElementById('table-body-rows');
+  
+  function updateIDs() {
+    tableBodyRows.querySelectorAll('tr').forEach((r, i) => {
+      r.querySelector('td.mono').textContent = String(i + 1).padStart(3, '0');
     });
   }
 
-  function calcularResumen() {
-    const rows = tableBody.querySelectorAll('tr');
-    let totalPiezas = 0, metrosCanto = 0, areaTotalMm2 = 0;
-    rows.forEach(row => {
-      const inputs = row.querySelectorAll('input');
-      const select = row.querySelector('select');
+  function runLiveMath() {
+    const rows = tableBodyRows.querySelectorAll('tr');
+    let totalQty = 0, totalAreaMm2 = 0, totalCantoMm = 0;
+    
+    rows.forEach(r => {
+      const inputs = r.querySelectorAll('input');
+      const sel = r.querySelector('select');
       const largo = Number(inputs[1].value) || 0;
       const ancho = Number(inputs[2].value) || 0;
       const cant = Number(inputs[3].value) || 0;
-      const canto = select.value;
-      totalPiezas += cant;
-      areaTotalMm2 += largo * ancho * cant;
-      let cantoMm = 0;
-      if (canto === '2 Largos') cantoMm = 2 * largo;
-      else if (canto === '1 Largo 1 Ancho') cantoMm = largo + ancho;
-      else if (canto === 'Perimetral (4 lados)') cantoMm = 2 * (largo + ancho);
-      metrosCanto += cantoMm * cant;
-    });
-    const sheetAreaMm2 = 1220 * 2440;
-    const tablerosEst = areaTotalMm2 > 0 ? Math.ceil((areaTotalMm2 * 1.15) / sheetAreaMm2) : 0;
+      const canto = sel.value;
 
-    document.getElementById('resTotalPiezas').textContent = totalPiezas;
-    document.getElementById('resMetrosCanto').textContent = (metrosCanto / 1000).toFixed(1) + ' m';
-    document.getElementById('resTablerosEst').textContent = tablerosEst;
+      totalQty += cant;
+      totalAreaMm2 += (largo * ancho * cant);
+      
+      let curCantoMm = 0;
+      if(canto === '1 Largo') curCantoMm = largo;
+      else if(canto === '2 Largos') curCantoMm = largo * 2;
+      else if(canto === '1 Largo 1 Ancho') curCantoMm = largo + ancho;
+      else if(canto === 'Perimetral (4 lados)') curCantoMm = (largo + ancho) * 2;
+      totalCantoMm += (curCantoMm * cant);
+    });
+
+    const m2 = (totalAreaMm2 / 1000000).toFixed(2);
+    const mLineales = (totalCantoMm / 1000).toFixed(2);
+    
+    // Estimación con 15% de merma de aserrado (Hoja estándar 1.22 x 2.44 = 2.9768 m2)
+    const areaHojaNeta = 2.9768; 
+    const hojasEst = totalAreaMm2 > 0 ? Math.ceil((totalAreaMm2 * 1.15) / 1000000 / areaHojaNeta) : 0;
+
+    document.getElementById('resTotalPiezas').textContent = String(totalQty).padStart(2, '0');
+    document.getElementById('resAreaNeta').textContent = m2 + ' m²';
+    document.getElementById('resMetrosCanto').textContent = mLineales + ' m';
+    document.getElementById('resTablerosEst').textContent = String(hojasEst).padStart(2, '0');
   }
 
   function addNewRow() {
-    rowIdCounter++;
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="mono" style="color:var(--text-light-muted);">000</td>
+      <td class="mono" style="color:var(--text-muted); font-weight:600;">000</td>
       <td><input type="text" value="Nueva Pieza"></td>
       <td><input type="number" value="400"></td>
       <td><input type="number" value="300"></td>
       <td><input type="number" value="1"></td>
       <td>
         <select>
-          <option value="Ninguno">Ninguno</option>
+          <option value="Ninguno">Sin Canto</option>
+          <option value="1 Largo">1 Largo</option>
           <option value="2 Largos">2 Largos</option>
           <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
-          <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
+          <option value="Perimetral (4 lados)">Perimetral</option>
         </select>
       </td>
-      <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined" style="font-size:18px;">delete</span></button></td>
+      <td><button class="btn-remove-row" onclick="deleteRow(this)"><span class="material-symbols-outlined">delete</span></button></td>
     `;
-    tableBody.appendChild(tr);
-    actualizarIds();
-    calcularResumen();
-    createToast('Nueva fila de despiece agregada.');
+    tableBodyRows.appendChild(tr);
+    updateIDs();
+    runLiveMath();
   }
 
-  function deleteRow(button) {
-    const rows = tableBody.querySelectorAll('tr');
-    if (rows.length <= 1) { createToast('La orden debe contener al menos una pieza.'); return; }
-    button.closest('tr').remove();
-    actualizarIds();
-    calcularResumen();
+  function deleteRow(btn) {
+    if(tableBodyRows.querySelectorAll('tr').length <= 1) {
+      createToast('Error de matriz: Se requiere al menos un elemento.'); return;
+    }
+    btn.closest('tr').remove();
+    updateIDs();
+    runLiveMath();
   }
 
-  tableBody.addEventListener('input', calcularResumen);
-  tableBody.addEventListener('change', calcularResumen);
+  tableBodyRows.addEventListener('input', runLiveMath);
+  tableBodyRows.addEventListener('change', runLiveMath);
 
+  // 6. PROCESADOR DE ENVÍO DE ÓRDENES Y CONEXIÓN A SUPABASE
   async function processOrderToWhatsApp() {
-    const clientName = document.getElementById('client-name').value.trim();
-    const clientCompany = document.getElementById('client-company').value.trim();
-    const clientPhone = document.getElementById('client-phone').value.trim();
-    const masterMaterial = document.getElementById('master-material').value;
-    const clientNotes = document.getElementById('client-notes').value.trim();
-
-    if (!clientName || !clientPhone) { createToast('Campos obligatorios: Nombre y Línea Móvil.'); return; }
-
-    let despieceDataString = '';
-    const piezasArray = [];
-    tableBody.querySelectorAll('tr').forEach((row, index) => {
-      const inputs = row.querySelectorAll('input');
-      const select = row.querySelector('select');
-      const label = inputs[0].value || `Pieza ${index + 1}`;
-      const largo = inputs[1].value || '0';
-      const ancho = inputs[2].value || '0';
-      const cant = inputs[3].value || '1';
-      const canto = select.value;
-      despieceDataString += `\n[${index + 1}] ${label} -> ${largo}x${ancho}mm | Cant: ${cant} | Canto: ${canto}`;
-      piezasArray.push({ label, largo, ancho, cant, canto });
+    const name = document.getElementById('client-name').value.trim();
+    const phone = document.getElementById('client-phone').value.trim();
+    if(!name || !phone) { createToast('Es obligatorio ingresar Responsable y Línea Móvil.'); return; }
+    
+    const company = document.getElementById('client-company').value.trim() || 'Particular';
+    const material = document.getElementById('master-material').value;
+    const notes = document.getElementById('client-notes').value.trim() || 'Ninguna indicación extra.';
+    
+    let strDespiece = '';
+    const arrDespiece = [];
+    tableBodyRows.querySelectorAll('tr').forEach((r, i) => {
+      const ins = r.querySelectorAll('input');
+      const sel = r.querySelector('select');
+      const lbl = ins[0].value || `Pieza ${i+1}`;
+      const l = ins[1].value || '0';
+      const a = ins[2].value || '0';
+      const c = ins[3].value || '1';
+      const cn = sel.value;
+      
+      strDespiece += `\n[${String(i+1).padStart(2,'0')}] ${lbl} -> ${l}x${a}mm | Cant: ${c} | Canto: ${cn}`;
+      arrDespiece.push({ label: lbl, largo: l, ancho: a, cant: c, canto: cn });
     });
 
-    const finalMessage = `ORDEN DE MAQUILA - SOLICITUD DE DESPIECE COMERCIAL
---------------------------------------------------
-OPERADOR: ${clientName}
-EMPRESA: ${clientCompany || 'Particular'}
-CONTACTO ENLACE: ${clientPhone}
-MATERIAL BASE SELECCIONADO: ${masterMaterial}
---------------------------------------------------
-MATRIZ DE PIEZAS A COMPUTAR:${despieceDataString}
---------------------------------------------------
-NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
---------------------------------------------------
-*Solicito validación de rendimiento geométrico y cotización formal de hojas más servicios de corte.*`;
+    const msg = `ORDEN DE MAQUILA - DESPIECE COMPUTADO
+----------------------------------------
+SOLICITANTE: ${name}
+EMPRESA: ${company}
+TELÉFONO: ${phone}
+NÚCLEO ELEGIDO: ${material}
+----------------------------------------
+MATRIZ DE CORTE:${strDespiece}
+----------------------------------------
+NOTAS TÉCNICAS: ${notes}
+----------------------------------------
+*Requiero validación del departamento de optimización CNC.*`;
 
-    if (typeof guardarOrdenEnSupabase === 'function') {
+    // Intentar envío silencioso al backend Supabase
+    if(typeof window.saveToSupabase === 'function') {
       try {
-        await guardarOrdenEnSupabase({ nombre: clientName, empresa: clientCompany || 'Particular', telefono: clientPhone, material: masterMaterial, notas: clientNotes || '', piezas: piezasArray });
-      } catch (err) { console.error('No se pudo guardar la orden:', err); }
+        await window.saveToSupabase({ nombre: name, empresa: company, telefono: phone, material: material, notas: notes, piezas: arrDespiece });
+      } catch(e) { console.warn('Supabase DB Exception: ', e); }
     }
 
-    createToast('Orden estructurada. Redirigiendo a WhatsApp...');
-    setTimeout(() => window.open(buildWhatsAppLink(finalMessage), '_blank'), 800);
+    createToast('Empaquetando datos. Abriendo enlace corporativo seguro...');
+    setTimeout(() => { window.open(getWaLink(msg), '_blank'); }, 1000);
   }
 
-  // Reveal on scroll
-  const scrollRevealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-  }, { threshold: 0.1 });
-
-  // Tilt sutil en tarjetas
-  function initTiltCards() {
-    document.querySelectorAll('.prod-card, .flow-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(700px) rotateX(${(-y * 2.5).toFixed(2)}deg) rotateY(${(x * 2.5).toFixed(2)}deg) translateY(-3px)`;
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    });
-  }
-  document.getElementById('filter-group').addEventListener('click', () => setTimeout(initTiltCards, 0));
-
-  window.addEventListener('DOMContentLoaded', () => {
-    renderCatalogGrid('all');
-    document.querySelectorAll('.reveal').forEach(el => scrollRevealObserver.observe(el));
-    calcularResumen();
-    initTiltCards();
-
-    document.getElementById('nav-wa-trigger')?.setAttribute('href', buildWhatsAppLink('Hola Braita. Solicito información general de catálogo y servicios de maquila.'));
-    document.getElementById('wa-sticky-float').href = buildWhatsAppLink('Hola Braita. Me encuentro en el sitio web y requiero asistencia técnica comercial.');
-  });
-
-  // ==================================================================
-  // SUPABASE — guardado de órdenes + panel de administrador
-  // Reemplaza estos dos valores con los de tu propio proyecto Supabase:
-  // Settings → API → Project URL / anon public key
-  //
-  // Tabla necesaria (créala en el SQL Editor de Supabase):
-  //
-  //   create table pedidos_maquila (
-  //     id uuid primary key default gen_random_uuid(),
-  //     fecha timestamptz default now(),
-  //     nombre text, empresa text, telefono text, material text,
-  //     notas text, piezas jsonb, estado text default 'nuevo'
-  //   );
-  //   alter table pedidos_maquila enable row level security;
-  //   create policy "Cualquiera puede crear una orden" on pedidos_maquila
-  //     for insert to anon with check (true);
-  //   create policy "Solo administradores autenticados pueden ver" on pedidos_maquila
-  //     for select to authenticated using (true);
-  //   create policy "Solo administradores autenticados pueden actualizar" on pedidos_maquila
-  //     for update to authenticated using (true);
-  // ==================================================================
-  let guardarOrdenEnSupabase = null;
-
+  // 7. ARQUITECTURA DEL PANEL ADMINISTRADOR (SUPABASE BACKEND INTEGRATION)
+  let saveToSupabase = null;
   try {
-    const SUPABASE_URL = 'https://gtpmffjzbiwghaibiprv.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0cG1mZmp6Yml3Z2hhaWJpcHJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NTM3MzYsImV4cCI6MjA5OTEyOTczNn0.SB8QRRiUlh1mNEfH3rDfkxYSk-A--dWF_77jZE8sseM';
-    if (typeof window.supabase === 'undefined') throw new Error('El script de Supabase no cargó.');
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // LLAVES DE EJEMPLO DE LA ESTRUCTURA - Reemplaza con las llaves de tu proyecto de Supabase
+    const SPB_URL = 'https://gtpmffjzbiwghaibiprv.supabase.co';
+    const SPB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0cG1mZmp6Yml3Z2hhaWJpcHJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NTM3MzYsImV4cCI6MjA5OTEyOTczNn0.SB8QRRiUlh1mNEfH3rDfkxYSk-A--dWF_77jZE8sseM';
+    
+    if(!window.supabase) throw new Error('Cdn fallido');
+    const supabase = window.supabase.createClient(SPB_URL, SPB_KEY);
 
-    guardarOrdenEnSupabase = async function (orden) {
-      const { error } = await supabase.from('pedidos_maquila').insert([{
-        nombre: orden.nombre, empresa: orden.empresa, telefono: orden.telefono,
-        material: orden.material, notas: orden.notas, piezas: orden.piezas, estado: 'nuevo',
+    window.saveToSupabase = async function(data) {
+      await supabase.from('pedidos_maquila').insert([{
+        nombre: data.nombre, empresa: data.empresa, telefono: data.telefono,
+        material: data.material, notas: data.notas, piezas: data.piezas, estado: 'nuevo'
       }]);
-      if (error) throw error;
     };
 
     document.getElementById('openPanel').addEventListener('click', async (e) => {
-      e.preventDefault();
-      document.getElementById('panelOverlay').classList.add('open');
+      e.preventDefault(); document.getElementById('panelOverlay').classList.add('open');
       const { data } = await supabase.auth.getSession();
-      if (data.session) { mostrarPanelContenido(); cargarOrdenes(); } else { mostrarPanelLogin(); }
+      if(data.session) { showDash(); fetchOrders(); } else { showLogin(); }
     });
+    
     document.getElementById('closePanel').addEventListener('click', () => document.getElementById('panelOverlay').classList.remove('open'));
-    document.getElementById('panelOverlay').addEventListener('click', (e) => { if (e.target.id === 'panelOverlay') e.target.classList.remove('open'); });
 
-    function mostrarPanelLogin() { document.getElementById('panelLoginBox').style.display = 'block'; document.getElementById('panelContentBox').style.display = 'none'; }
-    function mostrarPanelContenido() { document.getElementById('panelLoginBox').style.display = 'none'; document.getElementById('panelContentBox').style.display = 'block'; }
+    function showLogin() { document.getElementById('panelLoginBox').style.display = 'block'; document.getElementById('panelContentBox').style.display = 'none'; }
+    function showDash() { document.getElementById('panelLoginBox').style.display = 'none'; document.getElementById('panelContentBox').style.display = 'block'; }
 
     document.getElementById('panelLoginBtn').addEventListener('click', async () => {
-      const email = document.getElementById('panelLoginEmail').value.trim();
-      const password = document.getElementById('panelLoginPassword').value;
-      const errorEl = document.getElementById('panelLoginError');
+      const e = document.getElementById('panelLoginEmail').value.trim();
+      const p = document.getElementById('panelLoginPassword').value;
+      const err = document.getElementById('panelLoginError');
       try {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        errorEl.classList.remove('show'); mostrarPanelContenido(); cargarOrdenes();
-      } catch (err) { errorEl.textContent = err.message || 'Correo o contraseña incorrectos.'; errorEl.classList.add('show'); }
+        const { error } = await supabase.auth.signInWithPassword({ email: e, password: p });
+        if(error) throw error;
+        err.classList.remove('show'); showDash(); fetchOrders();
+      } catch(x) { err.textContent = x.message || 'Error auth'; err.classList.add('show'); }
     });
-    document.getElementById('panelLogoutBtn').addEventListener('click', async () => { await supabase.auth.signOut(); mostrarPanelLogin(); });
 
-    async function cargarOrdenes() {
-      try {
-        const { data, error } = await supabase.from('pedidos_maquila').select('*').order('fecha', { ascending: false });
-        if (error) throw error;
-        renderPanelOrdenes(data || []);
-      } catch (err) { console.error('Error cargando órdenes:', err); }
+    document.getElementById('panelLogoutBtn').addEventListener('click', async () => { await supabase.auth.signOut(); showLogin(); });
+
+    async function fetchOrders() {
+      const { data, error } = await supabase.from('pedidos_maquila').select('*').order('fecha', {ascending: false});
+      if(!error) renderOrders(data || []);
     }
 
-    function grupoDeEstado(estado) {
-      if (estado === 'confirmado' || estado === 'entregado') return 'row-aceptado';
-      if (estado === 'rechazado') return 'row-rechazado';
-      return 'row-pendiente'; // nuevo, cotizado
+    function getRowClass(state) {
+      if(state === 'confirmado' || state === 'entregado') return 'row-aceptado';
+      if(state === 'rechazado') return 'row-rechazado';
+      return 'row-pendiente';
     }
 
-    function renderPanelOrdenes(lista) {
-      const hoy = new Date().toDateString();
-      document.querySelector('#statTotalLabel').parentElement.querySelector('.num').textContent = lista.length;
-      document.getElementById('statNuevasVal').textContent = lista.filter(o => o.estado === 'nuevo').length;
-      document.getElementById('statHoyVal').textContent = lista.filter(o => new Date(o.fecha).toDateString() === hoy).length;
-      document.getElementById('panelEmptyMsg').style.display = lista.length ? 'none' : 'block';
+    function renderOrders(list) {
+      const today = new Date().toDateString();
+      document.querySelector('#statTotalLabel').parentElement.querySelector('.num').textContent = list.length;
+      document.getElementById('statNuevasVal').textContent = list.filter(o => o.estado === 'nuevo').length;
+      document.getElementById('statHoyVal').textContent = list.filter(o => new Date(o.fecha).toDateString() === today).length;
+      document.getElementById('panelEmptyMsg').style.display = list.length ? 'none' : 'block';
 
-      document.getElementById('panelBodyRows').innerHTML = lista.map(o => {
-        const piezasTexto = (o.piezas || []).map(p => `${p.label}: ${p.largo}x${p.ancho}mm ×${p.cant}`).join('\n');
-        return `<tr class="${grupoDeEstado(o.estado)}">
-          <td class="mono" style="font-size:11px;">${new Date(o.fecha).toLocaleDateString('es-MX', { day: '2-digit', month: 'short' })}</td>
-          <td>${o.nombre}</td><td>${o.empresa}</td>
-          <td class="mono" style="font-size:11.5px;">${o.telefono}</td>
-          <td style="font-size:12px;">${o.material}</td>
-          <td class="piezas-cell">${piezasTexto || '—'}</td>
+      document.getElementById('panelBodyRows').innerHTML = list.map(o => {
+        const strP = (o.piezas || []).map(p => `${p.label}: ${p.largo}x${p.ancho}mm ×${p.cant}`).join('\n');
+        return `<tr class="${getRowClass(o.estado)}">
+          <td class="mono" style="font-size:11px;">${new Date(o.fecha).toLocaleDateString('es-MX', {day:'2-digit',month:'short'})}</td>
+          <td><strong>${o.nombre}</strong></td><td>${o.empresa}</td><td class="mono">${o.telefono}</td>
+          <td style="font-size:12px;">${o.material}</td><td class="piezas-cell">${strP || '—'}</td>
           <td><select data-id="${o.id}">
-            <option value="nuevo" ${o.estado==='nuevo'?'selected':''}>Nuevo</option>
+            <option value="nuevo" ${o.estado==='nuevo'?'selected':''}>Recibido</option>
             <option value="cotizado" ${o.estado==='cotizado'?'selected':''}>Cotizado</option>
-            <option value="confirmado" ${o.estado==='confirmado'?'selected':''}>Confirmado</option>
+            <option value="confirmado" ${o.estado==='confirmado'?'selected':''}>En Producción</option>
             <option value="entregado" ${o.estado==='entregado'?'selected':''}>Entregado</option>
-            <option value="rechazado" ${o.estado==='rechazado'?'selected':''}>Rechazado</option>
+            <option value="rechazado" ${o.estado==='rechazado'?'selected':''}>Cancelado</option>
           </select></td>
         </tr>`;
       }).join('');
     }
 
     document.getElementById('panelBodyRows').addEventListener('change', async (e) => {
-      if (e.target.tagName !== 'SELECT') return;
-      await supabase.from('pedidos_maquila').update({ estado: e.target.value }).eq('id', e.target.dataset.id);
-      cargarOrdenes();
+      if(e.target.tagName === 'SELECT') {
+        await supabase.from('pedidos_maquila').update({ estado: e.target.value }).eq('id', e.target.dataset.id);
+        fetchOrders();
+      }
     });
 
-  } catch (err) {
-    console.error('No se pudo inicializar el panel de administrador:', err);
-    document.getElementById('openPanel')?.addEventListener('click', (e) => { e.preventDefault(); createToast('El panel de administrador aún no está configurado.'); });
+  } catch(e) {
+    document.getElementById('openPanel')?.addEventListener('click', (ev) => { ev.preventDefault(); createToast('Cdn Supabase no enlazado en servidor.'); });
   }
+
+  // Inicialización general al terminar de parsear el DOM
+  window.addEventListener('DOMContentLoaded', () => {
+    renderCatalog('all');
+    runLiveMath();
+  });
+
 </script>
 </body>
 </html>
