@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--
+  ================================================================
+  BRAITA MAQUINARIA — línea de maquinaria del grupo Braita
+  ================================================================
+  PENDIENTES antes de publicar:
+  1. Confirmar qué hace exactamente esta marca: ¿venden máquinas? ¿rentan?
+     ¿dan mantenimiento? ¿son distribuidores de una marca de maquinaria?
+  2. Catálogo real de máquinas (el de aquí es EJEMPLO, nombres genéricos).
+  3. Si de verdad manejan equipo CNC, aquí SÍ es el lugar correcto para
+     ese lenguaje técnico — pero sigue siendo texto de ejemplo hasta que
+     confirmen marcas/modelos reales.
+  4. Logo real de Braita Maquinaria.
+  ================================================================
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braita Maquinaria — Equipo para Carpintería Industrial | Grupo Braita</title>
+<meta name="description" content="La línea de maquinaria del Grupo Braita para talleres y fábricas de muebles. Ocotlán, Jalisco.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2315171A'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23F1EFE9' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%23E4610F' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15171A; --ink-soft:#565B60; --paper:#EEECE7; --paper-soft:#F6F4F0; --panel:#E3DFD6; --line:#CFC9BD;
+    --accent:#E4610F; --accent-dark:#B84E0C; --accent-light:#FF8436;
+    --font-display:'Space Grotesk',sans-serif; --font-sans:'Inter',sans-serif; --font-mono:'IBM Plex Mono',monospace;
+    --ease: cubic-bezier(0.16,1,0.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
+  body{ background:var(--paper); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit;}
+  ::selection{background:var(--accent); color:#fff;}
+  :focus-visible{outline:2.5px solid var(--accent-dark); outline-offset:3px;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+  section{padding:100px 0;}
+  @media (max-width:768px){ section{padding:64px 0;} }
+  .mono{font-family:var(--font-mono);}
+  h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; color:var(--ink);}
+  .eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--accent-dark); display:inline-flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:''; width:20px; height:2px; background:var(--accent); display:inline-block; }
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  .group-switcher { background: #0E0F11; padding: 10px 0; }
+  .group-switcher .gs-wrap { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
+  @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
+  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+  .group-switcher a{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
+  .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .group-switcher a:hover{ color:#F5F5F2; }
+  .group-switcher a.active{ color:#F5F5F2; border-bottom-color:currentColor; }
+  .group-switcher a .gs-beta{ opacity:.55; font-size:10px; }
+
+  header{ position:sticky; top:0; z-index:60; background:rgba(238,236,231,.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
+  .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo-mark{ width:32px; height:32px; flex-shrink:0; }
+  .logo-text{ font-family:var(--font-display); font-weight:700; font-size:19px; letter-spacing:.02em; text-transform:uppercase; }
+  .logo-text span{ color:var(--accent); }
+  nav ul{ list-style:none; display:flex; gap:34px; }
+  nav a{ text-decoration:none; font-size:14px; font-weight:500; color:var(--ink-soft); }
+  nav a:hover{ color:var(--accent-dark); }
+  .btn{ font-family:var(--font-sans); font-weight:600; font-size:13.5px; padding:12px 22px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; cursor:pointer; transition:transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease); }
+  .btn-primary{ background:var(--ink); color:var(--paper-soft); }
+  .btn-primary:hover{ background:var(--accent-dark); transform:translateY(-2px); }
+  .btn-outline{ border-color:var(--ink); color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:var(--paper-soft); }
+  .burger{ display:none; background:none; border:none; cursor:pointer; }
+  .burger span{ display:block; width:22px; height:1.5px; background:var(--ink); margin:5px 0; }
+  @media (max-width:860px){ nav ul{display:none;} .burger{display:block;} }
+
+  .hero{ padding:80px 0 0; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
+  @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
+  .hero h1{ font-size:clamp(34px,4.8vw,54px); line-height:1.06; margin:16px 0 20px; }
+  .hero h1 em{ font-style:normal; color:var(--accent-dark); }
+  .hero p.lead{ font-size:16.5px; color:var(--ink-soft); max-width:48ch; margin-bottom:30px; }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  .hero-art{ position:relative; }
+  .hero-art svg{ width:100%; height:auto; }
+  .hero-tag{ position:absolute; bottom:14px; left:14px; background:var(--paper-soft); border:1px solid var(--line); padding:8px 12px; font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); }
+  .spin-slow{ animation: spin 14s linear infinite; transform-origin:center; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .trust-strip{ background:var(--ink); color:var(--paper-soft); margin-top:64px; padding:24px 0; }
+  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px 32px; }
+  .trust-item{ display:flex; align-items:center; gap:10px; font-size:13px; font-family:var(--font-mono); color:#D7D6CE; }
+  .trust-item svg{ width:16px; height:16px; stroke:var(--accent); flex-shrink:0; }
+
+  .cat-head{ margin-bottom:44px; }
+  .cat-head h2{ font-size:clamp(26px,3.4vw,38px); margin-top:14px; max-width:600px; }
+  .cat-head p{ color:var(--ink-soft); margin-top:14px; max-width:60ch; }
+  .grid-maq{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:860px){ .grid-maq{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .grid-maq{ grid-template-columns:1fr; } }
+  .maq-card{ background:var(--paper-soft); display:flex; flex-direction:column; }
+  .maq-icon{ aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; background:var(--panel); }
+  .maq-icon svg{ width:56px; height:56px; stroke:var(--accent-dark); }
+  .maq-body{ padding:22px 22px 26px; }
+  .maq-body h3{ font-size:16.5px; font-weight:600; margin-bottom:8px; }
+  .maq-body p{ font-size:13px; color:var(--ink-soft); line-height:1.6; }
+  .maq-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-dark); margin-top:12px; display:block; }
+
+  .servicios-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:48px; }
+  @media (max-width:860px){ .servicios-grid{ grid-template-columns:1fr; } }
+  .srv-card{ background:var(--paper-soft); padding:34px 28px; border-top:3px solid var(--line); transition:border-color .3s var(--ease); }
+  .srv-card:hover{ border-top-color:var(--accent); }
+  .srv-card h4{ font-size:16.5px; font-weight:600; margin-bottom:10px; }
+  .srv-card p{ font-size:13.5px; color:var(--ink-soft); }
+
+  .contacto{ background:var(--ink); color:var(--paper-soft); }
+  .contacto-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  @media (max-width:900px){ .contacto-grid{ grid-template-columns:1fr; gap:40px; } }
+  .info-list{ list-style:none; display:flex; flex-direction:column; gap:16px; margin-top:26px; }
+  .info-list li{ display:flex; gap:14px; font-size:14px; color:#D7D6CE; }
+  .info-list b{ color:var(--paper-soft); display:block; font-weight:600; margin-bottom:2px; }
+
+  footer{ background:var(--paper-soft); border-top:1px solid var(--line); padding:36px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
+
+  .wa-float{ position:fixed; right:28px; bottom:28px; z-index:70; width:56px; height:56px; border-radius:50%; background:#1EBEA5; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.18); }
+  .wa-float svg{ width:26px; height:26px; }
+</style>
+</head>
+<body>
+
+<div class="group-switcher">
+  <div class="gs-wrap">
+    <span class="gs-label">Grupo Braita</span>
+    <a href="index.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
+    <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
+    <a href="braita-maquinaria.html" class="active"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
+    <a href="braita-sinc.html"><span class="gs-dot" style="background:#8B5A2B"></span>Sinc <span class="gs-beta">(beta)</span></a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav-row">
+    <!-- TODO: logo real de Braita Maquinaria -->
+    <a href="#inicio" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="16" fill="none" stroke="var(--ink)" stroke-width="2"/>
+        <circle cx="20" cy="20" r="5" fill="var(--accent)"/>
+        <line x1="20" y1="4" x2="20" y2="10" stroke="var(--ink)" stroke-width="2"/>
+        <line x1="20" y1="30" x2="20" y2="36" stroke="var(--ink)" stroke-width="2"/>
+        <line x1="4" y1="20" x2="10" y2="20" stroke="var(--ink)" stroke-width="2"/>
+        <line x1="30" y1="20" x2="36" y2="20" stroke="var(--ink)" stroke-width="2"/>
+      </svg>
+      <span class="logo-text">BRAITA <span>MAQUINARIA</span></span>
+    </a>
+    <nav><ul>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul></nav>
+    <div style="display:flex; gap:14px; align-items:center;">
+      <a href="#contacto" class="btn btn-outline">Contacto</a>
+      <a href="#" id="waTop" class="btn btn-primary" target="_blank">Cotizar equipo</a>
+      <button class="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Maquinaria para carpintería · Grupo Braita</span>
+        <h1>El equipo que tu <em>taller</em> necesita para crecer.</h1>
+        <p class="lead">Braita Maquinaria es la línea del grupo enfocada en equipo para talleres y fábricas de muebles: desde seccionado hasta enchapado. Contenido de ejemplo mientras confirmamos el catálogo real con el cliente.</p>
+        <div class="hero-ctas">
+          <a href="#equipo" class="btn btn-primary">Ver equipo</a>
+          <a href="#contacto" class="btn btn-outline">Hablar con un asesor</a>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <svg viewBox="0 0 400 320" fill="none">
+          <rect x="20" y="20" width="360" height="280" fill="var(--panel)" stroke="var(--line)" stroke-width="2"/>
+          <g class="spin-slow" style="transform-box: fill-box;">
+            <circle cx="200" cy="160" r="70" fill="none" stroke="var(--accent-dark)" stroke-width="3" stroke-dasharray="10 8"/>
+          </g>
+          <circle cx="200" cy="160" r="34" fill="none" stroke="var(--ink)" stroke-width="3"/>
+          <circle cx="200" cy="160" r="8" fill="var(--accent)"/>
+          <text x="60" y="270" class="mono" font-size="11" fill="var(--ink-soft)">esquema ilustrativo</text>
+        </svg>
+        <span class="hero-tag">Braita Maquinaria — boceto de marca</span>
+      </div>
+    </div>
+
+    <div class="trust-strip">
+      <div class="wrap trust-grid">
+        <div class="trust-item">Equipo para talleres y fábricas</div>
+        <div class="trust-item">Mismo respaldo y contacto de Braita</div>
+        <div class="trust-item">Asesoría según el tamaño de tu taller</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="equipo">
+    <div class="wrap">
+      <div class="cat-head reveal">
+        <span class="eyebrow">Equipo — ejemplo</span>
+        <h2>Categorías que planea manejar esta línea.</h2>
+        <p>Todavía no tenemos catálogo real ni confirmación de si Braita vende, renta o da mantenimiento a este equipo — esto es solo una idea de estructura, marcada como ejemplo.</p>
+      </div>
+      <div class="grid-maq">
+        <div class="maq-card reveal">
+          <div class="maq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="1"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+          <div class="maq-body">
+            <h3>Seccionadoras</h3>
+            <p>Equipo para corte de tableros a medida.</p>
+            <span class="maq-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+        <div class="maq-card reveal">
+          <div class="maq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M4 12a4 4 0 014-4h8a4 4 0 014 4M4 12a4 4 0 004 4h8a4 4 0 004-4"/></svg></div>
+          <div class="maq-body">
+            <h3>Canteadoras</h3>
+            <p>Equipo para aplicar cubrecanto en piezas.</p>
+            <span class="maq-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+        <div class="maq-card reveal">
+          <div class="maq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div class="maq-body">
+            <h3>Mantenimiento y refacciones</h3>
+            <p>Servicio para mantener el equipo funcionando.</p>
+            <span class="maq-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <span class="eyebrow reveal">Cómo podría funcionar</span>
+      <h2 class="reveal" style="font-size:clamp(24px,3.2vw,34px); margin-top:14px; max-width:600px;">Ejemplo de servicios — falta confirmar con el cliente.</h2>
+      <div class="servicios-grid">
+        <div class="srv-card reveal">
+          <h4>Venta de equipo</h4>
+          <p>Adquisición de maquinaria nueva o reacondicionada para tu taller.</p>
+        </div>
+        <div class="srv-card reveal">
+          <h4>Asesoría de compra</h4>
+          <p>Te ayudamos a elegir el equipo correcto según tu volumen de producción.</p>
+        </div>
+        <div class="srv-card reveal">
+          <h4>Soporte técnico</h4>
+          <p>Acompañamiento después de la compra para que el equipo no pare tu producción.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contacto">
+    <div class="wrap contacto-grid">
+      <div class="reveal">
+        <span class="eyebrow">Contacto</span>
+        <h2 style="color:var(--paper-soft); font-size:clamp(24px,3.2vw,32px); margin:14px 0 10px;">¿Buscas equipo para tu taller?</h2>
+        <p style="color:#D7D6CE; max-width:44ch;">Braita Maquinaria comparte oficina y contacto con el resto del grupo, en Ocotlán, Jalisco.</p>
+        <ul class="info-list">
+          <li><span><b>Dirección</b>Av. Francisco Zarco #1350, Lindavista, Ocotlán, Jal.</span></li>
+          <li><span><b>Teléfono / WhatsApp</b>392 931 3919</span></li>
+        </ul>
+      </div>
+      <div class="reveal" style="display:flex; align-items:center; justify-content:center;">
+        <a href="#" id="waBottom" class="btn btn-primary" target="_blank" style="padding:20px 36px; font-size:15px;">Escribir por WhatsApp →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 Braita Maquinaria — línea del Grupo Braita, Ocotlán, Jal.</span>
+    <a href="index.html" style="color:var(--accent-dark);">← Volver al grupo Braita</a>
+  </div>
+</footer>
+
+<a href="#" id="waFloat" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/></svg>
+</a>
+
+<script>
+  const WA = '523929313919';
+  const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+  document.getElementById('waTop').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
+  document.getElementById('waBottom').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
+  document.getElementById('waFloat').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
+
+  const revObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => revObserver.observe(el));
+</script>
+
+</body>
+</html>

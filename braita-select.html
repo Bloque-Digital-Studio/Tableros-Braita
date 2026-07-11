@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--
+  ================================================================
+  BRAITA SELECT — línea premium del grupo Braita
+  ================================================================
+  PENDIENTES antes de publicar:
+  1. Confirmar con el cliente si "plateado y dorado" ya es una paleta definitiva
+     o solo una idea inicial — aquí está IMPROVISADA sobre esa idea.
+  2. Catálogo real de acabados premium (el de aquí es EJEMPLO).
+  3. Logo real de Braita Select (aquí usa el mismo mark de Braita con otro color).
+  4. Confirmar textos: qué es exactamente "material premium" para el cliente
+     (¿alto brillo importado? ¿laca? ¿texturas especiales?).
+  ================================================================
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Braita Select — Línea Premium de Acabados | Grupo Braita</title>
+<meta name="description" content="La línea premium del Grupo Braita: acabados de alta gama para proyectos que buscan distinción. Ocotlán, Jalisco.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%230B0C0E'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23C6A24D' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%23C6A24D' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-base:#0B0C0E; --bg-surface:#141519; --bg-panel:#1C1E23;
+    --text-primary:#F4F3F0; --text-secondary:#B9BEC7; --text-muted:#787D87;
+    --silver:#B9BEC7; --gold:#C6A24D; --gold-dark:#A6822F; --gold-light:#E0BE72;
+    --border-color:#2A2C31; --border-strong:#3C3F46;
+    --font-display:'Space Grotesk',sans-serif; --font-sans:'Inter',sans-serif; --font-mono:'IBM Plex Mono',monospace;
+    --ease: cubic-bezier(0.16,1,0.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
+  body{ background:var(--bg-base); color:var(--text-primary); font-family:var(--font-sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit;}
+  ::selection{background:var(--gold); color:#0B0C0E;}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+  section{padding:100px 0;}
+  @media (max-width:768px){ section{padding:64px 0;} }
+  .mono{font-family:var(--font-mono);}
+  h1,h2,h3{font-family:var(--font-display); font-weight:600; letter-spacing:-.01em; color:var(--text-primary);}
+  .eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-light); display:inline-flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:''; width:20px; height:1px; background:var(--gold); display:inline-block; }
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* barra de grupo */
+  .group-switcher { background: #000; padding: 10px 0; }
+  .group-switcher .gs-wrap { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
+  @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
+  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+  .group-switcher a{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
+  .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .group-switcher a:hover{ color:#F5F5F2; }
+  .group-switcher a.active{ color:#F5F5F2; border-bottom-color:currentColor; }
+  .group-switcher a .gs-beta{ opacity:.55; font-size:10px; }
+
+  /* header */
+  header{ position:sticky; top:0; z-index:60; background:rgba(11,12,14,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-color); }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
+  .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo-mark{ width:32px; height:32px; flex-shrink:0; }
+  .logo-text{ font-family:var(--font-display); font-weight:700; font-size:19px; letter-spacing:.02em; }
+  .logo-text b{ color:var(--gold-light); font-weight:700; }
+  nav ul{ list-style:none; display:flex; gap:34px; }
+  nav a{ text-decoration:none; font-size:14px; font-weight:500; color:var(--text-secondary); }
+  nav a:hover{ color:var(--gold-light); }
+  .btn{ font-family:var(--font-sans); font-weight:600; font-size:13.5px; padding:12px 22px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; cursor:pointer; transition:transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease); }
+  .btn-gold{ background:linear-gradient(135deg, var(--gold-light), var(--gold-dark)); color:#0B0C0E; }
+  .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(198,162,77,.25); }
+  .btn-outline{ border-color:var(--silver); color:var(--silver); }
+  .btn-outline:hover{ border-color:var(--gold-light); color:var(--gold-light); }
+  .burger{ display:none; background:none; border:none; cursor:pointer; }
+  .burger span{ display:block; width:22px; height:1.5px; background:var(--text-primary); margin:5px 0; }
+  @media (max-width:860px){ nav ul{display:none;} .burger{display:block;} }
+
+  /* hero */
+  .hero{ padding:80px 0 0; overflow:hidden; }
+  .hero::before{ content:''; position:absolute; }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
+  @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
+  .hero h1{ font-size:clamp(34px,4.8vw,54px); line-height:1.08; margin:16px 0 20px; }
+  .hero h1 em{ font-style:normal; background:linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p.lead{ font-size:16.5px; color:var(--text-secondary); max-width:48ch; margin-bottom:30px; }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-art{ aspect-ratio:4/3.2; background:linear-gradient(160deg, #1C1E23, #0B0C0E); border:1px solid var(--border-strong); position:relative; overflow:hidden; }
+  .hero-art .swatch-row{ position:absolute; inset:0; display:flex; flex-direction:column; }
+  .hero-art .swatch{ flex:1; display:flex; align-items:flex-end; padding:18px; }
+  .hero-art .swatch span{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.65); }
+
+  /* trust strip */
+  .trust-strip{ background:#000; padding:24px 0; margin-top:64px; }
+  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px 32px; }
+  .trust-item{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; color:var(--silver); display:flex; align-items:center; gap:8px; }
+  .trust-item::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--gold); }
+
+  /* catalogo */
+  .cat-head{ margin-bottom:44px; }
+  .cat-head h2{ font-size:clamp(26px,3.4vw,38px); margin-top:14px; max-width:600px; }
+  .cat-head p{ color:var(--text-secondary); margin-top:14px; max-width:60ch; }
+  .grid-select{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-color); border:1px solid var(--border-color); }
+  @media (max-width:860px){ .grid-select{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .grid-select{ grid-template-columns:1fr; } }
+  .sel-card{ background:var(--bg-surface); padding:0; display:flex; flex-direction:column; }
+  .sel-swatch{ aspect-ratio:4/3; position:relative; }
+  .sel-body{ padding:22px 22px 26px; }
+  .sel-body h3{ font-size:16.5px; font-weight:600; margin-bottom:8px; }
+  .sel-body p{ font-size:13px; color:var(--text-secondary); line-height:1.6; }
+  .sel-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-light); margin-top:12px; display:block; }
+
+  /* por que select */
+  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-color); border:1px solid var(--border-color); margin-top:48px; }
+  @media (max-width:860px){ .why-grid{ grid-template-columns:1fr; } }
+  .why-card{ background:var(--bg-surface); padding:36px 30px; border-top:2px solid var(--border-color); transition:border-color .3s var(--ease); }
+  .why-card:hover{ border-top-color:var(--gold); }
+  .why-card h4{ font-size:17px; font-weight:600; margin-bottom:10px; }
+  .why-card p{ font-size:13.5px; color:var(--text-secondary); }
+
+  /* contacto */
+  .contacto{ background:#000; }
+  .contacto-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  @media (max-width:900px){ .contacto-grid{ grid-template-columns:1fr; gap:40px; } }
+  .info-list{ list-style:none; display:flex; flex-direction:column; gap:16px; margin-top:26px; }
+  .info-list li{ display:flex; gap:14px; font-size:14px; color:var(--silver); }
+  .info-list b{ color:var(--text-primary); display:block; font-weight:600; margin-bottom:2px; }
+
+  footer{ background:#000; border-top:1px solid var(--border-color); padding:36px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:12.5px; color:var(--text-muted); font-family:var(--font-mono); }
+
+  .wa-float{ position:fixed; right:28px; bottom:28px; z-index:70; width:56px; height:56px; border-radius:50%; background:#1EBEA5; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.4); }
+  .wa-float svg{ width:26px; height:26px; }
+</style>
+</head>
+<body>
+
+<!-- BARRA DE GRUPO -->
+<div class="group-switcher">
+  <div class="gs-wrap">
+    <span class="gs-label">Grupo Braita</span>
+    <a href="index.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
+    <a href="braita-select.html" class="active"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
+    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
+    <a href="braita-sinc.html"><span class="gs-dot" style="background:#8B5A2B"></span>Sinc <span class="gs-beta">(beta)</span></a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav-row">
+    <!-- TODO: logo real de Braita Select cuando lo tengan -->
+    <a href="#inicio" class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <rect x="4" y="4" width="32" height="32" fill="#0B0C0E" stroke="var(--gold)" stroke-width="1"/>
+        <rect x="12" y="12" width="16" height="16" fill="none" stroke="var(--gold-light)" stroke-width="1.4"/>
+        <line x1="12" y1="20" x2="28" y2="20" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="3 2"/>
+      </svg>
+      <span class="logo-text">BRAITA <b>SELECT</b></span>
+    </a>
+    <nav><ul>
+      <li><a href="#coleccion">Colección</a></li>
+      <li><a href="#porque">Por qué Select</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul></nav>
+    <div style="display:flex; gap:14px; align-items:center;">
+      <a href="#contacto" class="btn btn-outline">Contacto</a>
+      <a href="#" id="waTop" class="btn btn-gold" target="_blank">Cotizar</a>
+      <button class="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Línea premium · Grupo Braita</span>
+        <h1>Acabados que se <em>notan</em> antes de tocarlos.</h1>
+        <p class="lead">Braita Select es la línea de materiales de alta gama del grupo: superficies, texturas y acabados pensados para proyectos donde el detalle es la decisión de diseño.</p>
+        <div class="hero-ctas">
+          <a href="#coleccion" class="btn btn-gold">Ver colección</a>
+          <a href="#contacto" class="btn btn-outline">Hablar con un asesor</a>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <div class="swatch-row">
+          <div class="swatch" style="background:linear-gradient(135deg,#2A2C31,#0B0C0E);"><span>Acabado 01 — ejemplo</span></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#3C3F46,#1C1E23);"><span>Acabado 02 — ejemplo</span></div>
+          <div class="swatch" style="background:linear-gradient(135deg,#A6822F,#C6A24D);"><span style="color:#0B0C0E;">Acabado 03 — ejemplo</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-strip">
+      <div class="wrap trust-grid">
+        <div class="trust-item">Acabados de alta gama</div>
+        <div class="trust-item">Mismo respaldo y contacto de Braita</div>
+        <div class="trust-item">Proyectos por encargo</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="coleccion">
+    <div class="wrap">
+      <div class="cat-head reveal">
+        <span class="eyebrow">Colección — ejemplo</span>
+        <h2>Una muestra de lo que viene en esta línea.</h2>
+        <p>Esta sección es un placeholder de diseño. En cuanto Braita confirme el catálogo real de acabados premium, se reemplaza directo.</p>
+      </div>
+      <div class="grid-select">
+        <div class="sel-card reveal">
+          <div class="sel-swatch" style="background:linear-gradient(150deg,#2A2C31,#0B0C0E);"></div>
+          <div class="sel-body">
+            <h3>Acabado Ónix</h3>
+            <p>Superficie mate profunda, ejemplo de línea oscura premium.</p>
+            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+        <div class="sel-card reveal">
+          <div class="sel-swatch" style="background:linear-gradient(150deg,#C9CCC4,#8C919B);"></div>
+          <div class="sel-body">
+            <h3>Acabado Platino</h3>
+            <p>Tono plateado metálico, ejemplo de línea clara premium.</p>
+            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+        <div class="sel-card reveal">
+          <div class="sel-swatch" style="background:linear-gradient(150deg,#E0BE72,#A6822F);"></div>
+          <div class="sel-body">
+            <h3>Acabado Oro Satinado</h3>
+            <p>Acento dorado cepillado, ejemplo de detalle metálico.</p>
+            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="porque">
+    <div class="wrap">
+      <span class="eyebrow reveal">Por qué Select</span>
+      <h2 class="reveal" style="font-size:clamp(24px,3.2vw,34px); margin-top:14px; max-width:600px;">La misma confianza de Braita, con otro nivel de acabado.</h2>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <h4>Curaduría, no catálogo genérico</h4>
+          <p>Cada acabado se elige por su acabado final, no solo por disponibilidad de almacén.</p>
+        </div>
+        <div class="why-card reveal">
+          <h4>Mismo respaldo del grupo</h4>
+          <p>Select opera con la misma gente y el mismo compromiso de entrega que ya conoces de Braita.</p>
+        </div>
+        <div class="why-card reveal">
+          <h4>Proyectos a la medida</h4>
+          <p>Pensado para arquitectos y diseñadores que necesitan una pieza que se distinga del resto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contacto">
+    <div class="wrap contacto-grid">
+      <div class="reveal">
+        <span class="eyebrow">Contacto</span>
+        <h2 style="font-size:clamp(24px,3.2vw,32px); margin:14px 0 10px;">¿Tienes un proyecto en mente?</h2>
+        <p style="color:var(--text-secondary); max-width:44ch;">Braita Select comparte oficina y contacto con el resto del grupo, en Ocotlán, Jalisco.</p>
+        <ul class="info-list">
+          <li><span><b>Dirección</b>Av. Francisco Zarco #1350, Lindavista, Ocotlán, Jal.</span></li>
+          <li><span><b>Teléfono / WhatsApp</b>392 931 3919</span></li>
+        </ul>
+        <p class="mono" style="font-size:11px; color:var(--text-muted); margin-top:18px; line-height:1.6;">*Confirmar con Braita si Select tendrá horario/atención distinta al resto del grupo.</p>
+      </div>
+      <div class="reveal" style="display:flex; align-items:center; justify-content:center;">
+        <a href="#" id="waBottom" class="btn btn-gold" target="_blank" style="padding:20px 36px; font-size:15px;">Escribir por WhatsApp →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>© 2026 Braita Select — línea del Grupo Braita, Ocotlán, Jal.</span>
+    <a href="index.html" style="color:var(--gold-light);">← Volver al grupo Braita</a>
+  </div>
+</footer>
+
+<a href="#" id="waFloat" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/></svg>
+</a>
+
+<script>
+  const WA = '523929313919';
+  const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+  document.getElementById('waTop').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
+  document.getElementById('waBottom').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
+  document.getElementById('waFloat').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
+
+  const revObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => revObserver.observe(el));
+</script>
+
+</body>
+</html>
