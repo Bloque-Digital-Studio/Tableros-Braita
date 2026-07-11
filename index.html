@@ -1513,6 +1513,55 @@
     opacity: 1;
   }
 
+  /* ════════════════════════════════════════════════════════════════════
+     BOTÓN FLOTANTE DEL PANEL
+     ════════════════════════════════════════════════════════════════════ */
+  
+  .panel-float {
+    position: fixed;
+    right: 100px;
+    bottom: 28px;
+    z-index: 69;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(47, 102, 144, 0.25);
+    text-decoration: none;
+    transition: all 0.3s var(--transition-smooth);
+    cursor: pointer;
+    border: none;
+  }
+
+  .panel-float svg {
+    width: 26px;
+    height: 26px;
+    color: var(--text-light);
+    stroke-width: 2;
+  }
+
+  .panel-float:hover {
+    background: var(--brand-dark);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 12px 32px rgba(47, 102, 144, 0.35);
+  }
+
+  @media (max-width: 640px) {
+    .panel-float {
+      right: 80px;
+      width: 48px;
+      height: 48px;
+    }
+
+    .panel-float svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -1644,12 +1693,15 @@
         <h2>Tableros Estandarizados e Industriales</h2>
         <p>Selecciona la base estructural para tu proyecto de fabricación. Todos los materiales cuentan con opción de habilitado completo en taller.</p>
       </div>
-      <div class="filter-group" id="filter-group">
-        <button class="filter-btn is-active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="melamina">Melaminas</button>
-        <button class="filter-btn" data-filter="mdf">MDF / Sustratos</button>
-        <button class="filter-btn" data-filter="triplay">Triplays</button>
-        <button class="filter-btn" data-filter="premium">Especialidades</button>
+      <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 30px;">
+        <div class="filter-group" id="filter-group">
+          <button class="filter-btn is-active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="melamina">Melaminas</button>
+          <button class="filter-btn" data-filter="mdf">MDF / Sustratos</button>
+          <button class="filter-btn" data-filter="triplay">Triplays</button>
+          <button class="filter-btn" data-filter="premium">Especialidades</button>
+        </div>
+        <a href="#" class="openPanelBtn btn btn-brand" style="flex-shrink: 0;">📋 Ir a Panel de Control</a>
       </div>
     </div>
 
@@ -1680,6 +1732,9 @@
           <p>Colocamos las perforaciones para bisagras, pernos de unión y sistemas modulares según el plano técnico que nos compartas.</p>
         </div>
       </div>
+      <div style="display: flex; justify-content: center; margin-top: 50px;">
+        <a href="#" class="openPanelBtn btn btn-brand">📋 Consultar Órdenes en Panel</a>
+      </div>
     </div>
   </section>
 
@@ -1687,6 +1742,9 @@
     <div class="reveal">
       <div class="sheet-tag"><span class="num">HOJA 04/06</span><span class="eyebrow">Línea de Integración</span></div>
       <h2>Metodología de Suministro Exacto</h2>
+    </div>
+    <div style="display: flex; justify-content: center; margin-bottom: 40px;">
+      <a href="#" class="openPanelBtn btn btn-brand">📋 Revisar Órdenes en Proceso</a>
     </div>
     <div class="proceso-flow">
       <div class="flow-card reveal">
@@ -1987,6 +2045,12 @@
 <a href="#" id="wa-sticky-float" class="wa-float" target="_blank" aria-label="Contacto WhatsApp">
   <svg viewBox="0 0 32 32">
     <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/>
+  </svg>
+</a>
+
+<a href="#" id="panel-sticky-float" class="panel-float" aria-label="Abrir Panel">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 6h12M8 12h12M8 18h12M3 6h.01M3 12h.01M3 18h.01"/>
   </svg>
 </a>
 
@@ -2380,6 +2444,29 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
     document.getElementById('panelOverlay').addEventListener('click', (e) => {
       if (e.target.id === 'panelOverlay') e.target.classList.remove('open');
     });
+
+    // Agregar funcionalidad a TODOS los botones openPanelBtn
+    document.querySelectorAll('.openPanelBtn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        document.getElementById('panelOverlay').classList.add('open');
+        const { data } = await supabase.auth.getSession();
+        if (data.session) { mostrarPanelContenido(); cargarOrdenes(); }
+        else { mostrarPanelLogin(); }
+      });
+    });
+
+    // Botón flotante del panel
+    const panelFloatBtn = document.getElementById('panel-sticky-float');
+    if (panelFloatBtn) {
+      panelFloatBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        document.getElementById('panelOverlay').classList.add('open');
+        const { data } = await supabase.auth.getSession();
+        if (data.session) { mostrarPanelContenido(); cargarOrdenes(); }
+        else { mostrarPanelLogin(); }
+      });
+    }
 
     function mostrarPanelLogin() {
       document.getElementById('panelLoginBox').style.display = 'block';
