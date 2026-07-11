@@ -22,19 +22,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="premium-animations.css">
 <style>
   :root{
-    --bg-base:#0B0C0E; --bg-surface:#141519; --bg-panel:#1C1E23;
-    --text-primary:#F4F3F0; --text-secondary:#B9BEC7; --text-muted:#787D87;
-    --silver:#B9BEC7; --gold:#C6A24D; --gold-dark:#A6822F; --gold-light:#E0BE72;
-    --border-color:#2A2C31; --border-strong:#3C3F46;
+    --bg-base:#FAFAF9; --bg-surface:#FFFFFF; --bg-panel:#F3F2F0;
+    --text-primary:#0F1117; --text-secondary:#57595C; --text-muted:#8B8E91;
+    --silver:#8B8E91; --gold:#D4AF37; --gold-dark:#B8860B; --gold-light:#FFD700;
+    --border-color:#D8D7D4; --border-strong:#C0C0C0;
     --font-display:'Space Grotesk',sans-serif; --font-sans:'Inter',sans-serif; --font-mono:'IBM Plex Mono',monospace;
     --ease: cubic-bezier(0.16,1,0.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
-  body{ background:var(--bg-base); color:var(--text-primary); font-family:var(--font-sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  body{ background: linear-gradient(135deg, var(--bg-base) 0%, #F8F7F5 100%); color:var(--text-primary); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
   img,svg{display:block; max-width:100%;}
   a{color:inherit;}
   ::selection{background:var(--gold); color:#0B0C0E;}
@@ -62,7 +63,7 @@
   .group-switcher a .gs-beta{ opacity:.55; font-size:10px; }
 
   /* header */
-  header{ position:sticky; top:0; z-index:60; background:rgba(11,12,14,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-color); }
+  header{ position:sticky; top:0; z-index:60; background:rgba(250,250,249,.88); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%); border-bottom:1px solid rgba(216,215,212,.5); box-shadow: 0 8px 32px rgba(0,0,0,0.04); }
   .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
   .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
   .logo-mark{ width:32px; height:32px; flex-shrink:0; }
@@ -104,10 +105,11 @@
   .cat-head{ margin-bottom:44px; }
   .cat-head h2{ font-size:clamp(26px,3.4vw,38px); margin-top:14px; max-width:600px; }
   .cat-head p{ color:var(--text-secondary); margin-top:14px; max-width:60ch; }
-  .grid-select{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-color); border:1px solid var(--border-color); }
+  .grid-select{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; background: transparent; }
   @media (max-width:860px){ .grid-select{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px){ .grid-select{ grid-template-columns:1fr; } }
-  .sel-card{ background:var(--bg-surface); padding:0; display:flex; flex-direction:column; }
+  .sel-card{ background:var(--bg-surface); padding:0; display:flex; flex-direction:column; transition: all 0.4s var(--ease); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .sel-card:hover{ transform: translateY(-8px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
   .sel-swatch{ aspect-ratio:4/3; position:relative; }
   .sel-body{ padding:22px 22px 26px; }
   .sel-body h3{ font-size:16.5px; font-weight:600; margin-bottom:8px; }
@@ -115,10 +117,10 @@
   .sel-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-light); margin-top:12px; display:block; }
 
   /* por que select */
-  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border-color); border:1px solid var(--border-color); margin-top:48px; }
+  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; background: transparent; }
   @media (max-width:860px){ .why-grid{ grid-template-columns:1fr; } }
-  .why-card{ background:var(--bg-surface); padding:36px 30px; border-top:2px solid var(--border-color); transition:border-color .3s var(--ease); }
-  .why-card:hover{ border-top-color:var(--gold); }
+  .why-card{ background:var(--bg-surface); padding:36px 30px; border-top:2px solid var(--border-color); transition: all 0.4s var(--ease); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .why-card:hover{ border-top-color:var(--gold); transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
   .why-card h4{ font-size:17px; font-weight:600; margin-bottom:10px; }
   .why-card p{ font-size:13.5px; color:var(--text-secondary); }
 
@@ -303,6 +305,7 @@
   }, { threshold: .12 });
   document.querySelectorAll('.reveal').forEach(el => revObserver.observe(el));
 </script>
+<script src="premium-interactions.js"></script>
 
 </body>
 </html>

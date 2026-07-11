@@ -18,36 +18,39 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="premium-animations.css">
 
 <style>
   :root {
-    --bg-base: #EDEEEA;
-    --bg-surface: #F5F5F2;
-    --bg-panel: #E1E3DC;
-    --bg-dark: #15171A;
-    --bg-dark-surface: #1F2124;
+    --bg-base: #FAFAF9;
+    --bg-surface: #FFFFFF;
+    --bg-panel: #F3F2F0;
+    --bg-dark: #0F1117;
+    --bg-dark-surface: #1A1F2B;
     
-    --text-primary: #15171A;
-    --text-secondary: #565B60;
-    --text-muted: #8A8D86;
-    --text-light: #F5F5F2;
-    --text-light-muted: #ABAAA1;
+    --text-primary: #0F1117;
+    --text-secondary: #57595C;
+    --text-muted: #8B8E91;
+    --text-light: #FAFAF9;
+    --text-light-muted: #B5BACA;
 
     --brand: #2F6690;
-    --brand-dark: #1F4A68;
-    --brand-light: #4A87B0;
-    --border-color: #C9CCC4;
-    --border-dark: #3A3D38;
+    --brand-dark: #1A3D52;
+    --brand-light: #5A8FBD;
+    --border-color: #D8D7D4;
+    --border-dark: #2D323B;
     
     --font-display: 'Space Grotesk', sans-serif;
     --font-sans: 'Inter', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
     
     --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-    --radius-sm: 2px;
-    --radius-md: 4px;
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
-    --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
+    --transition-normal: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-md: 0 12px 32px rgba(0,0,0,0.12);
+    --shadow-lg: 0 20px 48px rgba(0,0,0,0.15);
   }
 
   *, *::before, *::after {
@@ -62,11 +65,11 @@
   }
 
   body {
-    background-color: var(--bg-base);
+    background: linear-gradient(135deg, var(--bg-base) 0%, #F8F7F5 100%);
     color: var(--text-primary);
     font-family: var(--font-sans);
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -136,8 +139,8 @@
 
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.85s var(--transition-smooth), transform 0.85s var(--transition-smooth);
+    transform: translateY(40px);
+    transition: opacity 0.9s var(--transition-smooth), transform 0.9s var(--transition-smooth);
   }
   .reveal.active {
     opacity: 1;
@@ -149,46 +152,65 @@
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
-    padding: 16px 28px;
-    border: 1.5px solid transparent;
-    border-radius: var(--radius-sm);
-    cursor:pointer;
+    letter-spacing: 0.06em;
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    transition: all 0.3s var(--transition-smooth);
+    transition: all 0.35s var(--transition-smooth);
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    transition: left 0.4s var(--transition-smooth);
+    z-index: -1;
   }
 
   .btn-dark {
-    background-color: var(--bg-dark);
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1A1F2B 100%);
     color: var(--text-light);
+    box-shadow: var(--shadow-md);
   }
   .btn-dark:hover {
-    background-color: var(--brand-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--bg-dark) 100%);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
   }
 
   .btn-outline {
-    background-color: transparent;
-    border-color: var(--bg-dark);
+    background-color: var(--bg-surface);
+    border: 2px solid var(--bg-dark);
     color: var(--bg-dark);
   }
   .btn-outline:hover {
     background-color: var(--bg-dark);
     color: var(--text-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 
   .btn-brand {
-    background-color: var(--brand);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
     color: white;
+    box-shadow: var(--shadow-md);
   }
   .btn-brand:hover {
-    background-color: var(--brand-dark);
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
   }
 
   #toast-container {
@@ -224,11 +246,12 @@
     position: sticky;
     top: 0;
     z-index: 500;
-    background-color: rgba(237, 238, 234, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.3s ease;
+    background: rgba(250, 250, 249, 0.88);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(216, 215, 212, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s var(--transition-normal);
   }
   .navbar {
     display: flex;
@@ -332,17 +355,19 @@
     .hero-container { grid-template-columns: 1fr; gap: 48px; }
   }
   .hero-content h1 {
-    font-size: clamp(38px, 5.5vw, 64px);
-    line-height: 1.05;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.08;
+    margin-bottom: 28px;
+    letter-spacing: -0.03em;
+    font-weight: 700;
   }
-  .hero-content h1 span { color: var(--brand-dark); }
+  .hero-content h1 span { color: var(--brand); font-weight: 700; }
   .hero-content p {
     font-size: 18px;
     color: var(--text-secondary);
-    max-width: 50ch;
-    margin-bottom: 40px;
+    max-width: 52ch;
+    margin-bottom: 44px;
+    line-height: 1.75;
   }
   .hero-buttons {
     display: flex;
@@ -502,9 +527,8 @@
   .catalog-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background-color: var(--border-color);
-    border: 1px solid var(--border-color);
+    gap: 16px;
+    background-color: transparent;
   }
   @media (max-width: 900px) { .catalog-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px) { .catalog-grid { grid-template-columns: 1fr; } }
@@ -514,10 +538,14 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    transition: transform 0.3s var(--transition-smooth);
+    transition: all 0.4s var(--transition-smooth);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
   }
   .prod-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
     z-index: 5;
   }
   .prod-media {
@@ -606,29 +634,32 @@
   .servicios-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background-color: var(--border-color);
-    border: 1px solid var(--border-color);
+    gap: 16px;
+    background-color: transparent;
   }
   @media (max-width: 900px) { .servicios-grid { grid-template-columns: 1fr; } }
 
   .srv-node {
     background-color: var(--bg-base);
-    padding: 40px;
+    padding: 44px;
     border-top: 4px solid var(--border-color);
-    transition: border-color 0.3s var(--transition-smooth);
+    transition: all 0.4s var(--transition-smooth);
+    border-radius: var(--radius-md);
   }
-  .srv-node:hover { border-top-color: var(--brand); }
-  .srv-icon { width: 40px; height: 40px; stroke: var(--brand); margin-bottom: 24px; }
-  .srv-node h4 { font-size: 20px; margin-bottom: 12px; }
-  .srv-node p { font-size: 14.5px; color: var(--text-secondary); }
+  .srv-node:hover {
+    border-top-color: var(--brand);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+  .srv-icon { width: 48px; height: 48px; stroke: var(--brand); margin-bottom: 24px; }
+  .srv-node h4 { font-size: 20px; margin-bottom: 14px; font-weight: 700; }
+  .srv-node p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
 
   .proceso-flow {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background-color: var(--border-color);
-    border: 1px solid var(--border-color);
+    gap: 16px;
+    background-color: transparent;
     margin-top: 56px;
   }
   @media (max-width: 992px) { .proceso-flow { grid-template-columns: repeat(2, 1fr); } }
@@ -636,24 +667,31 @@
 
   .flow-card {
     background-color: var(--bg-surface);
-    padding: 32px;
+    padding: 36px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s var(--transition-smooth);
+  }
+  .flow-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
   }
   .flow-num {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 14px;
     color: var(--brand);
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 20px;
   }
-  .flow-card h3 { font-size: 18px; margin-bottom: 12px; }
-  .flow-card p { font-size: 14px; color: var(--text-secondary); }
+  .flow-card h3 { font-size: 18px; margin-bottom: 12px; font-weight: 700; }
+  .flow-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
   .mesa-control-section {
-    background-color: var(--bg-dark);
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1A1F2B 100%);
     color: var(--text-light);
   }
-  .mesa-control-section h2 { color: var(--text-light); font-size: clamp(28px, 4vw, 42px); }
-  .mesa-control-section p { color: var(--text-light-muted); }
+  .mesa-control-section h2 { color: var(--text-light); font-size: clamp(32px, 4.5vw, 48px); font-weight: 700; }
+  .mesa-control-section p { color: var(--text-light-muted); line-height: 1.7; }
 
   .mesa-layout {
     display: grid;
@@ -2128,6 +2166,7 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
     }
   }
 </script>
+<script src="premium-interactions.js"></script>
 
 </body>
 </html>
