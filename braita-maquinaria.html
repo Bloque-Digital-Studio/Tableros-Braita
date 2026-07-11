@@ -131,6 +131,192 @@
 
   .wa-float{ position:fixed; right:28px; bottom:28px; z-index:70; width:56px; height:56px; border-radius:50%; background:#1EBEA5; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.18); }
   .wa-float svg{ width:26px; height:26px; }
+
+  /* ═══════════════════════════════════════════════════════════════
+     DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
+     ═══════════════════════════════════════════════════════════════ */
+  
+  .hero{ 
+    background: linear-gradient(135deg, rgba(228,97,15,0.08) 0%, rgba(228,97,15,0.04) 100%), 
+                linear-gradient(180deg, var(--paper) 0%, #FAFAF9 100%);
+    position: relative;
+    overflow: visible;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(228,97,15,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero .wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .trust-strip{
+    background: linear-gradient(90deg, var(--accent-dark) 0%, var(--accent) 50%, var(--accent-dark) 100%);
+    background-size: 200% 100%;
+  }
+
+  #equipo {
+    background: linear-gradient(135deg, var(--paper-soft) 0%, #FFFFFF 50%, var(--panel) 100%);
+    position: relative;
+  }
+
+  #equipo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      repeating-linear-gradient(90deg, transparent 0px, transparent 99px, rgba(228,97,15,0.05) 99px, rgba(228,97,15,0.05) 100px),
+      repeating-linear-gradient(0deg, transparent 0px, transparent 99px, rgba(228,97,15,0.04) 99px, rgba(228,97,15,0.04) 100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #equipo .wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  #servicios {
+    background: linear-gradient(135deg, #FAFAF9 0%, #F6F3F0 100%);
+    position: relative;
+  }
+
+  #servicios::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+    z-index: 0;
+  }
+
+  #servicios .wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  .contacto {
+    background: linear-gradient(135deg, var(--ink) 0%, var(--accent-dark) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contacto::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,132,54,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .contacto .wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* DECORATIVOS GEOMÉTRICOS EN TARJETAS */
+  .maq-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--accent) 0%, transparent 70%);
+    border-radius: 0 8px 0 40px;
+    opacity: 0.8;
+    z-index: 1;
+  }
+
+  .maq-card {
+    position: relative;
+  }
+
+  /* LÍNEA ACCENT EN HEADER DE EQUIPO */
+  .cat-head::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+    margin-top: 20px;
+    border-radius: 2px;
+  }
+
+  /* LÍNEA DIVISORIA EN SERVICIOS */
+  .srv-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+    border-radius: 8px 0 0 8px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s var(--ease);
+    z-index: 2;
+  }
+
+  .srv-card:hover::before {
+    transform: scaleY(1);
+  }
+
+  /* ESPACIOS PARA IMÁGENES — PLACEHOLDER VISUAL */
+  .hero-art {
+    position: relative;
+  }
+
+  .hero-art::after {
+    content: 'Espacio preparado para imagen/gráfico del hero';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: rgba(228,97,15,0.4);
+    font-family: var(--font-mono);
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .hero-art:hover::after {
+    opacity: 1;
+  }
+
+  /* EFECTO GLOW EN ACCENT */
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(228,97,15,0.3); }
+    50% { box-shadow: 0 0 30px rgba(228,97,15,0.5); }
+  }
+
+  .trust-strip {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
 </style>
 </head>
 <body>

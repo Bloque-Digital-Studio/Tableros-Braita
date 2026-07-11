@@ -75,6 +75,151 @@
 
   footer{ padding:30px 0; border-top:1px solid var(--line); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
+
+  /* ═══════════════════════════════════════════════════════════════
+     DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
+     BRAITA SINC — Línea de Chapas/Veneers (Madera/Café)
+     ═══════════════════════════════════════════════════════════════ */
+
+  body {
+    background: linear-gradient(135deg, #FAFAF9 0%, #F7F5F2 100%);
+  }
+
+  .hero {
+    background: linear-gradient(135deg, rgba(139,90,43,0.06) 0%, rgba(139,90,43,0.02) 100%),
+                linear-gradient(180deg, #FAFAF9 0%, #F9F7F4 100%);
+    position: relative;
+    overflow: visible;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(139,90,43,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139,90,43,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+  }
+
+  .info-card {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F9F7F4 100%);
+    border: 1px solid rgba(139,90,43,0.15);
+    box-shadow: 0 4px 16px rgba(139,90,43,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--wood) 0%, transparent 100%);
+    z-index: 1;
+  }
+
+  .swatch-strip {
+    background: linear-gradient(90deg, transparent 0%, rgba(139,90,43,0.04) 50%, transparent 100%);
+    padding: 30px 20px;
+    border-radius: 8px;
+    margin-bottom: 50px;
+  }
+
+  .swatch-strip div {
+    box-shadow: 0 2px 8px rgba(139,90,43,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .swatch-strip div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139,90,43,0.18);
+  }
+
+  /* LÍNEA DECORATIVA EN HERO */
+  .hero h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--wood) 0%, transparent 100%);
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  /* BOTÓN CON EFECTO */
+  .btn-wood {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-wood::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    z-index: -1;
+  }
+
+  /* FOOTER CON GRADIENTE MADERA */
+  footer {
+    background: linear-gradient(135deg, rgba(139,90,43,0.04) 0%, rgba(139,90,43,0.08) 100%);
+    border-top: 2px solid rgba(139,90,43,0.15);
+  }
+
+  /* ESPACIOS PARA IMÁGENES */
+  .info-card::after {
+    content: 'Espacio preparado para imágenes de chapas';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+    color: rgba(139,90,43,0.25);
+    font-family: var(--font-mono);
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+  }
+
+  .info-card:hover::after {
+    opacity: 1;
+  }
+
+  /* GRID SWATCHES DECORATIVO */
+  .badge-beta {
+    box-shadow: 0 2px 8px rgba(139,90,43,0.2);
+  }
+
 </style>
 </head>
 <body>

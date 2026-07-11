@@ -1210,6 +1210,309 @@
   .group-switcher a.active { color: #F5F5F2; border-bottom-color: currentColor; }
   .group-switcher a .gs-beta { opacity: .55; font-size: 10px; }
 
+  /* ════════════════════════════════════════════════════════════════════
+     DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
+     BRAITA INNOVACIÓN (División Principal) 
+     ═════════════════════════════════════════════════════════════════════ */
+
+  /* HERO SECTION — Fondo gradiente con marca azul */
+  .hero {
+    background: linear-gradient(135deg, rgba(47,102,144,0.06) 0%, rgba(47,102,144,0.02) 100%),
+                linear-gradient(180deg, var(--bg-base) 0%, #F8F7F5 100%);
+    position: relative;
+    overflow: visible;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(47,102,144,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+  }
+
+  .hero .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CATÁLOGO SECTION — Fondo blanco premium con ritmo geométrico */
+  #catalogo {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F9F8F7 50%, #F3F2F0 100%);
+    position: relative;
+  }
+
+  #catalogo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      repeating-linear-gradient(90deg, transparent 0px, transparent 119px, rgba(47,102,144,0.04) 119px, rgba(47,102,144,0.04) 120px),
+      repeating-linear-gradient(0deg, transparent 0px, transparent 119px, rgba(47,102,144,0.03) 119px, rgba(47,102,144,0.03) 120px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #catalogo .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SERVICIOS SECTION — Fondo azul claro con gradiente cálido */
+  .servicios-section {
+    background: linear-gradient(135deg, rgba(47,102,144,0.08) 0%, rgba(90,143,189,0.04) 100%),
+                linear-gradient(180deg, #F6F7FB 0%, #FAFAF9 100%);
+    position: relative;
+  }
+
+  .servicios-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--brand) 30%, var(--brand) 70%, transparent 100%);
+    z-index: 0;
+  }
+
+  .servicios-section .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* PROCESO SECTION — Gradiente sutil gris → azul */
+  #proceso {
+    background: linear-gradient(135deg, #FAFAF9 0%, #F3F4F8 100%);
+    position: relative;
+  }
+
+  #proceso::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(47,102,144,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  #proceso .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* AUDIENCIAS SECTION — Alternado con fondo claro */
+  #audiencias {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FB 100%);
+    position: relative;
+  }
+
+  #audiencias .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* MESA CONTROL — Gradiente oscuro con acentos azules */
+  .mesa-control-section {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1A1F2B 50%, rgba(47,102,144,0.15) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mesa-control-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(47,102,144,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .mesa-control-section::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(90,143,189,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .mesa-control-section .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* TESTIMONIOS SECTION — Fondo limpio con línea divisoria */
+  #testimonios {
+    background: linear-gradient(135deg, #F9F8F7 0%, #FFFFFF 100%);
+    position: relative;
+  }
+
+  #testimonios::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--brand) 50%, transparent 100%);
+    z-index: 0;
+  }
+
+  #testimonios .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* UBICACIÓN SECTION — Gradiente ubicación con accent */
+  #ubicacion {
+    background: linear-gradient(135deg, rgba(47,102,144,0.04) 0%, rgba(47,102,144,0.08) 100%),
+                linear-gradient(180deg, #FAFAF9 0%, #F3F2F0 100%);
+    position: relative;
+  }
+
+  #ubicacion::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1000px;
+    height: 1000px;
+    background: radial-gradient(circle, rgba(47,102,144,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  #ubicacion .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* DECORATIVOS EN TARJETAS */
+  .prod-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--brand) 0%, transparent 70%);
+    border-radius: 0 8px 0 30px;
+    opacity: 0.7;
+    z-index: 1;
+  }
+
+  .srv-node {
+    position: relative;
+  }
+
+  .srv-node::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--brand) 0%, transparent 100%);
+    border-radius: 8px 0 0 8px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s var(--transition-smooth);
+    z-index: 2;
+  }
+
+  .srv-node:hover::before {
+    transform: scaleY(1);
+  }
+
+  /* LÍNEA DECORATIVA EN TÍTULOS */
+  .sheet-tag::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand) 0%, transparent 100%);
+    margin-top: 16px;
+    border-radius: 2px;
+  }
+
+  /* FLOW CARDS — Numeración con color accent */
+  .flow-card {
+    position: relative;
+    border-left: 4px solid var(--brand);
+  }
+
+  .flow-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -4px;
+    width: 4px;
+    height: 0;
+    background: var(--brand-light);
+    transition: height 0.6s var(--transition-smooth);
+    z-index: 2;
+  }
+
+  .flow-card.active::before {
+    height: 100%;
+  }
+
+  /* MARQUEE BACKGROUND */
+  .marquee-wrapper {
+    background: linear-gradient(90deg, 
+      rgba(47,102,144,0.05) 0%, 
+      transparent 20%, 
+      transparent 80%, 
+      rgba(47,102,144,0.05) 100%);
+    position: relative;
+  }
+
+  /* ESPACIOS PARA IMÁGENES */
+  .hero-graphic {
+    position: relative;
+  }
+
+  .hero-graphic::after {
+    content: 'Espacio preparado para imagen hero';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: rgba(47,102,144,0.3);
+    font-family: var(--font-mono);
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 10;
+  }
+
+  .hero-graphic:hover::after {
+    opacity: 1;
+  }
+
 </style>
 </head>
 <body>
