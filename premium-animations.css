@@ -1,6 +1,13 @@
 /* ========================================================================
    ANIMACIONES PREMIUM Y EFECTOS FLUIDOS
    Copia este archivo link en el <head> de cada HTML para activar
+
+   NOTA: estas son animaciones/utilidades OPCIONALES (fadeInDown,
+   fadeInLeft, floating, text-gradient, etc.). A propósito NO tocan la
+   clase .reveal: esa la controla cada página con su propia regla
+   .reveal / .reveal.active|.in basada en "transition", para evitar que
+   dos motores de animación distintos compitan sobre el mismo elemento
+   (eso era lo que hacía ver las revelaciones "torpes").
    ======================================================================== */
 
 /* SCROLL ANIMATIONS */
@@ -63,7 +70,8 @@
   }
 }
 
-/* BUTTON RIPPLE EFFECT */
+/* BUTTON RIPPLE EFFECT (definido también en premium-interactions.js en
+   tiempo de ejecución; se deja aquí también por si se usa sin el JS) */
 @keyframes ripple {
   to {
     transform: scale(4);
@@ -129,7 +137,7 @@
   transition: transform 0.6s ease-out;
 }
 
-/* STAGGER ANIMATION */
+/* STAGGER ANIMATION (uso manual/opcional vía clase, NO automático por JS) */
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
 .stagger-3 { animation-delay: 0.3s; }
@@ -152,7 +160,7 @@
   animation: loading 2s infinite;
 }
 
-/* ENTRANCE ANIMATIONS */
+/* ENTRANCE ANIMATIONS (clases de uso manual, opcionales) */
 .entrance-fade {
   animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

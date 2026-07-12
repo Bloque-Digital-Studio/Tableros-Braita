@@ -11,6 +11,13 @@
      ese lenguaje técnico — pero sigue siendo texto de ejemplo hasta que
      confirmen marcas/modelos reales.
   4. Logo real de Braita Maquinaria.
+
+  ESPACIO PARA IMAGEN DE ESTE ARCHIVO (naming secuencial compartido con
+  todo el Grupo Braita — ver index.html para imagen1-14):
+    imagen16.png -> Hero de Braita Maquinaria (foto/gráfico del hero-art)
+  Ya está enlazado como <img> con fallback automático (onerror): si el
+  archivo no existe todavía no se ve nada roto, y en cuanto lo subas con
+  ese nombre exacto aparece solo.
   ================================================================
 -->
 <html lang="es">
@@ -88,6 +95,7 @@
 
   .hero-art{ position:relative; }
   .hero-art svg{ width:100%; height:auto; }
+  .hero-art img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; border:1px solid var(--line); }
   .hero-tag{ position:absolute; bottom:14px; left:14px; background:var(--paper-soft); border:1px solid var(--line); padding:8px 12px; font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); }
   .spin-slow{ animation: spin 14s linear infinite; transform-origin:center; }
   @keyframes spin{ to{ transform:rotate(360deg); } }
@@ -284,12 +292,8 @@
   }
 
   /* ESPACIOS PARA IMÁGENES — PLACEHOLDER VISUAL */
-  .hero-art {
-    position: relative;
-  }
-
   .hero-art::after {
-    content: 'Espacio preparado para imagen/gráfico del hero';
+    content: 'imagen16.png — espacio para foto/gráfico real del hero';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -371,6 +375,8 @@
         </div>
       </div>
       <div class="hero-art reveal">
+        <!-- imagen16.png — espacio para foto/gráfico real del hero -->
+        <img src="imagen16.png" alt="" onload="this.style.opacity='1';" onerror="this.style.display='none';">
         <svg viewBox="0 0 400 320" fill="none">
           <rect x="20" y="20" width="360" height="280" fill="var(--panel)" stroke="var(--line)" stroke-width="2"/>
           <g class="spin-slow" style="transform-box: fill-box;">
@@ -485,11 +491,6 @@
   document.getElementById('waTop').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
   document.getElementById('waBottom').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
   document.getElementById('waFloat').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
-
-  const revObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: .12 });
-  document.querySelectorAll('.reveal').forEach(el => revObserver.observe(el));
 </script>
 <script src="premium-interactions.js"></script>
 

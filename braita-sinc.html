@@ -7,6 +7,13 @@
   "de una vez" pero SIN info real todavía. Cuando pasen nombre
   definitivo (si "Sinc" es final), colores, catálogo y fotos,
   esta página se expande al mismo nivel que las otras 3.
+
+  ESPACIO PARA IMAGEN DE ESTE ARCHIVO (naming secuencial compartido con
+  todo el Grupo Braita — ver index.html para imagen1-14):
+    imagen17.png -> Fotos de chapas dentro de la tarjeta info-card
+  Ya está enlazado como <img> con fallback automático (onerror): si el
+  archivo no existe todavía no se ve nada roto, y en cuanto lo subas con
+  ese nombre exacto aparece solo.
   ================================================================
 -->
 <html lang="es">
@@ -143,6 +150,25 @@
     z-index: 1;
   }
 
+  .info-card-img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .info-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+  .info-card-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.94) 0%, rgba(249,247,244,0.9) 100%);
+  }
+  .info-card h3, .info-card ul { position: relative; z-index: 2; }
+
   .swatch-strip {
     background: linear-gradient(90deg, transparent 0%, rgba(139,90,43,0.04) 50%, transparent 100%);
     padding: 30px 20px;
@@ -196,7 +222,7 @@
 
   /* ESPACIOS PARA IMÁGENES */
   .info-card::after {
-    content: 'Espacio preparado para imágenes de chapas';
+    content: 'imagen17.png — espacio para fotos reales de chapas';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -260,6 +286,10 @@
     </div>
 
     <div class="info-card">
+      <!-- imagen17.png — espacio para fotos reales de chapas -->
+      <div class="info-card-img" aria-hidden="true">
+        <img src="imagen17.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
+      </div>
       <h3>Lo que falta para completar esta página:</h3>
       <ul>
         <li>Confirmar si "Sinc" es el nombre final de la marca</li>

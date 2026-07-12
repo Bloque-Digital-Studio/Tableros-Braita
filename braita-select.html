@@ -10,6 +10,13 @@
   3. Logo real de Braita Select (aquí usa el mismo mark de Braita con otro color).
   4. Confirmar textos: qué es exactamente "material premium" para el cliente
      (¿alto brillo importado? ¿laca? ¿texturas especiales?).
+
+  ESPACIO PARA IMAGEN DE ESTE ARCHIVO (naming secuencial compartido con
+  todo el Grupo Braita — ver index.html para imagen1-14):
+    imagen15.png -> Hero de Braita Select (foto premium del hero-art)
+  Ya está enlazado como <img> con fallback automático (onerror): si el
+  archivo no existe todavía no se ve nada roto, y en cuanto lo subas con
+  ese nombre exacto aparece solo.
   ================================================================
 -->
 <html lang="es">
@@ -91,6 +98,7 @@
   .hero p.lead{ font-size:16.5px; color:var(--text-secondary); max-width:48ch; margin-bottom:30px; }
   .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
   .hero-art{ aspect-ratio:4/3.2; background:linear-gradient(160deg, #1C1E23, #0B0C0E); border:1px solid var(--border-strong); position:relative; overflow:hidden; }
+  .hero-art img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; }
   .hero-art .swatch-row{ position:absolute; inset:0; display:flex; flex-direction:column; }
   .hero-art .swatch{ flex:1; display:flex; align-items:flex-end; padding:18px; }
   .hero-art .swatch span{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.65); }
@@ -308,7 +316,7 @@
   }
 
   .hero-art::after {
-    content: 'Espacio para imagen premium';
+    content: 'imagen15.png — espacio para foto real del hero de Select';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -379,6 +387,8 @@
         </div>
       </div>
       <div class="hero-art reveal">
+        <!-- imagen15.png — espacio para foto real del hero de Select -->
+        <img src="imagen15.png" alt="" onload="this.style.opacity='1';" onerror="this.style.display='none';">
         <div class="swatch-row">
           <div class="swatch" style="background:linear-gradient(135deg,#2A2C31,#0B0C0E);"><span>Acabado 01 — ejemplo</span></div>
           <div class="swatch" style="background:linear-gradient(135deg,#3C3F46,#1C1E23);"><span>Acabado 02 — ejemplo</span></div>
@@ -489,11 +499,6 @@
   document.getElementById('waTop').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
   document.getElementById('waBottom').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
   document.getElementById('waFloat').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
-
-  const revObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: .12 });
-  document.querySelectorAll('.reveal').forEach(el => revObserver.observe(el));
 </script>
 <script src="premium-interactions.js"></script>
 
