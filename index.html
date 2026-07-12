@@ -1297,7 +1297,27 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(250,250,249,0.94) 0%, rgba(250,250,249,0.75) 35%, rgba(250,250,249,0.15) 65%, rgba(250,250,249,0.05) 100%);
+    background: linear-gradient(90deg, rgba(15,17,23,0.85) 0%, rgba(15,17,23,0.6) 35%, rgba(15,17,23,0.1) 65%, rgba(15,17,23,0) 100%);
+  }
+
+  /* El texto del hero estaba pensado para un fondo claro (colores oscuros).
+     Ahora que el difuminado de la izquierda es gris oscuro, ese mismo texto
+     oscuro dejaría de leerse — se aclara SOLO aquí (no afecta el resto del
+     sitio) para mantener buen contraste sobre la foto. */
+  .hero-content h1 { color: var(--text-light); }
+  .hero-content h1 span { color: var(--brand-light); }
+  .hero-content p { color: var(--text-light-muted); }
+  .hero-content .eyebrow { color: var(--brand-light); }
+  .hero-content .eyebrow::before { background-color: var(--brand-light); }
+  .hero-content .sheet-tag .num { color: var(--text-light-muted); border-color: rgba(255,255,255,0.35); }
+  .hero-buttons .btn-outline {
+    background-color: transparent;
+    border-color: var(--text-light);
+    color: var(--text-light);
+  }
+  .hero-buttons .btn-outline:hover {
+    background-color: var(--text-light);
+    color: var(--bg-dark);
   }
 
   /* CATÁLOGO SECTION — Fondo blanco premium con ritmo geométrico */
