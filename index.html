@@ -1562,11 +1562,17 @@
 
   /* MARQUEE BACKGROUND */
   .marquee-wrapper {
+    /* FIX: antes este "background" era 100% transparente en el centro (solo
+       un degradado decorativo en las orillas), así que se veía lo que
+       hubiera detrás — antes se notaba menos, pero ahora que el hero tiene
+       imagen1.png de fondo, se veía la madera a través de esta franja.
+       Se le agrega una capa sólida (var(--bg-panel)) debajo del degradado
+       decorativo para que vuelva a ser opaca. */
     background: linear-gradient(90deg, 
       rgba(47,102,144,0.05) 0%, 
       transparent 20%, 
       transparent 80%, 
-      rgba(47,102,144,0.05) 100%);
+      rgba(47,102,144,0.05) 100%), var(--bg-panel);
     position: relative;
   }
 
