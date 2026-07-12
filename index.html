@@ -2459,12 +2459,16 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       if (error) throw error;
     };
 
-    document.getElementById('openPanel').addEventListener('click', async (e) => {
-      e.preventDefault();
+    async function abrirPanelAdmin() {
       document.getElementById('panelOverlay').classList.add('open');
       const { data } = await supabase.auth.getSession();
       if (data.session) { mostrarPanelContenido(); cargarOrdenes(); }
       else { mostrarPanelLogin(); }
+    }
+
+    document.getElementById('openPanel').addEventListener('click', (e) => {
+      e.preventDefault();
+      abrirPanelAdmin();
     });
     document.getElementById('closePanel').addEventListener('click', () => {
       document.getElementById('panelOverlay').classList.remove('open');
@@ -2472,6 +2476,13 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
     document.getElementById('panelOverlay').addEventListener('click', (e) => {
       if (e.target.id === 'panelOverlay') e.target.classList.remove('open');
     });
+
+    // El resto de las páginas del grupo (Select, Maquinaria, Sinc) NO tienen
+    // el panel duplicado — mandan aquí con index.html#panel-admin desde su
+    // propio footer, y esto lo abre solo al llegar.
+    if (window.location.hash === '#panel-admin') {
+      abrirPanelAdmin();
+    }
 
     // NOTA: el acceso al panel de administrador vive SOLO en el link del
     // footer (#openPanel). Antes también se abría desde botones repartidos

@@ -140,6 +140,11 @@
   .wa-float{ position:fixed; right:28px; bottom:28px; z-index:70; width:56px; height:56px; border-radius:50%; background:#1EBEA5; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.18); }
   .wa-float svg{ width:26px; height:26px; }
 
+  .admin-link-row{ margin-top:16px; text-align:center; }
+  .admin-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--ink-soft); text-decoration:none; }
+  .admin-link:hover{ color:var(--accent-dark); }
+  .admin-link::before{ content:'●'; font-size:8px; color:#3F7D4C; }
+
   /* ═══════════════════════════════════════════════════════════════
      DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
      ═══════════════════════════════════════════════════════════════ */
@@ -478,6 +483,9 @@
   <div class="wrap foot-row">
     <span>© 2026 Braita Maquinaria — línea del Grupo Braita, Ocotlán, Jal.</span>
     <a href="index.html" style="color:var(--accent-dark);">← Volver al grupo Braita</a>
+  </div>
+  <div class="wrap admin-link-row">
+    <a href="index.html#panel-admin" class="admin-link">Ver historial de pedidos (panel administrador)</a>
   </div>
 </footer>
 
