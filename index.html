@@ -1246,6 +1246,10 @@
                 linear-gradient(180deg, var(--bg-base) 0%, #F8F7F5 100%);
     position: relative;
     overflow: visible;
+    z-index: 0; /* crea un contexto de apilamiento propio: así la imagen de
+                   fondo (z-index:-1) queda encerrada AQUÍ ADENTRO, detrás de
+                   TODO lo del hero (incluyendo las franjas de marquee que
+                   son estáticas), y no se escapa a pintarse encima de ellas */
   }
 
   .hero::before {
@@ -1283,7 +1287,7 @@
   .hero-bg-image {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: -1;
     overflow: hidden;
     pointer-events: none;
   }
