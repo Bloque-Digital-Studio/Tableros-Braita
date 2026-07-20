@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <!--
   ================================================================
-  BRAITA SINC — línea de chapas del grupo Braita (FASE MUY BETA)
+  BRAITA TUV — Terminados UV, la marca más nueva del grupo
   ================================================================
-  Esta página es intencionalmente mínima. El cliente pidió dejarla
-  "de una vez" pero SIN info real todavía.
+  Página nueva, armada siguiendo el mismo patrón de código que ya
+  usa braita-sinc.html (misma estructura "marca beta / próximamente"),
+  para que se sienta parte de la misma familia del sitio.
 
-  ACTUALIZACIÓN con info real confirmada (capturas de referencia):
-  - El nombre real de la marca es "Sync" (con Y), no "Sinc". No se
-    cambió el título/textos de esta página por instrucción de no
-    tocar código/diseño esta ronda — nada más se deja anotado aquí
-    para que se corrija cuando toque.
-  - La marca real es de CANTOS (el material que recubre la orilla
-    del tablero), no de chapas de madera como se había asumido.
-  - Color real confirmado en las capturas: VERDE (aquí sigue en
-    madera/café, sin tocar, por la misma razón de arriba).
-  - Descripción real: "Cantos que complementan y sincronizan tus
-    tableros y acabados para un resultado perfecto y profesional."
-    Puntos reales: Cantos de alta calidad · Compatibilidad de
-    diseños · Resistencia y durabilidad · Soluciones funcionales.
+  El cliente confirmó que TUV es una marca real (mandó el logo:
+  logo-tuv.png) pero que "aún no hay absolutamente nada" más —
+  ni color oficial, ni catálogo, ni descripción de posicionamiento.
+  Por eso esta página es intencionalmente mínima, igual que Sinc al
+  principio del proyecto.
 
-  Cuando confirmes que sí quieres que se apliquen estos cambios de
-  nombre/color/contenido, avísame y lo hago — esta ronda fue
-  info de contacto solamente, tal como pediste.
+  PENDIENTE (preguntarle al cliente):
+  - Qué diferencia a TUV de Braita Innovación (ambas son "acabados
+    UV" — hay que aclarar en qué se distinguen para que no compitan
+    entre sí en el sitio).
+  - Color oficial de marca (aquí es gris plata, solo un placeholder
+    inspirado en el propio logo, no una decisión de marca).
+  - Catálogo / servicios reales.
+  - El logo (logo-tuv.png) es real pero es un JPEG con fondo blanco
+    sólido, no un PNG con transparencia — funciona bien para esta
+    página tal cual está.
 
-  ESPACIO PARA IMAGEN DE ESTE ARCHIVO (naming secuencial compartido con
-  todo el Grupo Braita — ver index.html para imagen1-14):
-    imagen17.png -> Fotos de chapas dentro de la tarjeta info-card
-  Ya está enlazado como <img> con fallback automático (onerror): si el
-  archivo no existe todavía no se ve nada roto, y en cuanto lo subas con
-  ese nombre exacto aparece solo.
+  Esta página no usa ninguna imagen numerada del mapa compartido del
+  grupo — solo el logo real (logo-tuv.png). Cuando haya fotos de
+  producto reales, se puede agregar una sección de galería después.
   ================================================================
 -->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Braita Sinc — Chapas | Grupo Braita (próximamente)</title>
-<meta name="description" content="La línea de chapas del Grupo Braita. Página en construcción.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%232B211A'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23F1EFE9' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%238B5A2B' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
+<title>Braita TUV — Terminados UV | Grupo Braita (próximamente)</title>
+<meta name="description" content="Braita TUV, Terminados UV: la marca más nueva del Grupo Braita. Página en construcción.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23202124'/%3E%3Crect x='9' y='9' width='22' height='22' fill='none' stroke='%23F1EFE9' stroke-width='2'/%3E%3Cline x1='9' y1='23' x2='31' y2='23' stroke='%238B8E93' stroke-width='2' stroke-dasharray='3 2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -46,7 +43,7 @@
 <style>
   :root{
     --ink:#0F1117; --ink-soft:#57595C; --paper:#FAFAF9; --paper-soft:#FFFFFF; --panel:#F3F2F0; --line:#D8D7D4;
-    --wood:#8B5A2B; --wood-dark:#6B4420; --wood-light:#B98A54;
+    --wood:#8B8E93; --wood-dark:#5F6368; --wood-light:#B9BEC4;
     --font-display:'Space Grotesk',sans-serif; --font-sans:'Inter',sans-serif; --font-mono:'IBM Plex Mono',monospace;
     --ease: cubic-bezier(0.16,1,0.3,1);
   }
@@ -106,7 +103,7 @@
 
   /* ═══════════════════════════════════════════════════════════════
      DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
-     BRAITA SINC — Línea de Chapas/Veneers (Madera/Café)
+     BRAITA TUV — Terminados UV (gris plata, provisional)
      ═══════════════════════════════════════════════════════════════ */
 
   body {
@@ -114,7 +111,7 @@
   }
 
   .hero {
-    background: linear-gradient(135deg, rgba(139,90,43,0.06) 0%, rgba(139,90,43,0.02) 100%),
+    background: linear-gradient(135deg, rgba(139,142,147,0.06) 0%, rgba(139,142,147,0.02) 100%),
                 linear-gradient(180deg, #FAFAF9 0%, #F9F7F4 100%);
     position: relative;
     overflow: visible;
@@ -127,7 +124,7 @@
     left: -100px;
     width: 450px;
     height: 450px;
-    background: radial-gradient(circle, rgba(139,90,43,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139,142,147,0.12) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
@@ -141,7 +138,7 @@
     right: -80px;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(139,90,43,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139,142,147,0.08) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
@@ -154,8 +151,8 @@
 
   .info-card {
     background: linear-gradient(135deg, #FFFFFF 0%, #F9F7F4 100%);
-    border: 1px solid rgba(139,90,43,0.15);
-    box-shadow: 0 4px 16px rgba(139,90,43,0.06);
+    border: 1px solid rgba(139,142,147,0.15);
+    box-shadow: 0 4px 16px rgba(139,142,147,0.06);
     position: relative;
     overflow: hidden;
   }
@@ -191,20 +188,20 @@
   .info-card h3, .info-card ul { position: relative; z-index: 2; }
 
   .swatch-strip {
-    background: linear-gradient(90deg, transparent 0%, rgba(139,90,43,0.04) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(139,142,147,0.04) 50%, transparent 100%);
     padding: 30px 20px;
     border-radius: 8px;
     margin-bottom: 50px;
   }
 
   .swatch-strip div {
-    box-shadow: 0 2px 8px rgba(139,90,43,0.12);
+    box-shadow: 0 2px 8px rgba(139,142,147,0.12);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .swatch-strip div:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(139,90,43,0.18);
+    box-shadow: 0 4px 12px rgba(139,142,147,0.18);
   }
 
   /* LÍNEA DECORATIVA EN HERO */
@@ -237,19 +234,19 @@
 
   /* FOOTER CON GRADIENTE MADERA */
   footer {
-    background: linear-gradient(135deg, rgba(139,90,43,0.04) 0%, rgba(139,90,43,0.08) 100%);
-    border-top: 2px solid rgba(139,90,43,0.15);
+    background: linear-gradient(135deg, rgba(139,142,147,0.04) 0%, rgba(139,142,147,0.08) 100%);
+    border-top: 2px solid rgba(139,142,147,0.15);
   }
 
   /* ESPACIOS PARA IMÁGENES */
   .info-card::after {
-    content: 'imagen17.png — espacio para fotos reales de chapas';
+    content: 'Espacio para fotos reales de acabados TUV';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 11px;
-    color: rgba(139,90,43,0.25);
+    color: rgba(139,142,147,0.25);
     font-family: var(--font-mono);
     text-align: center;
     pointer-events: none;
@@ -264,7 +261,7 @@
 
   /* GRID SWATCHES DECORATIVO */
   .badge-beta {
-    box-shadow: 0 2px 8px rgba(139,90,43,0.2);
+    box-shadow: 0 2px 8px rgba(139,142,147,0.2);
   }
 
 </style>
@@ -277,53 +274,46 @@
     <a href="index.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
     <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
     <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
-    <a href="braita-sinc.html" class="active"><span class="gs-dot" style="background:#8B5A2B"></span>Sinc <span class="gs-beta">(beta)</span></a>
-    <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
+    <a href="braita-sinc.html"><span class="gs-dot" style="background:#8B5A2B"></span>Sinc <span class="gs-beta">(beta)</span></a>
+    <a href="braita-tuv.html" class="active"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
   </div>
 </div>
 
 <header>
   <div class="wrap nav-row">
-    <a href="#" class="logo">
-      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="4" width="32" height="32" fill="none" stroke="var(--wood)" stroke-width="2"/>
-        <path d="M4 26 Q20 14 36 26" stroke="var(--wood-light)" stroke-width="1.6" fill="none"/>
-      </svg>
-      <span class="logo-text">BRAITA <span>SINC</span></span>
+    <a href="index.html" class="logo">
+      <img class="logo-mark" src="logo-tuv.png" alt="Braita TUV" style="width:32px; height:32px; object-fit:contain;">
+      <span class="logo-text">BRAITA <span>TUV</span></span>
     </a>
-    <span class="badge-beta">Versión beta</span>
+    <span class="badge-beta">Próximamente</span>
   </div>
 </header>
 
 <main>
   <section class="hero wrap">
-    <span class="eyebrow" style="justify-content:center;">Chapas · Grupo Braita</span>
-    <h1>Esta línea está en construcción.</h1>
-    <p>Braita Sinc va a ser la línea de chapas de madera del grupo. Todavía no tenemos nombre definitivo confirmado, colores de marca ni catálogo — esta página existe solo como punto de partida, tal como lo pidió el cliente.</p>
+    <img src="logo-tuv.png" alt="Braita TUV — Terminados UV" style="max-width:200px; margin:0 auto 26px;">
+    <span class="eyebrow" style="justify-content:center;">Terminados UV · Grupo Braita</span>
+    <h1>Esta marca está en construcción.</h1>
+    <p>Braita TUV (Terminados UV) es la marca más nueva del grupo. Todavía no hay color oficial, catálogo ni descripción de posicionamiento confirmada — esta página existe como punto de partida, con el logo real que ya nos compartió el cliente.</p>
 
     <div class="swatch-strip" aria-hidden="true">
-      <div style="background:linear-gradient(135deg,#B98A54,#8B5A2B);"></div>
-      <div style="background:linear-gradient(135deg,#D8CBB6,#B98A54);"></div>
-      <div style="background:linear-gradient(135deg,#6B4420,#2B211A);"></div>
+      <div style="background:linear-gradient(135deg,#2A2C2E,#111214);"></div>
+      <div style="background:linear-gradient(135deg,#8B8E93,#5F6368);"></div>
+      <div style="background:linear-gradient(135deg,#E8E6E1,#C7C2B4);"></div>
     </div>
 
     <div class="info-card">
-      <!-- imagen17.png — espacio para fotos reales de chapas -->
-      <div class="info-card-img" aria-hidden="true">
-        <img src="imagen17.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
-      </div>
       <h3>Lo que falta para completar esta página:</h3>
       <ul>
-        <li>Confirmar si "Sinc" es el nombre final de la marca</li>
-        <li>Paleta de colores oficial (los tonos de arriba son un placeholder de madera, no una decisión de marca)</li>
-        <li>Catálogo de chapas: especies de madera, formatos, espesores</li>
-        <li>Logo real</li>
+        <li>Qué ofrece exactamente TUV y en qué se diferencia de Braita Innovación (ambas son de acabados UV)</li>
+        <li>Color oficial de marca (el gris plata de aquí es solo un placeholder inspirado en el logo, no una decisión de marca)</li>
+        <li>Catálogo o servicios reales</li>
         <li>Fotos de producto</li>
       </ul>
     </div>
 
     <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="#" id="waTop" class="btn btn-wood" target="_blank">Preguntar por Braita Sinc</a>
+      <a href="#" id="waTop" class="btn btn-wood" target="_blank">Preguntar por Braita TUV</a>
       <a href="index.html" class="btn btn-outline">Ver el resto del grupo Braita</a>
     </div>
   </section>
@@ -331,7 +321,7 @@
 
 <footer>
   <div class="wrap foot-row">
-    <span>© 2026 Braita Sinc — línea del Grupo Braita (en desarrollo), Ocotlán, Jal.</span>
+    <span>© 2026 Braita TUV — marca del Grupo Braita (en desarrollo), Ocotlán, Jal.</span>
     <a href="index.html" style="color:var(--wood-dark);">← Volver al grupo Braita</a>
   </div>
   <div class="wrap admin-link-row">
@@ -341,7 +331,7 @@
 
 <script>
   const WA = '523921287299'; // Número real de Braita (antes era 523929313919, incorrecto)
-  document.getElementById('waTop').href = `https://wa.me/${WA}?text=${encodeURIComponent('Hola, vi que Braita va a tener una línea de chapas (Sinc) y quiero más información.')}`;
+  document.getElementById('waTop').href = `https://wa.me/${WA}?text=${encodeURIComponent('Hola, vi que Braita va a tener una marca de Terminados UV (TUV) y quiero más información.')}`;
 </script>
 <script src="premium-interactions.js"></script>
 

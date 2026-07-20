@@ -6,11 +6,24 @@
   PENDIENTES antes de publicar:
   1. Confirmar qué hace exactamente esta marca: ¿venden máquinas? ¿rentan?
      ¿dan mantenimiento? ¿son distribuidores de una marca de maquinaria?
-  2. Catálogo real de máquinas (el de aquí es EJEMPLO, nombres genéricos).
+  2. Catálogo real de máquinas (el de aquí sigue siendo EJEMPLO, no había
+     ninguna máquina real en las capturas de Catálogos del cliente).
   3. Si de verdad manejan equipo CNC, aquí SÍ es el lugar correcto para
      ese lenguaje técnico — pero sigue siendo texto de ejemplo hasta que
      confirmen marcas/modelos reales.
-  4. Logo real de Braita Maquinaria.
+  4. Logo real: el cliente SÍ mandó un logo (escudo con sierra), pendiente
+     de integrarlo — trae un patrón de cuadros de fondo por una
+     exportación mal hecha a JPEG, valdría la pena pedir mejor versión.
+  5. Nombre real de marca: en las capturas de referencia aparece en
+     inglés, "Braita MACHINERY" — aquí se dejó "Maquinaria" (español)
+     sin tocar por instrucción de no modificar código/textos de marca
+     todavía; nada más se actualizó la sección "Por qué" con el texto
+     real confirmado.
+
+  YA ACTUALIZADO con info real: sección "Por qué" (Maquinaria
+  especializada / Tecnología de vanguardia / Asesoría y soporte técnico /
+  Soluciones a la medida — texto real de las capturas), contacto
+  (dirección, teléfono, WhatsApp, correo reales).
 
   ESPACIO PARA IMAGEN DE ESTE ARCHIVO (naming secuencial compartido con
   todo el Grupo Braita — ver index.html para imagen1-14):
@@ -337,6 +350,7 @@
     <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
     <a href="braita-maquinaria.html" class="active"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
     <a href="braita-sinc.html"><span class="gs-dot" style="background:#8B5A2B"></span>Sinc <span class="gs-beta">(beta)</span></a>
+    <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
   </div>
 </div>
 
@@ -442,20 +456,24 @@
 
   <section id="servicios">
     <div class="wrap">
-      <span class="eyebrow reveal">Cómo podría funcionar</span>
-      <h2 class="reveal" style="font-size:clamp(24px,3.2vw,34px); margin-top:14px; max-width:600px;">Ejemplo de servicios — falta confirmar con el cliente.</h2>
+      <span class="eyebrow reveal">Por qué Machinery</span>
+      <h2 class="reveal" style="font-size:clamp(24px,3.2vw,34px); margin-top:14px; max-width:600px;">Tecnología que mueve tu producción.</h2>
       <div class="servicios-grid">
         <div class="srv-card reveal">
-          <h4>Venta de equipo</h4>
-          <p>Adquisición de maquinaria nueva o reacondicionada para tu taller.</p>
+          <h4>Maquinaria especializada</h4>
+          <p>Equipo pensado específicamente para la industria del mueble.</p>
         </div>
         <div class="srv-card reveal">
-          <h4>Asesoría de compra</h4>
-          <p>Te ayudamos a elegir el equipo correcto según tu volumen de producción.</p>
+          <h4>Tecnología de vanguardia</h4>
+          <p>Soluciones actualizadas para mantener tu producción competitiva.</p>
         </div>
         <div class="srv-card reveal">
-          <h4>Soporte técnico</h4>
-          <p>Acompañamiento después de la compra para que el equipo no pare tu producción.</p>
+          <h4>Asesoría y soporte técnico</h4>
+          <p>Acompañamiento antes, durante y después de la compra.</p>
+        </div>
+        <div class="srv-card reveal">
+          <h4>Soluciones a la medida</h4>
+          <p>Equipo ajustado al tamaño y volumen real de tu taller.</p>
         </div>
       </div>
     </div>
@@ -468,8 +486,10 @@
         <h2 style="color:var(--paper-soft); font-size:clamp(24px,3.2vw,32px); margin:14px 0 10px;">¿Buscas equipo para tu taller?</h2>
         <p style="color:#D7D6CE; max-width:44ch;">Braita Maquinaria comparte oficina y contacto con el resto del grupo, en Ocotlán, Jalisco.</p>
         <ul class="info-list">
-          <li><span><b>Dirección</b>Av. Francisco Zarco #1350, Lindavista, Ocotlán, Jal.</span></li>
-          <li><span><b>Teléfono / WhatsApp</b>392 931 3919</span></li>
+          <li><span><b>Dirección</b>Camino viejo a Zula, Potrero de Juana, Ocotlán, Jal.</span></li>
+          <li><span><b>Teléfono</b>392 931 3919</span></li>
+          <li><span><b>WhatsApp</b>392 128 7299</span></li>
+          <li><span><b>Correo</b>ventas@braita.com.mx</span></li>
         </ul>
       </div>
       <div class="reveal" style="display:flex; align-items:center; justify-content:center;">
@@ -494,7 +514,7 @@
 </a>
 
 <script>
-  const WA = '523929313919';
+  const WA = '523921287299'; // Número real de Braita (antes era 523929313919, incorrecto)
   const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
   document.getElementById('waTop').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
   document.getElementById('waBottom').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
