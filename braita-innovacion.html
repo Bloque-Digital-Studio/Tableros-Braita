@@ -3,15 +3,19 @@
   ================================================================
   BRAITA INDUSTRIAL HUB — PLATAFORMA INTEGRAL DE MAQUILA Y SUMINISTRO
   ================================================================
-  DIRECCIÓN REAL: Camino viejo a Zula, Potrero de Juana, Ocotlán, Jal.
-  (⚠ ojo: varios directorios públicos —Facebook "Tableros Braita
-  Innovacion", Cylex, VYMaps— siguen mostrando Av. Francisco Zarco
-  #1350, Lindavista, como dirección. Puede ser que se hayan mudado y
-  esos directorios no estén actualizados, o que la dirección nueva
-  esté mal. Vale la pena confirmarlo directo con el cliente.)
+  DIRECCIÓN REAL: Av. Universidad #1350, Ocotlán, Jal. (según el
+  catálogo PDF oficial que mandó el cliente en 2026 — antes el sitio
+  tenía "Camino viejo a Zula, Potrero de Juana", de una ronda previa;
+  el cliente confirmó usar la del PDF como la vigente. Los directorios
+  públicos —Facebook, Cylex, VYMaps— además muestran "Av. Francisco
+  Zarco #1350, Lindavista", que es el mismo número pero otro nombre de
+  calle — probablemente el mismo lugar con el nombre de calle mal
+  capturado en algún directorio. Vale la pena que el cliente confirme
+  el nombre de calle exacto en algún momento.)
 
   TELÉFONO: 392 931 3919 · WHATSAPP: 392 128 7299 (son DISTINTOS)
-  CORREO: ventas@braita.com.mx
+  CORREO: Tableros.braita@gmail.com (del catálogo PDF oficial — antes
+  el sitio usaba ventas@braita.com.mx)
 
   Por instrucción del cliente: esta ronda SOLO se actualizó info
   (dirección, teléfono, WhatsApp, correo, barra de grupo con TUV
@@ -1255,7 +1259,8 @@
     font-family: 'IBM Plex Mono', monospace; font-size: 11.5px;
   }
   @media (max-width: 640px) { .group-switcher .gs-wrap { padding: 0 20px; gap: 14px; } }
-  .group-switcher .gs-label { text-transform: uppercase; letter-spacing: .08em; color: #6B6E68; }
+  .group-switcher .gs-label { text-transform: uppercase; letter-spacing: .08em; color: #6B6E68; text-decoration: none; transition: color .2s ease; }
+  .group-switcher .gs-label:hover { color: #F5F5F2; }
   .group-switcher a {
     display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
     color: #ABAAA1; padding: 3px 0; border-bottom: 2px solid transparent; transition: color .2s ease;
@@ -1623,23 +1628,30 @@
     opacity: 1;
   }
 
-  /* ============================================================
-     NUESTRAS MARCAS — CSS nuevo, aislado, no toca ninguna regla
-     existente. Reutiliza las mismas variables de fuente/sombra.
-  ============================================================ */
-  .marcas-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-  @media (max-width:900px) { .marcas-grid { grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px) { .marcas-grid { grid-template-columns:1fr; } }
-  .marca-card { background:var(--bg-dark-surface); border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-sm); transition:all .4s var(--transition-smooth); text-decoration:none; display:flex; flex-direction:column; }
-  .marca-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-md); }
-  .marca-media { aspect-ratio:4/3; background:var(--bg-dark); display:flex; align-items:center; justify-content:center; padding:20px; }
-  .marca-media img { max-width:78%; max-height:70%; object-fit:contain; }
-  .marca-wordmark { display:inline-flex; flex-direction:column; align-items:center; border:1.5px solid; border-radius:6px; padding:10px 18px; font-family:var(--font-display); font-weight:700; font-size:15px; line-height:1.2; }
-  .marca-wordmark small { font-family:var(--font-mono); font-size:9px; letter-spacing:.2em; margin-top:3px; }
-  .marca-body { padding:18px 20px 22px; }
-  .marca-body h3 { font-size:16px; margin-bottom:8px; color:var(--text-light); }
-  .marca-body p { font-size:13px; color:var(--text-light-muted); margin-bottom:14px; }
-  .marca-link { font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; }
+  /* ---- Cascada escalonada al hacer scroll (mismo efecto que el hub
+     nuevo en index.html): cada tarjeta entra un poco después que la
+     anterior en vez de todas a la vez. Declarado al final del <style>
+     a propósito, para ganarle a los "transition:" cortos que cada
+     componente ya define para su propio hover.
+     NOTA: el catálogo (catalog-target-grid) no lleva esta cascada — sus
+     tarjetas las arma el JS con className='prod-card' sin clase
+     "reveal", o sea que hoy no tienen animación de entrada; agregársela
+     es un cambio aparte de JS, no solo CSS, así que se deja fuera de
+     este ajuste puramente visual. */
+  .servicios-grid .srv-node:nth-child(1),
+  .proceso-flow .flow-card:nth-child(1),
+  .audiencias-grid .aud-card:nth-child(1),
+  .testi-grid .testi:nth-child(1){ transition-delay: .05s; }
+  .servicios-grid .srv-node:nth-child(2),
+  .proceso-flow .flow-card:nth-child(2),
+  .audiencias-grid .aud-card:nth-child(2),
+  .testi-grid .testi:nth-child(2){ transition-delay: .15s; }
+  .servicios-grid .srv-node:nth-child(3),
+  .proceso-flow .flow-card:nth-child(3),
+  .audiencias-grid .aud-card:nth-child(3),
+  .testi-grid .testi:nth-child(3){ transition-delay: .25s; }
+  .proceso-flow .flow-card:nth-child(4){ transition-delay: .35s; }
+
 </style>
 </head>
 <body>
@@ -1657,8 +1669,8 @@
 <!-- BARRA DE GRUPO: navegación entre las 4 marcas de Braita. Se repite igual en las otras 3 páginas, solo cambia cuál lleva class="active". -->
 <div class="group-switcher">
   <div class="gs-wrap">
-    <span class="gs-label">Grupo Braita</span>
-    <a href="index.html" class="active"><span class="gs-dot" style="background:#eabf8d"></span>Innovación</a>
+    <a href="index.html" class="gs-label">Grupo Braita</a>
+    <a href="braita-innovacion.html" class="active"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
     <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
     <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
     <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
@@ -1677,7 +1689,7 @@
     </a>
     <nav id="main-nav">
       <ul>
-        <li><a href="#nuestras-marcas">Nuestras Marcas</a></li>
+        <li><a href="index.html">Grupo Braita</a></li>
         <li><a href="#catalogo">Catálogo</a></li>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#testimonios">Reseñas</a></li>
@@ -1706,8 +1718,8 @@
     <div class="container hero-container hero-container--single">
       <div class="hero-content">
         <div class="eyebrow">Grupo Braita · Ocotlán, Jalisco</div>
-        <h1>El tablero exacto. <span>El corte sin desperdicio.</span></h1>
-        <p>Melamina, MDF y triplay listos para tu proyecto — surtidos y cortados a la medida desde nuestro centro de distribución.</p>
+        <h1>Diseño, innovación <span>y tecnología UV.</span></h1>
+        <p>Tableros MDF con acabado UV de alta gama: más de 50 colores en texturas de madera, mármol, metalizados y rayados — surtidos y cortados a la medida desde nuestro centro de distribución.</p>
         <div class="hero-buttons">
           <a href="#" id="waHero" class="btn btn-dark" target="_blank">Cotizar por WhatsApp</a>
           <a href="#catalogo" class="btn btn-outline">Ver catálogo</a>
@@ -1734,8 +1746,8 @@
 
     <div class="marquee-wrapper">
       <div class="marquee-content">
-        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Paneles Estructurales</span>
-        <span>Melamina Alta Densidad</span><span>MDF Hidrófugo</span><span>Triplay Pino Premium</span><span>Cantos de PVC</span><span>Herrajes de Precisión</span><span>Paneles Estructurales</span>
+        <span>Línea Kenya</span><span>Línea Elis</span><span>Línea Logroño</span><span>Maderas &amp; Vintage</span><span>Línea Especial</span><span>Fondo de Cajón</span>
+        <span>Línea Kenya</span><span>Línea Elis</span><span>Línea Logroño</span><span>Maderas &amp; Vintage</span><span>Línea Especial</span><span>Fondo de Cajón</span>
       </div>
     </div>
     <!-- TODO: confirmar con el cliente qué municipios cubre realmente la entrega, esto es un ejemplo con la zona Ciénega -->
@@ -1746,75 +1758,22 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       NUESTRAS MARCAS — sección nueva, enlaza a las otras 4 páginas
-       del grupo desde dentro de Braita Innovación. La franja negra
-       de arriba (group-switcher) SIGUE estando, esto es adicional.
-  ============================================================ -->
-  <section class="section-padding container" id="nuestras-marcas">
-    <div class="reveal" style="margin-bottom: 50px; text-align:center;">
-      <div class="eyebrow" style="justify-content:center;">Grupo Braita</div>
-      <h2 style="font-size: clamp(28px,4vw,40px); margin-top: 10px;">Conoce nuestras marcas</h2>
-      <p style="color: var(--text-secondary); max-width: 60ch; margin: 14px auto 0;">Marcas especializadas del grupo que trabajan en conjunto para cada etapa de tu proyecto.</p>
-    </div>
-    <div class="marcas-grid">
-      <a href="braita-select.html" class="marca-card reveal" style="--m-accent:#C6A24D;">
-        <div class="marca-media">
-          <span class="marca-wordmark" style="color:#C6A24D; border-color:#C6A24D;">BRAITA<small>SELECT</small></span>
-        </div>
-        <div class="marca-body">
-          <h3>Braita Select</h3>
-          <p>Línea de acabados seleccionados, exclusiva y sofisticada.</p>
-          <span class="marca-link" style="color:#C6A24D;">Conocer marca →</span>
-        </div>
-      </a>
-      <a href="braita-maquinaria.html" class="marca-card reveal" style="--m-accent:#E4610F;">
-        <div class="marca-media">
-          <img src="logo-machinery.png" alt="Braita Maquinaria">
-        </div>
-        <div class="marca-body">
-          <h3>Braita Maquinaria</h3>
-          <p>Equipo y tecnología para talleres y fábricas de muebles.</p>
-          <span class="marca-link" style="color:#E4610F;">Conocer marca →</span>
-        </div>
-      </a>
-      <a href="braita-sinc.html" class="marca-card reveal" style="--m-accent:#3F7D4C;">
-        <div class="marca-media">
-          <span class="marca-wordmark" style="color:#3F7D4C; border-color:#3F7D4C;">BRAITA<small>SYNC</small></span>
-        </div>
-        <div class="marca-body">
-          <h3>Braita Sync</h3>
-          <p>Cantos que complementan y sincronizan tus tableros y acabados, para un resultado perfecto y profesional.</p>
-          <span class="marca-link" style="color:#3F7D4C;">Conocer marca →</span>
-        </div>
-      </a>
-      <a href="braita-tuv.html" class="marca-card reveal" style="--m-accent:#9AA1A8;">
-        <div class="marca-media">
-          <img src="logo-tuv.png" alt="Braita TUV">
-        </div>
-        <div class="marca-body">
-          <h3>Braita TUV <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); font-weight:400;">(nuevo)</span></h3>
-          <p>Terminados UV — la marca más nueva del grupo.</p>
-          <span class="marca-link" style="color:#9AA1A8;">Ver más →</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
   <section class="section-padding container" id="catalogo">
     <div class="catalog-controls reveal">
       <div class="catalog-title">
-        <div class="sheet-tag"><span class="num">HOJA 02/06</span><span class="eyebrow">Catálogo Matriz</span></div>
-        <h2>Tableros Estandarizados e Industriales</h2>
-        <p>Selecciona la base estructural para tu proyecto de fabricación. Todos los materiales cuentan con opción de habilitado completo en taller.</p>
+        <div class="sheet-tag"><span class="num">HOJA 02/06</span><span class="eyebrow">Catálogo de Acabados</span></div>
+        <h2>Tableros MDF con Acabado UV</h2>
+        <p>Formato estándar 1.22 × 2.44 m sobre base MDF, en acabado alto brillo, mate, sincronizado, metalizado o rayado. Más de 50 colores repartidos en 6 líneas. Todos con opción de corte y habilitado en taller.</p>
       </div>
       <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 30px;">
         <div class="filter-group" id="filter-group">
           <button class="filter-btn is-active" data-filter="all">Todos</button>
-          <button class="filter-btn" data-filter="melamina">Melaminas</button>
-          <button class="filter-btn" data-filter="mdf">MDF / Sustratos</button>
-          <button class="filter-btn" data-filter="triplay">Triplays</button>
-          <button class="filter-btn" data-filter="premium">Especialidades</button>
+          <button class="filter-btn" data-filter="kenya">Kenya</button>
+          <button class="filter-btn" data-filter="elis">Elis</button>
+          <button class="filter-btn" data-filter="logrono">Logroño</button>
+          <button class="filter-btn" data-filter="maderas-vintage">Maderas &amp; Vintage</button>
+          <button class="filter-btn" data-filter="especial">Especial</button>
+          <button class="filter-btn" data-filter="fondo-cajon">Fondo de Cajón</button>
         </div>
       </div>
     </div>
@@ -1845,6 +1804,32 @@
           <h4>Perforación a Medida</h4>
           <p>Colocamos las perforaciones para bisagras, pernos de unión y sistemas modulares según el plano técnico que nos compartas.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PERSONALIZACIÓN Y PEDIDOS ESPECIALES — contenido nuevo, tomado
+       tal cual del catálogo PDF oficial (2026): "¿Tienes un diseño en
+       mente? ¡Lo hacemos realidad!" Reutiliza las clases de la sección
+       de Servicios (servicios-grid / srv-node) a propósito, para no
+       tener que agregar CSS nuevo.
+  ============================================================ -->
+  <section class="section-padding container" id="personalizacion">
+    <div class="reveal" style="margin-bottom: 56px;">
+      <div class="sheet-tag"><span class="num">HOJA 03B/06</span><span class="eyebrow">Personalización y Pedidos Especiales</span></div>
+      <h2>¿Tienes un diseño en mente? Lo hacemos realidad.</h2>
+    </div>
+    <div class="servicios-grid">
+      <div class="srv-node reveal">
+        <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M5 8h14M6 8v10a2 2 0 002 2h8a2 2 0 002-2V8M10 12v4m4-4v4"/></svg>
+        <h4>También fabricamos sobre pedido en</h4>
+        <p>Vidrio, chapas naturales y otros materiales planos — misma tecnología de acabado UV aplicada a la superficie que necesite tu proyecto.</p>
+      </div>
+      <div class="srv-node reveal">
+        <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <h4>Espesores fuera de línea</h4>
+        <p>Además del estándar (3, 5.5 y 12 mm), trabajamos espesores especiales de 6, 9, 18 o 25 mm bajo solicitud.</p>
       </div>
     </div>
   </section>
@@ -1992,12 +1977,12 @@
           <div class="form-group">
             <label for="master-material">Sustrato / Núcleo Base</label>
             <select id="master-material">
-              <option value="Melamina Blanca 18mm">Melamina Blanca Estándar 18mm</option>
-              <option value="Melamina Diseño Textura 18mm">Melamina Diseño Texturas Maderas 18mm</option>
-              <option value="MDF Crudo 15mm">MDF Crudo Calibrado 15mm</option>
-              <option value="MDF Hidrofugo 18mm">MDF Hidrófugo Resistencia Humedad 18mm</option>
-              <option value="Triplay Pino 12mm">Triplay de Pino Comercial 12mm</option>
-              <option value="Alto Brillo Espejo 18mm">Alto Brillo Acrílico Premium 18mm</option>
+              <option value="Kenya Marrón 12mm">Línea Kenya — Kenya Marrón 12mm</option>
+              <option value="Elis Delfín 12mm">Línea Elis — Elis Delfín 12mm</option>
+              <option value="Logroño Tobak 12mm">Línea Logroño — Logroño Tobak 12mm</option>
+              <option value="Parota 12mm">Maderas &amp; Vintage — Parota 12mm</option>
+              <option value="Mármol Blanco y Negro 12mm">Línea Especial — Mármol Blanco y Negro 12mm</option>
+              <option value="Fondo de Cajón Topo 3mm">Fondo de Cajón — Topo 3mm</option>
             </select>
           </div>
           <div class="form-group">
@@ -2046,7 +2031,7 @@
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             <div>
               <h5>Dirección de Operaciones</h5>
-              <p>Camino viejo a Zula, Potrero de Juana, Ocotlán, Jalisco, México.</p>
+              <p>Av. Universidad #1350, Ocotlán, Jalisco, México.</p>
             </div>
           </li>
           <li>
@@ -2060,7 +2045,7 @@
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
             <div>
               <h5>Teléfono &amp; WhatsApp</h5>
-              <p>Teléfono: 392 931 3919<br>WhatsApp: 392 128 7299<br>Correo: ventas@braita.com.mx</p>
+              <p>Teléfono: 392 931 3919<br>WhatsApp: 392 128 7299<br>Correo: Tableros.braita@gmail.com</p>
             </div>
           </li>
         </ul>
@@ -2072,13 +2057,13 @@
              Google Maps del negocio, mejor usar ese en vez de buscar por dirección. -->
         <div class="map-embed-wrap">
           <iframe
-            src="https://maps.google.com/maps?q=Camino+viejo+a+Zula,+Potrero+de+Juana,+Ocotl%C3%A1n,+Jalisco&z=15&output=embed"
+            src="https://maps.google.com/maps?q=Av.+Universidad+1350,+Ocotl%C3%A1n,+Jalisco&z=15&output=embed"
             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Braita en Ocotlán, Jalisco">
           </iframe>
         </div>
         <a class="btn btn-outline map-cta" target="_blank"
-           href="https://www.google.com/maps/dir/?api=1&destination=Camino+viejo+a+Zula,+Potrero+de+Juana,+Ocotl%C3%A1n,+Jalisco">
+           href="https://www.google.com/maps/dir/?api=1&destination=Av.+Universidad+1350,+Ocotl%C3%A1n,+Jalisco">
           Cómo llegar →
         </a>
       </div>
@@ -2100,6 +2085,7 @@
     <div class="footer-legal">
       <span>© 2026 Braita S.A. de C.V. Todos los derechos reservados.</span>
       <span>Ocotlán, Jalisco, México.</span>
+      <a href="index.html" style="color:var(--brand);">← Volver al grupo Braita</a>
     </div>
     <div style="margin-top: 18px;">
       <a href="#" id="openPanel" class="admin-link">Ver historial de pedidos (panel administrador)</a>
@@ -2185,33 +2171,82 @@
   // menú al mismo tiempo (se anulaban entre sí), por eso se sentía roto/
   // torpe en móvil. Se eliminó ese duplicado a propósito: no lo repitas.
 
-  // ⚠ PENDIENTE (no se tocó): estos 12 productos siguen siendo de EJEMPLO
-  // (nombres genéricos de material crudo). Ya sabemos los nombres reales
-  // de al menos 4 acabados confirmados (Kenya Polar, Pietra Nero, Ónix
-  // Grafito, Fresno Ártico), pero reemplazarlos bien requeriría también
-  // cambiar las categorías de filtro (melamina/mdf/triplay/premium no
-  // aplican a acabados con nombre de diseño) — eso sí sería tocar código,
-  // así que se deja para cuando decidan si quieren ese cambio.
+  // CATÁLOGO REAL — reemplaza los 12 productos de ejemplo que había antes.
+  // Fuente: PDF "Catálogo Braita" que mandó el cliente (2026), 23 páginas,
+  // texto extraído con pdftotext (el PDF no traía fotos extraíbles en este
+  // entorno — no había poppler/pdfimages ni Python disponibles — por eso
+  // cada producto sigue usando el mismo patrón imagen+onerror del resto
+  // del sitio: en cuanto suban la foto real con el nombre exacto, aparece
+  // sola, sin tocar código).
+  //
+  // Los 39 nombres y las 6 líneas (Kenya/Elis/Logroño/Fondo de Cajón/
+  // Maderas & Vintage/Especial) son textuales del PDF. El campo "acabado"
+  // SÍ es una inferencia mía a partir de la lista de 5 acabados que da el
+  // PDF (alto brillo, mate, sincronizado, metalizado, rayado) — el PDF no
+  // dice explícitamente qué acabado lleva cada color individual, solo la
+  // lista general. Vale la pena que el cliente confirme acabado por acabado
+  // en algún momento; mientras tanto la inferencia sigue una lógica simple:
+  // texturas de madera → sincronizado, "metalizado"/"stripe"/"mate"/"alto
+  // brillo" en el nombre → ese mismo acabado, mármoles → alto brillo.
+  //
+  // Espesores reales de esta línea (todo el catálogo, no por producto):
+  // estándar 3, 5.5 y 12 mm; especiales 6, 9, 18 o 25 mm bajo pedido.
+  // Formato: 1.22 × 2.44 m. Base: MDF con recubrimiento UV.
   const DATABASE_PRODUCTS = [
-    { id: 'PROD-001', name: 'Melamina Blanca Soft', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'MDF / Aglomerado', image: 'imagen3.png' },
-    { id: 'PROD-002', name: 'Melamina Nogal Urbano', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD', image: 'imagen4.png' },
-    { id: 'PROD-003', name: 'Melamina Gris Grafito', category: 'melamina', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'MDF Premium', image: 'imagen5.png' },
-    { id: 'PROD-004', name: 'Melamina Roble Escandinavo', category: 'melamina', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Aglomerado HD', image: 'imagen6.png' },
-    { id: 'PROD-005', name: 'MDF Crudo Calibrado', category: 'mdf', thickness: '15 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra', image: 'imagen7.png' },
-    { id: 'PROD-006', name: 'MDF Crudo Industrial', category: 'mdf', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Sustrato Fibra', image: 'imagen8.png' },
-    { id: 'PROD-007', name: 'MDF Hidrófugo Antihumedad', category: 'mdf', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Núcleo Verde HMR', image: 'imagen9.png' },
-    { id: 'PROD-008', name: 'Triplay Pino de Primera', category: 'triplay', thickness: '12 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa', image: 'imagen10.png' },
-    { id: 'PROD-009', name: 'Triplay Pino Estructural', category: 'triplay', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Pino Multicapa', image: 'imagen11.png' },
-    { id: 'PROD-010', name: 'Triplay Marino de Importación', category: 'triplay', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'WBP Core', image: 'imagen12.png' },
-    { id: 'PROD-011', name: 'Alto Brillo Espejo Blanco', category: 'premium', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'PET Gloss / MDF', image: 'imagen13.png' },
-    { id: 'PROD-012', name: 'Super Mate Antihuella Negro', category: 'premium', thickness: '18 mm', dimensions: '244 × 122 cm', structural: 'Zenit Core / MDF', image: 'imagen14.png' }
+    // Línea Kenya
+    { id: 'KEN-01', name: 'Kenya Marrón', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen29.png' },
+    { id: 'KEN-02', name: 'Kenya Marrón Metalizado', category: 'kenya', acabado: 'UV Metalizado', image: 'imagen30.png' },
+    { id: 'KEN-03', name: 'Kenya Topo', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen31.png' },
+    { id: 'KEN-04', name: 'Kenya Nogal', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen32.png' },
+    { id: 'KEN-05', name: 'Kenya Nogal Inglés', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen33.png' },
+    { id: 'KEN-06', name: 'Kenya Chocolate', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen34.png' },
+    { id: 'KEN-07', name: 'Kenya Caoba', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen35.png' },
+    { id: 'KEN-08', name: 'Kenya Marfil', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen36.png' },
+    { id: 'KEN-09', name: 'Kenya Americano 1', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen37.png' },
+    { id: 'KEN-10', name: 'Kenya Americano 2', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen38.png' },
+    // Línea Elis
+    { id: 'ELI-01', name: 'Elis Delfín', category: 'elis', acabado: 'UV Sincronizado', image: 'imagen39.png' },
+    { id: 'ELI-02', name: 'Elis Chocolate', category: 'elis', acabado: 'UV Sincronizado', image: 'imagen40.png' },
+    { id: 'ELI-03', name: 'Elis Topo', category: 'elis', acabado: 'UV Sincronizado', image: 'imagen41.png' },
+    { id: 'ELI-04', name: 'Elis Nogal', category: 'elis', acabado: 'UV Sincronizado', image: 'imagen42.png' },
+    // Línea Logroño
+    { id: 'LOG-01', name: 'Logroño Tobak', category: 'logrono', acabado: 'UV Sincronizado', image: 'imagen43.png' },
+    { id: 'LOG-02', name: 'Logroño Platinado', category: 'logrono', acabado: 'UV Metalizado', image: 'imagen44.png' },
+    // Fondo de Cajón (panel utilitario, no de fachada)
+    { id: 'FDC-01', name: 'Fondo de Cajón Nogal/Americano', category: 'fondo-cajon', acabado: 'UV Mate', image: 'imagen45.png' },
+    { id: 'FDC-02', name: 'Fondo de Cajón Marrón', category: 'fondo-cajon', acabado: 'UV Mate', image: 'imagen46.png' },
+    { id: 'FDC-03', name: 'Fondo de Cajón Topo', category: 'fondo-cajon', acabado: 'UV Mate', image: 'imagen47.png' },
+    // Línea Maderas & Vintage
+    { id: 'MDV-01', name: 'Ébano', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen48.png' },
+    { id: 'MDV-02', name: 'Durazno', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen49.png' },
+    { id: 'MDV-03', name: 'Timber Arena', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen50.png' },
+    { id: 'MDV-04', name: 'Rústico Americano', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen51.png' },
+    { id: 'MDV-05', name: 'Parota', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen52.png' },
+    { id: 'MDV-06', name: 'Rioja', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen53.png' },
+    { id: 'MDV-07', name: 'Parota Vintage', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen54.png' },
+    { id: 'MDV-08', name: 'Katanya Cerezo', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen55.png' },
+    { id: 'MDV-09', name: 'Katanya Avellana', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen56.png' },
+    { id: 'MDV-10', name: 'Roble Oxford', category: 'maderas-vintage', acabado: 'UV Sincronizado', image: 'imagen57.png' },
+    // Línea Especial
+    { id: 'ESP-01', name: 'Mármol Blanco', category: 'especial', acabado: 'UV Alto Brillo', image: 'imagen58.png' },
+    { id: 'ESP-02', name: 'Mármol Negro', category: 'especial', acabado: 'UV Alto Brillo', image: 'imagen59.png' },
+    { id: 'ESP-03', name: 'Mármol Blanco y Negro', category: 'especial', acabado: 'UV Alto Brillo', image: 'imagen60.png' },
+    { id: 'ESP-04', name: 'Blanco Alto Brillo', category: 'especial', acabado: 'UV Alto Brillo', image: 'imagen61.png' },
+    { id: 'ESP-05', name: 'Blanco Mate', category: 'especial', acabado: 'UV Mate', image: 'imagen62.png' },
+    { id: 'ESP-06', name: 'Rosa Metalizado', category: 'especial', acabado: 'UV Metalizado', image: 'imagen63.png' },
+    { id: 'ESP-07', name: 'Verona White', category: 'especial', acabado: 'UV Sincronizado', image: 'imagen64.png' },
+    { id: 'ESP-08', name: 'Verona Black', category: 'especial', acabado: 'UV Sincronizado', image: 'imagen65.png' },
+    { id: 'ESP-09', name: 'Negro Stripe', category: 'especial', acabado: 'UV Rayado', image: 'imagen66.png' },
+    { id: 'ESP-10', name: 'Blanco Stripe', category: 'especial', acabado: 'UV Rayado', image: 'imagen67.png' }
   ];
 
   const mapCategoryLabel = {
-    melamina: 'Tablero de Melamina',
-    mdf: 'MDF Sustrato Crudo',
-    triplay: 'Triplay de Madera',
-    premium: 'Acabados Premium / Alto Brillo'
+    kenya: 'Línea Kenya',
+    elis: 'Línea Elis',
+    logrono: 'Línea Logroño',
+    'fondo-cajon': 'Fondo de Cajón',
+    'maderas-vintage': 'Línea Maderas & Vintage',
+    especial: 'Línea Especial'
   };
 
   const targetGrid = document.getElementById('catalog-target-grid');
@@ -2237,10 +2272,10 @@
         <div class="prod-content">
           <h3>${prod.name}</h3>
           <p class="prod-meta">
-            <strong>Tipo:</strong> ${mapCategoryLabel[prod.category]}<br>
-            <strong>Espesor:</strong> ${prod.thickness}<br>
-            <strong>Medida:</strong> ${prod.dimensions}<br>
-            <strong>Núcleo:</strong> ${prod.structural}
+            <strong>Línea:</strong> ${mapCategoryLabel[prod.category]}<br>
+            <strong>Acabado:</strong> ${prod.acabado}<br>
+            <strong>Formato:</strong> 1.22 × 2.44 m<br>
+            <strong>Espesor:</strong> 3, 5.5 o 12 mm est.
           </p>
           <div class="prod-footer">
             <span>Disponible Maquila</span>
@@ -2550,9 +2585,10 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       if (e.target.id === 'panelOverlay') e.target.classList.remove('open');
     });
 
-    // El resto de las páginas del grupo (Select, Maquinaria, Sync) NO tienen
-    // el panel duplicado — mandan aquí con index.html#panel-admin desde su
-    // propio footer, y esto lo abre solo al llegar.
+    // El resto de las páginas del grupo (Select, Maquinaria, Sync, TUV) NO
+    // tienen el panel duplicado — mandan aquí con
+    // braita-innovacion.html#panel-admin desde su propio footer, y esto lo
+    // abre solo al llegar.
     if (window.location.hash === '#panel-admin') {
       abrirPanelAdmin();
     }

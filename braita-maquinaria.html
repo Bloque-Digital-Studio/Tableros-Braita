@@ -74,7 +74,8 @@
   .group-switcher { background: #0e0e0c; padding: 10px 0; }
   .group-switcher .gs-wrap { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
   @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
-  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; text-decoration:none; transition:color .2s ease; }
+  .group-switcher .gs-label:hover{ color:#F5F5F2; }
   .group-switcher a{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
   .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
   .group-switcher a:hover{ color:#F5F5F2; }
@@ -342,14 +343,73 @@
     animation: glow-pulse 3s ease-in-out infinite;
   }
 
+  /* ---- Cascada escalonada al hacer scroll (mismo efecto que el hub
+     nuevo en index.html): cada tarjeta entra un poco después que la
+     anterior en vez de todas a la vez. Declarado al final a propósito,
+     ver nota equivalente en braita-select.html. ---- */
+  .grid-maq .maq-card:nth-child(1),
+  .servicios-grid .srv-card:nth-child(1){ transition-delay: .05s; }
+  .grid-maq .maq-card:nth-child(2),
+  .servicios-grid .srv-card:nth-child(2){ transition-delay: .15s; }
+  .grid-maq .maq-card:nth-child(3),
+  .servicios-grid .srv-card:nth-child(3){ transition-delay: .25s; }
+  .servicios-grid .srv-card:nth-child(4){ transition-delay: .35s; }
+
+  /* ---- Solicitud de Cotización de Equipo ----
+     A diferencia de Select/Sync (venden tableros/cantos por medida, donde
+     una Mesa de Control de corte tiene sentido), Maquinaria vende equipo:
+     no se "corta a medida", así que en vez de esa herramienta lleva un
+     formulario simple de solicitud de cotización que arma un mensaje de
+     WhatsApp — mismo criterio que el formulario de contacto del hub. */
+  .equipo-form{ background:var(--panel); border:1px solid var(--line); padding:32px; border-radius:8px; width:100%; max-width:420px; }
+  .equipo-form .form-field{ margin-bottom:18px; }
+  .equipo-form label{ display:block; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:7px; color:var(--ink-soft); }
+  .equipo-form input, .equipo-form select, .equipo-form textarea{ width:100%; background:var(--paper); border:1px solid var(--line); border-radius:4px; color:var(--ink); padding:11px 12px; font-family:inherit; font-size:14px; transition:border-color .2s ease; }
+  .equipo-form textarea{ min-height:80px; resize:vertical; }
+  .equipo-form input:focus, .equipo-form select:focus, .equipo-form textarea:focus{ outline:none; border-color:var(--accent); }
+
+  /* ---- Preloader (mismo patrón que braita-innovacion.html) ---- */
+  #preloader{
+    position:fixed; inset:0; z-index:5000;
+    background:var(--paper);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    transition:opacity .7s var(--ease), visibility .7s var(--ease);
+  }
+  #preloader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+  #preloader .pre-logo{
+    display:flex; align-items:center; gap:12px;
+    font-family:var(--font-display); font-weight:700; font-size:26px;
+    color:var(--ink); text-transform:uppercase; letter-spacing:.04em;
+    opacity:0; animation:preFade 1.2s var(--ease) forwards;
+  }
+  #preloader .pre-logo span{ color:var(--accent); }
+  @keyframes preFade{ 0%{opacity:0; letter-spacing:.3em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
+  #preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(229,226,222,.12); overflow:hidden; position:relative; }
+  #preloader .pre-bar::after{
+    content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%;
+    background:var(--accent); animation:preBar 1.3s var(--ease) forwards .25s;
+  }
+  @keyframes preBar{ to{ left:0; } }
+  #preloader .pre-caption{ margin-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+  @media (prefers-reduced-motion: reduce){
+    #preloader .pre-logo{ animation:none; opacity:1; }
+    #preloader .pre-bar::after{ animation:none; left:0; }
+  }
+
 </style>
 </head>
 <body>
 
+<div id="preloader">
+  <div class="pre-logo">BRAITA <span>MAQUINARIA</span></div>
+  <div class="pre-bar"></div>
+  <span class="pre-caption">Cargando equipo</span>
+</div>
+
 <div class="group-switcher">
   <div class="gs-wrap">
-    <span class="gs-label">Grupo Braita</span>
-    <a href="index.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
+    <a href="index.html" class="gs-label">Grupo Braita</a>
+    <a href="braita-innovacion.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
     <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
     <a href="braita-maquinaria.html" class="active"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
     <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
@@ -482,14 +542,41 @@
         <h2 style="color:var(--paper-soft); font-size:clamp(24px,3.2vw,32px); margin:14px 0 10px;">¿Buscas equipo para tu taller?</h2>
         <p style="color:#D7D6CE; max-width:44ch;">Braita Maquinaria comparte oficina y contacto con el resto del grupo, en Ocotlán, Jalisco.</p>
         <ul class="info-list">
-          <li><span><b>Dirección</b>Camino viejo a Zula, Potrero de Juana, Ocotlán, Jal.</span></li>
+          <li><span><b>Dirección</b>Av. Universidad #1350, Ocotlán, Jal.</span></li>
           <li><span><b>Teléfono</b>392 931 3919</span></li>
           <li><span><b>WhatsApp</b>392 128 7299</span></li>
-          <li><span><b>Correo</b>ventas@braita.com.mx</span></li>
+          <li><span><b>Correo</b>Tableros.braita@gmail.com</span></li>
         </ul>
       </div>
       <div class="reveal" style="display:flex; align-items:center; justify-content:center;">
-        <a href="#" id="waBottom" class="btn btn-primary" target="_blank" style="padding:20px 36px; font-size:15px;">Escribir por WhatsApp →</a>
+        <form id="equipoForm" class="equipo-form">
+          <div class="form-field">
+            <label for="eq-name">Nombre</label>
+            <input type="text" id="eq-name" required placeholder="Tu nombre">
+          </div>
+          <div class="form-field">
+            <label for="eq-company">Taller / Fábrica</label>
+            <input type="text" id="eq-company" placeholder="Opcional">
+          </div>
+          <div class="form-field">
+            <label for="eq-phone">Teléfono</label>
+            <input type="tel" id="eq-phone" required placeholder="10 dígitos">
+          </div>
+          <div class="form-field">
+            <label for="eq-type">Tipo de equipo</label>
+            <select id="eq-type">
+              <option>Seccionadoras</option>
+              <option>Canteadoras</option>
+              <option>Mantenimiento y refacciones</option>
+              <option>Otro / no estoy seguro</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="eq-notes">Cuéntanos qué necesitas</label>
+            <textarea id="eq-notes" placeholder="Tamaño de taller, producción mensual, etc."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Solicitar cotización →</button>
+        </form>
       </div>
     </div>
   </section>
@@ -501,7 +588,7 @@
     <a href="index.html" style="color:var(--accent-dark);">← Volver al grupo Braita</a>
   </div>
   <div class="wrap admin-link-row">
-    <a href="index.html#panel-admin" class="admin-link">Ver historial de pedidos (panel administrador)</a>
+    <a href="braita-innovacion.html#panel-admin" class="admin-link">Ver historial de pedidos (panel administrador)</a>
   </div>
 </footer>
 
@@ -513,8 +600,36 @@
   const WA = '523921287299'; // Número real de Braita (antes era 523929313919, incorrecto)
   const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
   document.getElementById('waTop').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
-  document.getElementById('waBottom').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
   document.getElementById('waFloat').href = wa('Hola, vi Braita Maquinaria y quiero información de equipo.');
+
+  // Formulario de solicitud de cotización de equipo: arma un mensaje y lo
+  // abre en WhatsApp (mismo criterio que el formulario de contacto del hub
+  // — el sitio no tiene backend propio, ver nota en index.html).
+  const equipoForm = document.getElementById('equipoForm');
+  if (equipoForm) {
+    equipoForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById('eq-name').value.trim();
+      const telefono = document.getElementById('eq-phone').value.trim();
+      if (!nombre || !telefono) { equipoForm.reportValidity(); return; }
+      const lineas = [
+        'Hola, quiero cotización de equipo Braita Maquinaria.',
+        `Nombre: ${nombre}`,
+        document.getElementById('eq-company').value.trim() ? `Taller/Fábrica: ${document.getElementById('eq-company').value.trim()}` : null,
+        `Teléfono: ${telefono}`,
+        `Tipo de equipo: ${document.getElementById('eq-type').value}`,
+        document.getElementById('eq-notes').value.trim() ? `Notas: ${document.getElementById('eq-notes').value.trim()}` : null,
+      ].filter(Boolean);
+      window.open(wa(lineas.join('\n')), '_blank');
+    });
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const pre = document.getElementById('preloader');
+      if (pre) pre.classList.add('hide');
+    }, 400);
+  });
 </script>
 <script src="premium-interactions.js"></script>
 

@@ -12,9 +12,10 @@
   4. Confirmar textos: qué es exactamente "material premium" para el cliente
      (¿alto brillo importado? ¿laca? ¿texturas especiales?).
 
-  CONTACTO REAL ya actualizado: dirección (Camino viejo a Zula, Potrero
-  de Juana, Ocotlán), teléfono 392 931 3919, WhatsApp 392 128 7299
-  (son distintos), correo ventas@braita.com.mx.
+  CONTACTO REAL: dirección Av. Universidad #1350, Ocotlán (actualizada
+  según el catálogo PDF oficial de 2026 — antes era "Camino viejo a
+  Zula, Potrero de Juana"), teléfono 392 931 3919, WhatsApp 392 128 7299
+  (son distintos), correo Tableros.braita@gmail.com (antes ventas@braita.com.mx).
 
   Por instrucción del cliente: esta ronda SOLO se actualizó info, no
   diseño/colores/estructura de código.
@@ -71,7 +72,8 @@
   .group-switcher { background: #0e0e0c; padding: 10px 0; }
   .group-switcher .gs-wrap { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
   @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
-  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; text-decoration:none; transition:color .2s ease; }
+  .group-switcher .gs-label:hover{ color:#F5F5F2; }
   .group-switcher a{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
   .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
   .group-switcher a:hover{ color:#F5F5F2; }
@@ -346,15 +348,104 @@
     opacity: 1;
   }
 
+  /* ---- Cascada escalonada al hacer scroll: cada tarjeta de una misma
+     grilla entra un poco después que la anterior en vez de todas a la
+     vez, mismo efecto ya usado en el nuevo hub (index.html). Se declara
+     al final del <style> a propósito: .sel-card/.why-card ya fijan su
+     propio "transition: all 0.4s" para el hover, y transition-delay
+     como propiedad suelta (no shorthand) sólo gana si aparece después
+     en la cascada. ---- */
+  .grid-select .sel-card:nth-child(1),
+  .why-grid .why-card:nth-child(1){ transition-delay: .05s; }
+  .grid-select .sel-card:nth-child(2),
+  .why-grid .why-card:nth-child(2){ transition-delay: .15s; }
+  .grid-select .sel-card:nth-child(3),
+  .why-grid .why-card:nth-child(3){ transition-delay: .25s; }
+
+  /* ════════════════════════════════════════════════════════════════════
+     MESA DE CONTROL — mismo patrón/JS que braita-innovacion.html
+     (ver mesa-control.js), adaptado a la paleta oro de Select.
+     ═════════════════════════════════════════════════════════════════════ */
+  .mesa-control-section{ background:linear-gradient(135deg, var(--charcoal) 0%, #0E1013 100%); color:var(--text-onDark); }
+  .mesa-control-section h2{ color:var(--text-onDark); font-size:clamp(28px,4vw,40px); }
+  .mesa-control-section p{ color:var(--text-onDark-muted); line-height:1.7; }
+  .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:44px; margin-top:48px; align-items:start; }
+  @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
+  .blueprint-panel, .control-form{ background:var(--charcoal-light); border:1px solid var(--border-strong); padding:30px; }
+  .panel-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-strong); padding-bottom:14px; margin-bottom:22px; }
+  .panel-header h3{ color:var(--text-onDark); font-size:17px; }
+  .table-responsive{ width:100%; overflow-x:auto; }
+  .despiece-table{ width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:18px; }
+  .despiece-table th{ background:var(--bg-base); color:var(--text-onDark-muted); padding:10px; font-weight:500; border-bottom:2px solid var(--border-strong); }
+  .despiece-table td{ padding:7px 10px; border-bottom:1px solid var(--border-strong); vertical-align:middle; }
+  .despiece-table input, .despiece-table select{ width:100%; background:var(--bg-base); border:1px solid var(--border-strong); color:var(--text-onDark); padding:7px; font-family:var(--font-mono); font-size:12px; }
+  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-color:var(--gold); }
+  .btn-remove-row{ background:transparent; border:none; color:#EF4444; cursor:pointer; padding:4px; display:inline-flex; align-items:center; }
+  .btn-add-row{ background:transparent; border:1px dashed var(--border-strong); color:var(--text-onDark); font-family:var(--font-mono); font-size:12px; padding:9px 14px; cursor:pointer; width:100%; text-transform:uppercase; transition:all .2s ease; }
+  .btn-add-row:hover{ border-color:var(--text-onDark); background:rgba(255,255,255,.03); }
+  .form-group{ margin-bottom:20px; }
+  .form-group label{ display:block; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:7px; color:var(--text-onDark-muted); }
+  .form-group input, .form-group select, .form-group textarea{ width:100%; background:var(--bg-base); border:none; border-bottom:1px solid var(--border-strong); padding:11px 4px; color:var(--text-onDark); font-family:var(--font-sans); font-size:14.5px; transition:border-color .3s ease; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-bottom-color:var(--gold); }
+  .summary-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-strong); border:1px solid var(--border-strong); margin-top:18px; }
+  @media (max-width:620px){ .summary-strip{ grid-template-columns:repeat(2,1fr); } }
+  .summary-item{ background:var(--bg-base); padding:14px 16px; text-align:center; }
+  .summary-num{ display:block; font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--gold-light); }
+  .summary-label{ font-family:var(--font-mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-onDark-muted); margin-top:4px; display:block; }
+  .btn-copy-summary{ width:100%; margin-top:14px; background:transparent; border:1px solid var(--border-strong); color:var(--text-onDark); font-family:var(--font-mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; padding:12px; cursor:pointer; transition:all .2s ease; }
+  .btn-copy-summary:hover{ border-color:var(--text-onDark); }
+
+  #toast-container{ position:fixed; bottom:32px; left:32px; z-index:1000; display:flex; flex-direction:column; gap:12px; }
+  .toast{ background:var(--charcoal); color:var(--text-onDark); font-family:var(--font-mono); font-size:13px; padding:15px 22px; border-left:4px solid var(--gold); box-shadow:0 16px 40px rgba(0,0,0,.45); transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards; display:flex; align-items:center; gap:14px; }
+  @keyframes slideIn{ to{ transform:translateX(0); } }
+  .toast.fade-out{ animation:slideOut .4s var(--ease) forwards; }
+  @keyframes slideOut{ to{ transform:translateX(-120%); opacity:0; } }
+
+  /* ---- Preloader (mismo patrón que braita-innovacion.html) ---- */
+  #preloader{
+    position:fixed; inset:0; z-index:5000;
+    background:var(--bg-base);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    transition:opacity .7s var(--ease), visibility .7s var(--ease);
+  }
+  #preloader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+  #preloader .pre-logo{
+    display:flex; align-items:center; gap:12px;
+    font-family:var(--font-display); font-weight:700; font-size:26px;
+    color:var(--text-primary); text-transform:uppercase; letter-spacing:.04em;
+    opacity:0; animation:preFade 1.2s var(--ease) forwards;
+  }
+  #preloader .pre-logo b{ color:var(--gold-light); }
+  @keyframes preFade{ 0%{opacity:0; letter-spacing:.3em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
+  #preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(243,242,239,.12); overflow:hidden; position:relative; }
+  #preloader .pre-bar::after{
+    content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%;
+    background:linear-gradient(90deg, var(--gold-dark), var(--gold-light)); animation:preBar 1.3s var(--ease) forwards .25s;
+  }
+  @keyframes preBar{ to{ left:0; } }
+  #preloader .pre-caption{ margin-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); }
+  @media (prefers-reduced-motion: reduce){
+    #preloader .pre-logo{ animation:none; opacity:1; }
+    #preloader .pre-bar::after{ animation:none; left:0; }
+  }
+
 </style>
 </head>
 <body>
 
+<div id="preloader">
+  <div class="pre-logo">BRAITA <b>SELECT</b></div>
+  <div class="pre-bar"></div>
+  <span class="pre-caption">Cargando colección</span>
+</div>
+
+<div id="toast-container"></div>
+
 <!-- BARRA DE GRUPO -->
 <div class="group-switcher">
   <div class="gs-wrap">
-    <span class="gs-label">Grupo Braita</span>
-    <a href="index.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
+    <a href="index.html" class="gs-label">Grupo Braita</a>
+    <a href="braita-innovacion.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
     <a href="braita-select.html" class="active"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
     <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
     <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
@@ -375,6 +466,7 @@
     </a>
     <nav><ul>
       <li><a href="#coleccion">Colección</a></li>
+      <li><a href="#mesa-control">Mesa de Despiece</a></li>
       <li><a href="#porque">Por qué Select</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul></nav>
@@ -454,6 +546,106 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       MESA DE CONTROL — mismo sistema que braita-innovacion.html
+       (ver mesa-control.js): arma un listado de piezas, calcula un
+       resumen en vivo y lo manda por WhatsApp; guarda copia en la
+       misma base de Supabase (tabla pedidos_maquila) para que
+       aparezca en el panel de administrador central de Innovación.
+  ============================================================ -->
+  <section id="mesa-control" class="mesa-control-section">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Mesa de Control Operativa</span>
+        <h2>Arma tu Pedido de Despiece</h2>
+        <p>Añade los módulos o paneles requeridos de la colección Select. El sistema estructura el listado técnico listo para mandarse por WhatsApp.</p>
+      </div>
+
+      <div class="mesa-layout">
+        <div class="blueprint-panel reveal">
+          <div class="panel-header">
+            <h3>Listado Geométrico de Piezas</h3>
+            <span class="mono" style="font-size:11px; color:var(--text-onDark-muted);" id="row-counter">1 Pieza añadida</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="despiece-table" id="despiece-table">
+              <thead>
+                <tr>
+                  <th>Pieza / Etiqueta</th>
+                  <th style="width:100px;">Largo (mm)</th>
+                  <th style="width:100px;">Ancho (mm)</th>
+                  <th style="width:80px;">Cant.</th>
+                  <th>Chapeado (Cantos)</th>
+                  <th style="width:40px;"></th>
+                </tr>
+              </thead>
+              <tbody id="table-body-rows">
+                <tr>
+                  <td><input type="text" placeholder="Ej: Puerta Superior" value="Puerta Superior"></td>
+                  <td><input type="number" placeholder="0" value="720"></td>
+                  <td><input type="number" placeholder="0" value="450"></td>
+                  <td><input type="number" placeholder="1" value="2"></td>
+                  <td>
+                    <select>
+                      <option value="Ninguno">Ninguno</option>
+                      <option value="2 Largos">2 Largos</option>
+                      <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
+                      <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button class="btn-remove-row" title="Eliminar fila" onclick="deleteRow(this)">
+                      <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn-add-row" onclick="addNewRow()">+ Añadir Fila de Despiece</button>
+
+          <div class="summary-strip" id="summaryStrip">
+            <div class="summary-item"><span class="summary-num" id="sumPiezas">0</span><span class="summary-label">Piezas totales</span></div>
+            <div class="summary-item"><span class="summary-num" id="sumArea">0.00 m²</span><span class="summary-label">Área total</span></div>
+            <div class="summary-item"><span class="summary-num" id="sumCanto">0.00 m</span><span class="summary-label">Canto lineal</span></div>
+            <div class="summary-item"><span class="summary-num" id="sumTableros">0</span><span class="summary-label">Tableros aprox.*</span></div>
+          </div>
+          <p class="mono" style="font-size:10.5px; color:var(--text-onDark-muted); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma. Referencia rápida, no sustituye la cotización formal.</p>
+          <button class="btn-copy-summary" type="button" onclick="copiarResumen()">Copiar resumen del pedido</button>
+        </div>
+
+        <div class="control-form reveal">
+          <div class="form-group">
+            <label for="client-name">Nombre Comercial / Solicitante</label>
+            <input type="text" id="client-name" required placeholder="Ej: Arq. Andrea Solís">
+          </div>
+          <div class="form-group">
+            <label for="client-company">Estudio / Carpintería</label>
+            <input type="text" id="client-company" placeholder="Opcional">
+          </div>
+          <div class="form-group">
+            <label for="client-phone">Línea Móvil (WhatsApp)</label>
+            <input type="tel" id="client-phone" required placeholder="Ej: 3921002030">
+          </div>
+          <div class="form-group">
+            <label for="master-material">Acabado Select</label>
+            <select id="master-material">
+              <option value="Roble Natural 12mm">Roble Natural — Madera, UV Mate</option>
+              <option value="Lino Arena 12mm">Lino Arena — Textil, UV Mate</option>
+              <option value="Otro acabado Select (especificar en notas)">Otro acabado de la colección (especificar en notas)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="client-notes">Notas Especiales</label>
+            <textarea id="client-notes" placeholder="Indicar herrajes adicionales o especificaciones de perforación..."></textarea>
+          </div>
+          <button class="btn btn-gold" style="width:100%; margin-top:8px;" onclick="processOrderToWhatsApp()">Exportar y Enviar por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="porque">
     <div class="wrap">
       <span class="eyebrow reveal">Por qué Select</span>
@@ -482,10 +674,10 @@
         <h2 style="font-size:clamp(24px,3.2vw,32px); margin:14px 0 10px;">¿Tienes un proyecto en mente?</h2>
         <p style="color:var(--text-secondary); max-width:44ch;">Braita Select comparte oficina y contacto con el resto del grupo, en Ocotlán, Jalisco.</p>
         <ul class="info-list">
-          <li><span><b>Dirección</b>Camino viejo a Zula, Potrero de Juana, Ocotlán, Jal.</span></li>
+          <li><span><b>Dirección</b>Av. Universidad #1350, Ocotlán, Jal.</span></li>
           <li><span><b>Teléfono</b>392 931 3919</span></li>
           <li><span><b>WhatsApp</b>392 128 7299</span></li>
-          <li><span><b>Correo</b>ventas@braita.com.mx</span></li>
+          <li><span><b>Correo</b>Tableros.braita@gmail.com</span></li>
         </ul>
         <p class="mono" style="font-size:11px; color:var(--text-muted); margin-top:18px; line-height:1.6;">*Confirmar con Braita si Select tendrá horario/atención distinta al resto del grupo.</p>
       </div>
@@ -502,7 +694,7 @@
     <a href="index.html" style="color:var(--gold-light);">← Volver al grupo Braita</a>
   </div>
   <div class="wrap admin-link-row">
-    <a href="index.html#panel-admin" class="admin-link">Ver historial de pedidos (panel administrador)</a>
+    <a href="braita-innovacion.html#panel-admin" class="admin-link">Ver historial de pedidos (panel administrador)</a>
   </div>
 </footer>
 
@@ -516,7 +708,20 @@
   document.getElementById('waTop').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
   document.getElementById('waBottom').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
   document.getElementById('waFloat').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const pre = document.getElementById('preloader');
+      if (pre) pre.classList.add('hide');
+    }, 400);
+  });
+
+  // Config para mesa-control.js (Mesa de Control compartida, ver ese archivo)
+  const MESA_WA_NUMBER = '523921287299';
+  const MESA_MARCA = 'Braita Select';
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="mesa-control.js"></script>
 <script src="premium-interactions.js"></script>
 
 </body>
