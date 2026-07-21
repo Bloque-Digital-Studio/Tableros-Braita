@@ -50,40 +50,42 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="premium-animations.css">
 
 <style>
   :root {
-    --bg-base: #FAFAF9;
-    --bg-surface: #FFFFFF;
-    --bg-panel: #F3F2F0;
-    --bg-dark: #0F1117;
-    --bg-dark-surface: #1A1F2B;
-    
-    --text-primary: #0F1117;
-    --text-secondary: #57595C;
-    --text-muted: #8B8E91;
-    --text-light: #FAFAF9;
-    --text-light-muted: #B5BACA;
+    --bg-base: #131311;
+    --bg-surface: #20201d;
+    --bg-panel: #1c1c1a;
+    --bg-dark: #0e0e0c;
+    --bg-dark-surface: #2a2a28;
 
-    --brand: #2F6690;
-    --brand-dark: #1A3D52;
-    --brand-light: #5A8FBD;
-    --border-color: #D8D7D4;
-    --border-dark: #2D323B;
-    
-    --font-display: 'Bricolage Grotesque', sans-serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    
+    --text-primary: #e5e2de;
+    --text-secondary: #d2c4b7;
+    --text-muted: #9b8f82;
+    --text-light: #e5e2de;
+    --text-light-muted: #d2c4b7;
+
+    --brand: #eabf8d;
+    --brand-dark: #78582f;
+    --brand-light: #ffddb7;
+    --on-brand: #442b06;
+    --border-color: #4f453b;
+    --border-dark: #9b8f82;
+
+    --font-display: 'Chivo', sans-serif;
+    --font-sans: 'Manrope', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
     --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
     --transition-normal: cubic-bezier(0.4, 0, 0.2, 1);
     --radius-sm: 4px;
-    --radius-md: 8px;
-    --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
-    --shadow-md: 0 12px 32px rgba(0,0,0,0.12);
-    --shadow-lg: 0 20px 48px rgba(0,0,0,0.15);
+    --radius-md: 6px;
+    --shadow-sm: 0 4px 16px rgba(0,0,0,0.35);
+    --shadow-md: 0 16px 40px rgba(0,0,0,0.45);
+    --shadow-lg: 0 24px 56px rgba(0,0,0,0.5);
+    --shadow-brand: 0 20px 50px rgba(234,191,141,0.18);
   }
 
   *, *::before, *::after {
@@ -98,7 +100,7 @@
   }
 
   body {
-    background: linear-gradient(135deg, var(--bg-base) 0%, #F8F7F5 100%);
+    background: linear-gradient(135deg, var(--bg-base) 0%, #0e0e0c 100%);
     color: var(--text-primary);
     font-family: var(--font-sans);
     font-size: 16px;
@@ -142,7 +144,7 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--brand-dark);
+    color: var(--brand);
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -213,37 +215,38 @@
   }
 
   .btn-dark {
-    background: linear-gradient(135deg, var(--bg-dark) 0%, #1A1F2B 100%);
+    background: var(--bg-dark-surface);
     color: var(--text-light);
-    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
   }
   .btn-dark:hover {
-    background: linear-gradient(135deg, var(--brand-dark) 0%, var(--bg-dark) 100%);
+    border-color: var(--brand);
     transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
   }
 
   .btn-outline {
-    background-color: var(--bg-surface);
-    border: 2px solid var(--bg-dark);
-    color: var(--bg-dark);
+    background-color: transparent;
+    border: 1.5px solid var(--brand);
+    color: var(--brand);
   }
   .btn-outline:hover {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
+    background-color: rgba(234,191,141,0.1);
+    color: var(--brand-light);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
   }
 
   .btn-brand {
-    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
-    color: white;
-    box-shadow: var(--shadow-md);
+    background: var(--brand);
+    color: var(--on-brand);
+    box-shadow: var(--shadow-brand);
   }
   .btn-brand:hover {
-    background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
+    background: var(--brand-light);
     transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-brand), var(--shadow-md);
   }
 
   #toast-container {
@@ -279,27 +282,17 @@
     position: sticky;
     top: 0;
     z-index: 500;
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-bottom: 1px solid transparent;
+    background: rgba(32, 32, 29, 0.6);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-bottom: 1px solid var(--border-color);
     box-shadow: none;
     transition: all 0.4s var(--transition-normal);
   }
   header.scrolled {
-    background: rgba(250, 250, 249, 0.88);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(216, 215, 212, 0.5);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    background: rgba(20, 20, 18, 0.82);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
   }
-  header:not(.scrolled) .logo,
-  header:not(.scrolled) nav a,
-  header:not(.scrolled) .btn-outline {
-    color: var(--text-light);
-  }
-  header:not(.scrolled) .btn-outline { border-color: rgba(255,255,255,.5); }
-  header:not(.scrolled) nav a:hover { color: var(--text-light); }
   .navbar {
     display: flex;
     align-items: center;
@@ -995,7 +988,7 @@
     letter-spacing: 0.04em;
     color: var(--text-muted);
   }
-  .admin-link:hover { color: var(--brand-dark); }
+  .admin-link:hover { color: var(--brand); }
   .admin-link::before { content: '●'; font-size: 8px; color: #3F7D4C; }
 
   .panel-overlay {
@@ -1255,7 +1248,7 @@
   /* ========================================================================
      20. BARRA "GRUPO BRAITA" (navegación entre las 4 marcas del grupo)
      ======================================================================== */
-  .group-switcher { background: #0E0F11; padding: 10px 0; }
+  .group-switcher { background: #0e0e0c; padding: 10px 0; }
   .group-switcher .gs-wrap {
     max-width: 1200px; margin: 0 auto; padding: 0 32px;
     display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
@@ -1279,8 +1272,8 @@
 
   /* HERO SECTION — Fondo gradiente con marca azul */
   .hero {
-    background: linear-gradient(135deg, rgba(47,102,144,0.06) 0%, rgba(47,102,144,0.02) 100%),
-                linear-gradient(180deg, var(--bg-base) 0%, #F8F7F5 100%);
+    background: linear-gradient(135deg, rgba(234,191,141,0.08) 0%, rgba(234,191,141,0.02) 100%),
+                linear-gradient(180deg, var(--bg-base) 0%, #0e0e0c 100%);
     position: relative;
     overflow: visible;
     z-index: 0; /* crea un contexto de apilamiento propio: así la imagen de
@@ -1296,7 +1289,7 @@
     right: -150px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(47,102,144,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(234,191,141,0.12) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
@@ -1351,21 +1344,7 @@
   .hero-content .eyebrow { color: var(--brand-light); }
   .hero-content .eyebrow::before { background-color: var(--brand-light); }
   .hero-content .sheet-tag .num { color: var(--text-light-muted); border-color: rgba(255,255,255,0.35); }
-  .hero-buttons .btn-outline {
-    background-color: transparent;
-    border-color: var(--text-light);
-    color: var(--text-light);
-  }
-  .hero-buttons .btn-outline:hover {
-    background-color: var(--text-light);
-    color: var(--bg-dark);
-  }
-
-  /* CATÁLOGO SECTION — Fondo blanco premium con ritmo geométrico */
-  #catalogo {
-    background: linear-gradient(135deg, #FFFFFF 0%, #F9F8F7 50%, #F3F2F0 100%);
-    position: relative;
-  }
+  /* CATÁLOGO SECTION — fondo controlado por variable (ver regla #catalogo más abajo) */
 
   #catalogo::before {
     content: '';
@@ -1375,8 +1354,8 @@
     width: 100%;
     height: 100%;
     background-image: 
-      repeating-linear-gradient(90deg, transparent 0px, transparent 119px, rgba(47,102,144,0.04) 119px, rgba(47,102,144,0.04) 120px),
-      repeating-linear-gradient(0deg, transparent 0px, transparent 119px, rgba(47,102,144,0.03) 119px, rgba(47,102,144,0.03) 120px);
+      repeating-linear-gradient(90deg, transparent 0px, transparent 119px, rgba(234,191,141,0.05) 119px, rgba(234,191,141,0.05) 120px),
+      repeating-linear-gradient(0deg, transparent 0px, transparent 119px, rgba(234,191,141,0.04) 119px, rgba(234,191,141,0.04) 120px);
     pointer-events: none;
     z-index: 0;
   }
@@ -1386,10 +1365,10 @@
     z-index: 1;
   }
 
-  /* SERVICIOS SECTION — Fondo azul claro con gradiente cálido */
+  /* SERVICIOS SECTION — Fondo oscuro con gradiente bronce sutil */
   .servicios-section {
-    background: linear-gradient(135deg, rgba(47,102,144,0.08) 0%, rgba(90,143,189,0.04) 100%),
-                linear-gradient(180deg, #F6F7FB 0%, #FAFAF9 100%);
+    background: linear-gradient(135deg, rgba(234,191,141,0.07) 0%, rgba(234,191,141,0.02) 100%),
+                linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-base) 100%);
     position: relative;
   }
 
@@ -1415,9 +1394,9 @@
   }
   #catalogo .container { position: relative; z-index: 1; }
 
-  /* PROCESO SECTION — Gradiente sutil gris → azul */
+  /* PROCESO SECTION — Gradiente sutil entre capas oscuras */
   #proceso {
-    background: linear-gradient(135deg, #FAFAF9 0%, #F3F4F8 100%);
+    background: linear-gradient(135deg, var(--bg-base) 0%, var(--bg-panel) 100%);
     position: relative;
   }
 
@@ -1428,7 +1407,7 @@
     right: 0;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(47,102,144,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(234,191,141,0.1) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
   }
@@ -1438,9 +1417,9 @@
     z-index: 1;
   }
 
-  /* AUDIENCIAS SECTION — naranja muy tenue, para romper el blanco constante */
+  /* AUDIENCIAS SECTION — bronce cálido oscuro, para romper el ritmo de grises */
   #audiencias {
-    background: linear-gradient(135deg, #FDF4EA 0%, #FAEBDA 100%);
+    background: linear-gradient(135deg, #241c12 0%, #1c1712 100%);
     position: relative;
   }
 
@@ -1449,9 +1428,9 @@
     z-index: 1;
   }
 
-  /* MESA CONTROL — Gradiente oscuro con acentos azules */
+  /* MESA CONTROL — Gradiente oscuro con acentos bronce */
   .mesa-control-section {
-    background: linear-gradient(135deg, var(--bg-dark) 0%, #1A1F2B 50%, rgba(47,102,144,0.15) 100%);
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-surface) 50%, rgba(234,191,141,0.12) 100%);
     position: relative;
     overflow: hidden;
   }
@@ -1463,7 +1442,7 @@
     left: -100px;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(47,102,144,0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(234,191,141,0.18) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
   }
@@ -1475,7 +1454,7 @@
     right: -100px;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(90,143,189,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,221,183,0.1) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
   }
@@ -1485,9 +1464,9 @@
     z-index: 1;
   }
 
-  /* TESTIMONIOS SECTION — Fondo limpio con línea divisoria */
+  /* TESTIMONIOS SECTION — Fondo oscuro limpio con línea divisoria */
   #testimonios {
-    background: linear-gradient(135deg, #F9F8F7 0%, #FFFFFF 100%);
+    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-base) 100%);
     position: relative;
   }
 
@@ -1508,10 +1487,10 @@
     z-index: 1;
   }
 
-  /* UBICACIÓN SECTION — Gradiente ubicación con accent */
+  /* UBICACIÓN SECTION — Gradiente oscuro con accent bronce */
   #ubicacion {
-    background: linear-gradient(135deg, rgba(47,102,144,0.04) 0%, rgba(47,102,144,0.08) 100%),
-                linear-gradient(180deg, #FAFAF9 0%, #F3F2F0 100%);
+    background: linear-gradient(135deg, rgba(234,191,141,0.05) 0%, rgba(234,191,141,0.08) 100%),
+                linear-gradient(180deg, var(--bg-base) 0%, var(--bg-panel) 100%);
     position: relative;
   }
 
@@ -1523,7 +1502,7 @@
     transform: translateX(-50%);
     width: 1000px;
     height: 1000px;
-    background: radial-gradient(circle, rgba(47,102,144,0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(234,191,141,0.05) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
   }
@@ -1612,10 +1591,10 @@
        Se le agrega una capa sólida (var(--bg-panel)) debajo del degradado
        decorativo para que vuelva a ser opaca. */
     background: linear-gradient(90deg, 
-      rgba(47,102,144,0.05) 0%, 
+      rgba(234,191,141,0.05) 0%, 
       transparent 20%, 
       transparent 80%, 
-      rgba(47,102,144,0.05) 100%), var(--bg-panel);
+      rgba(234,191,141,0.05) 100%), var(--bg-panel);
     position: relative;
   }
 
@@ -1631,7 +1610,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 12px;
-    color: rgba(47,102,144,0.3);
+    color: rgba(234,191,141,0.35);
     font-family: var(--font-mono);
     text-align: center;
     pointer-events: none;
@@ -1679,7 +1658,7 @@
 <div class="group-switcher">
   <div class="gs-wrap">
     <span class="gs-label">Grupo Braita</span>
-    <a href="index.html" class="active"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
+    <a href="index.html" class="active"><span class="gs-dot" style="background:#eabf8d"></span>Innovación</a>
     <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
     <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
     <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
@@ -2139,7 +2118,7 @@
     </div>
 
     <div id="panelLoginBox" class="panel-login">
-      <span class="eyebrow" style="color: var(--brand-dark);">Acceso administrador</span>
+      <span class="eyebrow" style="color: var(--brand);">Acceso administrador</span>
       <h4>Inicia sesión para ver las órdenes</h4>
       <div class="panel-field"><label for="panelLoginEmail">Correo</label><input type="email" id="panelLoginEmail"></div>
       <div class="panel-field"><label for="panelLoginPassword">Contraseña</label><input type="password" id="panelLoginPassword"></div>
