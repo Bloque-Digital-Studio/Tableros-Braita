@@ -109,13 +109,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // HEADER SCROLL EFFECT
   const header = document.querySelector('header');
   if (header) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
+    const updateHeaderScrolled = () => {
+      if (window.scrollY > 60) {
+        header.classList.add('scrolled');
         header.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.1)';
       } else {
-        header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.04)';
+        header.classList.remove('scrolled');
+        header.style.boxShadow = '';
       }
-    });
+    };
+    updateHeaderScrolled();
+    window.addEventListener('scroll', updateHeaderScrolled);
   }
 
   // MENU TOGGLE MOBILE

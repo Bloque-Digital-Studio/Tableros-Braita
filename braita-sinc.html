@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <!--
   ================================================================
-  BRAITA SINC — línea de chapas del grupo Braita (FASE MUY BETA)
+  BRAITA SYNC — línea de cantos del grupo Braita
   ================================================================
-  Esta página es intencionalmente mínima. El cliente pidió dejarla
-  "de una vez" pero SIN info real todavía.
+  ACTUALIZADO con info real confirmada por el cliente (capturas de
+  referencia): el nombre correcto es "Sync" (con Y, no "Sinc"), es
+  una línea de CANTOS (el material que recubre la orilla del
+  tablero) — no de chapas de madera — y el color real de marca es
+  VERDE. Ya se aplicó el rename + color + descripción real en todo
+  el archivo.
 
-  ACTUALIZACIÓN con info real confirmada (capturas de referencia):
-  - El nombre real de la marca es "Sync" (con Y), no "Sinc". No se
-    cambió el título/textos de esta página por instrucción de no
-    tocar código/diseño esta ronda — nada más se deja anotado aquí
-    para que se corrija cuando toque.
-  - La marca real es de CANTOS (el material que recubre la orilla
-    del tablero), no de chapas de madera como se había asumido.
-  - Color real confirmado en las capturas: VERDE (aquí sigue en
-    madera/café, sin tocar, por la misma razón de arriba).
-  - Descripción real: "Cantos que complementan y sincronizan tus
-    tableros y acabados para un resultado perfecto y profesional."
-    Puntos reales: Cantos de alta calidad · Compatibilidad de
-    diseños · Resistencia y durabilidad · Soluciones funcionales.
-
-  Cuando confirmes que sí quieres que se apliquen estos cambios de
-  nombre/color/contenido, avísame y lo hago — esta ronda fue
-  info de contacto solamente, tal como pediste.
+  Sigue pendiente confirmar con el cliente: catálogo real de cantos
+  (colores/formatos/espesores) y logo real de la marca — por eso el
+  badge sigue diciendo que el catálogo está por confirmarse, aunque
+  la marca en sí ya no se trata como "beta".
 
   ESPACIO PARA IMAGEN DE ESTE ARCHIVO (naming secuencial compartido con
   todo el Grupo Braita — ver index.html para imagen1-14):
-    imagen17.png -> Fotos de chapas dentro de la tarjeta info-card
+    imagen17.png -> Fotos de cantos dentro de la tarjeta info-card
   Ya está enlazado como <img> con fallback automático (onerror): si el
   archivo no existe todavía no se ve nada roto, y en cuanto lo subas con
   ese nombre exacto aparece solo.
@@ -36,18 +27,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Braita Sinc — Chapas | Grupo Braita (próximamente)</title>
-<meta name="description" content="La línea de chapas del Grupo Braita. Página en construcción.">
+
+<title>Braita Sync — Cantos | Grupo Braita</title>
+<meta name="description" content="Braita Sync: cantos que complementan y sincronizan tus tableros y acabados, del Grupo Braita.">
 <link rel="icon" href="logo-group-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="premium-animations.css">
 <style>
   :root{
     --ink:#0F1117; --ink-soft:#57595C; --paper:#FAFAF9; --paper-soft:#FFFFFF; --panel:#F3F2F0; --line:#D8D7D4;
-    --wood:#8B5A2B; --wood-dark:#6B4420; --wood-light:#B98A54;
-    --font-display:'Space Grotesk',sans-serif; --font-sans:'Inter',sans-serif; --font-mono:'IBM Plex Mono',monospace;
+    --green:#2E7D4F; --green-dark:#1F5C39; --green-light:#5FAE7C;
+    --font-display:'Bricolage Grotesque',sans-serif; --font-sans:'Plus Jakarta Sans',sans-serif; --font-mono:'IBM Plex Mono',monospace;
     --ease: cubic-bezier(0.16,1,0.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -58,8 +50,8 @@
   @media (max-width:640px){ .wrap{padding:0 20px;} }
   .mono{font-family:var(--font-mono);}
   h1,h2{font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; color:var(--ink);}
-  .eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--wood-dark); display:inline-flex; align-items:center; gap:10px; }
-  .eyebrow::before{ content:''; width:20px; height:2px; background:var(--wood); display:inline-block; }
+  .eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--green-dark); display:inline-flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:''; width:20px; height:2px; background:var(--green); display:inline-block; }
 
   .group-switcher { background: #0E0F11; padding: 10px 0; }
   .group-switcher .gs-wrap { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
@@ -69,15 +61,16 @@
   .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
   .group-switcher a:hover{ color:#F5F5F2; }
   .group-switcher a.active{ color:#F5F5F2; border-bottom-color:currentColor; }
-  .group-switcher a .gs-beta{ opacity:.85; font-size:10px; color:#B98A54; }
+  .group-switcher a .gs-beta{ opacity:.85; font-size:10px; color:#5FAE7C; }
 
-  header{ position: sticky; top: 0; z-index: 60; background: rgba(250,250,249,.88); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(216,215,212,.5); box-shadow: 0 8px 32px rgba(0,0,0,0.04); }
+  header{ position: sticky; top: 0; z-index: 60; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 1px solid transparent; box-shadow: none; transition: all .4s ease; }
+  header.scrolled{ background: rgba(250,250,249,.88); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(216,215,212,.5); box-shadow: 0 8px 32px rgba(0,0,0,0.04); }
   .nav-row{ display:flex; align-items:center; justify-content:space-between; padding: 20px 0; }
   .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
   .logo-mark{ width:32px; height:32px; }
   .logo-text{ font-family:var(--font-display); font-weight:700; font-size:19px; text-transform:uppercase; }
-  .logo-text span{ color:var(--wood); }
-  .badge-beta{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; background:var(--wood); color:#fff; padding:5px 10px; border-radius:3px; }
+  .logo-text span{ color:var(--green); }
+  .badge-beta{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; background:var(--green); color:#fff; padding:5px 10px; border-radius:3px; }
 
   .hero{ padding:90px 0; text-align:center; }
   .hero h1{ font-size:clamp(30px,4.4vw,46px); margin:18px 0 20px; line-height:1.15; }
@@ -91,8 +84,8 @@
   .info-card ul{ padding-left:20px; color:var(--ink-soft); font-size:14.5px; display:flex; flex-direction:column; gap:8px; }
 
   .btn{ font-family:var(--font-sans); font-weight:600; font-size:14px; padding:14px 26px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; cursor:pointer; transition:transform .2s var(--ease), background .2s var(--ease); }
-  .btn-wood{ background:var(--wood); color:#fff; }
-  .btn-wood:hover{ background:var(--wood-dark); transform:translateY(-2px); }
+  .btn-green{ background:var(--green); color:#fff; }
+  .btn-green:hover{ background:var(--green-dark); transform:translateY(-2px); }
   .btn-outline{ border-color:var(--ink); color:var(--ink); }
   .btn-outline:hover{ background:var(--ink); color:var(--paper-soft); }
 
@@ -101,12 +94,12 @@
 
   .admin-link-row{ margin-top:16px; text-align:center; }
   .admin-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--ink-soft); text-decoration:none; }
-  .admin-link:hover{ color:var(--wood-dark); }
+  .admin-link:hover{ color:var(--green-dark); }
   .admin-link::before{ content:'●'; font-size:8px; color:#3F7D4C; }
 
   /* ═══════════════════════════════════════════════════════════════
      DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
-     BRAITA SINC — Línea de Chapas/Veneers (Madera/Café)
+     BRAITA SYNC — Línea de Cantos (Verde)
      ═══════════════════════════════════════════════════════════════ */
 
   body {
@@ -167,7 +160,7 @@
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(180deg, var(--wood) 0%, transparent 100%);
+    background: linear-gradient(180deg, var(--green) 0%, transparent 100%);
     z-index: 1;
   }
 
@@ -213,18 +206,18 @@
     display: block;
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, var(--wood) 0%, transparent 100%);
+    background: linear-gradient(90deg, var(--green) 0%, transparent 100%);
     margin: 20px auto 0;
     border-radius: 2px;
   }
 
   /* BOTÓN CON EFECTO */
-  .btn-wood {
+  .btn-green {
     position: relative;
     overflow: hidden;
   }
 
-  .btn-wood::before {
+  .btn-green::before {
     content: '';
     position: absolute;
     top: 0;
@@ -243,7 +236,7 @@
 
   /* ESPACIOS PARA IMÁGENES */
   .info-card::after {
-    content: 'imagen17.png — espacio para fotos reales de chapas';
+    content: 'imagen17.png — espacio para fotos reales de cantos';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -277,7 +270,7 @@
     <a href="index.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
     <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
     <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
-    <a href="braita-sinc.html" class="active"><span class="gs-dot" style="background:#8B5A2B"></span>Sinc <span class="gs-beta">(beta)</span></a>
+    <a href="braita-sinc.html" class="active"><span class="gs-dot" style="background:#2E7D4F"></span>Sync</a>
     <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
   </div>
 </div>
@@ -286,44 +279,43 @@
   <div class="wrap nav-row">
     <a href="#" class="logo">
       <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="4" width="32" height="32" fill="none" stroke="var(--wood)" stroke-width="2"/>
-        <path d="M4 26 Q20 14 36 26" stroke="var(--wood-light)" stroke-width="1.6" fill="none"/>
+        <rect x="4" y="4" width="32" height="32" fill="none" stroke="var(--green)" stroke-width="2"/>
+        <path d="M4 26 Q20 14 36 26" stroke="var(--green-light)" stroke-width="1.6" fill="none"/>
       </svg>
-      <span class="logo-text">BRAITA <span>SINC</span></span>
+      <span class="logo-text">BRAITA <span>SYNC</span></span>
     </a>
-    <span class="badge-beta">Versión beta</span>
+    <span class="badge-beta">Catálogo por confirmar</span>
   </div>
 </header>
 
 <main>
   <section class="hero wrap">
-    <span class="eyebrow" style="justify-content:center;">Chapas · Grupo Braita</span>
-    <h1>Esta línea está en construcción.</h1>
-    <p>Braita Sinc va a ser la línea de chapas de madera del grupo. Todavía no tenemos nombre definitivo confirmado, colores de marca ni catálogo — esta página existe solo como punto de partida, tal como lo pidió el cliente.</p>
+    <span class="eyebrow" style="justify-content:center;">Cantos · Grupo Braita</span>
+    <h1>Braita Sync.</h1>
+    <p>Cantos que complementan y sincronizan tus tableros y acabados, para un resultado perfecto y profesional.</p>
 
     <div class="swatch-strip" aria-hidden="true">
-      <div style="background:linear-gradient(135deg,#B98A54,#8B5A2B);"></div>
-      <div style="background:linear-gradient(135deg,#D8CBB6,#B98A54);"></div>
-      <div style="background:linear-gradient(135deg,#6B4420,#2B211A);"></div>
+      <div style="background:linear-gradient(135deg,#5FAE7C,#2E7D4F);"></div>
+      <div style="background:linear-gradient(135deg,#A9D4B8,#5FAE7C);"></div>
+      <div style="background:linear-gradient(135deg,#1F5C39,#12331F);"></div>
     </div>
 
     <div class="info-card">
-      <!-- imagen17.png — espacio para fotos reales de chapas -->
+      <!-- imagen17.png — espacio para fotos reales de cantos -->
       <div class="info-card-img" aria-hidden="true">
         <img src="imagen17.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
       </div>
-      <h3>Lo que falta para completar esta página:</h3>
+      <h3>Por qué Braita Sync</h3>
       <ul>
-        <li>Confirmar si "Sinc" es el nombre final de la marca</li>
-        <li>Paleta de colores oficial (los tonos de arriba son un placeholder de madera, no una decisión de marca)</li>
-        <li>Catálogo de chapas: especies de madera, formatos, espesores</li>
-        <li>Logo real</li>
-        <li>Fotos de producto</li>
+        <li>Cantos de alta calidad</li>
+        <li>Compatibilidad de diseños</li>
+        <li>Resistencia y durabilidad</li>
+        <li>Soluciones funcionales</li>
       </ul>
     </div>
 
     <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="#" id="waTop" class="btn btn-wood" target="_blank">Preguntar por Braita Sinc</a>
+      <a href="#" id="waTop" class="btn btn-green" target="_blank">Preguntar por Braita Sync</a>
       <a href="index.html" class="btn btn-outline">Ver el resto del grupo Braita</a>
     </div>
   </section>
@@ -331,8 +323,8 @@
 
 <footer>
   <div class="wrap foot-row">
-    <span>© 2026 Braita Sinc — línea del Grupo Braita (en desarrollo), Ocotlán, Jal.</span>
-    <a href="index.html" style="color:var(--wood-dark);">← Volver al grupo Braita</a>
+    <span>© 2026 Braita Sync — línea del Grupo Braita, Ocotlán, Jal.</span>
+    <a href="index.html" style="color:var(--green-dark);">← Volver al grupo Braita</a>
   </div>
   <div class="wrap admin-link-row">
     <a href="index.html#panel-admin" class="admin-link">Ver historial de pedidos (panel administrador)</a>
@@ -341,7 +333,7 @@
 
 <script>
   const WA = '523921287299'; // Número real de Braita (antes era 523929313919, incorrecto)
-  document.getElementById('waTop').href = `https://wa.me/${WA}?text=${encodeURIComponent('Hola, vi que Braita va a tener una línea de chapas (Sinc) y quiero más información.')}`;
+  document.getElementById('waTop').href = `https://wa.me/${WA}?text=${encodeURIComponent('Hola, vi la línea de cantos Braita Sync y quiero más información.')}`;
 </script>
 <script src="premium-interactions.js"></script>
 
