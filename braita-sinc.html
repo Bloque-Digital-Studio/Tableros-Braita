@@ -165,24 +165,19 @@
     z-index: 1;
   }
 
-  .info-card-img {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .info-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-  }
-  .info-card-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.94) 0%, rgba(249,247,244,0.9) 100%);
-  }
   .info-card h3, .info-card ul { position: relative; z-index: 2; }
+
+  /* foto real de fondo del hero (imagen17.png), mismo patrón que
+     braita-innovacion.html — antes esta foto vivía metida dentro de la
+     tarjeta info-card con un lavado blanco que no cuadraba con el resto
+     del tema oscuro; ahora es el fondo de todo el hero, como en las
+     demás páginas de marca. */
+  .hero-bg-image{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .hero-bg-image img{ width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s ease; }
+  .hero-bg-image::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(19,18,15,.55) 0%, rgba(19,18,15,.88) 75%, rgba(19,18,15,.96) 100%);
+  }
 
   .swatch-strip {
     background: linear-gradient(90deg, transparent 0%, rgba(46,125,79,0.04) 50%, transparent 100%);
@@ -367,33 +362,36 @@
 
 <main>
   <section class="hero wrap">
-    <span class="eyebrow" style="justify-content:center;">Cantos · Grupo Braita</span>
-    <h1>Braita Sync.</h1>
-    <p>Cantos que complementan y sincronizan tus tableros y acabados, para un resultado perfecto y profesional.</p>
-
-    <div class="swatch-strip" aria-hidden="true">
-      <div style="background:linear-gradient(135deg,#5FAE7C,#2E7D4F);"></div>
-      <div style="background:linear-gradient(135deg,#A9D4B8,#5FAE7C);"></div>
-      <div style="background:linear-gradient(135deg,#1F5C39,#12331F);"></div>
+    <!-- imagen17.png — foto real de fondo del hero (pendiente) -->
+    <div class="hero-bg-image" aria-hidden="true">
+      <img src="imagen17.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
     </div>
 
-    <div class="info-card">
-      <!-- imagen17.png — espacio para fotos reales de cantos -->
-      <div class="info-card-img" aria-hidden="true">
-        <img src="imagen17.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
+    <div style="position:relative; z-index:1;">
+      <span class="eyebrow" style="justify-content:center;">Cantos · Grupo Braita</span>
+      <h1>Braita Sync.</h1>
+      <p>Cantos que complementan y sincronizan tus tableros y acabados, para un resultado perfecto y profesional.</p>
+
+      <div class="swatch-strip" aria-hidden="true">
+        <div style="background:linear-gradient(135deg,#5FAE7C,#2E7D4F);"></div>
+        <div style="background:linear-gradient(135deg,#A9D4B8,#5FAE7C);"></div>
+        <div style="background:linear-gradient(135deg,#1F5C39,#12331F);"></div>
       </div>
-      <h3>Por qué Braita Sync</h3>
-      <ul>
-        <li>Cantos de alta calidad</li>
-        <li>Compatibilidad de diseños</li>
-        <li>Resistencia y durabilidad</li>
-        <li>Soluciones funcionales</li>
-      </ul>
-    </div>
 
-    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="#" id="waTop" class="btn btn-green" target="_blank">Preguntar por Braita Sync</a>
-      <a href="index.html" class="btn btn-outline">Ver el resto del grupo Braita</a>
+      <div class="info-card">
+        <h3>Por qué Braita Sync</h3>
+        <ul>
+          <li>Cantos de alta calidad</li>
+          <li>Compatibilidad de diseños</li>
+          <li>Resistencia y durabilidad</li>
+          <li>Soluciones funcionales</li>
+        </ul>
+      </div>
+
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="#" id="waTop" class="btn btn-green" target="_blank">Preguntar por Braita Sync</a>
+        <a href="index.html" class="btn btn-outline">Ver el resto del grupo Braita</a>
+      </div>
     </div>
   </section>
 

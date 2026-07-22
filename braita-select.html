@@ -100,20 +100,23 @@
   .burger span{ display:block; width:22px; height:1.5px; background:var(--text-primary); margin:5px 0; }
   @media (max-width:860px){ nav ul{display:none;} .burger{display:block;} }
 
-  /* hero */
-  .hero{ padding:80px 0 0; overflow:hidden; }
-  .hero::before{ content:''; position:absolute; }
-  .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
-  @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
+  /* hero — foto real de fondo (imagen15.png), mismo patrón que
+     braita-innovacion.html: .hero-bg-image detrás de todo el hero, con
+     degradado a la izquierda para que el texto siga siendo legible. Con
+     onerror: si el archivo no existe todavía, la capa se oculta sola y el
+     hero se ve igual que antes (solo el fondo oscuro). */
+  .hero{ padding:80px 0 60px; overflow:hidden; position:relative; }
+  .hero .wrap{ position:relative; z-index:1; max-width:640px; }
+  .hero-bg-image{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .hero-bg-image img{ width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s ease; }
+  .hero-bg-image::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(100deg, rgba(11,12,14,.94) 0%, rgba(11,12,14,.72) 38%, rgba(11,12,14,.3) 68%, rgba(11,12,14,.05) 100%);
+  }
   .hero h1{ font-size:clamp(34px,4.8vw,54px); line-height:1.08; margin:16px 0 20px; }
   .hero h1 em{ font-style:normal; background:linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; }
   .hero p.lead{ font-size:16.5px; color:var(--text-secondary); max-width:48ch; margin-bottom:30px; }
   .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
-  .hero-art{ aspect-ratio:4/3.2; background:linear-gradient(160deg, #1C1E23, #0B0C0E); border:1px solid var(--border-strong); position:relative; overflow:hidden; }
-  .hero-art img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; }
-  .hero-art .swatch-row{ position:absolute; inset:0; display:flex; flex-direction:column; }
-  .hero-art .swatch{ flex:1; display:flex; align-items:flex-end; padding:18px; }
-  .hero-art .swatch span{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.65); }
 
   /* trust strip */
   .trust-strip{ background:linear-gradient(90deg, var(--charcoal) 0%, var(--charcoal) 38%, var(--gold) 50%, var(--charcoal) 62%, var(--charcoal) 100%); background-size:220% 100%; animation: glow-pulse-gold 4s ease-in-out infinite; padding:24px 0; margin-top:64px; }
@@ -480,25 +483,19 @@
 
 <main id="inicio">
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">Línea premium · Grupo Braita</span>
-        <h1>Acabados que se <em>notan</em> antes de tocarlos.</h1>
-        <p class="lead">Braita Select es la línea de materiales de alta gama del grupo: superficies, texturas y acabados pensados para proyectos donde el detalle es la decisión de diseño.</p>
-        <div class="hero-ctas">
-          <a href="#coleccion" class="btn btn-gold">Ver colección</a>
-          <a href="#contacto" class="btn btn-outline">Hablar con un asesor</a>
-        </div>
+    <div class="wrap">
+      <span class="eyebrow">Línea premium · Grupo Braita</span>
+      <h1>Acabados que se <em>notan</em> antes de tocarlos.</h1>
+      <p class="lead">Braita Select es la línea de materiales de alta gama del grupo: superficies, texturas y acabados pensados para proyectos donde el detalle es la decisión de diseño.</p>
+      <div class="hero-ctas">
+        <a href="#coleccion" class="btn btn-gold">Ver colección</a>
+        <a href="#contacto" class="btn btn-outline">Hablar con un asesor</a>
       </div>
-      <div class="hero-art reveal">
-        <!-- imagen15.png — espacio para foto real del hero de Select -->
-        <img src="imagen15.png" alt="" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-        <div class="swatch-row">
-          <div class="swatch" style="background:linear-gradient(135deg,#2A2C31,#0B0C0E);"><span>Acabado 01 — ejemplo</span></div>
-          <div class="swatch" style="background:linear-gradient(135deg,#3C3F46,#1C1E23);"><span>Acabado 02 — ejemplo</span></div>
-          <div class="swatch" style="background:linear-gradient(135deg,#4A4E57,#22252B);"><span>Acabado 03 — ejemplo</span></div>
-        </div>
-      </div>
+    </div>
+
+    <!-- imagen15.png — foto real de fondo del hero (pendiente) -->
+    <div class="hero-bg-image" aria-hidden="true">
+      <img src="imagen15.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
     </div>
 
     <div class="trust-strip">
