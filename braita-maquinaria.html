@@ -53,9 +53,9 @@
     --ease: cubic-bezier(0.16,1,0.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden;}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
-  body{ background: linear-gradient(135deg, var(--paper) 0%, #17160f 100%); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  body{ background: linear-gradient(135deg, var(--paper) 0%, #17160f 100%); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   img,svg{display:block; max-width:100%;}
   a{color:inherit;}
   ::selection{background:var(--accent); color:#fff;}

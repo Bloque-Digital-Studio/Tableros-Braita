@@ -7,19 +7,23 @@
   usa braita-sinc.html (misma estructura "marca beta / próximamente"),
   para que se sienta parte de la misma familia del sitio.
 
-  El cliente confirmó que TUV es una marca real (mandó el logo:
-  logo-tuv.png) pero que "aún no hay absolutamente nada" más —
-  ni color oficial, ni catálogo, ni descripción de posicionamiento.
-  Por eso esta página es intencionalmente mínima, igual que Sinc al
-  principio del proyecto.
+  ACTUALIZACIÓN 2026-07-24: el cliente mandó la descripción oficial de
+  qué es TUV y en qué se distingue de Innovación: "TUV es la división
+  de MAQUILA especializada en acabados UV de Braita. Recibimos los
+  tableros y superficies de nuestros clientes para aplicar procesos de
+  pintura y acabado UV con altos estándares de calidad, ofreciendo
+  soluciones precisas, uniformes y confiables para fabricantes,
+  diseñadores e industrias que buscan resultados profesionales." Ya no
+  es "marca en construcción sin nada" — es un servicio de maquila
+  (le aplican acabado UV al material QUE YA TIENE el cliente), mientras
+  que Innovación vende su PROPIO tablero ya con el acabado aplicado.
+  Esa es la diferencia real que antes no sabíamos.
 
-  PENDIENTE (preguntarle al cliente):
-  - Qué diferencia a TUV de Braita Innovación (ambas son "acabados
-    UV" — hay que aclarar en qué se distinguen para que no compitan
-    entre sí en el sitio).
+  Sigue pendiente confirmar con el cliente:
   - Color oficial de marca (aquí es gris plata, solo un placeholder
     inspirado en el propio logo, no una decisión de marca).
-  - Catálogo / servicios reales.
+  - Precios / capacidad de maquila, tiempos de entrega, mínimos de lote.
+  - Fotos reales del proceso o de piezas terminadas.
   - El logo (logo-tuv.png) es real pero es un JPEG con fondo blanco
     sólido, no un PNG con transparencia — funciona bien para esta
     página tal cual está.
@@ -33,8 +37,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Braita TUV — Terminados UV | Grupo Braita (próximamente)</title>
-<meta name="description" content="Braita TUV, Terminados UV: la marca más nueva del Grupo Braita. Página en construcción.">
+<title>Braita TUV — Maquila de Acabados UV | Grupo Braita</title>
+<meta name="description" content="Braita TUV: maquila especializada en acabados UV. Aplicamos pintura y acabado UV sobre los tableros y superficies de nuestros clientes, con altos estándares de calidad.">
 <link rel="icon" href="logo-group-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +52,8 @@
     --ease: cubic-bezier(0.16,1,0.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{ background: linear-gradient(135deg, var(--paper) 0%, #17160f 100%); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  html{ overflow-x:hidden; }
+  body{ background: linear-gradient(135deg, var(--paper) 0%, #17160f 100%); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   img,svg{display:block; max-width:100%;}
   a{color:inherit;}
   .wrap{max-width:1000px; margin:0 auto; padding:0 32px;}
@@ -242,7 +247,7 @@
 
   /* ESPACIOS PARA IMÁGENES */
   .info-card::after {
-    content: 'Espacio para fotos reales de acabados TUV';
+    content: 'Espacio para fotos reales del proceso de maquila TUV';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -321,16 +326,16 @@
       <img class="logo-mark" src="logo-tuv.png" alt="Braita TUV" style="width:32px; height:32px; object-fit:contain;">
       <span class="logo-text">BRAITA <span>TUV</span></span>
     </a>
-    <span class="badge-beta">Próximamente</span>
+    <span class="badge-beta">Maquila de acabados UV</span>
   </div>
 </header>
 
 <main>
   <section class="hero wrap">
-    <img src="logo-tuv.png" alt="Braita TUV — Terminados UV" style="max-width:200px; margin:0 auto 26px;">
-    <span class="eyebrow" style="justify-content:center;">Terminados UV · Grupo Braita</span>
-    <h1>Esta marca está en construcción.</h1>
-    <p>Braita TUV (Terminados UV) es la marca más nueva del grupo. Todavía no hay color oficial, catálogo ni descripción de posicionamiento confirmada — esta página existe como punto de partida, con el logo real que ya nos compartió el cliente.</p>
+    <img src="logo-tuv.png" alt="Braita TUV — Maquila de Acabados UV" style="max-width:200px; margin:0 auto 26px;">
+    <span class="eyebrow" style="justify-content:center;">Maquila de Acabados UV · Grupo Braita</span>
+    <h1>Le damos acabado UV a tu material.</h1>
+    <p>TUV es la división de maquila especializada en acabados UV de Braita. Recibimos los tableros y superficies de nuestros clientes para aplicar procesos de pintura y acabado UV con altos estándares de calidad, ofreciendo soluciones precisas, uniformes y confiables para fabricantes, diseñadores e industrias que buscan resultados profesionales.</p>
 
     <div class="swatch-strip" aria-hidden="true">
       <div style="background:linear-gradient(135deg,#2A2C2E,#111214);"></div>
@@ -339,17 +344,17 @@
     </div>
 
     <div class="info-card">
-      <h3>Lo que falta para completar esta página:</h3>
+      <h3>¿En qué se diferencia de Braita Innovación?</h3>
       <ul>
-        <li>Qué ofrece exactamente TUV y en qué se diferencia de Braita Innovación (ambas son de acabados UV)</li>
-        <li>Color oficial de marca (el gris plata de aquí es solo un placeholder inspirado en el logo, no una decisión de marca)</li>
-        <li>Catálogo o servicios reales</li>
-        <li>Fotos de producto</li>
+        <li>Innovación vende tableros propios que ya salen de fábrica con el acabado UV aplicado.</li>
+        <li>TUV es maquila: tú nos traes tu tablero o superficie, y nosotros le aplicamos el acabado UV.</li>
+        <li>Pensado para fabricantes, diseñadores e industrias que necesitan un proceso de acabado confiable y uniforme.</li>
       </ul>
+      <p class="mono" style="font-size:11px; color:var(--ink-soft); margin-top:16px; line-height:1.6;">Pendiente de confirmar con el cliente: color oficial de marca, precios/capacidad de maquila, tiempos de entrega y fotos reales del proceso.</p>
     </div>
 
     <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="#" id="waTop" class="btn btn-wood" target="_blank">Preguntar por Braita TUV</a>
+      <a href="#" id="waTop" class="btn btn-wood" target="_blank">Cotizar maquila de acabado UV</a>
       <a href="index.html" class="btn btn-outline">Ver el resto del grupo Braita</a>
     </div>
   </section>
@@ -357,7 +362,7 @@
 
 <footer>
   <div class="wrap foot-row">
-    <span>© 2026 Braita TUV — marca del Grupo Braita (en desarrollo), Ocotlán, Jal.</span>
+    <span>© 2026 Braita TUV — maquila de acabados UV del Grupo Braita, Ocotlán, Jal.</span>
     <a href="index.html" style="color:var(--wood-dark);">← Volver al grupo Braita</a>
   </div>
   <div class="wrap admin-link-row">
@@ -367,7 +372,7 @@
 
 <script>
   const WA = '523921287299'; // Número real de Braita (antes era 523929313919, incorrecto)
-  document.getElementById('waTop').href = `https://wa.me/${WA}?text=${encodeURIComponent('Hola, vi que Braita va a tener una marca de Terminados UV (TUV) y quiero más información.')}`;
+  document.getElementById('waTop').href = `https://wa.me/${WA}?text=${encodeURIComponent('Hola, vi Braita TUV y quiero información sobre el servicio de maquila de acabados UV.')}`;
 
   window.addEventListener('load', () => {
     setTimeout(() => {

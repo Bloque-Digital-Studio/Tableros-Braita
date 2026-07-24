@@ -59,7 +59,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth; overflow-x:hidden;}
 body{
   margin:0;
   background:var(--ink-950);
@@ -68,6 +68,7 @@ body{
   font-size:16px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 img{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;}
@@ -157,7 +158,7 @@ button{font:inherit;}
 .main-nav a:hover::after{width:100%;}
 
 .header-actions{display:flex;align-items:center;gap:18px;}
-.nav-toggle{display:none;background:none;border:none;color:var(--paper);cursor:pointer;padding:4px;}
+.nav-toggle{display:none;background:none;border:none;color:var(--paper);cursor:pointer;padding:10px;margin:-10px;}
 .nav-toggle svg{width:24px;height:24px;}
 
 @media (max-width:900px){
@@ -528,7 +529,7 @@ section{position:relative;}
 .proyecto-grid.reveal.is-visible .proyecto-card,
 .catalogo-grid.reveal.is-visible .catalogo-card,
 .trust-row.reveal.is-visible .trust-item-full{
-  animation:card-rise var(--dur-reveal) var(--ease-unfold) both;
+  animation:card-rise .7s var(--ease-premium) both;
 }
 .proyecto-grid .proyecto-card:nth-child(1), .catalogo-grid .catalogo-card:nth-child(1), .trust-row .trust-item-full:nth-child(1){animation-delay:.08s;}
 .proyecto-grid .proyecto-card:nth-child(2), .catalogo-grid .catalogo-card:nth-child(2), .trust-row .trust-item-full:nth-child(2){animation-delay:.18s;}
@@ -584,20 +585,22 @@ section{position:relative;}
 }
 
 /* ---------------------------------- REVEAL ---------------------------------- */
-/* The base block-level reveal: bigger travel distance + longer duration
-   than the old version on purpose, so it reads as an unhurried "unfold"
-   instead of a snap-into-place. This is the ONLY thing that animates
-   opacity/transform/filter on these elements — nothing else touches them,
-   so there's nothing for it to fight with. */
+/* FIX (2026-07): la versión anterior usaba 2.2s + blur(10px) + scale — en la
+   práctica eso se sentía "atrasado"/lento en celular (el blur es pesado en
+   GPUs móviles) y en algunos navegadores de escritorio el combo de blur +
+   scale + transform simultáneos hacía que el navegador simplemente saltara
+   directo al estado final sin pintar la transición (los elementos
+   "aparecían normales", sin animación). Se reemplaza por el mismo patrón
+   simple y rápido (solo opacity + translateY, sin blur ni scale) que ya
+   usan las otras 5 páginas del grupo — es más liviano y se ve consistente
+   en todo el sitio. */
 .reveal{
   opacity:0;
-  transform:translateY(52px) scale(.96);
-  filter:blur(10px);
-  transition:opacity var(--dur-reveal) var(--ease-unfold),
-             transform var(--dur-reveal) var(--ease-unfold),
-             filter var(--dur-reveal) var(--ease-unfold);
+  transform:translateY(28px);
+  transition:opacity .7s var(--ease-premium),
+             transform .7s var(--ease-premium);
 }
-.reveal.is-visible{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
 
 /* ---- Per-section cascade ----
    Each group below reveals its own children in a short, LOCAL stagger
@@ -606,15 +609,15 @@ section{position:relative;}
    take seconds to appear). Every group uses the same card-rise keyframe
    so the cascade feels consistent across the whole site. */
 @keyframes card-rise{
-  from{opacity:0;transform:translateY(34px) scale(.97);filter:blur(6px);}
-  to{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 .brand-grid.reveal.is-visible .brand-card,
 .pillars.reveal.is-visible .pillar,
 .wrap.reveal.is-visible .stat,
 .wrap.reveal.is-visible .info-list .row{
-  animation:card-rise var(--dur-reveal) var(--ease-unfold) both;
+  animation:card-rise .7s var(--ease-premium) both;
 }
 
 .brand-grid .brand-card:nth-child(1),
@@ -914,7 +917,7 @@ section[id]{scroll-margin-top:96px;}
         <div class="brand-mark text-mark">BC</div>
         <div class="brand-sub">Braita Sync</div>
         <h3>Cantos que sincronizan cada acabado</h3>
-        <p class="desc">Cantos que complementan y sincronizan tus tableros y acabados para un resultado perfecto y profesional.</p>
+        <p class="desc">Línea especializada en cantos para MDF: integración perfecta entre el tablero y el canto, con calidad, precisión y una amplia variedad de opciones.</p>
         <ul class="feats">
           <li>Cantos de alta calidad</li>
           <li>Compatibilidad de diseños</li>
@@ -940,13 +943,13 @@ section[id]{scroll-margin-top:96px;}
       <!-- TUV -->
       <a href="braita-tuv.html" class="brand-card card-tuv">
         <div class="brand-mark"><img src="logo-tuv.png" alt="Braita TUV — Terminados UV"></div>
-        <div class="brand-sub">Braita TUV · Terminados UV</div>
-        <h3>El proceso detrás de cada acabado</h3>
-        <p class="desc">Terminados UV de alto desempeño: la línea encargada de aplicar y certificar el acabado final sobre cada superficie.</p>
+        <div class="brand-sub">Braita TUV · Maquila de Acabados UV</div>
+        <h3>Le damos acabado UV a tu material</h3>
+        <p class="desc">División de maquila especializada en acabados UV: aplicamos pintura y acabado UV sobre los tableros y superficies que nos traen nuestros clientes.</p>
         <ul class="feats">
-          <li>Terminados UV mate, brillo y textura</li>
-          <li>Control de calidad en cada lote</li>
-          <li>Durabilidad certificada</li>
+          <li>Maquila de acabado UV para terceros</li>
+          <li>Procesos precisos y uniformes</li>
+          <li>Para fabricantes, diseñadores e industrias</li>
         </ul>
         <span class="card-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -1395,22 +1398,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---- Scroll reveal ----
-     threshold:0 + no rootMargin shrink = fires the instant even 1px of the
-     section enters the viewport. That matters now that .reveal uses a real
-     ease-in-out curve (--ease-unfold): the whole point of that curve is a
-     slow, visible start, so we want the animation to begin as early as
-     possible while the section is still scrolling into view — not after
-     it's already mostly on-screen, which would hide that slow start. */
+     FIX (2026-07): threshold:0 with a fast .7s transition meant the reveal
+     could finish before the section was meaningfully on screen, and on
+     some setups the class got added before the browser painted the
+     "hidden" frame at all (no visible transition, "just appears"). Now it
+     waits until the element is a bit more into view (rootMargin -10% on
+     the bottom) before triggering — same behavior already proven on the
+     other 5 pages of the group — and the class add is pushed one frame
+     out so the browser always paints the initial state first. */
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
+          const target = entry.target;
+          io.unobserve(target);
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            target.classList.add('is-visible');
+          }));
         }
       });
-    }, { threshold: 0, rootMargin: '0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
     revealEls.forEach(el => io.observe(el));
   } else {
     revealEls.forEach(el => el.classList.add('is-visible'));

@@ -10,6 +10,11 @@
   VERDE. Ya se aplicó el rename + color + descripción real en todo
   el archivo.
 
+  ACTUALIZACIÓN 2026-07-24: el cliente mandó la descripción oficial de
+  la marca ("línea especializada en cantos para MDF... integración
+  perfecta entre el tablero y el canto, combina calidad, precisión y
+  una amplia variedad de opciones") — ya está en el hero.
+
   Sigue pendiente confirmar con el cliente: catálogo real de cantos
   (colores/formatos/espesores) y logo real de la marca — por eso el
   badge sigue diciendo que el catálogo está por confirmarse, aunque
@@ -29,7 +34,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Braita Sync — Cantos | Grupo Braita</title>
-<meta name="description" content="Braita Sync: cantos que complementan y sincronizan tus tableros y acabados, del Grupo Braita.">
+<meta name="description" content="Braita Sync: la línea especializada en cantos para MDF del Grupo Braita, para una integración perfecta entre tablero y canto.">
 <link rel="icon" href="logo-group-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +48,8 @@
     --ease: cubic-bezier(0.16,1,0.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{ background: linear-gradient(135deg, var(--paper) 0%, #17160f 100%); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  html{ overflow-x:hidden; }
+  body{ background: linear-gradient(135deg, var(--paper) 0%, #17160f 100%); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   img,svg{display:block; max-width:100%;}
   a{color:inherit;}
   .wrap{max-width:1000px; margin:0 auto; padding:0 32px;}
@@ -265,11 +271,11 @@
   .mesa-control-section p{ color:var(--ink-soft); line-height:1.7; max-width:60ch; }
   .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:36px; margin-top:36px; align-items:start; }
   @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
-  .blueprint-panel, .control-form{ background:var(--paper-soft); border:1px solid var(--line); padding:26px; border-radius:4px; }
+  .blueprint-panel, .control-form{ background:var(--paper-soft); border:1px solid var(--line); padding:26px; border-radius:4px; min-width:0; }
   .panel-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:18px; }
   .panel-header h3{ color:var(--ink); font-size:16px; font-family:var(--font-display); font-weight:700; }
-  .table-responsive{ width:100%; overflow-x:auto; }
-  .despiece-table{ width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:16px; }
+  .table-responsive{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .despiece-table{ width:100%; min-width:560px; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:16px; }
   .despiece-table th{ background:var(--paper); color:var(--ink-soft); padding:9px; font-weight:500; border-bottom:2px solid var(--line); }
   .despiece-table td{ padding:7px 9px; border-bottom:1px solid var(--line); vertical-align:middle; }
   .despiece-table input, .despiece-table select{ width:100%; background:var(--paper); border:1px solid var(--line); color:var(--ink); padding:7px; font-family:var(--font-mono); font-size:12px; }
@@ -368,9 +374,9 @@
     </div>
 
     <div style="position:relative; z-index:1;">
-      <span class="eyebrow" style="justify-content:center;">Cantos · Grupo Braita</span>
+      <span class="eyebrow" style="justify-content:center;">Cantos para MDF · Grupo Braita</span>
       <h1>Braita Sync.</h1>
-      <p>Cantos que complementan y sincronizan tus tableros y acabados, para un resultado perfecto y profesional.</p>
+      <p>La línea especializada en cantos para MDF de Braita. Diseñada para ofrecer una integración perfecta entre el tablero y el canto, combina calidad, precisión y una amplia variedad de opciones para lograr acabados profesionales en cada proyecto.</p>
 
       <div class="swatch-strip" aria-hidden="true">
         <div style="background:linear-gradient(135deg,#5FAE7C,#2E7D4F);"></div>

@@ -101,6 +101,7 @@
   html {
     scroll-behavior: smooth;
     text-size-adjust: 100%;
+    overflow-x: hidden;
   }
 
   body {
@@ -760,6 +761,13 @@
   }
   @media (max-width: 1024px) { .mesa-layout { grid-template-columns: 1fr; } }
 
+  /* FIX mobile: sin min-width:0 en los hijos del grid, el panel con la
+     tabla ancha (min-width:560px en .despiece-table) "explota" el grid
+     entero hacia afuera en vez de dejar que .table-responsive maneje su
+     propio scroll interno — con html/body en overflow-x:hidden eso
+     terminaba CORTANDO contenido en vez de dejarlo alcanzable. */
+  .blueprint-panel, .control-form { min-width: 0; }
+
   .blueprint-panel {
     background-color: var(--bg-dark-surface);
     border: 1px solid var(--border-dark);
@@ -775,9 +783,12 @@
   }
   .panel-header h3 { color: var(--text-light); font-size: 18px; }
 
-  .table-responsive { width: 100%; overflow-x: auto; }
+  .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .despiece-table {
     width: 100%;
+    min-width: 560px; /* evita que las columnas se aplasten en celular (inputs
+                          ilegibles de 30-something px) — con esto la tarjeta
+                          desliza horizontal en vez de aplastar el contenido */
     border-collapse: collapse;
     font-family: var(--font-mono);
     font-size: 12px;
