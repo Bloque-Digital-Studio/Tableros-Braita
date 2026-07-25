@@ -28,9 +28,18 @@
     sólido, no un PNG con transparencia — funciona bien para esta
     página tal cual está.
 
-  Esta página no usa ninguna imagen numerada del mapa compartido del
-  grupo — solo el logo real (logo-tuv.png). Cuando haya fotos de
-  producto reales, se puede agregar una sección de galería después.
+  ACTUALIZACIÓN 2026-07-24 (v2): la página ya no es de una sola sección
+  "en construcción" — ahora tiene la misma estructura completa que
+  braita-select.html / braita-maquinaria.html: nav completo con menú
+  móvil funcional, catálogo de ejemplo (los 5 tipos de acabado UV del
+  grupo: alto brillo/mate/sincronizado/metalizado/rayado), sección de
+  "cómo funciona" (4 pasos genéricos del proceso de maquila), Mesa de
+  Control (reutiliza mesa-control.js — aquí el cliente especifica sus
+  propias piezas y el acabado UV que quiere que se les aplique) y
+  sección de contacto completa. Imágenes nuevas de esta ronda:
+    imagen75.png -> Alto Brillo      imagen78.png -> Metalizado
+    imagen76.png -> Mate             imagen79.png -> Rayado
+    imagen77.png -> Sincronizado
   ================================================================
 -->
 <html lang="es">
@@ -56,12 +65,16 @@
   body{ background: linear-gradient(135deg, var(--paper) 0%, #17160f 100%); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   img,svg{display:block; max-width:100%;}
   a{color:inherit;}
-  .wrap{max-width:1000px; margin:0 auto; padding:0 32px;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
   @media (max-width:640px){ .wrap{padding:0 20px;} }
+  section{padding:100px 0;}
+  @media (max-width:768px){ section{padding:64px 0;} }
   .mono{font-family:var(--font-mono);}
-  h1,h2{font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; color:var(--ink);}
+  h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; color:var(--ink);}
   .eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--wood-dark); display:inline-flex; align-items:center; gap:10px; }
   .eyebrow::before{ content:''; width:20px; height:2px; background:var(--wood); display:inline-block; }
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.active, .reveal.in{opacity:1; transform:translateY(0);}
 
   .group-switcher { background: #0e0e0c; padding: 10px 0; }
   .group-switcher .gs-wrap { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
@@ -83,6 +96,27 @@
   .logo-text span{ color:var(--wood); }
   .badge-beta{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; background:var(--wood); color:#fff; padding:5px 10px; border-radius:3px; }
 
+  nav ul{ list-style:none; display:flex; gap:34px; }
+  nav a{ text-decoration:none; font-size:14px; font-weight:500; color:var(--ink-soft); }
+  nav a:hover{ color:var(--wood-light); }
+  .burger{ display:none; background:none; border:none; cursor:pointer; padding:10px; margin:-10px; }
+  .burger span{ display:block; width:22px; height:1.5px; background:var(--ink); margin:5px 0; transition:transform .3s ease, opacity .3s ease; }
+  .burger.active span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+  .burger.active span:nth-child(2){ opacity:0; }
+  .burger.active span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+  @media (max-width:860px){
+    nav{
+      position:fixed; top:0; right:0; bottom:0; width:min(320px,85vw);
+      background:var(--paper-soft); border-left:1px solid var(--line);
+      padding:100px 32px 40px; transform:translateX(100%);
+      transition:transform .4s var(--ease); z-index:99; overflow-y:auto;
+    }
+    nav.is-active{ transform:translateX(0); }
+    nav ul{ flex-direction:column; gap:26px; }
+    nav a{ font-size:18px; }
+    .burger{ display:block; }
+  }
+
   .hero{ padding:90px 0; text-align:center; }
   .hero h1{ font-size:clamp(30px,4.4vw,46px); margin:18px 0 20px; line-height:1.15; }
   .hero p{ font-size:16.5px; color:var(--ink-soft); max-width:56ch; margin:0 auto 34px; }
@@ -99,6 +133,88 @@
   .btn-wood:hover{ background:var(--wood-dark); transform:translateY(-2px); }
   .btn-outline{ border-color:var(--ink); color:var(--ink); }
   .btn-outline:hover{ background:var(--ink); color:var(--paper-soft); }
+  .hero-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  /* trust strip */
+  .trust-strip{ background:linear-gradient(90deg, var(--panel) 0%, var(--panel) 38%, var(--wood) 50%, var(--panel) 62%, var(--panel) 100%); background-size:220% 100%; animation:glow-pulse-wood 4s ease-in-out infinite; padding:24px 0; }
+  @keyframes glow-pulse-wood{ 0%,100%{box-shadow:0 0 20px rgba(139,142,147,0.1);} 50%{box-shadow:0 0 30px rgba(139,142,147,0.25);} }
+  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px 32px; }
+  .trust-item{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; color:var(--ink-soft); display:flex; align-items:center; gap:8px; }
+  .trust-item::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--wood); }
+
+  /* catálogo (tipos de acabado UV, ejemplo) */
+  .cat-head{ margin-bottom:44px; }
+  .cat-head h2{ font-size:clamp(26px,3.4vw,38px); margin-top:14px; max-width:600px; }
+  .cat-head p{ color:var(--ink-soft); margin-top:14px; max-width:60ch; }
+  .grid-select{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:860px){ .grid-select{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .grid-select{ grid-template-columns:1fr; } }
+  .sel-card{ background:var(--paper-soft); display:flex; flex-direction:column; transition:all .4s var(--ease); border-radius:8px; overflow:hidden; border:1px solid var(--line); box-shadow:0 4px 16px rgba(0,0,0,.35); position:relative; }
+  .sel-card:hover{ transform:translateY(-8px); border-color:var(--wood); box-shadow:0 16px 40px rgba(0,0,0,.5); }
+  .sel-swatch{ aspect-ratio:4/3; position:relative; }
+  .sel-swatch img{ width:100%; height:100%; object-fit:cover; opacity:0; position:absolute; inset:0; transition:opacity .5s ease; }
+  .sel-body{ padding:22px 22px 26px; }
+  .sel-body h3{ font-size:16.5px; font-weight:600; margin-bottom:8px; }
+  .sel-body p{ font-size:13px; color:var(--ink-soft); line-height:1.6; }
+  .sel-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--wood-light); margin-top:12px; display:block; }
+
+  /* cómo funciona (proceso) */
+  .proceso-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  @media (max-width:992px){ .proceso-flow{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:576px){ .proceso-flow{ grid-template-columns:1fr; } }
+  .flow-card{ background:var(--panel); padding:28px 24px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.25); }
+  .flow-card .flow-num{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--wood); font-weight:700; margin-bottom:16px; display:block; }
+  .flow-card h3{ font-size:16.5px; margin-bottom:10px; }
+  .flow-card p{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
+
+  /* contacto */
+  .contacto-section{ background:#000; }
+  .contacto-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  @media (max-width:900px){ .contacto-grid{ grid-template-columns:1fr; gap:40px; } }
+  .info-list{ list-style:none; display:flex; flex-direction:column; gap:16px; margin-top:26px; }
+  .info-list li{ display:flex; gap:14px; font-size:14px; color:var(--ink-soft); }
+  .info-list b{ color:#FAFAF9; display:block; font-weight:600; margin-bottom:2px; }
+
+  /* ════════════════════════════════════════════════════════════════════
+     MESA DE CONTROL — mismo patrón/JS que braita-innovacion.html
+     (ver mesa-control.js), adaptado a la paleta gris/plata de TUV.
+     Aquí "material" es el tipo de acabado UV que el cliente quiere que
+     le apliquemos a SU tablero, no un tablero que vendemos nosotros.
+     ═════════════════════════════════════════════════════════════════════ */
+  .mesa-control-section{ padding:70px 0 90px; background:var(--panel); }
+  .mesa-control-section h2{ color:var(--ink); font-size:clamp(26px,3.6vw,36px); margin:14px 0 10px; }
+  .mesa-control-section p{ color:var(--ink-soft); line-height:1.7; max-width:60ch; }
+  .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:36px; margin-top:36px; align-items:start; }
+  @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
+  .blueprint-panel, .control-form{ background:var(--paper-soft); border:1px solid var(--line); padding:26px; border-radius:4px; min-width:0; }
+  .panel-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:18px; }
+  .panel-header h3{ color:var(--ink); font-size:16px; font-family:var(--font-display); font-weight:700; }
+  .table-responsive{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .despiece-table{ width:100%; min-width:560px; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:16px; }
+  .despiece-table th{ background:var(--paper); color:var(--ink-soft); padding:9px; font-weight:500; border-bottom:2px solid var(--line); }
+  .despiece-table td{ padding:7px 9px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  .despiece-table input, .despiece-table select{ width:100%; background:var(--paper); border:1px solid var(--line); color:var(--ink); padding:7px; font-family:var(--font-mono); font-size:12px; }
+  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-color:var(--wood); }
+  .btn-remove-row{ background:transparent; border:none; color:#EF4444; cursor:pointer; padding:4px; display:inline-flex; align-items:center; }
+  .btn-add-row{ background:transparent; border:1px dashed var(--line); color:var(--ink); font-family:var(--font-mono); font-size:12px; padding:9px 14px; cursor:pointer; width:100%; text-transform:uppercase; transition:all .2s ease; }
+  .btn-add-row:hover{ border-color:var(--ink); background:rgba(255,255,255,.03); }
+  .form-group{ margin-bottom:18px; }
+  .form-group label{ display:block; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; color:var(--ink-soft); }
+  .form-group input, .form-group select, .form-group textarea{ width:100%; background:var(--paper); border:none; border-bottom:1px solid var(--line); padding:10px 4px; color:var(--ink); font-family:inherit; font-size:14px; transition:border-color .3s ease; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-bottom-color:var(--wood); }
+  .summary-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:16px; }
+  @media (max-width:620px){ .summary-strip{ grid-template-columns:repeat(2,1fr); } }
+  .summary-item{ background:var(--paper); padding:12px 14px; text-align:center; }
+  .summary-num{ display:block; font-family:var(--font-display); font-weight:700; font-size:19px; color:var(--wood-light); }
+  .summary-label{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin-top:4px; display:block; }
+  .btn-copy-summary{ width:100%; margin-top:12px; background:transparent; border:1px solid var(--line); color:var(--ink); font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; padding:11px; cursor:pointer; transition:all .2s ease; }
+  .btn-copy-summary:hover{ border-color:var(--ink); }
+
+  #toast-container{ position:fixed; bottom:28px; left:28px; z-index:1000; display:flex; flex-direction:column; gap:12px; }
+  .toast{ background:var(--paper-soft); color:var(--ink); font-family:var(--font-mono); font-size:13px; padding:14px 20px; border-left:4px solid var(--wood); box-shadow:0 16px 40px rgba(0,0,0,.4); transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards; display:flex; align-items:center; gap:12px; border-radius:2px; }
+  @keyframes slideIn{ to{ transform:translateX(0); } }
+  .toast.fade-out{ animation:slideOut .4s var(--ease) forwards; }
+  @keyframes slideOut{ to{ transform:translateX(-120%); opacity:0; } }
 
   footer{ padding:30px 0; border-top:1px solid var(--line); }
   .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
@@ -175,41 +291,7 @@
     z-index: 1;
   }
 
-  .info-card-img {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .info-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-  }
-  .info-card-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.94) 0%, rgba(249,247,244,0.9) 100%);
-  }
   .info-card h3, .info-card ul { position: relative; z-index: 2; }
-
-  .swatch-strip {
-    background: linear-gradient(90deg, transparent 0%, rgba(139,142,147,0.04) 50%, transparent 100%);
-    padding: 30px 20px;
-    border-radius: 8px;
-    margin-bottom: 50px;
-  }
-
-  .swatch-strip div {
-    box-shadow: 0 2px 8px rgba(139,142,147,0.12);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .swatch-strip div:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(139,142,147,0.18);
-  }
 
   /* LÍNEA DECORATIVA EN HERO */
   .hero h1::after {
@@ -243,27 +325,6 @@
   footer {
     background: linear-gradient(135deg, rgba(139,142,147,0.04) 0%, rgba(139,142,147,0.08) 100%);
     border-top: 2px solid rgba(139,142,147,0.15);
-  }
-
-  /* ESPACIOS PARA IMÁGENES */
-  .info-card::after {
-    content: 'Espacio para fotos reales del proceso de maquila TUV';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 11px;
-    color: rgba(139,142,147,0.25);
-    font-family: var(--font-mono);
-    text-align: center;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 10;
-  }
-
-  .info-card:hover::after {
-    opacity: 1;
   }
 
   /* GRID SWATCHES DECORATIVO */
@@ -309,12 +370,14 @@
   <span class="pre-caption">Cargando</span>
 </div>
 
+<div id="toast-container"></div>
+
 <div class="group-switcher">
   <div class="gs-wrap">
     <a href="index.html" class="gs-label">Grupo Braita</a>
     <a href="braita-innovacion.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
     <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
-    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
+    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Machinery</a>
     <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
     <a href="braita-tuv.html" class="active"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
   </div>
@@ -322,40 +385,287 @@
 
 <header>
   <div class="wrap nav-row">
-    <a href="index.html" class="logo">
+    <a href="#inicio" class="logo">
       <img class="logo-mark" src="logo-tuv.png" alt="Braita TUV" style="width:32px; height:32px; object-fit:contain;">
       <span class="logo-text">BRAITA <span>TUV</span></span>
     </a>
-    <span class="badge-beta">Maquila de acabados UV</span>
+    <nav id="main-nav"><ul>
+      <li><a href="#catalogo">Acabados</a></li>
+      <li><a href="#proceso">Cómo funciona</a></li>
+      <li><a href="#mesa-control">Cotizar maquila</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul></nav>
+    <div style="display:flex; gap:14px; align-items:center;">
+      <span class="badge-beta">Maquila de acabados UV</span>
+      <a href="#" id="waTop" class="btn btn-wood" target="_blank">Cotizar</a>
+      <button class="burger" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
-<main>
-  <section class="hero wrap">
-    <img src="logo-tuv.png" alt="Braita TUV — Maquila de Acabados UV" style="max-width:200px; margin:0 auto 26px;">
-    <span class="eyebrow" style="justify-content:center;">Maquila de Acabados UV · Grupo Braita</span>
-    <h1>Le damos acabado UV a tu material.</h1>
-    <p>TUV es la división de maquila especializada en acabados UV de Braita. Recibimos los tableros y superficies de nuestros clientes para aplicar procesos de pintura y acabado UV con altos estándares de calidad, ofreciendo soluciones precisas, uniformes y confiables para fabricantes, diseñadores e industrias que buscan resultados profesionales.</p>
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <img src="logo-tuv.png" alt="Braita TUV — Maquila de Acabados UV" style="max-width:160px; margin:0 auto 26px;">
+      <span class="eyebrow" style="justify-content:center;">Maquila de Acabados UV · Grupo Braita</span>
+      <h1>Le damos acabado UV a tu material.</h1>
+      <p>TUV es la división de maquila especializada en acabados UV de Braita. Recibimos los tableros y superficies de nuestros clientes para aplicar procesos de pintura y acabado UV con altos estándares de calidad, ofreciendo soluciones precisas, uniformes y confiables para fabricantes, diseñadores e industrias que buscan resultados profesionales.</p>
 
-    <div class="swatch-strip" aria-hidden="true">
-      <div style="background:linear-gradient(135deg,#2A2C2E,#111214);"></div>
-      <div style="background:linear-gradient(135deg,#8B8E93,#5F6368);"></div>
-      <div style="background:linear-gradient(135deg,#E8E6E1,#C7C2B4);"></div>
+      <div class="info-card">
+        <h3>¿En qué se diferencia de Braita Innovación?</h3>
+        <ul>
+          <li>Innovación vende tableros propios que ya salen de fábrica con el acabado UV aplicado.</li>
+          <li>TUV es maquila: tú nos traes tu tablero o superficie, y nosotros le aplicamos el acabado UV.</li>
+          <li>Pensado para fabricantes, diseñadores e industrias que necesitan un proceso de acabado confiable y uniforme.</li>
+        </ul>
+        <p class="mono" style="font-size:11px; color:var(--ink-soft); margin-top:16px; line-height:1.6;">Pendiente de confirmar con el cliente: color oficial de marca, precios/capacidad de maquila, tiempos de entrega y fotos reales del proceso.</p>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#mesa-control" class="btn btn-wood">Cotizar maquila de acabado UV</a>
+        <a href="index.html" class="btn btn-outline">Ver el resto del grupo Braita</a>
+      </div>
     </div>
 
-    <div class="info-card">
-      <h3>¿En qué se diferencia de Braita Innovación?</h3>
-      <ul>
-        <li>Innovación vende tableros propios que ya salen de fábrica con el acabado UV aplicado.</li>
-        <li>TUV es maquila: tú nos traes tu tablero o superficie, y nosotros le aplicamos el acabado UV.</li>
-        <li>Pensado para fabricantes, diseñadores e industrias que necesitan un proceso de acabado confiable y uniforme.</li>
-      </ul>
-      <p class="mono" style="font-size:11px; color:var(--ink-soft); margin-top:16px; line-height:1.6;">Pendiente de confirmar con el cliente: color oficial de marca, precios/capacidad de maquila, tiempos de entrega y fotos reales del proceso.</p>
+    <div class="trust-strip">
+      <div class="wrap trust-grid">
+        <div class="trust-item">Maquila para terceros</div>
+        <div class="trust-item">Mismo respaldo y contacto de Braita</div>
+        <div class="trust-item">Procesos precisos y uniformes</div>
+      </div>
     </div>
+  </section>
 
-    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="#" id="waTop" class="btn btn-wood" target="_blank">Cotizar maquila de acabado UV</a>
-      <a href="index.html" class="btn btn-outline">Ver el resto del grupo Braita</a>
+  <!-- ============================================================
+       CATÁLOGO DE ACABADOS — placeholder de ejemplo. Son los mismos 5
+       tipos de acabado UV que ya usa el grupo (ver braita-innovacion.html):
+       alto brillo, mate, sincronizado, metalizado y rayado — aquí en TUV
+       representan los procesos que se le pueden aplicar al material que
+       trae el cliente, no colores de catálogo propio.
+       Convención de imágenes compartida con el resto del sitio:
+         imagen75.png -> Alto Brillo      imagen78.png -> Metalizado
+         imagen76.png -> Mate             imagen79.png -> Rayado
+         imagen77.png -> Sincronizado
+       Cada <img> ya tiene onerror: si el archivo no existe se ve el
+       degradado de fondo, y en cuanto subas la foto con el nombre
+       exacto aparece sola, sin tocar código.
+  ============================================================ -->
+  <section id="catalogo">
+    <div class="wrap">
+      <div class="cat-head reveal">
+        <span class="eyebrow">Acabados</span>
+        <h2>Tipos de acabado UV que aplicamos</h2>
+        <p>Ejemplo de los procesos de acabado que ofrecemos sobre tu material — fotos reales del proceso pendientes de confirmar con Braita.</p>
+      </div>
+      <div class="grid-select">
+        <div class="sel-card reveal">
+          <div class="sel-swatch" style="background:linear-gradient(150deg,#E8E6E1,#C7C2B4);">
+            <img src="imagen75.png" alt="Alto Brillo" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="sel-body">
+            <h3>Alto Brillo</h3>
+            <p>Acabado espejo de alto impacto visual.</p>
+            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+        <div class="sel-card reveal">
+          <div class="sel-swatch" style="background:linear-gradient(150deg,#8B8E93,#5F6368);">
+            <img src="imagen76.png" alt="Mate" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="sel-body">
+            <h3>Mate</h3>
+            <p>Acabado uniforme sin reflejos, tacto suave.</p>
+            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+        <div class="sel-card reveal">
+          <div class="sel-swatch" style="background:linear-gradient(150deg,#8c6a3f,#5a4128);">
+            <img src="imagen77.png" alt="Sincronizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="sel-body">
+            <h3>Sincronizado</h3>
+            <p>Textura y veta alineadas para un efecto realista.</p>
+            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+        <div class="sel-card reveal">
+          <div class="sel-swatch" style="background:linear-gradient(150deg,#c9a876,#8a6a42);">
+            <img src="imagen78.png" alt="Metalizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="sel-body">
+            <h3>Metalizado</h3>
+            <p>Efecto metálico con acabado de alto impacto.</p>
+            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+        <div class="sel-card reveal">
+          <div class="sel-swatch" style="background:linear-gradient(150deg,#2A2C2E,#111214);">
+            <img src="imagen79.png" alt="Rayado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="sel-body">
+            <h3>Rayado</h3>
+            <p>Textura lineal para un acabado con carácter.</p>
+            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CÓMO FUNCIONA — pasos genéricos del servicio de maquila, acorde
+       a la descripción real que mandó el cliente (recibimos tu
+       material, aplicamos el proceso, control de calidad y entrega).
+  ============================================================ -->
+  <section id="proceso">
+    <div class="wrap">
+      <div class="reveal" style="margin-bottom:44px;">
+        <span class="eyebrow">Cómo funciona</span>
+        <h2 style="font-size:clamp(24px,3.2vw,34px); margin-top:14px; max-width:600px;">De tu material a un acabado UV profesional.</h2>
+      </div>
+      <div class="proceso-flow">
+        <div class="flow-card reveal">
+          <span class="flow-num">01 · Recepción</span>
+          <h3>Nos envías tu material</h3>
+          <p>Recibimos tus tableros o superficies con las especificaciones del acabado que buscas.</p>
+        </div>
+        <div class="flow-card reveal">
+          <span class="flow-num">02 · Preparación</span>
+          <h3>Preparación de superficie</h3>
+          <p>Revisamos y preparamos cada pieza para asegurar una aplicación uniforme.</p>
+        </div>
+        <div class="flow-card reveal">
+          <span class="flow-num">03 · Aplicación</span>
+          <h3>Aplicación de acabado UV</h3>
+          <p>Aplicamos el proceso de pintura y acabado UV elegido, con altos estándares de calidad.</p>
+        </div>
+        <div class="flow-card reveal">
+          <span class="flow-num">04 · Entrega</span>
+          <h3>Control de calidad y entrega</h3>
+          <p>Revisamos cada lote antes de entregarlo, con resultados precisos y confiables.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MESA DE CONTROL — mismo sistema que braita-innovacion.html
+       (ver mesa-control.js), adaptado a un servicio de maquila: aquí
+       el cliente especifica las piezas que va a mandar y el tipo de
+       acabado UV que quiere que se les aplique, en vez de elegir un
+       tablero que vendemos nosotros.
+  ============================================================ -->
+  <section id="mesa-control" class="mesa-control-section">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Cotizar Maquila</span>
+        <h2>Arma tu Solicitud de Maquila</h2>
+        <p>Añade las piezas que vas a enviar para su acabado UV. El sistema estructura el listado técnico listo para mandarse por WhatsApp.</p>
+      </div>
+
+      <div class="mesa-layout">
+        <div class="blueprint-panel reveal">
+          <div class="panel-header">
+            <h3>Listado de Piezas</h3>
+            <span class="mono" style="font-size:11px; color:var(--ink-soft);" id="row-counter">1 Pieza añadida</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="despiece-table" id="despiece-table">
+              <thead>
+                <tr>
+                  <th>Pieza / Etiqueta</th>
+                  <th style="width:100px;">Largo (mm)</th>
+                  <th style="width:100px;">Ancho (mm)</th>
+                  <th style="width:80px;">Cant.</th>
+                  <th>Chapeado (Cantos)</th>
+                  <th style="width:40px;"></th>
+                </tr>
+              </thead>
+              <tbody id="table-body-rows">
+                <tr>
+                  <td><input type="text" placeholder="Ej: Puerta de Cocina" value="Puerta de Cocina"></td>
+                  <td><input type="number" placeholder="0" value="600"></td>
+                  <td><input type="number" placeholder="0" value="450"></td>
+                  <td><input type="number" placeholder="1" value="6"></td>
+                  <td>
+                    <select>
+                      <option value="Ninguno">Ninguno</option>
+                      <option value="2 Largos">2 Largos</option>
+                      <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
+                      <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button class="btn-remove-row" title="Eliminar fila" onclick="deleteRow(this)">
+                      <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn-add-row" onclick="addNewRow()">+ Añadir Fila de Despiece</button>
+
+          <div class="summary-strip" id="summaryStrip">
+            <div class="summary-item"><span class="summary-num" id="sumPiezas">0</span><span class="summary-label">Piezas totales</span></div>
+            <div class="summary-item"><span class="summary-num" id="sumArea">0.00 m²</span><span class="summary-label">Área total</span></div>
+            <div class="summary-item"><span class="summary-num" id="sumCanto">0.00 m</span><span class="summary-label">Canto lineal</span></div>
+            <div class="summary-item"><span class="summary-num" id="sumTableros">0</span><span class="summary-label">Tableros aprox.*</span></div>
+          </div>
+          <p class="mono" style="font-size:10.5px; color:var(--ink-soft); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma. Referencia rápida, no sustituye la cotización formal.</p>
+          <button class="btn-copy-summary" type="button" onclick="copiarResumen()">Copiar resumen del pedido</button>
+        </div>
+
+        <div class="control-form reveal">
+          <div class="form-group">
+            <label for="client-name">Nombre Comercial / Solicitante</label>
+            <input type="text" id="client-name" required placeholder="Ej: Marco Gutiérrez">
+          </div>
+          <div class="form-group">
+            <label for="client-company">Fábrica / Carpintería</label>
+            <input type="text" id="client-company" placeholder="Opcional">
+          </div>
+          <div class="form-group">
+            <label for="client-phone">Línea Móvil (WhatsApp)</label>
+            <input type="tel" id="client-phone" required placeholder="Ej: 3921002030">
+          </div>
+          <div class="form-group">
+            <label for="master-material">Tipo de acabado UV deseado</label>
+            <select id="master-material">
+              <option value="Alto Brillo (material propio)">Alto Brillo</option>
+              <option value="Mate (material propio)">Mate</option>
+              <option value="Sincronizado (material propio)">Sincronizado</option>
+              <option value="Metalizado (material propio)">Metalizado</option>
+              <option value="Rayado (material propio)">Rayado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="client-notes">Notas Especiales</label>
+            <textarea id="client-notes" placeholder="Indicar tipo de material que envías, color base, etc..."></textarea>
+          </div>
+          <button class="btn btn-wood" style="width:100%; margin-top:8px;" onclick="processOrderToWhatsApp()">Exportar y Enviar por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="contacto-section">
+    <div class="wrap contacto-grid">
+      <div class="reveal">
+        <span class="eyebrow">Contacto</span>
+        <h2 style="font-size:clamp(24px,3.2vw,32px); margin:14px 0 10px;">¿Tienes material para maquilar?</h2>
+        <p style="color:var(--ink-soft); max-width:44ch;">Braita TUV comparte oficina y contacto con el resto del grupo, en Ocotlán, Jalisco.</p>
+        <ul class="info-list">
+          <li><span><b>Dirección</b>Av. Universidad #1350, Ocotlán, Jal.</span></li>
+          <li><span><b>Teléfono</b>392 931 3919</span></li>
+          <li><span><b>WhatsApp</b>392 128 7299</span></li>
+          <li><span><b>Correo</b>Tableros.braita@gmail.com</span></li>
+        </ul>
+      </div>
+      <div class="reveal" style="display:flex; align-items:center; justify-content:center;">
+        <a href="#" id="waBottom" class="btn btn-wood" target="_blank" style="padding:20px 36px; font-size:15px;">Escribir por WhatsApp →</a>
+      </div>
     </div>
   </section>
 </main>
@@ -372,7 +682,9 @@
 
 <script>
   const WA = '523921287299'; // Número real de Braita (antes era 523929313919, incorrecto)
-  document.getElementById('waTop').href = `https://wa.me/${WA}?text=${encodeURIComponent('Hola, vi Braita TUV y quiero información sobre el servicio de maquila de acabados UV.')}`;
+  const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+  document.getElementById('waTop').href = wa('Hola, vi Braita TUV y quiero información sobre el servicio de maquila de acabados UV.');
+  document.getElementById('waBottom').href = wa('Hola, vi Braita TUV y quiero información sobre el servicio de maquila de acabados UV.');
 
   window.addEventListener('load', () => {
     setTimeout(() => {
@@ -380,7 +692,13 @@
       if (pre) pre.classList.add('hide');
     }, 400);
   });
+
+  // Config para mesa-control.js (Mesa de Control compartida, ver ese archivo)
+  const MESA_WA_NUMBER = '523921287299';
+  const MESA_MARCA = 'Braita TUV';
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="mesa-control.js"></script>
 <script src="premium-interactions.js"></script>
 
 </body>

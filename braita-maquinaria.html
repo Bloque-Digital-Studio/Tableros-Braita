@@ -97,9 +97,27 @@
   .btn-primary:hover{ background:var(--accent-dark); transform:translateY(-2px); }
   .btn-outline{ border-color:var(--ink); color:var(--ink); }
   .btn-outline:hover{ background:var(--ink); color:var(--paper-soft); }
-  .burger{ display:none; background:none; border:none; cursor:pointer; }
-  .burger span{ display:block; width:22px; height:1.5px; background:var(--ink); margin:5px 0; }
-  @media (max-width:860px){ nav ul{display:none;} .burger{display:block;} }
+  .burger{ display:none; background:none; border:none; cursor:pointer; padding:10px; margin:-10px; }
+  .burger span{ display:block; width:22px; height:1.5px; background:var(--ink); margin:5px 0; transition:transform .3s ease, opacity .3s ease; }
+  .burger.active span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+  .burger.active span:nth-child(2){ opacity:0; }
+  .burger.active span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+  /* FIX: el botón ☰ no tenía JS conectado (nav simplemente se ocultaba sin
+     forma de reabrirlo). Mismo patrón de panel deslizable que
+     braita-innovacion.html (id="menu-toggle"/id="main-nav", ya manejado por
+     premium-interactions.js). */
+  @media (max-width:860px){
+    nav{
+      position:fixed; top:0; right:0; bottom:0; width:min(320px,85vw);
+      background:var(--panel); border-left:1px solid var(--line);
+      padding:100px 32px 40px; transform:translateX(100%);
+      transition:transform .4s var(--ease); z-index:99; overflow-y:auto;
+    }
+    nav.is-active{ transform:translateX(0); }
+    nav ul{ flex-direction:column; gap:26px; }
+    nav a{ font-size:18px; }
+    .burger{ display:block; }
+  }
 
   .hero{ padding:80px 0 60px; overflow:hidden; }
   .hero h1{ font-size:clamp(34px,4.8vw,54px); line-height:1.06; margin:16px 0 20px; }
@@ -390,7 +408,7 @@
     <a href="index.html" class="gs-label">Grupo Braita</a>
     <a href="braita-innovacion.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
     <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
-    <a href="braita-maquinaria.html" class="active"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
+    <a href="braita-maquinaria.html" class="active"><span class="gs-dot" style="background:#E4610F"></span>Machinery</a>
     <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
     <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
   </div>
@@ -403,7 +421,7 @@
       <img class="logo-mark" src="logo-machinery.png" alt="Braita Machinery" style="width:32px; height:32px; object-fit:contain; border-radius:4px; background:#fff; padding:2px;">
       <span class="logo-text">BRAITA <span>MAQUINARIA</span></span>
     </a>
-    <nav><ul>
+    <nav id="main-nav"><ul>
       <li><a href="#equipo">Equipo</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#contacto">Contacto</a></li>
@@ -411,7 +429,7 @@
     <div style="display:flex; gap:14px; align-items:center;">
       <a href="#contacto" class="btn btn-outline">Contacto</a>
       <a href="#" id="waTop" class="btn btn-primary" target="_blank">Cotizar equipo</a>
-      <button class="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+      <button class="burger" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>

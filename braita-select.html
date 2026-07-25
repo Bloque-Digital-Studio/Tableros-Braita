@@ -96,9 +96,28 @@
   .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(198,162,77,.25); }
   .btn-outline{ border-color:var(--silver); color:var(--silver); }
   .btn-outline:hover{ border-color:var(--gold-light); color:var(--gold-light); }
-  .burger{ display:none; background:none; border:none; cursor:pointer; }
-  .burger span{ display:block; width:22px; height:1.5px; background:var(--text-primary); margin:5px 0; }
-  @media (max-width:860px){ nav ul{display:none;} .burger{display:block;} }
+  .burger{ display:none; background:none; border:none; cursor:pointer; padding:10px; margin:-10px; }
+  .burger span{ display:block; width:22px; height:1.5px; background:var(--text-primary); margin:5px 0; transition:transform .3s ease, opacity .3s ease; }
+  .burger.active span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+  .burger.active span:nth-child(2){ opacity:0; }
+  .burger.active span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+  /* FIX: antes el nav simplemente se ocultaba en celular (display:none) sin
+     ninguna forma de volver a abrirlo — el botón ☰ no tenía JS conectado.
+     Ahora usa el mismo patrón de panel deslizable ya probado en
+     braita-innovacion.html (id="menu-toggle" / id="main-nav", manejado por
+     premium-interactions.js, que ya se incluye en esta página). */
+  @media (max-width:860px){
+    nav{
+      position:fixed; top:0; right:0; bottom:0; width:min(320px,85vw);
+      background:var(--bg-surface); border-left:1px solid var(--border-color);
+      padding:100px 32px 40px; transform:translateX(100%);
+      transition:transform .4s var(--ease); z-index:99; overflow-y:auto;
+    }
+    nav.is-active{ transform:translateX(0); }
+    nav ul{ flex-direction:column; gap:26px; }
+    nav a{ font-size:18px; }
+    .burger{ display:block; }
+  }
 
   /* hero — foto real de fondo (imagen15.png), mismo patrón que
      braita-innovacion.html: .hero-bg-image detrás de todo el hero, con
@@ -450,7 +469,7 @@
     <a href="index.html" class="gs-label">Grupo Braita</a>
     <a href="braita-innovacion.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
     <a href="braita-select.html" class="active"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
-    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Maquinaria</a>
+    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Machinery</a>
     <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
     <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
   </div>
@@ -467,7 +486,7 @@
       </svg>
       <span class="logo-text">BRAITA <b>SELECT</b></span>
     </a>
-    <nav><ul>
+    <nav id="main-nav"><ul>
       <li><a href="#coleccion">Colección</a></li>
       <li><a href="#mesa-control">Mesa de Despiece</a></li>
       <li><a href="#porque">Por qué Select</a></li>
@@ -476,7 +495,7 @@
     <div style="display:flex; gap:14px; align-items:center;">
       <a href="#contacto" class="btn btn-outline">Contacto</a>
       <a href="#" id="waTop" class="btn btn-gold" target="_blank">Cotizar</a>
-      <button class="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+      <button class="burger" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
