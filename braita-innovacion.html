@@ -37,7 +37,14 @@
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
   html{ scroll-behavior:smooth; overflow-x:hidden; }
-  @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important;} html{scroll-behavior:auto;} }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important; transition-duration:.01ms !important;} html{scroll-behavior:auto;}
+    /* Los tickers (marquee-content/brands-track) son animation:...infinite — al
+       forzar su duración a .01ms arriba, un loop infinito no "se detiene", sigue
+       dando vueltas pero casi instantáneas: se ve como si fuera rapidísimo/tembloroso.
+       Se pausan del todo en vez de acelerarlos. */
+    .marquee-content, .brands-track{ animation-play-state:paused !important; }
+  }
   body{ background:var(--paper); color:var(--text-primary); font-family:var(--font-sans); line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-wrap:break-word; }
   img,svg{ display:block; max-width:100%; }
   a{ color:inherit; text-decoration:none; }
@@ -281,7 +288,7 @@
   #preloader{ position:fixed; inset:0; z-index:5000; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity .7s var(--ease), visibility .7s var(--ease); }
   #preloader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
   #preloader .pre-logo{ display:flex; align-items:center; gap:14px; font-family:var(--font-display); font-weight:700; font-size:32px; color:var(--text-light); text-transform:uppercase; letter-spacing:.04em; opacity:0; animation:preFade 1.2s var(--ease) forwards; }
-  #preloader .pre-logo span{ color:var(--accent); }
+  #preloader .pre-logo .pre-word span{ color:var(--accent); }
   @keyframes preFade{ 0%{opacity:0; letter-spacing:.1em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
   #preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(245,241,233,.14); overflow:hidden; position:relative; }
   #preloader .pre-bar::after{ content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%; background:var(--accent); animation:preBar 1.3s var(--ease) forwards .25s; }
@@ -295,7 +302,7 @@
 <div id="preloader">
   <div class="pre-logo">
     <img src="logo-innovacion.png" alt="Braita" style="width:64px; height:64px; object-fit:contain;">
-    BRA<span>I</span>TA
+    <span class="pre-word">BRA<span>I</span>TA</span>
   </div>
   <div class="pre-bar"></div>
   <span class="pre-caption">Cargando catálogo técnico</span>
@@ -344,7 +351,7 @@
 <main>
   <section class="hero" id="inicio">
     <div class="hero-bg-image" aria-hidden="true">
-      <img src="imagen1.png" alt="" onerror="this.parentElement.style.display='none';">
+      <img src="imagen1.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
     </div>
 
     <div class="wrap hero-inner">
