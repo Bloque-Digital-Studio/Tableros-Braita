@@ -1,47 +1,16 @@
 <!DOCTYPE html>
 <!--
   ================================================================
-  BRAITA INDUSTRIAL HUB — PLATAFORMA INTEGRAL DE MAQUILA Y SUMINISTRO
-  ================================================================
-  DIRECCIÓN REAL: Av. Universidad #1350, Ocotlán, Jal. (según el
-  catálogo PDF oficial que mandó el cliente en 2026 — antes el sitio
-  tenía "Camino viejo a Zula, Potrero de Juana", de una ronda previa;
-  el cliente confirmó usar la del PDF como la vigente. Los directorios
-  públicos —Facebook, Cylex, VYMaps— además muestran "Av. Francisco
-  Zarco #1350, Lindavista", que es el mismo número pero otro nombre de
-  calle — probablemente el mismo lugar con el nombre de calle mal
-  capturado en algún directorio. Vale la pena que el cliente confirme
-  el nombre de calle exacto en algún momento.)
+  BRAITA INNOVACIÓN — reskin al sistema de diseño "página prueba"
+  (rediseño de julio 2026). El JS (catálogo de 39 productos, Mesa
+  de Control, panel de administrador, Supabase) NO se tocó — solo
+  CSS y estructura de envoltura. Se movieron "Proceso" y "Para
+  quién trabajamos" al hub (index.html) y se fusionó Servicios +
+  Personalización en una sola sección, para que la barra de
+  navegación quepa en una línea.
 
-  TELÉFONO: 392 931 3919 · WHATSAPP: 392 128 7299 (son DISTINTOS)
-  CORREO: Tableros.braita@gmail.com (del catálogo PDF oficial — antes
-  el sitio usaba ventas@braita.com.mx)
-
-  Por instrucción del cliente: esta ronda SOLO se actualizó info
-  (dirección, teléfono, WhatsApp, correo, barra de grupo con TUV
-  agregado). El diseño, colores y estructura de código NO se tocaron.
-  ================================================================
-  MAPA DE ESPACIOS PARA IMÁGENES DE ESTE ARCHIVO (naming secuencial
-  compartido con todo el Grupo Braita — ver también braita-select.html,
-  braita-maquinaria.html, braita-sinc.html y braita-tuv.html):
-    imagen1.png  -> Fondo del Hero (sección "inicio")
-    imagen2.png  -> Gráfico del Hero / diagrama de aprovechamiento de hoja
-    imagen3.png  -> PROD-001 Melamina Blanca Soft
-    imagen4.png  -> PROD-002 Melamina Nogal Urbano
-    imagen5.png  -> PROD-003 Melamina Gris Grafito
-    imagen6.png  -> PROD-004 Melamina Roble Escandinavo
-    imagen7.png  -> PROD-005 MDF Crudo Calibrado
-    imagen8.png  -> PROD-006 MDF Crudo Industrial
-    imagen9.png  -> PROD-007 MDF Hidrófugo Antihumedad
-    imagen10.png -> PROD-008 Triplay Pino de Primera
-    imagen11.png -> PROD-009 Triplay Pino Estructural
-    imagen12.png -> PROD-010 Triplay Marino de Importación
-    imagen13.png -> PROD-011 Alto Brillo Espejo Blanco
-    imagen14.png -> PROD-012 Super Mate Antihuella Negro
-  Todos estos <img> ya están enlazados en el código: si el archivo no
-  existe todavía, se ocultan solos (onerror) y se ve el placeholder de
-  siempre. En cuanto subas la foto real con ese nombre exacto, aparece
-  sola, sin tocar código.
+  MAPA DE ESPACIOS PARA IMÁGENES (sin cambios — ver PROD-001…012
+  y el resto en DATABASE_PRODUCTS más abajo en el <script>).
   ================================================================
 -->
 <html lang="es">
@@ -54,1638 +23,292 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="premium-animations.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  :root {
-    --bg-base: #131311;
-    --bg-surface: #20201d;
-    --bg-panel: #1c1c1a;
-    --bg-dark: #0e0e0c;
-    --bg-dark-surface: #2a2a28;
-
-    --text-primary: #e5e2de;
-    --text-secondary: #d2c4b7;
-    --text-muted: #9b8f82;
-    --text-light: #e5e2de;
-    --text-light-muted: #d2c4b7;
-
-    --brand: #eabf8d;
-    --brand-dark: #78582f;
-    --brand-light: #ffddb7;
-    --on-brand: #442b06;
-    --border-color: #4f453b;
-    --border-dark: #9b8f82;
-
-    --font-display: 'Chivo', sans-serif;
-    --font-sans: 'Manrope', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-
-    --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-normal: cubic-bezier(0.4, 0, 0.2, 1);
-    --radius-sm: 4px;
-    --radius-md: 6px;
-    --shadow-sm: 0 4px 16px rgba(0,0,0,0.35);
-    --shadow-md: 0 16px 40px rgba(0,0,0,0.45);
-    --shadow-lg: 0 24px 56px rgba(0,0,0,0.5);
-    --shadow-brand: 0 20px 50px rgba(234,191,141,0.18);
-  }
-
-  *, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    text-size-adjust: 100%;
-    overflow-x: hidden;
-  }
-
-  body {
-    background: linear-gradient(135deg, var(--bg-base) 0%, #0e0e0c 100%);
-    color: var(--text-primary);
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-  @media (max-width: 768px) { .container { padding: 0 20px; } }
-
-  .grid { display: grid; gap: 32px; }
-  .grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .grid-4 { grid-template-columns: repeat(4, 1fr); }
-  
-  @media (max-width: 992px) {
-    .grid-4 { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: repeat(2, 1fr); }
-    .grid-2 { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 640px) {
-    .grid-4, .grid-3 { grid-template-columns: 1fr; }
-  }
-
-  .section-padding { padding: 140px 0; }
-  @media (max-width: 768px) { .section-padding { padding: 84px 0; } }
-
-  .mono { font-family: var(--font-mono); }
-  .display { font-family: var(--font-display); }
-
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--brand);
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .eyebrow::before {
-    content: '';
-    width: 24px;
-    height: 2px;
-    background-color: var(--brand);
-    display: inline-block;
-  }
-
-  h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.15;
-  }
-
-  .divider {
-    width: 100%;
-    height: 1px;
-    background-color: var(--border-color);
-    border: none;
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.9s var(--transition-smooth), transform 0.9s var(--transition-smooth);
-  }
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .btn {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 14px 32px;
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: all 0.35s var(--transition-smooth);
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.2);
-    transition: left 0.4s var(--transition-smooth);
-    z-index: -1;
-  }
-
-  .btn-dark {
-    background: var(--bg-dark-surface);
-    color: var(--text-light);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-  }
-  .btn-dark:hover {
-    border-color: var(--brand);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .btn-outline {
-    background-color: transparent;
-    border: 1.5px solid var(--brand);
-    color: var(--brand);
-  }
-  .btn-outline:hover {
-    background-color: rgba(234,191,141,0.1);
-    color: var(--brand-light);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .btn-brand {
-    background: var(--brand);
-    color: var(--on-brand);
-    box-shadow: var(--shadow-brand);
-  }
-  .btn-brand:hover {
-    background: var(--brand-light);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-brand), var(--shadow-md);
-  }
-
-  #toast-container {
-    position: fixed;
-    bottom: 32px;
-    left: 32px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .toast {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    font-family: var(--font-mono);
-    font-size: 13px;
-    padding: 16px 24px;
-    border-left: 4px solid var(--brand);
-    box-shadow: var(--shadow-md);
-    transform: translateX(-120%);
-    animation: slideIn 0.4s var(--transition-smooth) forwards;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  @keyframes slideIn { to { transform: translateX(0); } }
-  .toast.fade-out {
-    animation: slideOut 0.4s var(--transition-smooth) forwards;
-  }
-  @keyframes slideOut { to { transform: translateX(-120%); opacity: 0; } }
-
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 500;
-    background: rgba(32, 32, 29, 0.6);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: none;
-    transition: all 0.4s var(--transition-normal);
-  }
-  header.scrolled {
-    background: rgba(20, 20, 18, 0.82);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-  }
-  .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 0;
-  }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 22px;
-    text-transform: uppercase;
-    color: var(--text-primary);
-  }
-  .logo span { color: var(--brand); }
-  .logo svg { width: 34px; height: 34px; }
-
-  nav ul {
-    display: flex;
-    list-style: none;
-    gap: 32px;
-  }
-  nav a {
-    font-family: var(--font-sans);
-    font-size: 14.5px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    position: relative;
-    padding: 6px 0;
-    white-space: nowrap;
-    transition: color 0.3s ease;
-  }
-  nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--brand);
-    transition: width 0.3s var(--transition-smooth);
-  }
-  nav a:hover { color: var(--text-primary); }
-  nav a:hover::after { width: 100%; }
-
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
-  .menu-toggle span {
-    display: block;
-    width: 26px;
-    height: 2px;
-    background-color: var(--text-primary);
-    margin: 6px 0;
-    transition: all 0.3s ease;
-  }
-  .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-  .menu-toggle.active span:nth-child(2) { opacity: 0; }
-  .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-  @media (max-width: 1024px) {
-    nav {
-      position: fixed;
-      top: 83px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: var(--bg-surface);
-      padding: 40px;
-      transform: translateX(100%);
-      transition: transform 0.4s var(--transition-smooth);
-      border-top: 1px solid var(--border-color);
-    }
-    nav.is-active { transform: translateX(0); }
-    nav ul { flex-direction: column; gap: 28px; }
-    nav a { font-size: 20px; font-weight: 600; }
-    .menu-toggle { display: block; }
-    .header-actions .btn { display: none; }
-  }
-
-  .hero {
-    padding: 100px 0 0 0;
-    overflow: hidden;
-  }
-  .hero-container {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 64px;
-    align-items: center;
-  }
-  .hero-container--single {
-    display: block;
-    max-width: 760px;
-    padding: 90px 0 140px;
-  }
-  @media (max-width: 992px) {
-    .hero-container { grid-template-columns: 1fr; gap: 48px; }
-    .hero-container--single { padding: 60px 0 90px; }
-  }
-  .hero-content h1 {
-    font-size: clamp(46px, 7vw, 84px);
-    line-height: 1.05;
-    margin-bottom: 26px;
-    letter-spacing: -0.03em;
-    font-weight: 700;
-  }
-  .hero-content h1 span { color: var(--brand); font-weight: 700; }
-  .hero-content p {
-    font-size: 18px;
-    color: var(--text-secondary);
-    max-width: 52ch;
-    margin-bottom: 44px;
-    line-height: 1.75;
-  }
-  .hero-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .hero-graphic {
-    position: relative;
-    width: 100%;
-    background-color: var(--bg-panel);
-    border: 1px solid var(--border-color);
-  }
-  .hero-graphic svg {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .anim-dash {
-    stroke-dasharray: 8 6;
-    animation: blueprintDash 4s linear infinite;
-  }
-  @keyframes blueprintDash {
-    to { stroke-dashoffset: -100; }
-  }
-  .graphic-overlay-label {
-    position: absolute;
-    bottom: 16px;
-    left: 16px;
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    padding: 6px 12px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-  }
-
-  .strip-confianza {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    padding: 32px 0;
-    margin-top: 80px;
-  }
-  .strip-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-  .strip-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-mono);
-    font-size: 13.5px;
-    color: var(--text-light-muted);
-  }
-  .strip-item svg {
-    width: 20px;
-    height: 20px;
-    stroke: var(--brand);
-    flex-shrink: 0;
-  }
-
-  .marquee-wrapper {
-    background-color: var(--bg-panel);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    padding: 24px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .marquee-content {
-    display: inline-flex;
-    animation: moveMarquee 35s linear infinite;
-  }
-  .marquee-content span {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0 40px;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-  .marquee-content span::after {
-    content: '//';
-    color: var(--brand);
-  }
-  @keyframes moveMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .brands-marquee {
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-    padding: 16px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .brands-track {
-    display: inline-flex;
-    animation: moveBrands 25s linear infinite reverse;
-  }
-  .brands-track span {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 18px;
-    color: #9EA29A;
-    padding: 0 50px;
-  }
-  @keyframes moveBrands {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .catalog-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-  .catalog-title h2 { font-size: clamp(28px, 4vw, 42px); }
-  .catalog-title p { color: var(--text-secondary); margin-top: 12px; max-width: 52ch; }
-  
-  .filter-group {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    background-color: var(--bg-panel);
-    padding: 6px;
-    border-radius: var(--radius-sm);
-  }
-  .filter-btn {
-    background: transparent;
-    border: none;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    padding: 10px 18px;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: all 0.25s var(--transition-smooth);
-  }
-  .filter-btn:hover { color: var(--text-primary); }
-  .filter-btn.is-active {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-  }
-
-  .catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    background-color: transparent;
-  }
-  @media (max-width: 900px) { .catalog-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .catalog-grid { grid-template-columns: 1fr; } }
-
-  .prod-card {
-    background-color: var(--bg-surface);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s cubic-bezier(0.16,1,0.3,1);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
-  .prod-card:hover {
-    transform: translateY(-10px) scale(1.015);
-    box-shadow: var(--shadow-lg);
-    z-index: 5;
-  }
-  .prod-media {
-    aspect-ratio: 4/3;
-    background-color: var(--bg-panel);
-    position: relative;
-    border-bottom: 1px solid var(--border-color);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .prod-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-    transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
-  }
-  .prod-card:hover .prod-media img {
-    transform: scale(1.06);
-  }
-  .prod-placeholder {
-    width: calc(100% - 24px);
-    height: calc(100% - 24px);
-    border: 1.5px dashed var(--border-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-  }
-  .prod-placeholder svg { width: 28px; height: 28px; margin-bottom: 8px; stroke: var(--border-color); }
-  .prod-placeholder span { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-
-  .prod-tag {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    padding: 4px 8px;
-  }
-  .prod-content {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-  .prod-content h3 { font-size: 18px; margin-bottom: 12px; }
-  .prod-meta {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: 24px;
-  }
-  .prod-footer {
-    margin-top: auto;
-    padding-top: 16px;
-    border-top: 1px dashed var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .prod-footer span { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
-  
-  .btn-action-cotizar {
-    background: transparent;
-    border: 1px solid var(--bg-dark);
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .btn-action-cotizar:hover {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-  }
-
-  .servicios-section {
-    background-color: var(--bg-surface);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-  }
-  .servicios-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    background-color: transparent;
-  }
-  @media (max-width: 900px) { .servicios-grid { grid-template-columns: 1fr; } }
-
-  .srv-node {
-    background-color: var(--bg-base);
-    padding: 44px;
-    border-top: 4px solid var(--border-color);
-    transition: all 0.4s var(--transition-smooth);
-    border-radius: var(--radius-md);
-  }
-  .srv-node:hover {
-    border-top-color: var(--brand);
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-md);
-  }
-  .srv-icon { width: 48px; height: 48px; stroke: var(--brand); margin-bottom: 24px; }
-  .srv-node h4 { font-size: 20px; margin-bottom: 14px; font-weight: 700; }
-  .srv-node p { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
-
-  .proceso-flow {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    background-color: transparent;
-    margin-top: 56px;
-  }
-  @media (max-width: 992px) { .proceso-flow { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 576px) { .proceso-flow { grid-template-columns: 1fr; } }
-
-  .flow-card {
-    background-color: var(--bg-surface);
-    padding: 36px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.4s var(--transition-smooth);
-  }
-  .flow-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-md);
-  }
-  .flow-num {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    color: var(--brand);
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-  .flow-card h3 { font-size: 18px; margin-bottom: 12px; font-weight: 700; }
-  .flow-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
-
-  .mesa-control-section {
-    background: linear-gradient(135deg, var(--bg-dark) 0%, #1A1F2B 100%);
-    color: var(--text-light);
-  }
-  .mesa-control-section h2 { color: var(--text-light); font-size: clamp(32px, 4.5vw, 48px); font-weight: 700; }
-  .mesa-control-section p { color: var(--text-light-muted); line-height: 1.7; }
-
-  .mesa-layout {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 48px;
-    margin-top: 56px;
-    align-items: start;
-  }
-  @media (max-width: 1024px) { .mesa-layout { grid-template-columns: 1fr; } }
-
-  /* FIX mobile: sin min-width:0 en los hijos del grid, el panel con la
-     tabla ancha (min-width:560px en .despiece-table) "explota" el grid
-     entero hacia afuera en vez de dejar que .table-responsive maneje su
-     propio scroll interno — con html/body en overflow-x:hidden eso
-     terminaba CORTANDO contenido en vez de dejarlo alcanzable. */
-  .blueprint-panel, .control-form { min-width: 0; }
-
-  .blueprint-panel {
-    background-color: var(--bg-dark-surface);
-    border: 1px solid var(--border-dark);
-    padding: 32px;
-  }
-  .panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border-dark);
-    padding-bottom: 16px;
-    margin-bottom: 24px;
-  }
-  .panel-header h3 { color: var(--text-light); font-size: 18px; }
-
-  .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .despiece-table {
-    width: 100%;
-    min-width: 560px; /* evita que las columnas se aplasten en celular (inputs
-                          ilegibles de 30-something px) — con esto la tarjeta
-                          desliza horizontal en vez de aplastar el contenido */
-    border-collapse: collapse;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  .despiece-table th {
-    background-color: var(--bg-dark);
-    color: var(--text-light-muted);
-    padding: 12px;
-    font-weight: 500;
-    border-bottom: 2px solid var(--border-dark);
-  }
-  .despiece-table td {
-    padding: 8px 12px;
-    border-bottom: 1px solid var(--border-dark);
-    vertical-align: middle;
-  }
-  .despiece-table input, .despiece-table select {
-    width: 100%;
-    background-color: var(--bg-dark);
-    border: 1px solid var(--border-dark);
-    color: var(--text-light);
-    padding: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-  }
-  .despiece-table input:focus, .despiece-table select:focus {
-    outline: none;
-    border-color: var(--brand);
-  }
-  
-  .btn-remove-row {
-    background: transparent;
-    border: none;
-    color: #EF4444;
-    cursor: pointer;
-    padding: 4px;
-    display: inline-flex;
-    align-items: center;
-  }
-  .btn-add-row {
-    background-color: transparent;
-    border: 1px dashed var(--border-dark);
-    color: var(--text-light);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 10px 16px;
-    cursor: pointer;
-    width: 100%;
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-  }
-  .btn-add-row:hover {
-    border-color: var(--text-light);
-    background-color: rgba(255,255,255,0.02);
-  }
-
-  .control-form {
-    background-color: var(--bg-dark-surface);
-    border: 1px solid var(--border-dark);
-    padding: 32px;
-  }
-  .form-group { margin-bottom: 24px; }
-  .form-group label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
-    color: var(--text-light-muted);
-  }
-  .form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    background-color: var(--bg-dark);
-    border: none;
-    border-bottom: 1px solid var(--border-dark);
-    padding: 12px 4px;
-    color: var(--text-light);
-    font-family: var(--font-sans);
-    font-size: 15px;
-    transition: border-color 0.3s ease;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    outline: none;
-    border-bottom-color: var(--brand);
-  }
-  .form-group select option { background-color: var(--bg-dark-surface); color: var(--text-light); }
-  
-  .logistica-struct {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 64px;
-    align-items: start;
-  }
-  @media (max-width: 992px) { .logistica-struct { grid-template-columns: 1fr; gap: 40px; } }
-
-  .meta-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  .meta-list li {
-    display: flex;
-    gap: 16px;
-  }
-  .meta-list svg { width: 24px; height: 24px; stroke: var(--brand); flex-shrink: 0; }
-  .meta-list h5 { font-family: var(--font-sans); font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-  .meta-list p { font-size: 14px; color: var(--text-secondary); }
-
-  .map-container {
-    background-color: var(--bg-panel);
-    border: 1px solid var(--border-color);
-    padding: 32px;
-    position: relative;
-  }
-  .map-embed-wrap {
-    width: 100%;
-    aspect-ratio: 5/3;
-    background: #D3D6CE;
-    overflow: hidden;
-  }
-  .map-cta {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 20px;
-  }
-
-  footer {
-    background-color: var(--bg-surface);
-    border-top: 1px solid var(--border-color);
-    padding: 64px 0 32px 0;
-  }
-  .footer-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 32px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--border-color);
-  }
-  .footer-legal {
-    padding-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-  }
-
-  .wa-float {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    background: linear-gradient(135deg, var(--bg-dark) 0%, #1A1F2B 100%);
-    color: white;
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1.5px solid rgba(37,211,102,0.35);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.28), 0 0 0 rgba(37,211,102,0.25);
-    z-index: 999;
-    transition: transform 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth), border-color 0.3s var(--transition-smooth);
-  }
-  .wa-float:hover { transform: translateY(-4px); border-color:rgba(37,211,102,0.7); box-shadow: 0 14px 34px rgba(0,0,0,0.32), 0 0 22px rgba(37,211,102,0.35); }
-  .wa-float svg { width: 26px; height: 26px; fill: #25D366; }
-
-  body::before {
-    content: '';
-    position: fixed; inset: 0; z-index: 3000;
-    pointer-events: none;
-    opacity: 0.035;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='130'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  }
-
-  .sheet-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .sheet-tag .num {
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    letter-spacing: 0.08em;
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    padding: 3px 9px;
-  }
-  .sheet-tag .eyebrow { margin-bottom: 0; }
-  .mesa-control-section .sheet-tag .num { border-color: var(--border-dark); color: var(--text-light-muted); }
-
-  .prod-card, .srv-node, .flow-card { will-change: transform; }
-
-  .admin-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--text-muted);
-  }
-  .admin-link:hover { color: var(--brand); }
-  .admin-link::before { content: '●'; font-size: 8px; color: #3F7D4C; }
-
-  .panel-overlay {
-    position: fixed; inset: 0; z-index: 2000;
-    background: rgba(21, 23, 26, 0.7);
-    display: none;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 48px 20px;
-    overflow-y: auto;
-  }
-  .panel-overlay.open { display: flex; }
-  .panel-modal {
-    background: var(--bg-surface);
-    width: 100%;
-    max-width: 960px;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: 0 40px 90px rgba(0,0,0,0.4);
-  }
-  .panel-head {
-    background: var(--bg-dark);
-    color: var(--text-light);
-    padding: 28px 34px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-  }
-  .panel-head .eyebrow { color: var(--brand-light); margin-bottom: 8px; }
-  .panel-head .eyebrow::before { background: var(--brand-light); }
-  .panel-head h3 { color: var(--text-light); font-size: 22px; }
-  .panel-close {
-    background: rgba(245,245,242,0.08);
-    border: none;
-    color: var(--text-light);
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    font-size: 20px;
-    line-height: 1;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  .panel-close:hover { background: var(--brand-dark); }
-
-  .panel-login { max-width: 340px; margin: 0 auto; padding: 48px 32px; text-align: center; }
-  .panel-login h4 { font-size: 19px; margin: 12px 0 26px; }
-  .panel-field { margin-bottom: 16px; text-align: left; }
-  .panel-field label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
-    margin-bottom: 7px;
-  }
-  .panel-field input {
-    width: 100%;
-    border: none;
-    border-bottom: 1.5px solid var(--border-color);
-    padding: 10px 2px;
-    font-family: var(--font-sans);
-    font-size: 15px;
-    background: transparent;
-    color: var(--text-primary);
-  }
-  .panel-field input:focus { outline: none; border-bottom-color: var(--brand); }
-  .panel-login .btn { width: 100%; margin-top: 8px; }
-  .panel-login-error {
-    display: none;
-    margin-top: 14px;
-    font-size: 13px;
-    color: #C0392B;
-  }
-  .panel-login-error.show { display: block; }
-
-  .panel-body { padding: 32px 34px; }
-  .panel-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border-color);
-    border: 1px solid var(--border-color);
-    margin-bottom: 28px;
-  }
-  .panel-stat { background: var(--bg-panel); padding: 20px 24px; }
-  .panel-stat .num { font-family: var(--font-display); font-weight: 700; font-size: 28px; }
-  .panel-stat .label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    margin-top: 4px;
-    display: block;
-  }
-  .panel-table-wrap { width: 100%; overflow-x: auto; }
-  .panel-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .panel-table th {
-    text-align: left;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    padding: 12px 10px;
-    border-bottom: 2px solid var(--text-primary);
-  }
-  .panel-table td {
-    padding: 14px 10px;
-    border-bottom: 1px solid var(--border-color);
-    vertical-align: top;
-  }
-  .panel-table td.piezas-cell {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-secondary);
-    max-width: 260px;
-    white-space: pre-line;
-    line-height: 1.6;
-  }
-  .panel-table select {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 6px 8px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-surface);
-  }
-  .panel-empty { text-align: center; color: var(--text-secondary); padding: 40px 0; font-size: 14px; }
-
-  /* ========================================================================
-     15. BARRA DE PROGRESO DE SCROLL
-     ======================================================================== */
-  #scroll-progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 3px;
-    width: 0%;
-    background: linear-gradient(90deg, var(--brand-dark), var(--brand-light));
-    z-index: 1200;
-    transition: width 0.1s linear;
-  }
-
-  /* ========================================================================
-     16. RESUMEN EN VIVO — MESA DE CONTROL (calculadora de material)
-     ======================================================================== */
-  .summary-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background-color: var(--border-dark);
-    border: 1px solid var(--border-dark);
-    margin-top: 20px;
-  }
-  @media (max-width: 620px) { .summary-strip { grid-template-columns: repeat(2, 1fr); } }
-  .summary-item {
-    background-color: var(--bg-dark);
-    padding: 16px 18px;
-    text-align: center;
-  }
-  .summary-num {
-    display: block;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 24px;
-    color: var(--brand-light);
-  }
-  .summary-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-light-muted);
-    margin-top: 4px;
-  }
-  .btn-copy-summary {
-    background: transparent;
-    border: 1px solid var(--border-dark);
-    color: var(--text-light-muted);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    padding: 10px 16px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 12px;
-    text-transform: uppercase;
-    transition: all 0.2s ease;
-  }
-  .btn-copy-summary:hover { border-color: var(--text-light); color: var(--text-light); }
-
-  /* ========================================================================
-     17. PRELOADER
-     ======================================================================== */
-  #preloader {
-    position: fixed; inset: 0; z-index: 5000;
-    background: var(--bg-dark);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    transition: opacity 0.7s var(--transition-smooth), visibility 0.7s var(--transition-smooth);
-  }
-  #preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-  #preloader .pre-logo {
-    display: flex; align-items: center; gap: 12px;
-    font-family: var(--font-display); font-weight: 700; font-size: 28px;
-    color: var(--paper-soft); text-transform: uppercase; letter-spacing: 0.04em;
-    opacity: 0; animation: preFade 1.2s var(--transition-smooth) forwards;
-  }
-  #preloader .pre-logo span { color: var(--accent); }
-  #preloader .pre-logo svg { width: 40px; height: 40px; }
-  @keyframes preFade {
-    0% { opacity: 0; letter-spacing: 0.3em; }
-    60% { opacity: 1; }
-    100% { opacity: 1; letter-spacing: 0.04em; }
-  }
-  #preloader .pre-bar {
-    margin-top: 28px; width: 220px; height: 2px;
-    background: rgba(241,239,233,0.12); overflow: hidden; position: relative;
-  }
-  #preloader .pre-bar::after {
-    content: ''; position: absolute; left: -100%; top: 0; bottom: 0; width: 100%;
-    background: var(--accent);
-    animation: preBar 1.3s var(--transition-smooth) forwards 0.25s;
-  }
-  @keyframes preBar { to { left: 0; } }
-  #preloader .pre-caption {
-    margin-top: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 11px;
-    letter-spacing: 0.1em; text-transform: uppercase; color: #6B6E68;
-  }
-
-  /* ========================================================================
-     18. AUDIENCIAS ("Para quién trabajamos")
-     ======================================================================== */
-  .audiencias-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-    background-color: var(--border-color); border: 1px solid var(--border-color); margin-top: 50px;
-  }
-  @media (max-width: 860px) { .audiencias-grid { grid-template-columns: 1fr; } }
-  .aud-card { background-color: var(--bg-surface); padding: 40px; border-top: 4px solid var(--border-color); transition: border-color .3s var(--transition-smooth); }
-  .aud-card:hover { border-top-color: var(--brand); }
-  .aud-card svg { width: 32px; height: 32px; stroke: var(--brand); margin-bottom: 20px; }
-  .aud-card h4 { font-size: 18px; margin-bottom: 10px; }
-  .aud-card p { font-size: 14px; color: var(--text-secondary); }
-
-  /* ========================================================================
-     19. TESTIMONIOS (ejemplo — reemplazar con reseñas reales)
-     ======================================================================== */
-  .testi-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-    background-color: var(--border-color); border: 1px solid var(--border-color); margin-top: 50px;
-  }
-  @media (max-width: 860px) { .testi-grid { grid-template-columns: 1fr; } }
-  .testi { background-color: var(--bg-surface); padding: 30px 26px; display: flex; flex-direction: column; gap: 16px; }
-  .testi p.quote { font-size: 15px; color: var(--text-primary); }
-  .testi .who { font-family: var(--font-mono); font-size: 11.5px; color: var(--text-secondary); }
-
-  /* ========================================================================
-     20. BARRA "GRUPO BRAITA" (navegación entre las 4 marcas del grupo)
-     ======================================================================== */
-  .group-switcher { background: #0e0e0c; padding: 10px 0; }
-  .group-switcher .gs-wrap {
-    max-width: 1200px; margin: 0 auto; padding: 0 32px;
-    display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
-    font-family: 'IBM Plex Mono', monospace; font-size: 11.5px;
-  }
-  @media (max-width: 640px) { .group-switcher .gs-wrap { padding: 0 20px; gap: 14px; } }
-  .group-switcher .gs-label { text-transform: uppercase; letter-spacing: .08em; color: #6B6E68; text-decoration: none; transition: color .2s ease; }
-  .group-switcher .gs-label:hover { color: #F5F5F2; }
-  .group-switcher a {
-    display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
-    color: #ABAAA1; padding: 3px 0; border-bottom: 2px solid transparent; transition: color .2s ease;
-  }
-  .group-switcher a .gs-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .group-switcher a:hover { color: #F5F5F2; }
-  .group-switcher a.active { color: #F5F5F2; border-bottom-color: currentColor; }
-  .group-switcher a .gs-beta { opacity: .55; font-size: 10px; }
-
-  /* ════════════════════════════════════════════════════════════════════
-     DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
-     BRAITA INNOVACIÓN (División Principal) 
-     ═════════════════════════════════════════════════════════════════════ */
-
-  /* HERO SECTION — Fondo gradiente con marca azul */
-  .hero {
-    background: linear-gradient(135deg, rgba(234,191,141,0.08) 0%, rgba(234,191,141,0.02) 100%),
-                linear-gradient(180deg, var(--bg-base) 0%, #0e0e0c 100%);
-    position: relative;
-    overflow: visible;
-    z-index: 0; /* crea un contexto de apilamiento propio: así la imagen de
-                   fondo (z-index:-1) queda encerrada AQUÍ ADENTRO, detrás de
-                   TODO lo del hero (incluyendo las franjas de marquee que
-                   son estáticas), y no se escapa a pintarse encima de ellas */
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    right: -150px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(234,191,141,0.12) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(40px);
-  }
-
-  .hero .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* FONDO DE IMAGEN DEL HERO — imagen1.png
-     Capa de imagen real detrás de TODO el contenido del hero (nav queda
-     fuera, es sticky y va encima). Si imagen1.png no existe todavía, el
-     onerror del <img> oculta la capa completa y el hero se ve exactamente
-     igual que antes (solo el gradiente + blob). En cuanto subas la foto,
-     aparece sola sin tocar nada más.
-     FIX: antes la opacidad era 0.10 + un degradado casi blanco encima —
-     entre las dos cosas la imagen quedaba prácticamente invisible aunque
-     cargara bien. Ahora se ve a opacidad casi completa; el degradado solo
-     oscurece/aclara el lado izquierdo (donde está el texto) para que siga
-     siendo legible, y deja el lado derecho limpio para que se note la
-     foto. Ajusta los porcentajes de abajo si con la foto real hace falta
-     más o menos contraste. */
-  .hero-bg-image {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-    pointer-events: none;
-  }
-  .hero-bg-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.9;
-  }
-  .hero-bg-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, rgba(15,17,23,0.85) 0%, rgba(15,17,23,0.6) 35%, rgba(15,17,23,0.1) 65%, rgba(15,17,23,0) 100%);
-  }
-
-  /* El texto del hero estaba pensado para un fondo claro (colores oscuros).
-     Ahora que el difuminado de la izquierda es gris oscuro, ese mismo texto
-     oscuro dejaría de leerse — se aclara SOLO aquí (no afecta el resto del
-     sitio) para mantener buen contraste sobre la foto. */
-  .hero-content h1 { color: var(--text-light); }
-  .hero-content h1 span { color: var(--brand-light); }
-  .hero-content p { color: var(--text-light-muted); }
-  .hero-content .eyebrow { color: var(--brand-light); }
-  .hero-content .eyebrow::before { background-color: var(--brand-light); }
-  .hero-content .sheet-tag .num { color: var(--text-light-muted); border-color: rgba(255,255,255,0.35); }
-  /* CATÁLOGO SECTION — fondo controlado por variable (ver regla #catalogo más abajo) */
-
-  #catalogo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      repeating-linear-gradient(90deg, transparent 0px, transparent 119px, rgba(234,191,141,0.05) 119px, rgba(234,191,141,0.05) 120px),
-      repeating-linear-gradient(0deg, transparent 0px, transparent 119px, rgba(234,191,141,0.04) 119px, rgba(234,191,141,0.04) 120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  #catalogo .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* SERVICIOS SECTION — Fondo oscuro con gradiente bronce sutil */
-  .servicios-section {
-    background: linear-gradient(135deg, rgba(234,191,141,0.07) 0%, rgba(234,191,141,0.02) 100%),
-                linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-base) 100%);
-    position: relative;
-  }
-
-  .servicios-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--brand) 30%, var(--brand) 70%, transparent 100%);
-    z-index: 0;
-  }
-
-  .servicios-section .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  #catalogo {
-    background: var(--bg-panel);
-    position: relative;
-  }
-  #catalogo .container { position: relative; z-index: 1; }
-
-  /* PROCESO SECTION — Gradiente sutil entre capas oscuras */
-  #proceso {
-    background: linear-gradient(135deg, var(--bg-base) 0%, var(--bg-panel) 100%);
-    position: relative;
-  }
-
-  #proceso::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(234,191,141,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 0;
-  }
-
-  #proceso .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* AUDIENCIAS SECTION — bronce cálido oscuro, para romper el ritmo de grises */
-  #audiencias {
-    background: linear-gradient(135deg, #241c12 0%, #1c1712 100%);
-    position: relative;
-  }
-
-  #audiencias .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* MESA CONTROL — Gradiente oscuro con acentos bronce */
-  .mesa-control-section {
-    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-surface) 50%, rgba(234,191,141,0.12) 100%);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .mesa-control-section::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: -100px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(234,191,141,0.18) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 0;
-  }
-
-  .mesa-control-section::after {
-    content: '';
-    position: absolute;
-    bottom: -100px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(255,221,183,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 0;
-  }
-
-  .mesa-control-section .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* TESTIMONIOS SECTION — Fondo oscuro limpio con línea divisoria */
-  #testimonios {
-    background: linear-gradient(135deg, var(--bg-panel) 0%, var(--bg-base) 100%);
-    position: relative;
-  }
-
-  #testimonios::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--brand) 50%, transparent 100%);
-    z-index: 0;
-  }
-
-  #testimonios .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* UBICACIÓN SECTION — Gradiente oscuro con accent bronce */
-  #ubicacion {
-    background: linear-gradient(135deg, rgba(234,191,141,0.05) 0%, rgba(234,191,141,0.08) 100%),
-                linear-gradient(180deg, var(--bg-base) 0%, var(--bg-panel) 100%);
-    position: relative;
-  }
-
-  #ubicacion::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1000px;
-    height: 1000px;
-    background: radial-gradient(circle, rgba(234,191,141,0.05) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 0;
-  }
-
-  #ubicacion .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* DECORATIVOS EN TARJETAS */
-  .prod-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--brand) 0%, transparent 70%);
-    border-radius: 0 8px 0 30px;
-    opacity: 0.7;
-    z-index: 1;
-  }
-
-  .srv-node {
-    position: relative;
-  }
-
-  .srv-node::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--brand) 0%, transparent 100%);
-    border-radius: 8px 0 0 8px;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.4s var(--transition-smooth);
-    z-index: 2;
-  }
-
-  .srv-node:hover::before {
-    transform: scaleY(1);
-  }
-
-  /* LÍNEA DECORATIVA EN TÍTULOS */
-  .sheet-tag::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--brand) 0%, transparent 100%);
-    margin-top: 16px;
-    border-radius: 2px;
-  }
-
-  /* FLOW CARDS — Numeración con color accent */
-  .flow-card {
-    position: relative;
-    border-left: 4px solid var(--brand);
-  }
-
-  .flow-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -4px;
-    width: 4px;
-    height: 0;
-    background: var(--brand-light);
-    transition: height 0.6s var(--transition-smooth);
-    z-index: 2;
-  }
-
-  .flow-card.active::before {
-    height: 100%;
-  }
-
-  /* MARQUEE BACKGROUND */
-  .marquee-wrapper {
-    /* FIX: antes este "background" era 100% transparente en el centro (solo
-       un degradado decorativo en las orillas), así que se veía lo que
-       hubiera detrás — antes se notaba menos, pero ahora que el hero tiene
-       imagen1.png de fondo, se veía la madera a través de esta franja.
-       Se le agrega una capa sólida (var(--bg-panel)) debajo del degradado
-       decorativo para que vuelva a ser opaca. */
-    background: linear-gradient(90deg, 
-      rgba(234,191,141,0.05) 0%, 
-      transparent 20%, 
-      transparent 80%, 
-      rgba(234,191,141,0.05) 100%), var(--bg-panel);
-    position: relative;
-  }
-
-  /* ESPACIOS PARA IMÁGENES */
-  .hero-graphic {
-    position: relative;
-  }
-
-  .hero-graphic::after {
-    content: 'imagen2.png — espacio para foto real del gráfico del hero';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    color: rgba(234,191,141,0.35);
-    font-family: var(--font-mono);
-    text-align: center;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 10;
-  }
-
-  .hero-graphic:hover::after {
-    opacity: 1;
-  }
-
-  /* ---- Cascada escalonada al hacer scroll (mismo efecto que el hub
-     nuevo en index.html): cada tarjeta entra un poco después que la
-     anterior en vez de todas a la vez. Declarado al final del <style>
-     a propósito, para ganarle a los "transition:" cortos que cada
-     componente ya define para su propio hover.
-     NOTA: el catálogo (catalog-target-grid) no lleva esta cascada — sus
-     tarjetas las arma el JS con className='prod-card' sin clase
-     "reveal", o sea que hoy no tienen animación de entrada; agregársela
-     es un cambio aparte de JS, no solo CSS, así que se deja fuera de
-     este ajuste puramente visual. */
-  .servicios-grid .srv-node:nth-child(1),
-  .proceso-flow .flow-card:nth-child(1),
-  .audiencias-grid .aud-card:nth-child(1),
-  .testi-grid .testi:nth-child(1){ transition-delay: .05s; }
-  .servicios-grid .srv-node:nth-child(2),
-  .proceso-flow .flow-card:nth-child(2),
-  .audiencias-grid .aud-card:nth-child(2),
-  .testi-grid .testi:nth-child(2){ transition-delay: .15s; }
-  .servicios-grid .srv-node:nth-child(3),
-  .proceso-flow .flow-card:nth-child(3),
-  .audiencias-grid .aud-card:nth-child(3),
-  .testi-grid .testi:nth-child(3){ transition-delay: .25s; }
-  .proceso-flow .flow-card:nth-child(4){ transition-delay: .35s; }
-
+  :root{
+    --ink:#0E0E0E; --ink-soft:#1C1B19; --ink-deep:#050505;
+    --cream:#F2ECE1; --paper:#FBF9F5;
+    --accent:#FFFFFF; --accent-dark:#8B9096; --accent-light:#E7E9EB;
+    --text-primary:#1C1B19; --text-secondary:#5A564D; --text-muted:#8B8781;
+    --text-light:#F5F1E9; --text-light-muted:#C7C0B2; --line:#DED4BF;
+    --font-display:'Space Grotesk', sans-serif; --font-sans:'Inter', sans-serif; --font-mono:'IBM Plex Mono', monospace;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important;} html{scroll-behavior:auto;} }
+  body{ background:var(--paper); color:var(--text-primary); font-family:var(--font-sans); line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-wrap:break-word; }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+  section{ padding:100px 0; }
+  @media (max-width:768px){ section{ padding:64px 0; } }
+  section[id]{ scroll-margin-top:96px; }
+  .mono{ font-family:var(--font-mono); }
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; }
+  .eyebrow{ font-family:var(--font-mono); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-dark); display:inline-flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .eyebrow::before{ content:''; width:22px; height:2px; background:var(--accent-dark); }
+  .eyebrow.on-dark{ color:var(--text-light-muted); }
+  .eyebrow.on-dark::before{ background:var(--accent); }
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in, .reveal.active{ opacity:1; transform:translateY(0); }
+
+  /* ---------- BARRA GRUPO BRAITA ---------- */
+  .group-switcher{ background:#000; padding:10px 0; }
+  .group-switcher .gs-wrap{ max-width:1240px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
+  @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
+  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+  .group-switcher a{ display:inline-flex; align-items:center; gap:7px; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
+  .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .group-switcher a:hover{ color:#F5F5F2; }
+  .group-switcher a.active{ color:#F5F5F2; border-bottom-color:currentColor; }
+
+  /* ---------- HEADER / NAV ---------- */
+  header{ position:sticky; top:0; z-index:200; background:var(--ink); border-bottom:1px solid rgba(255,255,255,.14); }
+  .navbar{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:20px; }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo-box{ border:1.5px solid var(--accent); border-radius:6px; padding:6px 12px; display:flex; flex-direction:column; align-items:center; line-height:1; }
+  .logo-box img{ height:28px; width:auto; }
+  .logo-box .g2{ font-family:var(--font-mono); font-size:.52rem; letter-spacing:.24em; color:var(--accent-dark); margin-top:2px; }
+  nav ul{ display:flex; gap:26px; list-style:none; }
+  nav a{ font-size:.85rem; font-weight:500; color:var(--text-light-muted); transition:color .25s var(--ease); }
+  nav a:hover{ color:var(--text-light); }
+  .header-actions{ display:flex; align-items:center; gap:14px; }
+
+  .btn{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-sans); font-weight:600; font-size:.85rem; padding:12px 24px; border-radius:999px; cursor:pointer; border:1.5px solid transparent; transition:transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); position:relative; overflow:hidden; white-space:nowrap; }
+  .btn svg{ width:15px; height:15px; }
+  .btn-dark{ background:var(--text-light); color:var(--ink); }
+  .btn-dark:hover{ background:var(--accent); transform:translateY(-2px); }
+  .btn-outline{ border-color:var(--text-light); color:var(--text-light); }
+  .btn-outline:hover{ background:var(--text-light); color:var(--ink); transform:translateY(-2px); }
+  .btn-brand{ background:var(--ink); color:var(--text-light); border-color:var(--text-light); }
+  .btn-brand:hover{ background:var(--text-light); color:var(--ink); transform:translateY(-2px); }
+  @keyframes ripple{ to{ transform:scale(4); opacity:0; } }
+
+  /* ---------- MENU MOVIL ---------- */
+  .menu-toggle{ display:none; flex-direction:column; justify-content:center; gap:5px; width:32px; height:32px; background:none; border:none; cursor:pointer; padding:4px; z-index:210; position:relative; }
+  .menu-toggle span{ display:block; width:100%; height:2px; background:var(--text-light); transition:transform .3s var(--ease), opacity .3s var(--ease); }
+  .menu-toggle.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2){ opacity:0; }
+  .menu-toggle.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media (max-width:1024px){
+    .header-actions .btn{ display:none; }
+    .menu-toggle{ display:flex; }
+    nav{ position:fixed; inset:0; z-index:150; background:var(--ink); display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s var(--ease); }
+    nav.is-active{ opacity:1; visibility:visible; }
+    nav ul{ flex-direction:column; align-items:center; gap:28px; }
+    nav a{ font-size:1.25rem; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ background:linear-gradient(160deg, var(--ink) 0%, var(--ink-deep) 100%); color:var(--text-light); position:relative; overflow:hidden; padding:0; }
+  .hero-inner{ position:relative; z-index:1; max-width:720px; padding:90px 0 60px; }
+  .hero h1{ font-size:clamp(2.2rem, 4.6vw, 3.6rem); line-height:1.1; }
+  .hero h1 span{ color:var(--accent-dark); }
+  .hero p.lead{ margin-top:20px; max-width:56ch; font-size:1.03rem; color:var(--text-light-muted); }
+  .hero-buttons{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+
+  .hero-bg-image{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .hero-bg-image img{ width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s ease; }
+  .hero-bg-image::after{ content:''; position:absolute; inset:0; background:linear-gradient(100deg, rgba(14,14,14,.94) 0%, rgba(14,14,14,.72) 38%, rgba(14,14,14,.3) 68%, rgba(14,14,14,.05) 100%); }
+
+  .trust-strip{ position:relative; z-index:1; background:rgba(245,241,233,.05); border-top:1px solid rgba(255,255,255,.1); padding:22px 0; }
+  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px 30px; }
+  .trust-item{ font-family:var(--font-mono); font-size:.76rem; letter-spacing:.03em; color:var(--text-light-muted); display:flex; align-items:center; gap:8px; }
+  .trust-item::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+
+  .marquee-wrapper{ position:relative; z-index:1; background:var(--ink-soft); border-top:1px solid rgba(255,255,255,.08); padding:18px 0; overflow:hidden; white-space:nowrap; }
+  .marquee-content{ display:inline-flex; animation:moveMarquee 35s linear infinite; }
+  .marquee-content span{ font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.08em; padding:0 32px; color:var(--text-light-muted); display:flex; align-items:center; gap:32px; }
+  .marquee-content span::after{ content:'//'; color:var(--accent-dark); }
+  @keyframes moveMarquee{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+  .brands-marquee{ position:relative; z-index:1; background:var(--ink); border-top:1px solid rgba(255,255,255,.06); padding:14px 0; overflow:hidden; white-space:nowrap; }
+  .brands-track{ display:inline-flex; animation:moveBrands 25s linear infinite reverse; }
+  .brands-track span{ font-family:var(--font-display); font-weight:700; font-size:15px; color:var(--text-muted); padding:0 40px; }
+  @keyframes moveBrands{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* ---------- SECCIÓN HEAD ---------- */
+  .sec-head{ max-width:640px; margin-bottom:44px; }
+  .sec-head h2{ font-size:clamp(1.8rem,3vw,2.4rem); }
+  .sec-head p{ color:var(--text-secondary); margin-top:12px; }
+  .sec-head.on-dark p{ color:var(--text-light-muted); }
+
+  /* ---------- CATÁLOGO ---------- */
+  #catalogo{ background:var(--paper); }
+  .catalog-controls{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:40px; flex-wrap:wrap; gap:24px; }
+  .filter-group{ display:flex; gap:8px; flex-wrap:wrap; background:var(--cream); padding:6px; border-radius:999px; }
+  .filter-btn{ background:transparent; border:none; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; padding:9px 16px; border-radius:999px; cursor:pointer; color:var(--text-secondary); transition:all .25s var(--ease); }
+  .filter-btn:hover{ color:var(--text-primary); }
+  .filter-btn.is-active{ background:var(--ink); color:var(--text-light); }
+
+  .catalog-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+  @media (max-width:900px){ .catalog-grid{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:600px){ .catalog-grid{ grid-template-columns:1fr; } }
+
+  .prod-card{ background:var(--cream); display:flex; flex-direction:column; position:relative; transition:transform .4s var(--ease), box-shadow .4s var(--ease); border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.06); }
+  .prod-card:hover{ transform:translateY(-8px); box-shadow:0 16px 34px rgba(0,0,0,.12); z-index:5; }
+  .prod-media{ aspect-ratio:4/3; background:linear-gradient(150deg,#2B2A27,#141412); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .prod-media img{ width:100%; height:100%; object-fit:cover; display:none; transition:transform .6s var(--ease); }
+  .prod-card:hover .prod-media img{ transform:scale(1.06); }
+  .prod-placeholder{ width:calc(100% - 24px); height:calc(100% - 24px); border:1.5px dashed rgba(245,241,233,.25); display:flex; flex-direction:column; align-items:center; justify-content:center; color:rgba(245,241,233,.4); border-radius:8px; }
+  .prod-placeholder svg{ width:26px; height:26px; margin-bottom:8px; stroke:rgba(245,241,233,.3); }
+  .prod-placeholder span{ font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.04em; }
+  .prod-tag{ position:absolute; top:12px; right:12px; background:var(--ink); color:var(--text-light); font-family:var(--font-mono); font-size:10px; padding:4px 9px; border-radius:999px; }
+  .prod-content{ padding:20px 20px 22px; display:flex; flex-direction:column; flex-grow:1; }
+  .prod-content h3{ font-size:1.02rem; margin-bottom:10px; font-weight:600; }
+  .prod-meta{ font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); line-height:1.8; margin-bottom:18px; }
+  .prod-footer{ margin-top:auto; padding-top:14px; border-top:1px dashed var(--line); display:flex; justify-content:space-between; align-items:center; }
+  .prod-footer span{ font-family:var(--font-mono); font-size:10px; color:var(--text-muted); }
+  .btn-action-cotizar{ background:transparent; border:1.5px solid var(--ink); border-radius:999px; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; padding:6px 14px; cursor:pointer; transition:all .2s ease; }
+  .btn-action-cotizar:hover{ background:var(--ink); color:var(--text-light); }
+
+  /* ---------- SERVICIOS (fusión con Personalización) ---------- */
+  .servicios-section{ background:var(--ink); color:var(--text-light); }
+  .servicios-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+  @media (max-width:900px){ .servicios-grid{ grid-template-columns:1fr; } }
+  .srv-node{ background:var(--ink-soft); padding:34px 30px; border-radius:12px; transition:transform .4s var(--ease), box-shadow .4s var(--ease); }
+  .srv-node:hover{ transform:translateY(-6px); box-shadow:0 16px 32px rgba(0,0,0,.3); }
+  .srv-icon{ width:32px; height:32px; stroke:var(--accent); margin-bottom:18px; }
+  .srv-node h4{ font-size:1.05rem; margin-bottom:10px; font-weight:600; color:var(--text-light); }
+  .srv-node p{ font-size:.86rem; color:var(--text-light-muted); }
+
+  /* ---------- MESA DE CONTROL ---------- */
+  .mesa-control-section{ background:var(--cream); color:var(--text-primary); }
+  .mesa-control-section .sec-head h2{ color:var(--text-primary); }
+  .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:24px; margin-top:10px; align-items:start; }
+  @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
+  .blueprint-panel, .control-form{ min-width:0; background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:26px; }
+  .panel-header{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:20px; }
+  .panel-header h3{ font-size:1rem; }
+  .table-responsive{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .despiece-table{ width:100%; min-width:540px; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:16px; }
+  .despiece-table th{ color:var(--text-secondary); padding:8px; font-weight:500; border-bottom:2px solid var(--line); }
+  .despiece-table td{ padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  .despiece-table input, .despiece-table select{ width:100%; background:#fff; border:1px solid var(--line); border-radius:6px; color:var(--text-primary); padding:7px 8px; font-family:var(--font-mono); font-size:12px; }
+  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-color:var(--accent-dark); }
+  .btn-remove-row{ background:transparent; border:none; color:#B4483C; cursor:pointer; padding:4px; display:inline-flex; align-items:center; }
+  .btn-add-row{ background:transparent; border:1.5px dashed var(--line); border-radius:999px; color:var(--text-primary); font-family:var(--font-mono); font-size:12px; padding:10px 16px; cursor:pointer; width:100%; text-transform:uppercase; transition:all .2s ease; }
+  .btn-add-row:hover{ border-color:var(--text-primary); }
+  .form-group{ margin-bottom:18px; }
+  .form-group label{ display:block; font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:7px; color:var(--text-secondary); }
+  .form-group input, .form-group select, .form-group textarea{ width:100%; background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px; color:var(--text-primary); font-family:var(--font-sans); font-size:.88rem; transition:border-color .2s ease; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-color:var(--accent-dark); box-shadow:0 0 0 3px rgba(139,144,150,.15); }
+  .form-group select option{ background:#fff; color:var(--text-primary); }
+  .summary-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin-top:16px; }
+  @media (max-width:620px){ .summary-strip{ grid-template-columns:repeat(2,1fr); } }
+  .summary-item{ background:var(--paper); padding:12px 10px; text-align:center; }
+  .summary-num{ display:block; font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--text-primary); }
+  .summary-label{ font-family:var(--font-mono); font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); margin-top:4px; display:block; }
+  .btn-copy-summary{ width:100%; margin-top:14px; background:transparent; border:1.5px solid var(--line); border-radius:999px; color:var(--text-primary); font-family:var(--font-mono); font-size:.7rem; letter-spacing:.04em; text-transform:uppercase; padding:11px; cursor:pointer; transition:all .2s ease; }
+  .btn-copy-summary:hover{ border-color:var(--text-primary); }
+
+  #toast-container{ position:fixed; bottom:32px; left:32px; right:32px; z-index:1000; display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+  @media (max-width:480px){ #toast-container{ left:16px; right:16px; bottom:16px; } }
+  .toast{ background:var(--ink); color:var(--text-light); font-family:var(--font-mono); font-size:13px; padding:14px 20px; border-left:4px solid var(--accent); border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,.35); transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards; display:flex; align-items:center; gap:14px; max-width:100%; }
+  @keyframes slideIn{ to{ transform:translateX(0); } }
+  .toast.fade-out{ animation:slideOut .4s var(--ease) forwards; }
+  @keyframes slideOut{ to{ transform:translateX(-120%); opacity:0; } }
+
+  /* ---------- TESTIMONIOS ---------- */
+  #testimonios{ background:var(--paper); }
+  .testi-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:10px; }
+  @media (max-width:860px){ .testi-grid{ grid-template-columns:1fr; } }
+  .testi{ background:var(--cream); padding:28px 26px; border-radius:12px; display:flex; flex-direction:column; gap:14px; }
+  .testi p.quote{ font-size:.95rem; color:var(--text-primary); }
+  .testi .who{ font-family:var(--font-mono); font-size:.72rem; color:var(--text-secondary); }
+
+  /* ---------- UBICACIÓN ---------- */
+  #ubicacion{ background:var(--ink); color:var(--text-light); }
+  .logistica-struct{ display:grid; grid-template-columns:.8fr 1.2fr; gap:44px; align-items:start; margin-top:10px; }
+  @media (max-width:992px){ .logistica-struct{ grid-template-columns:1fr; gap:30px; } }
+  .meta-list{ list-style:none; display:flex; flex-direction:column; gap:22px; }
+  .meta-list li{ display:flex; gap:14px; }
+  .meta-list svg{ width:20px; height:20px; stroke:var(--accent); flex-shrink:0; }
+  .meta-list h5{ font-family:var(--font-sans); font-size:.9rem; font-weight:600; margin-bottom:4px; color:var(--text-light); }
+  .meta-list p{ font-size:.84rem; color:var(--text-light-muted); }
+  .map-container{ background:var(--ink-soft); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:20px; }
+  .map-embed-wrap{ width:100%; aspect-ratio:5/3; background:#2b2a27; overflow:hidden; border-radius:8px; }
+  .map-cta{ display:flex; width:100%; justify-content:center; margin-top:18px; }
+
+  footer{ background:var(--ink-deep); color:var(--text-muted); padding:32px 0; }
+  .footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .footer-legal{ padding-top:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-family:var(--font-mono); font-size:.74rem; }
+  .admin-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-sans); font-size:.76rem; color:var(--text-muted); }
+  .admin-link::before{ content:'●'; font-size:8px; color:#3F7D4C; }
+  .admin-link:hover{ color:var(--text-light); }
+
+  .wa-float{ position:fixed; right:26px; bottom:26px; z-index:80; width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.28); transition:transform .3s var(--ease); }
+  .wa-float:hover{ transform:scale(1.08); }
+  .wa-float svg{ width:27px; height:27px; }
+
+  #scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg, var(--accent-dark), var(--accent)); z-index:300; transition:width .1s linear; }
+
+  /* ---------- PANEL ADMINISTRADOR ---------- */
+  .panel-overlay{ position:fixed; inset:0; z-index:2000; background:rgba(14,14,14,.7); display:none; align-items:flex-start; justify-content:center; padding:48px 20px; overflow-y:auto; }
+  .panel-overlay.open{ display:flex; }
+  .panel-modal{ background:var(--paper); width:100%; max-width:960px; border-radius:14px; overflow:hidden; box-shadow:0 40px 90px rgba(0,0,0,.4); }
+  .panel-head{ background:var(--ink); color:var(--text-light); padding:26px 32px; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
+  .panel-head .eyebrow{ color:var(--text-light-muted); margin-bottom:8px; }
+  .panel-head .eyebrow::before{ background:var(--accent); }
+  .panel-head h3{ color:var(--text-light); font-size:1.3rem; }
+  .panel-close{ background:rgba(245,245,242,.1); border:none; color:var(--text-light); width:34px; height:34px; border-radius:50%; font-size:20px; line-height:1; cursor:pointer; flex-shrink:0; }
+  .panel-close:hover{ background:rgba(245,245,242,.2); }
+  .panel-login{ max-width:340px; margin:0 auto; padding:46px 30px; text-align:center; }
+  .panel-login h4{ font-size:1.1rem; margin:12px 0 24px; }
+  .panel-field{ margin-bottom:16px; text-align:left; }
+  .panel-field label{ display:block; font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; color:var(--text-secondary); margin-bottom:7px; }
+  .panel-field input{ width:100%; border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-family:var(--font-sans); font-size:.9rem; background:#fff; color:var(--text-primary); }
+  .panel-field input:focus{ outline:none; border-color:var(--accent-dark); }
+  .panel-login .btn{ width:100%; margin-top:8px; justify-content:center; }
+  .panel-login-error{ display:none; margin-top:14px; font-size:.8rem; color:#B4483C; }
+  .panel-login-error.show{ display:block; }
+  .panel-body{ padding:30px 32px; }
+  .panel-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:26px; }
+  .panel-stat{ background:var(--cream); padding:18px 22px; }
+  .panel-stat .num{ font-family:var(--font-display); font-weight:700; font-size:1.6rem; }
+  .panel-stat .label{ font-family:var(--font-mono); font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; color:var(--text-secondary); margin-top:4px; display:block; }
+  .panel-table-wrap{ width:100%; overflow-x:auto; }
+  .panel-table{ width:100%; border-collapse:collapse; font-size:.8rem; }
+  .panel-table th{ text-align:left; font-family:var(--font-mono); font-size:.66rem; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); padding:10px 8px; border-bottom:2px solid var(--text-primary); }
+  .panel-table td{ padding:12px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .panel-table td.piezas-cell{ font-family:var(--font-mono); font-size:.68rem; color:var(--text-secondary); max-width:240px; white-space:pre-line; line-height:1.6; }
+  .panel-table select{ font-family:var(--font-mono); font-size:.7rem; padding:5px 7px; border:1px solid var(--line); border-radius:6px; background:#fff; }
+  .panel-empty{ text-align:center; color:var(--text-secondary); padding:36px 0; font-size:.85rem; }
+
+  /* ---------- PRELOADER ---------- */
+  #preloader{ position:fixed; inset:0; z-index:5000; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity .7s var(--ease), visibility .7s var(--ease); }
+  #preloader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+  #preloader .pre-logo{ display:flex; align-items:center; gap:14px; font-family:var(--font-display); font-weight:700; font-size:32px; color:var(--text-light); text-transform:uppercase; letter-spacing:.04em; opacity:0; animation:preFade 1.2s var(--ease) forwards; }
+  #preloader .pre-logo span{ color:var(--accent); }
+  @keyframes preFade{ 0%{opacity:0; letter-spacing:.1em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
+  #preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(245,241,233,.14); overflow:hidden; position:relative; }
+  #preloader .pre-bar::after{ content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%; background:var(--accent); animation:preBar 1.3s var(--ease) forwards .25s; }
+  @keyframes preBar{ to{ left:0; } }
+  #preloader .pre-caption{ margin-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-light-muted); }
+  @media (prefers-reduced-motion: reduce){ #preloader .pre-logo{ animation:none; opacity:1; } #preloader .pre-bar::after{ animation:none; left:0; } }
 </style>
 </head>
 <body>
 
-<!-- Logo real de Braita Innovación ya integrado. -->
 <div id="preloader">
   <div class="pre-logo">
-    <img src="logo-innovacion.png" alt="Braita" style="width:40px; height:40px; object-fit:contain;">
+    <img src="logo-innovacion.png" alt="Braita" style="width:64px; height:64px; object-fit:contain;">
     BRA<span>I</span>TA
   </div>
   <div class="pre-bar"></div>
   <span class="pre-caption">Cargando catálogo técnico</span>
 </div>
 
-<!-- BARRA DE GRUPO: navegación entre las 4 marcas de Braita. Se repite igual en las otras 3 páginas, solo cambia cuál lleva class="active". -->
 <div class="group-switcher">
   <div class="gs-wrap">
     <a href="index.html" class="gs-label">Grupo Braita</a>
-    <a href="braita-innovacion.html" class="active"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
-    <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
-    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Machinery</a>
-    <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
-    <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
+    <a href="braita-innovacion.html" class="active"><span class="gs-dot" style="background:#FFFFFF"></span>Innovación</a>
+    <a href="braita-select.html"><span class="gs-dot" style="background:#C9974B"></span>Select</a>
+    <a href="braita-sinc.html"><span class="gs-dot" style="background:#5F9A5A"></span>Sync</a>
+    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#C9564A"></span>Machinery</a>
+    <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV</a>
   </div>
 </div>
 
@@ -1693,22 +316,23 @@
 <div id="toast-container"></div>
 
 <header id="main-header">
-  <div class="container navbar">
+  <div class="wrap navbar">
     <a href="#inicio" class="logo">
-      <img src="logo-innovacion.png" alt="Braita Innovación" style="height:34px; width:auto; display:block;">
-      <span>Braita</span>
+      <div class="logo-box">
+        <img src="logo-innovacion.png" alt="Braita Innovación" style="height:46px; width:auto; display:block;">
+      </div>
     </a>
     <nav id="main-nav">
       <ul>
         <li><a href="index.html">Grupo Braita</a></li>
         <li><a href="#catalogo">Catálogo</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#mesa-control">Mesa de Despiece</a></li>
         <li><a href="#testimonios">Reseñas</a></li>
-        <li><a href="#ubicacion">Logística</a></li>
+        <li><a href="#ubicacion">Contacto</a></li>
       </ul>
     </nav>
     <div class="header-actions">
-      <a href="#mesa-control" class="btn btn-outline">Mesa de Despiece</a>
       <a href="#" id="nav-wa-trigger" class="btn btn-dark" target="_blank">WhatsApp Directo</a>
       <button class="menu-toggle" id="menu-toggle" aria-label="Navegación Móvil">
         <span></span><span></span><span></span>
@@ -1719,39 +343,25 @@
 
 <main>
   <section class="hero" id="inicio">
-    <!-- imagen1.png — FONDO DEL HERO (NUEVO). Si el archivo no existe aún,
-         onerror oculta la capa completa y no pasa nada; el hero se ve igual
-         que antes. Sube la foto real con este nombre exacto para activarla. -->
     <div class="hero-bg-image" aria-hidden="true">
       <img src="imagen1.png" alt="" onerror="this.parentElement.style.display='none';">
     </div>
 
-    <div class="container hero-container hero-container--single">
-      <div class="hero-content">
-        <div class="eyebrow">Grupo Braita · Ocotlán, Jalisco</div>
-        <h1>Diseño, innovación <span>y tecnología UV.</span></h1>
-        <p>Tableros MDF con acabado UV de alta gama: más de 50 colores en texturas de madera, mármol, metalizados y rayados — surtidos y cortados a la medida desde nuestro centro de distribución.</p>
-        <div class="hero-buttons">
-          <a href="#" id="waHero" class="btn btn-dark" target="_blank">Cotizar por WhatsApp</a>
-          <a href="#catalogo" class="btn btn-outline">Ver catálogo</a>
-        </div>
+    <div class="wrap hero-inner">
+      <span class="eyebrow on-dark">Grupo Braita · Ocotlán, Jalisco</span>
+      <h1>Diseño, innovación <span>y tecnología UV.</span></h1>
+      <p class="lead">Tableros MDF con acabado UV: más de 50 colores, cortados a tu medida.</p>
+      <div class="hero-buttons">
+        <a href="#" id="waHero" class="btn btn-dark" target="_blank">Cotizar por WhatsApp</a>
+        <a href="#catalogo" class="btn btn-outline">Ver catálogo</a>
       </div>
     </div>
 
-    <div class="strip-confianza">
-      <div class="container strip-grid">
-        <div class="strip-item">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-13.322 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-          <span>Corte a la Medida</span>
-        </div>
-        <div class="strip-item">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          <span>Surtido de Fábrica Express</span>
-        </div>
-        <div class="strip-item">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          <span>Logística Clúster Ocotlán</span>
-        </div>
+    <div class="trust-strip">
+      <div class="wrap trust-grid">
+        <div class="trust-item">Corte a la Medida</div>
+        <div class="trust-item">Surtido de Fábrica Express</div>
+        <div class="trust-item">Logística Clúster Ocotlán</div>
       </div>
     </div>
 
@@ -1761,7 +371,6 @@
         <span>Línea Kenya</span><span>Línea Elis</span><span>Línea Logroño</span><span>Maderas &amp; Vintage</span><span>Línea Especial</span><span>Fondo de Cajón</span>
       </div>
     </div>
-    <!-- TODO: confirmar con el cliente qué municipios cubre realmente la entrega, esto es un ejemplo con la zona Ciénega -->
     <div class="brands-marquee">
       <div class="brands-track">
         <span>OCOTLÁN</span><span>ZAPOTLÁN DEL REY</span><span>LA BARCA</span><span>ATOTONILCO EL ALTO</span><span>PONCITLÁN</span><span>JAMAY</span><span>OCOTLÁN</span><span>ZAPOTLÁN DEL REY</span><span>LA BARCA</span><span>ATOTONILCO EL ALTO</span><span>PONCITLÁN</span><span>JAMAY</span>
@@ -1769,14 +378,14 @@
     </div>
   </section>
 
-  <section class="section-padding container" id="catalogo">
-    <div class="catalog-controls reveal">
-      <div class="catalog-title">
-        <div class="sheet-tag"><span class="num">HOJA 02/06</span><span class="eyebrow">Catálogo de Acabados</span></div>
-        <h2>Tableros MDF con Acabado UV</h2>
-        <p>Formato estándar 1.22 × 2.44 m sobre base MDF, en acabado alto brillo, mate, sincronizado, metalizado o rayado. Más de 50 colores repartidos en 6 líneas. Todos con opción de corte y habilitado en taller.</p>
-      </div>
-      <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 30px;">
+  <section id="catalogo">
+    <div class="wrap">
+      <div class="catalog-controls reveal">
+        <div>
+          <span class="eyebrow">Catálogo de Acabados</span>
+          <h2>Tableros MDF con Acabado UV</h2>
+          <p style="color:var(--text-secondary); margin-top:12px; max-width:52ch;">Más de 50 colores en 6 líneas, con opción de corte y habilitado en taller.</p>
+        </div>
         <div class="filter-group" id="filter-group">
           <button class="filter-btn is-active" data-filter="all">Todos</button>
           <button class="filter-btn" data-filter="kenya">Kenya</button>
@@ -1787,132 +396,73 @@
           <button class="filter-btn" data-filter="fondo-cajon">Fondo de Cajón</button>
         </div>
       </div>
-    </div>
-
-    <div class="catalog-grid" id="catalog-target-grid">
+      <div class="catalog-grid" id="catalog-target-grid"></div>
     </div>
   </section>
 
-  <section class="section-padding servicios-section" id="servicios">
-    <div class="container">
-      <div class="reveal" style="margin-bottom: 56px;">
-        <div class="sheet-tag"><span class="num">HOJA 03/06</span><span class="eyebrow">Procesamiento de Materiales</span></div>
-        <h2>Capacidad Mecánica de Maquila</h2>
+  <!-- ============================================================
+       SERVICIOS — fusiona lo que antes eran dos secciones
+       (Servicios de maquila + Personalización y Pedidos Especiales)
+       en una sola, con las 5 tarjetas .srv-node de siempre, para
+       bajar la cantidad de ítems del nav.
+  ============================================================ -->
+  <section class="servicios-section" id="servicios">
+    <div class="wrap">
+      <div class="sec-head on-dark reveal">
+        <span class="eyebrow on-dark">Procesamiento y Personalización</span>
+        <h2 style="color:var(--text-light);">Capacidad mecánica y pedidos especiales.</h2>
       </div>
       <div class="servicios-grid">
         <div class="srv-node reveal">
           <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/><path d="M8.12 15.88 12 12"/></svg>
           <h4>Corte de Precisión</h4>
-          <p>Cortamos cada pieza a tus medidas exactas y acomodamos el listado para aprovechar mejor la hoja, con cantos limpios y sin astilladuras.</p>
+          <p>Piezas a tus medidas exactas, con cantos limpios y sin astilladuras.</p>
         </div>
         <div class="srv-node reveal">
           <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
           <h4>Enchapado de Cantos PVC</h4>
-          <p>Aplicación de cubrecanto rígido y flexible mediante fusión térmica con pegamento PUR de alta resistencia, asegurando hermeticidad y durabilidad.</p>
+          <p>Cubrecanto rígido o flexible con pegamento PUR de alta resistencia.</p>
         </div>
         <div class="srv-node reveal">
           <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V16zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V16z"/></svg>
           <h4>Perforación a Medida</h4>
-          <p>Colocamos las perforaciones para bisagras, pernos de unión y sistemas modulares según el plano técnico que nos compartas.</p>
+          <p>Perforaciones para bisagras y sistemas modulares, según tu plano técnico.</p>
+        </div>
+        <div class="srv-node reveal">
+          <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M5 8h14M6 8v10a2 2 0 002 2h8a2 2 0 002-2V8M10 12v4m4-4v4"/></svg>
+          <h4>También fabricamos sobre pedido en</h4>
+          <p>Vidrio, chapas naturales y otros materiales planos, con el mismo acabado UV.</p>
+        </div>
+        <div class="srv-node reveal">
+          <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10"/></svg>
+          <h4>Espesores fuera de línea</h4>
+          <p>Estándar en 3, 5.5 y 12 mm; espesores especiales bajo solicitud.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       PERSONALIZACIÓN Y PEDIDOS ESPECIALES — contenido nuevo, tomado
-       tal cual del catálogo PDF oficial (2026): "¿Tienes un diseño en
-       mente? ¡Lo hacemos realidad!" Reutiliza las clases de la sección
-       de Servicios (servicios-grid / srv-node) a propósito, para no
-       tener que agregar CSS nuevo.
+       MESA DE CONTROL — sistema de generación de órdenes de
+       despiece (ver <script> al final: addNewRow/deleteRow/
+       calcSummary/processOrderToWhatsApp/guardarOrdenEnSupabase).
+       IDs y estructura de la tabla sin cambios.
   ============================================================ -->
-  <section class="section-padding container" id="personalizacion">
-    <div class="reveal" style="margin-bottom: 56px;">
-      <div class="sheet-tag"><span class="num">HOJA 03B/06</span><span class="eyebrow">Personalización y Pedidos Especiales</span></div>
-      <h2>¿Tienes un diseño en mente? Lo hacemos realidad.</h2>
-    </div>
-    <div class="servicios-grid">
-      <div class="srv-node reveal">
-        <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M5 8h14M6 8v10a2 2 0 002 2h8a2 2 0 002-2V8M10 12v4m4-4v4"/></svg>
-        <h4>También fabricamos sobre pedido en</h4>
-        <p>Vidrio, chapas naturales y otros materiales planos — misma tecnología de acabado UV aplicada a la superficie que necesite tu proyecto.</p>
-      </div>
-      <div class="srv-node reveal">
-        <svg class="srv-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h10"/></svg>
-        <h4>Espesores fuera de línea</h4>
-        <p>Además del estándar (3, 5.5 y 12 mm), trabajamos espesores especiales de 6, 9, 18 o 25 mm bajo solicitud.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-padding container" id="proceso">
-    <div class="reveal">
-      <div class="sheet-tag"><span class="num">HOJA 04/06</span><span class="eyebrow">Línea de Integración</span></div>
-      <h2>Metodología de Suministro Exacto</h2>
-    </div>
-    <div class="proceso-flow">
-      <div class="flow-card reveal">
-        <div class="flow-num">S01 // CONFIGURACIÓN</div>
-        <h3>Definir Despiece</h3>
-        <p>Carga las medidas exactas de tus paneles en nuestro cotizador digital o entrega tu archivo técnico.</p>
-      </div>
-      <div class="flow-card reveal">
-        <div class="flow-num">S02 // OPTIMIZACIÓN</div>
-        <h3>Optimización de Corte</h3>
-        <p>Acomodamos tus piezas en el tablero para aprovechar mejor el material y bajar tanto el desperdicio como el costo.</p>
-      </div>
-      <div class="flow-card reveal">
-        <div class="flow-num">S03 // MAQUILA</div>
-        <h3>Corte y Habilitado</h3>
-        <p>Se corta, cantea y habilita cada pieza según tu listado, lista para llegar a ensamble.</p>
-      </div>
-      <div class="flow-card reveal">
-        <div class="flow-num">S04 // LOGÍSTICA</div>
-        <h3>Embarque o Retiro</h3>
-        <p>Se paletiza y etiqueta tu pedido por módulos para una descarga rápida y control de ensamble limpio en tu planta.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-padding container" id="audiencias">
-    <div class="reveal">
-      <div class="sheet-tag"><span class="num">HOJA 04B/06</span><span class="eyebrow">Para quién trabajamos</span></div>
-      <h2 style="font-size: clamp(26px,3.4vw,36px); max-width: 600px;">Si tu trabajo depende del material correcto, es para ti.</h2>
-    </div>
-    <div class="audiencias-grid">
-      <div class="aud-card reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg>
-        <h4>Arquitectos y diseñadores</h4>
-        <p>Fichas técnicas claras y acabados consistentes para especificar sin sorpresas en obra.</p>
-      </div>
-      <div class="aud-card reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V4h8v3"/></svg>
-        <h4>Fabricantes de muebles</h4>
-        <p>Corte a tu listado y enchapado para que tu taller ensamble directo, sin retrabajo.</p>
-      </div>
-      <div class="aud-card reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21V9l8-6 8 6v12M9 21v-8h6v8"/></svg>
-        <h4>Fabricantes de cocinas</h4>
-        <p>Melamina y alto brillo con existencia constante para no detener tu producción.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-padding mesa-control-section" id="mesa-control">
-    <div class="container">
-      <div class="reveal">
-        <div class="sheet-tag"><span class="num">HOJA 05/06</span><span class="eyebrow" style="color: var(--brand-light);">Mesa de Control Operativa</span></div>
+  <section class="mesa-control-section" id="mesa-control">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Mesa de Control Operativa</span>
         <h2>Sistema Generador de Órdenes de Despiece</h2>
-        <p>Añade los módulos o paneles requeridos. El sistema estructurará el listado técnico listo para ser procesado por la mesa técnica.</p>
+        <p>Añade tus paneles y genera el listado técnico.</p>
       </div>
 
       <div class="mesa-layout">
         <div class="blueprint-panel reveal">
           <div class="panel-header">
             <h3>Listado Geométrico de Piezas</h3>
-            <span class="mono" style="font-size: 11px; color: var(--text-light-muted);" id="row-counter">1 Pieza añadida</span>
+            <span class="mono" style="font-size: 11px; color:var(--text-secondary);" id="row-counter">1 Pieza añadida</span>
           </div>
-          
+
           <div class="table-responsive">
             <table class="despiece-table" id="despiece-table">
               <thead>
@@ -1968,7 +518,7 @@
               <span class="summary-label">Tableros aprox.*</span>
             </div>
           </div>
-          <p class="mono" style="font-size:10.5px; color:var(--text-light-muted); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma. Es una referencia rápida, no sustituye la optimización real de corte que hacemos al procesar tu orden.</p>
+          <p class="mono" style="font-size:10.5px; color:var(--text-secondary); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma — referencia rápida, no sustituye la optimización real.</p>
           <button class="btn-copy-summary" type="button" onclick="copiarResumen()">Copiar resumen del pedido</button>
         </div>
 
@@ -2000,8 +550,8 @@
             <label for="client-notes">Notas Especiales de Planta</label>
             <textarea id="client-notes" placeholder="Indicar herrajes adicionales o especificaciones de perforación..."></textarea>
           </div>
-          
-          <button class="btn btn-brand" style="width: 100%; margin-top: 12px;" onclick="processOrderToWhatsApp()">
+
+          <button class="btn btn-brand" style="width: 100%; margin-top: 12px; justify-content:center;" onclick="processOrderToWhatsApp()">
             Exportar y Enviar a Mesa de Maquila
           </button>
         </div>
@@ -2009,34 +559,36 @@
     </div>
   </section>
 
-  <section class="section-padding container" id="testimonios">
-    <div class="reveal" style="text-align:center;">
-      <div class="sheet-tag" style="justify-content:center;"><span class="num">HOJA 05B/06</span><span class="eyebrow">Ejemplo — reemplazar con reseñas reales</span></div>
-      <h2 style="font-size: clamp(24px,3.2vw,32px);">Lo que dicen quienes ya cortan con nosotros</h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi reveal">
-        <p class="quote">"Mandamos la lista de corte por WhatsApp y el material sale listo para armar. Nos ahorra un día de taller por proyecto."</p>
-        <div class="who">Estudio de arquitectura — Guadalajara</div>
+  <section id="testimonios">
+    <div class="wrap">
+      <div class="sec-head reveal" style="text-align:center; margin-left:auto; margin-right:auto;">
+        <span class="eyebrow" style="justify-content:center;">Ejemplo — reemplazar con reseñas reales</span>
+        <h2>Lo que dicen quienes ya cortan con nosotros</h2>
       </div>
-      <div class="testi reveal">
-        <p class="quote">"La optimización de corte se nota en el material que sobra: casi nada. Eso se traduce directo en margen."</p>
-        <div class="who">Fabricante de muebles — Ocotlán</div>
-      </div>
-      <div class="testi reveal">
-        <p class="quote">"Siempre tienen existencia del alto brillo que usamos en cocinas. Dejamos de depender de Guadalajara para eso."</p>
-        <div class="who">Taller de cocinas integrales — Zapotlán del Rey</div>
+      <div class="testi-grid">
+        <div class="testi reveal">
+          <p class="quote">"Mandamos la lista por WhatsApp y el material sale listo para armar."</p>
+          <div class="who">Estudio de arquitectura — Guadalajara</div>
+        </div>
+        <div class="testi reveal">
+          <p class="quote">"La optimización de corte se nota: casi no sobra material."</p>
+          <div class="who">Fabricante de muebles — Ocotlán</div>
+        </div>
+        <div class="testi reveal">
+          <p class="quote">"Siempre tienen existencia del alto brillo que usamos en cocinas."</p>
+          <div class="who">Taller de cocinas integrales — Zapotlán del Rey</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-padding container" id="ubicacion">
-    <div class="logistica-struct">
+  <section id="ubicacion">
+    <div class="wrap logistica-struct">
       <div class="reveal">
-        <div class="sheet-tag"><span class="num">HOJA 06/06</span><span class="eyebrow">Infraestructura Física</span></div>
-        <h2>Planta Logística de Suministro</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 32px;">Ubicados estratégicamente en la zona industrial mueblera de Ocotlán para proveer de forma directa y ágil a toda la región Ciénega.</p>
-        
+        <span class="eyebrow on-dark">Infraestructura Física</span>
+        <h2 style="color:var(--text-light);">Planta Logística de Suministro</h2>
+        <p style="color: var(--text-light-muted); margin:14px 0 32px;">En la zona industrial mueblera de Ocotlán, para abastecer ágil a toda la región Ciénega.</p>
+
         <ul class="meta-list">
           <li>
             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -2063,9 +615,6 @@
       </div>
 
       <div class="map-container reveal">
-        <!-- TODO: confirmar con Braita que esta es la ubicación EXACTA (pin correcto),
-             ahorita usa la dirección de su ficha pública. Si tienen el link real de
-             Google Maps del negocio, mejor usar ese en vez de buscar por dirección. -->
         <div class="map-embed-wrap">
           <iframe
             src="https://maps.google.com/maps?q=Av.+Universidad+1350,+Ocotl%C3%A1n,+Jalisco&z=15&output=embed"
@@ -2083,20 +632,19 @@
 </main>
 
 <footer>
-  <div class="container">
+  <div class="wrap">
     <div class="footer-row">
       <div class="logo">
-        <img src="logo-innovacion.png" alt="Braita Innovación" style="height:34px; width:auto; display:block;">
-        <span>Braita</span>
+        <img src="logo-innovacion.png" alt="Braita Innovación" style="height:32px; width:auto; display:block;">
       </div>
-      <div class="mono" style="font-size: 13px; color: var(--text-secondary);">
+      <div class="mono" style="font-size: 13px; color: var(--text-muted);">
         Centro de Abasto e Ingeniería Técnica Mueblera.
       </div>
     </div>
     <div class="footer-legal">
       <span>© 2026 Braita S.A. de C.V. Todos los derechos reservados.</span>
       <span>Ocotlán, Jalisco, México.</span>
-      <a href="index.html" style="color:var(--brand);">← Volver al grupo Braita</a>
+      <a href="index.html" style="color:var(--text-light);">← Volver al grupo Braita</a>
     </div>
     <div style="margin-top: 18px;">
       <a href="#" id="openPanel" class="admin-link">Ver historial de pedidos (panel administrador)</a>
@@ -2115,11 +663,11 @@
     </div>
 
     <div id="panelLoginBox" class="panel-login">
-      <span class="eyebrow" style="color: var(--brand);">Acceso administrador</span>
+      <span class="eyebrow" style="color: var(--text-secondary);">Acceso administrador</span>
       <h4>Inicia sesión para ver las órdenes</h4>
       <div class="panel-field"><label for="panelLoginEmail">Correo</label><input type="email" id="panelLoginEmail"></div>
       <div class="panel-field"><label for="panelLoginPassword">Contraseña</label><input type="password" id="panelLoginPassword"></div>
-      <button class="btn btn-dark" id="panelLoginBtn" type="button">Entrar</button>
+      <button class="btn btn-brand" id="panelLoginBtn" type="button">Entrar</button>
       <p class="panel-login-error" id="panelLoginError">Correo o contraseña incorrectos.</p>
     </div>
 
@@ -2138,7 +686,7 @@
         </table>
       </div>
       <p class="panel-empty" id="panelEmptyMsg" style="display:none;">Aún no hay órdenes registradas. Envía una desde la Mesa de Control para ver cómo aparece aquí.</p>
-      <button class="btn btn-outline" id="panelLogoutBtn" type="button" style="margin-top: 20px;">Cerrar sesión</button>
+      <button class="btn btn-outline" id="panelLogoutBtn" type="button" style="margin-top: 20px; border-color:var(--line); color:var(--text-primary);">Cerrar sesión</button>
     </div>
   </div>
 </div>
@@ -2175,34 +723,11 @@
     }, 4000);
   }
 
-  // NOTA: el toggle del menú móvil (#menu-toggle / #main-nav) YA se maneja
-  // por completo en premium-interactions.js. Antes existía un segundo
-  // listener aquí mismo que también hacía toggle('is-active') sobre el
-  // MISMO elemento — con los dos activos, cada click abría y cerraba el
-  // menú al mismo tiempo (se anulaban entre sí), por eso se sentía roto/
-  // torpe en móvil. Se eliminó ese duplicado a propósito: no lo repitas.
-
-  // CATÁLOGO REAL — reemplaza los 12 productos de ejemplo que había antes.
-  // Fuente: PDF "Catálogo Braita" que mandó el cliente (2026), 23 páginas,
-  // texto extraído con pdftotext (el PDF no traía fotos extraíbles en este
-  // entorno — no había poppler/pdfimages ni Python disponibles — por eso
-  // cada producto sigue usando el mismo patrón imagen+onerror del resto
+  // CATÁLOGO REAL — 39 productos, 6 líneas (Kenya/Elis/Logroño/Fondo de
+  // Cajón/Maderas & Vintage/Especial). Fuente: PDF "Catálogo Braita" del
+  // cliente (2026). Cada producto usa el patrón imagen+onerror del resto
   // del sitio: en cuanto suban la foto real con el nombre exacto, aparece
-  // sola, sin tocar código).
-  //
-  // Los 39 nombres y las 6 líneas (Kenya/Elis/Logroño/Fondo de Cajón/
-  // Maderas & Vintage/Especial) son textuales del PDF. El campo "acabado"
-  // SÍ es una inferencia mía a partir de la lista de 5 acabados que da el
-  // PDF (alto brillo, mate, sincronizado, metalizado, rayado) — el PDF no
-  // dice explícitamente qué acabado lleva cada color individual, solo la
-  // lista general. Vale la pena que el cliente confirme acabado por acabado
-  // en algún momento; mientras tanto la inferencia sigue una lógica simple:
-  // texturas de madera → sincronizado, "metalizado"/"stripe"/"mate"/"alto
-  // brillo" en el nombre → ese mismo acabado, mármoles → alto brillo.
-  //
-  // Espesores reales de esta línea (todo el catálogo, no por producto):
-  // estándar 3, 5.5 y 12 mm; especiales 6, 9, 18 o 25 mm bajo pedido.
-  // Formato: 1.22 × 2.44 m. Base: MDF con recubrimiento UV.
+  // sola, sin tocar código.
   const DATABASE_PRODUCTS = [
     // Línea Kenya
     { id: 'KEN-01', name: 'Kenya Marrón', category: 'kenya', acabado: 'UV Sincronizado', image: 'imagen29.png' },
@@ -2265,7 +790,7 @@
   function renderCatalogGrid(filterKey = 'all') {
     targetGrid.innerHTML = '';
     const itemsToRender = filterKey === 'all' ? DATABASE_PRODUCTS : DATABASE_PRODUCTS.filter(item => item.category === filterKey);
-    
+
     itemsToRender.forEach(prod => {
       const card = document.createElement('div');
       card.className = 'prod-card';
@@ -2323,7 +848,7 @@
       selectMaterial.appendChild(opt);
       selectMaterial.value = opt.value;
     }
-    
+
     document.getElementById('mesa-control').scrollIntoView({ behavior: 'smooth' });
     createToast(`Seleccionado: ${name}. Configure su despiece.`);
   }
@@ -2389,11 +914,11 @@
     let despieceDataString = '';
     const piezasArray = [];
     const rows = tableBody.querySelectorAll('tr');
-    
+
     rows.forEach((row, index) => {
       const inputs = row.querySelectorAll('input');
       const select = row.querySelector('select');
-      
+
       const label = inputs[0].value || `Pieza ${index + 1}`;
       const largo = inputs[1].value || '0';
       const ancho = inputs[2].value || '0';
@@ -2437,7 +962,7 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
     }
 
     createToast('Orden estructurada. Redirigiendo a WhatsApp Corporativo...');
-    
+
     setTimeout(() => {
       window.open(buildWhatsAppLink(finalMessage), '_blank');
     }, 800);
@@ -2457,8 +982,8 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
     renderCatalogGrid('all');
     updateRowCounter();
     calcSummary();
-    // Servicios y proceso son estáticos: se inicializan UNA sola vez.
-    initTiltCards('.srv-node, .flow-card');
+    // Servicios es estático: se inicializa UNA sola vez.
+    initTiltCards('.srv-node');
     // El catálogo se re-renderiza al filtrar, así que se inicializa aparte cada vez.
     initTiltCards('.prod-card');
   });
@@ -2604,11 +1129,6 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
       abrirPanelAdmin();
     }
 
-    // NOTA: el acceso al panel de administrador vive SOLO en el link del
-    // footer (#openPanel). Antes también se abría desde botones repartidos
-    // en catálogo/servicios/proceso y desde un botón flotante — se quitaron
-    // a propósito, el cliente solo lo quiere en el footer de cada sección.
-
     function mostrarPanelLogin() {
       document.getElementById('panelLoginBox').style.display = 'block';
       document.getElementById('panelContentBox').style.display = 'none';
@@ -2698,6 +1218,5 @@ NOTAS ADICIONALES: ${clientNotes || 'Ninguna indicación extra.'}
   }
 </script>
 <script src="premium-interactions.js"></script>
-
 </body>
 </html>

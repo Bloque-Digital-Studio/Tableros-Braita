@@ -1,33 +1,4 @@
 <!DOCTYPE html>
-<!--
-  ================================================================
-  BRAITA SELECT — línea premium del grupo Braita
-  ================================================================
-  PENDIENTES antes de publicar:
-  1. Confirmar con el cliente si "plateado y dorado" ya es una paleta definitiva
-     o solo una idea inicial — aquí está IMPROVISADA sobre esa idea.
-  2. Catálogo: YA se actualizaron 2 productos reales confirmados (Roble
-     Natural, Lino Arena). El resto sigue pendiente de confirmar.
-  3. Logo real de Braita Select (aquí usa el mismo mark de Braita con otro color).
-  4. Confirmar textos: qué es exactamente "material premium" para el cliente
-     (¿alto brillo importado? ¿laca? ¿texturas especiales?).
-
-  CONTACTO REAL: dirección Av. Universidad #1350, Ocotlán (actualizada
-  según el catálogo PDF oficial de 2026 — antes era "Camino viejo a
-  Zula, Potrero de Juana"), teléfono 392 931 3919, WhatsApp 392 128 7299
-  (son distintos), correo Tableros.braita@gmail.com (antes ventas@braita.com.mx).
-
-  Por instrucción del cliente: esta ronda SOLO se actualizó info, no
-  diseño/colores/estructura de código.
-
-  ESPACIO PARA IMAGEN DE ESTE ARCHIVO (naming secuencial compartido con
-  todo el Grupo Braita — ver index.html para imagen1-14):
-    imagen15.png -> Hero de Braita Select (foto premium del hero-art)
-  Ya está enlazado como <img> con fallback automático (onerror): si el
-  archivo no existe todavía no se ve nada roto, y en cuanto lo subas con
-  ese nombre exacto aparece solo.
-  ================================================================
--->
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -37,420 +8,197 @@
 <link rel="icon" href="logo-group-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="premium-animations.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-base:#131311; --bg-surface:#1c1c1a; --bg-panel:#20201d;
-    --text-primary:#e5e2de; --text-secondary:#b3ada2; --text-muted:#8f887c;
-    --silver:#8B8E91; --gold:#D4AF37; --gold-dark:#B8860B; --gold-light:#FFD700;
-    --charcoal:#1B1E24; --charcoal-light:#272B33; --text-onDark:#F3F2EF; --text-onDark-muted:#A7ABB4;
-    --border-color:#33302a; --border-strong:#4f453b;
-    --font-display:'Bricolage Grotesque',sans-serif; --font-sans:'Plus Jakarta Sans',sans-serif; --font-mono:'IBM Plex Mono',monospace;
-    --ease: cubic-bezier(0.16,1,0.3,1);
+    --ink:#0E0E0E; --ink-soft:#1C1B19; --ink-deep:#050505;
+    --cream:#F2ECE1; --paper:#FBF9F5;
+    --accent:#C9974B; --accent-dark:#A97D34; --accent-light:#E4C68C;
+    --text-primary:#1C1B19; --text-secondary:#5A564D; --text-muted:#8B8781;
+    --text-light:#F5F1E9; --text-light-muted:#C7C0B2; --line:#DED4BF;
+    --font-display:'Space Grotesk', sans-serif; --font-sans:'Inter', sans-serif; --font-mono:'IBM Plex Mono', monospace;
+    --ease: cubic-bezier(.22,.61,.36,1);
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth; overflow-x:hidden;}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
-  body{ background: linear-gradient(135deg, var(--bg-base) 0%, #17160f 100%); color:var(--text-primary); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-  img,svg{display:block; max-width:100%;}
-  a{color:inherit;}
-  ::selection{background:var(--gold); color:#0B0C0E;}
-  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
-  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
-  @media (max-width:640px){ .wrap{padding:0 20px;} }
-  section{padding:100px 0;}
-  @media (max-width:768px){ section{padding:64px 0;} }
-  .mono{font-family:var(--font-mono);}
-  h1,h2,h3{font-family:var(--font-display); font-weight:600; letter-spacing:-.01em; color:var(--text-primary);}
-  .eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-light); display:inline-flex; align-items:center; gap:10px; }
-  .eyebrow::before{ content:''; width:20px; height:1px; background:var(--gold); display:inline-block; }
-  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
-  .reveal.in{opacity:1; transform:translateY(0);}
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important;} html{scroll-behavior:auto;} }
+  body{ background:var(--paper); color:var(--text-primary); font-family:var(--font-sans); line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-wrap:break-word; }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+  section{ padding:100px 0; }
+  @media (max-width:768px){ section{ padding:64px 0; } }
+  section[id]{ scroll-margin-top:96px; }
+  .mono{ font-family:var(--font-mono); }
+  h1,h2,h3{ font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; }
+  .eyebrow{ font-family:var(--font-mono); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-dark); display:inline-flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:''; width:22px; height:2px; background:var(--accent); }
+  .eyebrow.on-dark{ color:var(--accent-light); }
+  .eyebrow.on-dark::before{ background:var(--accent); }
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in, .reveal.active{ opacity:1; transform:translateY(0); }
 
-  /* barra de grupo */
-  .group-switcher { background: #0e0e0c; padding: 10px 0; }
-  .group-switcher .gs-wrap { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
+  /* ---------- BARRA GRUPO BRAITA ---------- */
+  .group-switcher{ background:#000; padding:10px 0; }
+  .group-switcher .gs-wrap{ max-width:1240px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
   @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
-  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; text-decoration:none; transition:color .2s ease; }
-  .group-switcher .gs-label:hover{ color:#F5F5F2; }
-  .group-switcher a{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
+  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+  .group-switcher a{ display:inline-flex; align-items:center; gap:7px; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
   .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
   .group-switcher a:hover{ color:#F5F5F2; }
   .group-switcher a.active{ color:#F5F5F2; border-bottom-color:currentColor; }
-  .group-switcher a .gs-beta{ opacity:.55; font-size:10px; }
 
-  /* header */
-  header{ position:sticky; top:0; z-index:60; background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; border-bottom:1px solid transparent; box-shadow:none; transition:all .4s ease; }
-  header.scrolled{ background:rgba(19,18,15,.85); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%); border-bottom:1px solid rgba(216,215,212,.5); box-shadow: 0 8px 32px rgba(0,0,0,0.04); }
-  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
-  .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .logo-mark{ width:32px; height:32px; flex-shrink:0; }
-  .logo-text{ font-family:var(--font-display); font-weight:700; font-size:19px; letter-spacing:.02em; }
-  .logo-text b{ color:var(--gold-light); font-weight:700; }
-  nav ul{ list-style:none; display:flex; gap:34px; }
-  nav a{ text-decoration:none; font-size:14px; font-weight:500; color:var(--text-secondary); }
-  nav a:hover{ color:var(--gold-light); }
-  .btn{ font-family:var(--font-sans); font-weight:600; font-size:13.5px; padding:12px 22px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; cursor:pointer; transition:transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease); }
-  .btn-gold{ background:linear-gradient(135deg, var(--gold-light), var(--gold-dark)); color:#0B0C0E; }
-  .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(198,162,77,.25); }
-  .btn-outline{ border-color:var(--silver); color:var(--silver); }
-  .btn-outline:hover{ border-color:var(--gold-light); color:var(--gold-light); }
-  .burger{ display:none; background:none; border:none; cursor:pointer; padding:10px; margin:-10px; }
-  .burger span{ display:block; width:22px; height:1.5px; background:var(--text-primary); margin:5px 0; transition:transform .3s ease, opacity .3s ease; }
-  .burger.active span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+  /* ---------- HEADER / NAV ---------- */
+  header{ position:sticky; top:0; z-index:200; background:var(--ink); border-bottom:1px solid rgba(201,151,75,.18); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:20px; }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo-box{ border:1.5px solid var(--accent); border-radius:6px; padding:6px 12px; display:flex; flex-direction:column; align-items:center; line-height:1; }
+  .logo-box .g1{ font-family:var(--font-display); font-weight:700; font-size:1.05rem; color:var(--text-light); letter-spacing:.02em; }
+  .logo-box .g2{ font-family:var(--font-mono); font-size:.52rem; letter-spacing:.24em; color:var(--accent); margin-top:2px; }
+  nav.main-nav ul{ display:flex; gap:30px; }
+  nav.main-nav a{ font-size:.87rem; font-weight:500; color:var(--text-light-muted); transition:color .25s var(--ease); }
+  nav.main-nav a:hover{ color:var(--accent-light); }
+  .header-actions{ display:flex; align-items:center; gap:14px; }
+
+  .btn{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-sans); font-weight:600; font-size:.85rem; padding:12px 24px; border-radius:999px; cursor:pointer; border:1.5px solid transparent; transition:transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); position:relative; overflow:hidden; white-space:nowrap; }
+  .btn svg{ width:15px; height:15px; }
+  .btn-accent{ background:var(--accent); color:var(--ink); }
+  .btn-accent:hover{ background:var(--accent-light); transform:translateY(-2px); }
+  .btn-outline-dark{ border-color:var(--text-light); color:var(--text-light); }
+  .btn-outline-dark:hover{ background:var(--text-light); color:var(--ink); transform:translateY(-2px); }
+  @keyframes ripple{ to{ transform:scale(4); opacity:0; } }
+
+  /* ---------- MENU MOVIL ---------- */
+  .burger{ display:none; flex-direction:column; justify-content:center; gap:5px; width:32px; height:32px; background:none; border:none; cursor:pointer; padding:4px; z-index:210; position:relative; }
+  .burger span{ display:block; width:100%; height:2px; background:var(--text-light); transition:transform .3s var(--ease), opacity .3s var(--ease); }
+  .burger.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
   .burger.active span:nth-child(2){ opacity:0; }
-  .burger.active span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
-  /* FIX: antes el nav simplemente se ocultaba en celular (display:none) sin
-     ninguna forma de volver a abrirlo — el botón ☰ no tenía JS conectado.
-     Ahora usa el mismo patrón de panel deslizable ya probado en
-     braita-innovacion.html (id="menu-toggle" / id="main-nav", manejado por
-     premium-interactions.js, que ya se incluye en esta página). */
-  @media (max-width:860px){
-    nav{
-      position:fixed; top:0; right:0; bottom:0; width:min(320px,85vw);
-      background:var(--bg-surface); border-left:1px solid var(--border-color);
-      padding:100px 32px 40px; transform:translateX(100%);
-      transition:transform .4s var(--ease); z-index:99; overflow-y:auto;
-    }
-    nav.is-active{ transform:translateX(0); }
-    nav ul{ flex-direction:column; gap:26px; }
-    nav a{ font-size:18px; }
-    .burger{ display:block; }
+  .burger.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media (max-width:920px){
+    .header-actions .btn{ display:none; }
+    .burger{ display:flex; }
+    nav.main-nav{ position:fixed; inset:0; z-index:150; background:var(--ink); display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s var(--ease); }
+    nav.main-nav.is-active{ opacity:1; visibility:visible; }
+    nav.main-nav ul{ flex-direction:column; align-items:center; gap:30px; }
+    nav.main-nav a{ font-size:1.3rem; }
   }
 
-  /* hero — foto real de fondo (imagen15.png), mismo patrón que
-     braita-innovacion.html: .hero-bg-image detrás de todo el hero, con
-     degradado a la izquierda para que el texto siga siendo legible. Con
-     onerror: si el archivo no existe todavía, la capa se oculta sola y el
-     hero se ve igual que antes (solo el fondo oscuro). */
-  .hero{ padding:80px 0 60px; overflow:hidden; position:relative; }
-  .hero .wrap{ position:relative; z-index:1; max-width:640px; }
+  /* ---------- HERO ---------- */
+  .hero{ background:linear-gradient(160deg, var(--ink) 0%, var(--ink-deep) 100%); color:var(--text-light); position:relative; overflow:hidden; padding:80px 0 0; }
+  .hero::before{ content:''; position:absolute; top:-120px; right:-120px; width:520px; height:520px; background:radial-gradient(circle, rgba(201,151,75,.18) 0%, transparent 70%); border-radius:50%; pointer-events:none; }
+  .hero-inner{ position:relative; z-index:1; max-width:640px; padding-bottom:64px; }
+  .hero h1{ font-size:clamp(2.2rem, 4.6vw, 3.4rem); line-height:1.1; margin-top:16px; }
+  .hero h1 em{ font-style:normal; color:var(--accent-light); }
+  .hero p.lead{ margin-top:20px; max-width:520px; font-size:1.03rem; color:var(--text-light-muted); }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+  @media (max-width:480px){ .hero-actions{ flex-direction:column; } .hero-actions .btn{ width:100%; justify-content:center; } }
+
   .hero-bg-image{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
   .hero-bg-image img{ width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s ease; }
-  .hero-bg-image::after{
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(100deg, rgba(11,12,14,.94) 0%, rgba(11,12,14,.72) 38%, rgba(11,12,14,.3) 68%, rgba(11,12,14,.05) 100%);
-  }
-  .hero h1{ font-size:clamp(34px,4.8vw,54px); line-height:1.08; margin:16px 0 20px; }
-  .hero h1 em{ font-style:normal; background:linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .hero p.lead{ font-size:16.5px; color:var(--text-secondary); max-width:48ch; margin-bottom:30px; }
-  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-bg-image::after{ content:''; position:absolute; inset:0; background:linear-gradient(100deg, rgba(14,14,14,.94) 0%, rgba(14,14,14,.72) 38%, rgba(14,14,14,.3) 68%, rgba(14,14,14,.05) 100%); }
 
-  /* trust strip */
-  .trust-strip{ background:linear-gradient(90deg, var(--charcoal) 0%, var(--charcoal) 38%, var(--gold) 50%, var(--charcoal) 62%, var(--charcoal) 100%); background-size:220% 100%; animation: glow-pulse-gold 4s ease-in-out infinite; padding:24px 0; margin-top:64px; }
-  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px 32px; }
-  .trust-item{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; color:var(--silver); display:flex; align-items:center; gap:8px; }
-  .trust-item::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--gold); }
+  .trust-strip{ position:relative; z-index:1; background:rgba(245,241,233,.05); border-top:1px solid rgba(201,151,75,.2); padding:22px 0; }
+  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px 30px; }
+  .trust-item{ font-family:var(--font-mono); font-size:.76rem; letter-spacing:.03em; color:var(--text-light-muted); display:flex; align-items:center; gap:8px; }
+  .trust-item::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); }
 
-  /* catalogo */
-  .cat-head{ margin-bottom:44px; }
-  .cat-head h2{ font-size:clamp(26px,3.4vw,38px); margin-top:14px; max-width:600px; }
-  .cat-head p{ color:var(--text-secondary); margin-top:14px; max-width:60ch; }
-  .grid-select{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; background: transparent; }
-  @media (max-width:860px){ .grid-select{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .grid-select{ grid-template-columns:1fr; } }
-  .sel-card{ background:var(--bg-surface); padding:0; display:flex; flex-direction:column; transition: all 0.4s var(--ease); border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 4px 16px rgba(0,0,0,0.35); }
-  .sel-card:hover{ transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
-  .sel-swatch{ aspect-ratio:4/3; position:relative; }
-  .sel-body{ padding:22px 22px 26px; }
-  .sel-body h3{ font-size:16.5px; font-weight:600; margin-bottom:8px; }
-  .sel-body p{ font-size:13px; color:var(--text-secondary); line-height:1.6; }
-  .sel-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-light); margin-top:12px; display:block; }
+  /* ---------- SECCIÓN HEAD ---------- */
+  .sec-head{ max-width:600px; margin-bottom:44px; }
+  .sec-head h2{ font-size:clamp(1.8rem,3vw,2.3rem); margin-top:10px; }
+  .sec-head p{ color:var(--text-secondary); margin-top:12px; }
+  .sec-head.on-dark p{ color:var(--text-light-muted); }
 
-  /* por que select */
-  .why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; background: transparent; }
-  @media (max-width:860px){ .why-grid{ grid-template-columns:1fr; } }
-  .why-card{ background:var(--charcoal-light); padding:36px 30px; border-top:2px solid rgba(255,255,255,.08); transition: all 0.4s var(--ease); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
-  .why-card:hover{ border-top-color:var(--gold); transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
-  .why-card h4{ font-size:17px; font-weight:600; margin-bottom:10px; color:var(--text-onDark); }
-  .why-card p{ font-size:13.5px; color:var(--text-onDark-muted); }
+  /* ---------- COLECCION / CATALOGO ---------- */
+  #coleccion{ background:var(--paper); }
+  .cat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:860px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .cat-grid{ grid-template-columns:1fr; } }
+  .cat-card{ background:var(--cream); border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
+  .cat-card:hover{ transform:translateY(-6px); box-shadow:0 14px 30px rgba(0,0,0,.1); }
+  .cat-media{ aspect-ratio:4/3; }
+  .cat-body{ padding:20px 20px 22px; }
+  .cat-body h3{ font-size:1.05rem; font-weight:600; margin-bottom:8px; }
+  .cat-body p{ font-size:.86rem; color:var(--text-secondary); }
+  .cat-tag{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--accent-dark); margin-top:12px; display:block; }
+  .cat-card.cat-pending{ display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; border:1.5px dashed var(--line); background:transparent; box-shadow:none; }
+  .cat-card.cat-pending p{ font-family:var(--font-mono); font-size:.8rem; color:var(--text-muted); }
 
-  /* contacto */
-  .contacto{ background:#000; }
-  .contacto-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
-  @media (max-width:900px){ .contacto-grid{ grid-template-columns:1fr; gap:40px; } }
-  .info-list{ list-style:none; display:flex; flex-direction:column; gap:16px; margin-top:26px; }
-  .info-list li{ display:flex; gap:14px; font-size:14px; color:var(--silver); }
-  .info-list b{ color:#FAFAF9; display:block; font-weight:600; margin-bottom:2px; }
+  /* ---------- POR QUÉ ---------- */
+  #porque{ background:var(--ink); color:var(--text-light); }
+  .porque-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(245,241,233,.1); border-radius:10px; overflow:hidden; margin-top:10px; }
+  @media (max-width:768px){ .porque-grid{ grid-template-columns:1fr; } }
+  .porque-item{ background:var(--ink-soft); padding:30px 26px; }
+  .porque-item h3{ font-size:1rem; font-weight:600; margin-bottom:8px; color:var(--text-light); }
+  .porque-item p{ font-size:.85rem; color:var(--text-light-muted); }
 
-  footer{ background:#000; border-top:1px solid var(--border-color); padding:36px 0; }
-  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:12.5px; color:var(--text-muted); font-family:var(--font-mono); }
-
-  .wa-float{ position:fixed; right:28px; bottom:28px; z-index:70; width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#1A1A1A,#000); border:1.5px solid rgba(37,211,102,.35); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 26px rgba(0,0,0,.35); transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease); }
-  .wa-float:hover{ transform:translateY(-4px); border-color:rgba(37,211,102,.7); box-shadow:0 14px 32px rgba(0,0,0,.4), 0 0 20px rgba(37,211,102,.3); }
-  .wa-float svg{ width:24px; height:24px; }
-
-  .admin-link-row{ margin-top:16px; text-align:center; }
-  .admin-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--text-muted); text-decoration:none; }
-  .admin-link:hover{ color:var(--gold-light); }
-  .admin-link::before{ content:'●'; font-size:8px; color:#3F7D4C; }
-
-  /* ═══════════════════════════════════════════════════════════════
-     DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
-     BRAITA SELECT — Línea Premium (Oro/Champagne)
-     ═══════════════════════════════════════════════════════════════ */
-
-  .hero {
-    background: linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(212,175,55,0.02) 100%),
-                linear-gradient(180deg, var(--bg-base) 0%, #17160f 100%);
-    position: relative;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -80px;
-    right: -120px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(40px);
-  }
-
-  .hero .wrap {
-    position: relative;
-    z-index: 1;
-  }
-
-  #catalogo {
-    background: linear-gradient(135deg, #131311 0%, #17160f 50%, #131311 100%);
-    position: relative;
-  }
-
-  #catalogo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      repeating-linear-gradient(90deg, transparent 0px, transparent 119px, rgba(255,255,255,0.05) 119px, rgba(255,255,255,0.05) 120px),
-      repeating-linear-gradient(0deg, transparent 0px, transparent 119px, rgba(255,255,255,0.04) 119px, rgba(255,255,255,0.04) 120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  #catalogo .wrap {
-    position: relative;
-    z-index: 1;
-  }
-
-  #porque {
-    background: linear-gradient(135deg, var(--charcoal) 0%, #0E1013 100%);
-    position: relative;
-  }
-
-  #porque::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold) 70%, transparent 100%);
-    z-index: 0;
-  }
-
-  #porque .wrap {
-    position: relative;
-    z-index: 1;
-  }
-  #porque .eyebrow{ color:var(--gold-light); }
-  #porque .eyebrow::before{ background:var(--gold); }
-  #porque h2{ color:var(--text-onDark); }
-
-  #contacto {
-    background: linear-gradient(135deg, #000000 0%, #1A1A1A 50%, rgba(212,175,55,0.08) 100%);
-    position: relative;
-    overflow: hidden;
-  }
-
-  #contacto::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    right: -50px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 0;
-  }
-
-  #contacto .wrap {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* DECORATIVOS EN TARJETAS */
-  .sel-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--gold) 0%, transparent 70%);
-    border-radius: 0 8px 0 30px;
-    opacity: 0.35;
-    z-index: 1;
-  }
-
-  .sel-card {
-    position: relative;
-  }
-
-  .why-card {
-    position: relative;
-  }
-
-  .why-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
-    border-radius: 8px 0 0 8px;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.4s var(--ease);
-    z-index: 2;
-  }
-
-  .why-card:hover::before {
-    transform: scaleY(1);
-  }
-
-  /* LÍNEA DECORATIVA EN TÍTULOS */
-  .cat-head::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
-    margin-top: 20px;
-    border-radius: 2px;
-  }
-
-  /* EFECTO GLOW EN TRUST STRIP */
-  @keyframes glow-pulse-gold {
-    0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.15); }
-    50% { box-shadow: 0 0 30px rgba(212,175,55,0.3); }
-  }
-
-  /* ESPACIOS PARA IMÁGENES */
-  .hero-art {
-    position: relative;
-  }
-
-  .hero-art::after {
-    content: 'imagen15.png — espacio para foto real del hero de Select';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    color: rgba(212,175,55,0.4);
-    font-family: var(--font-mono);
-    text-align: center;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 10;
-  }
-
-  .hero-art:hover::after {
-    opacity: 1;
-  }
-
-  /* ---- Cascada escalonada al hacer scroll: cada tarjeta de una misma
-     grilla entra un poco después que la anterior en vez de todas a la
-     vez, mismo efecto ya usado en el nuevo hub (index.html). Se declara
-     al final del <style> a propósito: .sel-card/.why-card ya fijan su
-     propio "transition: all 0.4s" para el hover, y transition-delay
-     como propiedad suelta (no shorthand) sólo gana si aparece después
-     en la cascada. ---- */
-  .grid-select .sel-card:nth-child(1),
-  .why-grid .why-card:nth-child(1){ transition-delay: .05s; }
-  .grid-select .sel-card:nth-child(2),
-  .why-grid .why-card:nth-child(2){ transition-delay: .15s; }
-  .grid-select .sel-card:nth-child(3),
-  .why-grid .why-card:nth-child(3){ transition-delay: .25s; }
-
-  /* ════════════════════════════════════════════════════════════════════
-     MESA DE CONTROL — mismo patrón/JS que braita-innovacion.html
-     (ver mesa-control.js), adaptado a la paleta oro de Select.
-     ═════════════════════════════════════════════════════════════════════ */
-  .mesa-control-section{ background:linear-gradient(135deg, var(--charcoal) 0%, #0E1013 100%); color:var(--text-onDark); }
-  .mesa-control-section h2{ color:var(--text-onDark); font-size:clamp(28px,4vw,40px); }
-  .mesa-control-section p{ color:var(--text-onDark-muted); line-height:1.7; }
-  .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:44px; margin-top:48px; align-items:start; }
+  /* ---------- MESA DE CONTROL ---------- */
+  #mesa-control{ background:var(--cream); }
+  .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:24px; margin-top:36px; align-items:start; }
   @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
-  .blueprint-panel, .control-form{ background:var(--charcoal-light); border:1px solid var(--border-strong); padding:30px; min-width:0; }
-  .panel-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-strong); padding-bottom:14px; margin-bottom:22px; }
-  .panel-header h3{ color:var(--text-onDark); font-size:17px; }
+  .mesa-panel{ background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:26px; min-width:0; }
+  .panel-header{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:20px; }
+  .panel-header h3{ font-size:1rem; }
   .table-responsive{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  .despiece-table{ width:100%; min-width:560px; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:18px; }
-  .despiece-table th{ background:var(--bg-base); color:var(--text-onDark-muted); padding:10px; font-weight:500; border-bottom:2px solid var(--border-strong); }
-  .despiece-table td{ padding:7px 10px; border-bottom:1px solid var(--border-strong); vertical-align:middle; }
-  .despiece-table input, .despiece-table select{ width:100%; background:var(--bg-base); border:1px solid var(--border-strong); color:var(--text-onDark); padding:7px; font-family:var(--font-mono); font-size:12px; }
-  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-color:var(--gold); }
-  .btn-remove-row{ background:transparent; border:none; color:#EF4444; cursor:pointer; padding:4px; display:inline-flex; align-items:center; }
-  .btn-add-row{ background:transparent; border:1px dashed var(--border-strong); color:var(--text-onDark); font-family:var(--font-mono); font-size:12px; padding:9px 14px; cursor:pointer; width:100%; text-transform:uppercase; transition:all .2s ease; }
-  .btn-add-row:hover{ border-color:var(--text-onDark); background:rgba(255,255,255,.03); }
-  .form-group{ margin-bottom:20px; }
-  .form-group label{ display:block; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:7px; color:var(--text-onDark-muted); }
-  .form-group input, .form-group select, .form-group textarea{ width:100%; background:var(--bg-base); border:none; border-bottom:1px solid var(--border-strong); padding:11px 4px; color:var(--text-onDark); font-family:var(--font-sans); font-size:14.5px; transition:border-color .3s ease; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-bottom-color:var(--gold); }
-  .summary-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-strong); border:1px solid var(--border-strong); margin-top:18px; }
+  .despiece-table{ width:100%; min-width:540px; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:16px; }
+  .despiece-table th{ color:var(--text-secondary); padding:8px 8px; font-weight:500; border-bottom:2px solid var(--line); }
+  .despiece-table td{ padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  .despiece-table input, .despiece-table select{ width:100%; background:#fff; border:1px solid var(--line); border-radius:6px; color:var(--text-primary); padding:7px 8px; font-family:var(--font-mono); font-size:12px; }
+  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-color:var(--accent); }
+  .btn-remove-row{ background:transparent; border:none; color:#B4483C; cursor:pointer; padding:4px; display:inline-flex; align-items:center; }
+  .btn-add-row{ background:transparent; border:1.5px dashed var(--line); border-radius:999px; color:var(--text-primary); font-family:var(--font-mono); font-size:12px; padding:10px 16px; cursor:pointer; width:100%; text-transform:uppercase; transition:all .2s ease; }
+  .btn-add-row:hover{ border-color:var(--accent); color:var(--accent-dark); }
+  .form-group{ margin-bottom:18px; }
+  .form-group label{ display:block; font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:7px; color:var(--text-secondary); }
+  .form-group input, .form-group select, .form-group textarea{ width:100%; background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px; color:var(--text-primary); font-family:var(--font-sans); font-size:.88rem; transition:border-color .2s ease; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(201,151,75,.15); }
+  .summary-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin-top:16px; }
   @media (max-width:620px){ .summary-strip{ grid-template-columns:repeat(2,1fr); } }
-  .summary-item{ background:var(--bg-base); padding:14px 16px; text-align:center; }
-  .summary-num{ display:block; font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--gold-light); }
-  .summary-label{ font-family:var(--font-mono); font-size:10px; letter-spacing:.05em; text-transform:uppercase; color:var(--text-onDark-muted); margin-top:4px; display:block; }
-  .btn-copy-summary{ width:100%; margin-top:14px; background:transparent; border:1px solid var(--border-strong); color:var(--text-onDark); font-family:var(--font-mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; padding:12px; cursor:pointer; transition:all .2s ease; }
-  .btn-copy-summary:hover{ border-color:var(--text-onDark); }
+  .summary-item{ background:var(--paper); padding:12px 10px; text-align:center; }
+  .summary-num{ display:block; font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--accent-dark); }
+  .summary-label{ font-family:var(--font-mono); font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); margin-top:4px; display:block; }
+  .btn-copy-summary{ width:100%; margin-top:14px; background:transparent; border:1.5px solid var(--line); border-radius:999px; color:var(--text-primary); font-family:var(--font-mono); font-size:.7rem; letter-spacing:.04em; text-transform:uppercase; padding:11px; cursor:pointer; transition:all .2s ease; }
+  .btn-copy-summary:hover{ border-color:var(--accent); color:var(--accent-dark); }
 
-  #toast-container{ position:fixed; bottom:32px; left:32px; z-index:1000; display:flex; flex-direction:column; gap:12px; }
-  .toast{ background:var(--charcoal); color:var(--text-onDark); font-family:var(--font-mono); font-size:13px; padding:15px 22px; border-left:4px solid var(--gold); box-shadow:0 16px 40px rgba(0,0,0,.45); transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards; display:flex; align-items:center; gap:14px; }
+  #toast-container{ position:fixed; bottom:32px; left:32px; right:32px; z-index:1000; display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+  @media (max-width:480px){ #toast-container{ left:16px; right:16px; bottom:16px; } }
+  .toast{ background:var(--ink); color:var(--text-light); font-family:var(--font-mono); font-size:13px; padding:14px 20px; border-left:4px solid var(--accent); border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,.35); transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards; display:flex; align-items:center; gap:14px; max-width:100%; }
   @keyframes slideIn{ to{ transform:translateX(0); } }
   .toast.fade-out{ animation:slideOut .4s var(--ease) forwards; }
   @keyframes slideOut{ to{ transform:translateX(-120%); opacity:0; } }
 
-  /* ---- Preloader (mismo patrón que braita-innovacion.html) ---- */
-  #preloader{
-    position:fixed; inset:0; z-index:5000;
-    background:var(--bg-base);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    transition:opacity .7s var(--ease), visibility .7s var(--ease);
-  }
-  #preloader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
-  #preloader .pre-logo{
-    display:flex; align-items:center; gap:12px;
-    font-family:var(--font-display); font-weight:700; font-size:26px;
-    color:var(--text-primary); text-transform:uppercase; letter-spacing:.04em;
-    opacity:0; animation:preFade 1.2s var(--ease) forwards;
-  }
-  #preloader .pre-logo b{ color:var(--gold-light); }
-  @keyframes preFade{ 0%{opacity:0; letter-spacing:.3em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
-  #preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(243,242,239,.12); overflow:hidden; position:relative; }
-  #preloader .pre-bar::after{
-    content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%;
-    background:linear-gradient(90deg, var(--gold-dark), var(--gold-light)); animation:preBar 1.3s var(--ease) forwards .25s;
-  }
-  @keyframes preBar{ to{ left:0; } }
-  #preloader .pre-caption{ margin-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); }
-  @media (prefers-reduced-motion: reduce){
-    #preloader .pre-logo{ animation:none; opacity:1; }
-    #preloader .pre-bar::after{ animation:none; left:0; }
-  }
+  /* ---------- CONTACTO ---------- */
+  #contacto{ background:var(--ink); color:var(--text-light); }
+  .contacto-layout{ display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; margin-top:10px; }
+  @media (max-width:900px){ .contacto-layout{ grid-template-columns:1fr; gap:30px; } }
+  .info-list{ display:flex; flex-direction:column; gap:16px; margin-top:26px; }
+  .info-list li{ display:flex; flex-direction:column; gap:2px; font-size:.9rem; color:var(--text-light-muted); }
+  .info-list b{ color:var(--text-light); font-weight:600; font-size:.78rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.05em; }
 
+  footer{ background:var(--ink-deep); color:var(--text-muted); padding:32px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:.78rem; font-family:var(--font-mono); }
+  .foot-row a{ color:var(--accent-light); }
+  .admin-link-row{ margin-top:14px; text-align:center; }
+  .admin-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-sans); font-size:.76rem; color:var(--text-muted); }
+  .admin-link::before{ content:'●'; font-size:8px; color:#3F7D4C; }
+  .admin-link:hover{ color:var(--accent-light); }
+
+  .wa-float{ position:fixed; right:26px; bottom:26px; z-index:80; width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.28); transition:transform .3s var(--ease); }
+  .wa-float:hover{ transform:scale(1.08); }
+  .wa-float svg{ width:27px; height:27px; }
+
+  #scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent-light)); z-index:300; transition:width .12s linear; }
+
+  #preloader{ position:fixed; inset:0; z-index:5000; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity .7s var(--ease), visibility .7s var(--ease); }
+  #preloader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+  #preloader .pre-logo{ display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-weight:700; font-size:28px; color:var(--text-light); text-transform:uppercase; letter-spacing:.04em; opacity:0; animation:preFade 1.2s var(--ease) forwards; }
+  #preloader .pre-logo b{ color:var(--accent-light); }
+  @keyframes preFade{ 0%{opacity:0; letter-spacing:.1em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
+  #preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(245,241,233,.14); overflow:hidden; position:relative; }
+  #preloader .pre-bar::after{ content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%; background:var(--accent); animation:preBar 1.3s var(--ease) forwards .25s; }
+  @keyframes preBar{ to{ left:0; } }
+  #preloader .pre-caption{ margin-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-light-muted); }
+  @media (prefers-reduced-motion: reduce){ #preloader .pre-logo{ animation:none; opacity:1; } #preloader .pre-bar::after{ animation:none; left:0; } }
 </style>
 </head>
 <body>
@@ -462,61 +210,54 @@
 </div>
 
 <div id="toast-container"></div>
+<div id="scroll-progress"></div>
 
-<!-- BARRA DE GRUPO -->
 <div class="group-switcher">
   <div class="gs-wrap">
     <a href="index.html" class="gs-label">Grupo Braita</a>
-    <a href="braita-innovacion.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
-    <a href="braita-select.html" class="active"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
-    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Machinery</a>
-    <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
-    <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
+    <a href="braita-innovacion.html"><span class="gs-dot" style="background:#FFFFFF"></span>Innovación</a>
+    <a href="braita-select.html" class="active"><span class="gs-dot" style="background:#C9974B"></span>Select</a>
+    <a href="braita-sinc.html"><span class="gs-dot" style="background:#5F9A5A"></span>Sync</a>
+    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#C9564A"></span>Machinery</a>
+    <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV</a>
   </div>
 </div>
 
 <header>
-  <div class="wrap nav-row">
-    <!-- TODO: logo real de Braita Select cuando lo tengan -->
+  <div class="wrap nav">
     <a href="#inicio" class="logo">
-      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="4" width="32" height="32" fill="#0B0C0E" stroke="var(--gold)" stroke-width="1"/>
-        <rect x="12" y="12" width="16" height="16" fill="none" stroke="var(--gold-light)" stroke-width="1.4"/>
-        <line x1="12" y1="20" x2="28" y2="20" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="3 2"/>
-      </svg>
-      <span class="logo-text">BRAITA <b>SELECT</b></span>
+      <div class="logo-box"><span class="g1">BRAITA</span><span class="g2">SELECT</span></div>
     </a>
-    <nav id="main-nav"><ul>
-      <li><a href="#coleccion">Colección</a></li>
-      <li><a href="#mesa-control">Mesa de Despiece</a></li>
-      <li><a href="#porque">Por qué Select</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul></nav>
-    <div style="display:flex; gap:14px; align-items:center;">
-      <a href="#contacto" class="btn btn-outline">Contacto</a>
-      <a href="#" id="waTop" class="btn btn-gold" target="_blank">Cotizar</a>
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#coleccion">Colección</a></li>
+        <li><a href="#mesa-control">Mesa de Despiece</a></li>
+        <li><a href="#porque">Por qué Select</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="#" id="waTop" class="btn btn-accent" target="_blank">Cotizar</a>
       <button class="burger" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
-<main id="inicio">
-  <section class="hero">
-    <div class="wrap">
-      <span class="eyebrow">Línea premium · Grupo Braita</span>
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap hero-inner">
+      <span class="eyebrow on-dark">Línea premium · Grupo Braita</span>
       <h1>Acabados que se <em>notan</em> antes de tocarlos.</h1>
-      <p class="lead">Braita Select es la línea de materiales de alta gama del grupo: superficies, texturas y acabados pensados para proyectos donde el detalle es la decisión de diseño.</p>
-      <div class="hero-ctas">
-        <a href="#coleccion" class="btn btn-gold">Ver colección</a>
-        <a href="#contacto" class="btn btn-outline">Hablar con un asesor</a>
+      <p class="lead">Braita Select: materiales de alta gama para proyectos donde el detalle es la decisión de diseño.</p>
+      <div class="hero-actions">
+        <a href="#coleccion" class="btn btn-accent">Ver colección</a>
+        <a href="#contacto" class="btn btn-outline-dark">Hablar con un asesor</a>
       </div>
     </div>
-
-    <!-- imagen15.png — foto real de fondo del hero (pendiente) -->
     <div class="hero-bg-image" aria-hidden="true">
       <img src="imagen15.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
     </div>
-
     <div class="trust-strip">
       <div class="wrap trust-grid">
         <div class="trust-item">Acabados de alta gama</div>
@@ -528,35 +269,30 @@
 
   <section id="coleccion">
     <div class="wrap">
-      <div class="cat-head reveal">
+      <div class="sec-head reveal">
         <span class="eyebrow">Colección</span>
         <h2>Los acabados confirmados de esta línea.</h2>
-        <p>Estos 2 acabados ya están confirmados. El catálogo se irá ampliando conforme Braita confirme más productos de esta línea.</p>
+        <p>Estos 2 acabados ya están confirmados; el catálogo seguirá creciendo.</p>
       </div>
-      <div class="grid-select">
-        <div class="sel-card reveal">
-          <div class="sel-swatch" style="background:linear-gradient(150deg,#8C6A3F,#5A4128);"></div>
-          <div class="sel-body">
+      <div class="cat-grid">
+        <div class="cat-card reveal">
+          <div class="cat-media" style="background:linear-gradient(150deg,#8C6A3F,#5A4128);"></div>
+          <div class="cat-body">
             <h3>Roble Natural</h3>
             <p>Tipo: Madera · Acabado: UV Mate.</p>
-            <span class="sel-tag">Confirmado</span>
+            <span class="cat-tag">Confirmado</span>
           </div>
         </div>
-        <div class="sel-card reveal">
-          <div class="sel-swatch" style="background:linear-gradient(150deg,#D8CBB6,#B3A488);"></div>
-          <div class="sel-body">
+        <div class="cat-card reveal">
+          <div class="cat-media" style="background:linear-gradient(150deg,#D8CBB6,#B3A488);"></div>
+          <div class="cat-body">
             <h3>Lino Arena</h3>
             <p>Tipo: Textil · Acabado: UV Mate.</p>
-            <span class="sel-tag">Confirmado</span>
+            <span class="cat-tag">Confirmado</span>
           </div>
         </div>
-        <div class="sel-card reveal">
-          <div class="sel-swatch" style="background:linear-gradient(150deg,#E4E1D8,#C7C2B4);"></div>
-          <div class="sel-body">
-            <h3>Más acabados</h3>
-            <p>El resto del catálogo de esta línea está pendiente de confirmar.</p>
-            <span class="sel-tag">Próximamente</span>
-          </div>
+        <div class="cat-card cat-pending reveal">
+          <p>Más acabados<br>próximamente</p>
         </div>
       </div>
     </div>
@@ -566,22 +302,21 @@
        MESA DE CONTROL — mismo sistema que braita-innovacion.html
        (ver mesa-control.js): arma un listado de piezas, calcula un
        resumen en vivo y lo manda por WhatsApp; guarda copia en la
-       misma base de Supabase (tabla pedidos_maquila) para que
-       aparezca en el panel de administrador central de Innovación.
+       misma base de Supabase (tabla pedidos_maquila).
   ============================================================ -->
-  <section id="mesa-control" class="mesa-control-section">
+  <section id="mesa-control">
     <div class="wrap">
-      <div class="reveal">
+      <div class="sec-head reveal">
         <span class="eyebrow">Mesa de Control Operativa</span>
         <h2>Arma tu Pedido de Despiece</h2>
-        <p>Añade los módulos o paneles requeridos de la colección Select. El sistema estructura el listado técnico listo para mandarse por WhatsApp.</p>
+        <p>Añade las piezas requeridas; el sistema arma el listado listo para enviarse por WhatsApp.</p>
       </div>
 
       <div class="mesa-layout">
-        <div class="blueprint-panel reveal">
+        <div class="mesa-panel reveal">
           <div class="panel-header">
             <h3>Listado Geométrico de Piezas</h3>
-            <span class="mono" style="font-size:11px; color:var(--text-onDark-muted);" id="row-counter">1 Pieza añadida</span>
+            <span class="mono" style="font-size:11px; color:var(--text-secondary);" id="row-counter">1 Pieza añadida</span>
           </div>
 
           <div class="table-responsive">
@@ -627,11 +362,11 @@
             <div class="summary-item"><span class="summary-num" id="sumCanto">0.00 m</span><span class="summary-label">Canto lineal</span></div>
             <div class="summary-item"><span class="summary-num" id="sumTableros">0</span><span class="summary-label">Tableros aprox.*</span></div>
           </div>
-          <p class="mono" style="font-size:10.5px; color:var(--text-onDark-muted); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma. Referencia rápida, no sustituye la cotización formal.</p>
+          <p class="mono" style="font-size:10.5px; color:var(--text-secondary); margin-top:10px; line-height:1.5;">*Estimado sobre tablero 244 × 122 cm con 15% de merma; no sustituye la cotización formal.</p>
           <button class="btn-copy-summary" type="button" onclick="copiarResumen()">Copiar resumen del pedido</button>
         </div>
 
-        <div class="control-form reveal">
+        <div class="mesa-panel reveal">
           <div class="form-group">
             <label for="client-name">Nombre Comercial / Solicitante</label>
             <input type="text" id="client-name" required placeholder="Ej: Arq. Andrea Solís">
@@ -656,7 +391,7 @@
             <label for="client-notes">Notas Especiales</label>
             <textarea id="client-notes" placeholder="Indicar herrajes adicionales o especificaciones de perforación..."></textarea>
           </div>
-          <button class="btn btn-gold" style="width:100%; margin-top:8px;" onclick="processOrderToWhatsApp()">Exportar y Enviar por WhatsApp</button>
+          <button class="btn btn-accent" style="width:100%; margin-top:8px; justify-content:center;" onclick="processOrderToWhatsApp()">Exportar y Enviar por WhatsApp</button>
         </div>
       </div>
     </div>
@@ -664,41 +399,42 @@
 
   <section id="porque">
     <div class="wrap">
-      <span class="eyebrow reveal">Por qué Select</span>
-      <h2 class="reveal" style="font-size:clamp(24px,3.2vw,34px); margin-top:14px; max-width:600px;">La misma confianza de Braita, con otro nivel de acabado.</h2>
-      <div class="why-grid">
-        <div class="why-card reveal">
-          <h4>Curaduría, no catálogo genérico</h4>
-          <p>Cada acabado se elige por su acabado final, no solo por disponibilidad de almacén.</p>
+      <div class="sec-head on-dark reveal">
+        <span class="eyebrow on-dark">Por qué Select</span>
+        <h2 style="color:var(--text-light);">La misma confianza de Braita, con otro nivel de acabado.</h2>
+      </div>
+      <div class="porque-grid">
+        <div class="porque-item reveal">
+          <h3>Curaduría, no catálogo genérico</h3>
+          <p>Se elige por resultado final, no por disponibilidad de almacén.</p>
         </div>
-        <div class="why-card reveal">
-          <h4>Mismo respaldo del grupo</h4>
-          <p>Select opera con la misma gente y el mismo compromiso de entrega que ya conoces de Braita.</p>
+        <div class="porque-item reveal">
+          <h3>Mismo respaldo del grupo</h3>
+          <p>La misma gente y compromiso de entrega que ya conoces de Braita.</p>
         </div>
-        <div class="why-card reveal">
-          <h4>Proyectos a la medida</h4>
-          <p>Pensado para arquitectos y diseñadores que necesitan una pieza que se distinga del resto.</p>
+        <div class="porque-item reveal">
+          <h3>Proyectos a la medida</h3>
+          <p>Para arquitectos y diseñadores que buscan una pieza que se distinga.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contacto" class="contacto">
-    <div class="wrap contacto-grid">
+  <section id="contacto">
+    <div class="wrap contacto-layout">
       <div class="reveal">
-        <span class="eyebrow">Contacto</span>
-        <h2 style="font-size:clamp(24px,3.2vw,32px); margin:14px 0 10px;">¿Tienes un proyecto en mente?</h2>
-        <p style="color:var(--text-secondary); max-width:44ch;">Braita Select comparte oficina y contacto con el resto del grupo, en Ocotlán, Jalisco.</p>
+        <span class="eyebrow on-dark">Contacto</span>
+        <h2 style="color:var(--text-light); margin:14px 0 10px;">¿Tienes un proyecto en mente?</h2>
+        <p style="color:var(--text-light-muted); max-width:44ch;">Comparte oficina y contacto con el resto del grupo Braita, en Ocotlán, Jalisco.</p>
         <ul class="info-list">
-          <li><span><b>Dirección</b>Av. Universidad #1350, Ocotlán, Jal.</span></li>
-          <li><span><b>Teléfono</b>392 931 3919</span></li>
-          <li><span><b>WhatsApp</b>392 128 7299</span></li>
-          <li><span><b>Correo</b>Tableros.braita@gmail.com</span></li>
+          <li><b>Dirección</b><span>Av. Universidad #1350, Ocotlán, Jal.</span></li>
+          <li><b>Teléfono</b><span>392 931 3919</span></li>
+          <li><b>WhatsApp</b><span>392 128 7299</span></li>
+          <li><b>Correo</b><span>Tableros.braita@gmail.com</span></li>
         </ul>
-        <p class="mono" style="font-size:11px; color:var(--text-muted); margin-top:18px; line-height:1.6;">*Confirmar con Braita si Select tendrá horario/atención distinta al resto del grupo.</p>
       </div>
       <div class="reveal" style="display:flex; align-items:center; justify-content:center;">
-        <a href="#" id="waBottom" class="btn btn-gold" target="_blank" style="padding:20px 36px; font-size:15px;">Escribir por WhatsApp →</a>
+        <a href="#" id="waBottom" class="btn btn-accent" target="_blank" style="padding:20px 36px; font-size:15px;">Escribir por WhatsApp →</a>
       </div>
     </div>
   </section>
@@ -707,7 +443,7 @@
 <footer>
   <div class="wrap foot-row">
     <span>© 2026 Braita Select — línea del Grupo Braita, Ocotlán, Jal.</span>
-    <a href="index.html" style="color:var(--gold-light);">← Volver al grupo Braita</a>
+    <a href="index.html">← Volver al grupo Braita</a>
   </div>
   <div class="wrap admin-link-row">
     <a href="braita-innovacion.html#panel-admin" class="admin-link">Ver historial de pedidos (panel administrador)</a>
@@ -719,7 +455,7 @@
 </a>
 
 <script>
-  const WA = '523921287299'; // Número real de Braita (antes era 523929313919, incorrecto)
+  const WA = '523921287299';
   const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
   document.getElementById('waTop').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');
   document.getElementById('waBottom').href = wa('Hola, vi Braita Select y quiero información de la línea premium.');

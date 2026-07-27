@@ -1,45 +1,39 @@
 <!DOCTYPE html>
 <!--
   ================================================================
-  BRAITA TUV — Terminados UV, la marca más nueva del grupo
+  BRAITA TUV — Maquila de Acabados UV, marca del Grupo Braita
   ================================================================
-  Página nueva, armada siguiendo el mismo patrón de código que ya
-  usa braita-sinc.html (misma estructura "marca beta / próximamente"),
-  para que se sienta parte de la misma familia del sitio.
+  Reskin visual sobre el nuevo sistema de diseño del sitio (el mismo
+  que ya usa braita-select.html): tipografías Space Grotesk / Inter /
+  IBM Plex Mono, tokens --ink/--cream/--paper/--accent y botones
+  píldora. Aquí el acento es gris plata (--accent:#9AA1A8) en vez del
+  dorado de Select — sigue siendo un color provisional, no confirmado
+  aún como identidad oficial de marca por el cliente.
 
-  ACTUALIZACIÓN 2026-07-24: el cliente mandó la descripción oficial de
-  qué es TUV y en qué se distingue de Innovación: "TUV es la división
-  de MAQUILA especializada en acabados UV de Braita. Recibimos los
-  tableros y superficies de nuestros clientes para aplicar procesos de
-  pintura y acabado UV con altos estándares de calidad, ofreciendo
-  soluciones precisas, uniformes y confiables para fabricantes,
-  diseñadores e industrias que buscan resultados profesionales." Ya no
-  es "marca en construcción sin nada" — es un servicio de maquila
-  (le aplican acabado UV al material QUE YA TIENE el cliente), mientras
-  que Innovación vende su PROPIO tablero ya con el acabado aplicado.
-  Esa es la diferencia real que antes no sabíamos.
+  Qué es TUV: la división de MAQUILA especializada en acabados UV de
+  Braita. Recibimos los tableros y superficies de nuestros clientes
+  para aplicar procesos de pintura y acabado UV con altos estándares
+  de calidad — a diferencia de Braita Innovación, que vende su propio
+  tablero ya con el acabado aplicado de fábrica, aquí el cliente trae
+  su propio material.
 
-  Sigue pendiente confirmar con el cliente:
-  - Color oficial de marca (aquí es gris plata, solo un placeholder
-    inspirado en el propio logo, no una decisión de marca).
-  - Precios / capacidad de maquila, tiempos de entrega, mínimos de lote.
-  - Fotos reales del proceso o de piezas terminadas.
-  - El logo (logo-tuv.png) es real pero es un JPEG con fondo blanco
-    sólido, no un PNG con transparencia — funciona bien para esta
-    página tal cual está.
+  Pendiente de confirmar con el cliente: color oficial de marca,
+  precios/capacidad de maquila, tiempos de entrega, mínimos de lote,
+  y fotos reales del proceso o de piezas terminadas.
 
-  ACTUALIZACIÓN 2026-07-24 (v2): la página ya no es de una sola sección
-  "en construcción" — ahora tiene la misma estructura completa que
-  braita-select.html / braita-maquinaria.html: nav completo con menú
-  móvil funcional, catálogo de ejemplo (los 5 tipos de acabado UV del
-  grupo: alto brillo/mate/sincronizado/metalizado/rayado), sección de
-  "cómo funciona" (4 pasos genéricos del proceso de maquila), Mesa de
-  Control (reutiliza mesa-control.js — aquí el cliente especifica sus
-  propias piezas y el acabado UV que quiere que se les aplique) y
-  sección de contacto completa. Imágenes nuevas de esta ronda:
+  Catálogo de ejemplo: los 5 tipos de acabado UV del grupo (mismos
+  que en braita-innovacion.html), representando aquí los procesos que
+  se le pueden aplicar al material que trae el cliente:
     imagen75.png -> Alto Brillo      imagen78.png -> Metalizado
     imagen76.png -> Mate             imagen79.png -> Rayado
     imagen77.png -> Sincronizado
+  Cada <img> tiene onerror/onload: si el archivo no existe se ve el
+  degradado de fondo; en cuanto se suba la foto con el nombre exacto
+  aparece sola, sin tocar código.
+
+  Mesa de Control: mismo módulo compartido que el resto del grupo
+  (ver mesa-control.js) — aquí el cliente especifica las piezas que
+  va a enviar y el tipo de acabado UV que quiere que se les aplique.
   ================================================================
 -->
 <html lang="es">
@@ -51,382 +45,272 @@
 <link rel="icon" href="logo-group-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="premium-animations.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#e5e2de; --ink-soft:#b3ada2; --paper:#131311; --paper-soft:#1c1c1a; --panel:#20201d; --line:#33302a;
-    --wood:#8B8E93; --wood-dark:#5F6368; --wood-light:#B9BEC4;
-    --font-display:'Bricolage Grotesque',sans-serif; --font-sans:'Plus Jakarta Sans',sans-serif; --font-mono:'IBM Plex Mono',monospace;
-    --ease: cubic-bezier(0.16,1,0.3,1);
+    --ink:#0E0E0E; --ink-soft:#1C1B19; --ink-deep:#050505;
+    --cream:#F2ECE1; --paper:#FBF9F5;
+    --accent:#9AA1A8; --accent-dark:#6E747A; --accent-light:#C7CBCF;
+    --text-primary:#1C1B19; --text-secondary:#5A564D; --text-muted:#8B8781;
+    --text-light:#F5F1E9; --text-light-muted:#C7C0B2; --line:#DED4BF;
+    --font-display:'Space Grotesk', sans-serif; --font-sans:'Inter', sans-serif; --font-mono:'IBM Plex Mono', monospace;
+    --ease: cubic-bezier(.22,.61,.36,1);
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{ overflow-x:hidden; }
-  body{ background: linear-gradient(135deg, var(--paper) 0%, #17160f 100%); color:var(--ink); font-family:var(--font-sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-  img,svg{display:block; max-width:100%;}
-  a{color:inherit;}
-  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
-  @media (max-width:640px){ .wrap{padding:0 20px;} }
-  section{padding:100px 0;}
-  @media (max-width:768px){ section{padding:64px 0;} }
-  .mono{font-family:var(--font-mono);}
-  h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; color:var(--ink);}
-  .eyebrow{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--wood-dark); display:inline-flex; align-items:center; gap:10px; }
-  .eyebrow::before{ content:''; width:20px; height:2px; background:var(--wood); display:inline-block; }
-  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
-  .reveal.active, .reveal.in{opacity:1; transform:translateY(0);}
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:hidden; }
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important;} html{scroll-behavior:auto;} }
+  body{ background:var(--paper); color:var(--text-primary); font-family:var(--font-sans); line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-wrap:break-word; }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+  section{ padding:100px 0; }
+  @media (max-width:768px){ section{ padding:64px 0; } }
+  section[id]{ scroll-margin-top:96px; }
+  .mono{ font-family:var(--font-mono); }
+  h1,h2,h3{ font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; }
+  .eyebrow{ font-family:var(--font-mono); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-dark); display:inline-flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:''; width:22px; height:2px; background:var(--accent); }
+  .eyebrow.on-dark{ color:var(--accent-light); }
+  .eyebrow.on-dark::before{ background:var(--accent); }
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in, .reveal.active{ opacity:1; transform:translateY(0); }
 
-  .group-switcher { background: #0e0e0c; padding: 10px 0; }
-  .group-switcher .gs-wrap { max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
+  /* ---------- BARRA GRUPO BRAITA ---------- */
+  .group-switcher{ background:#000; padding:10px 0; }
+  .group-switcher .gs-wrap{ max-width:1240px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
   @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
-  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; text-decoration:none; transition:color .2s ease; }
-  .group-switcher .gs-label:hover{ color:#F5F5F2; }
-  .group-switcher a{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
+  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+  .group-switcher a{ display:inline-flex; align-items:center; gap:7px; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
   .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
   .group-switcher a:hover{ color:#F5F5F2; }
   .group-switcher a.active{ color:#F5F5F2; border-bottom-color:currentColor; }
-  .group-switcher a .gs-beta{ opacity:.85; font-size:10px; color:#B98A54; }
 
-  header{ position: sticky; top: 0; z-index: 60; background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 1px solid transparent; box-shadow: none; transition: all .4s ease; }
-  header.scrolled{ background: rgba(19,18,15,.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(216,215,212,.5); box-shadow: 0 8px 32px rgba(0,0,0,0.04); }
-  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding: 20px 0; }
-  .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .logo-mark{ width:32px; height:32px; }
-  .logo-text{ font-family:var(--font-display); font-weight:700; font-size:19px; text-transform:uppercase; }
-  .logo-text span{ color:var(--wood); }
-  .badge-beta{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; background:var(--wood); color:#fff; padding:5px 10px; border-radius:3px; }
+  /* ---------- HEADER / NAV ---------- */
+  header{ position:sticky; top:0; z-index:200; background:var(--ink); border-bottom:1px solid rgba(154,161,168,.18); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:20px; }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo-box{ border:1.5px solid var(--accent); border-radius:6px; padding:6px 12px; display:flex; flex-direction:column; align-items:center; line-height:1; }
+  .logo-box .g1{ font-family:var(--font-display); font-weight:700; font-size:1.05rem; color:var(--text-light); letter-spacing:.02em; }
+  .logo-box .g2{ font-family:var(--font-mono); font-size:.52rem; letter-spacing:.24em; color:var(--accent); margin-top:2px; }
+  nav.main-nav ul{ display:flex; gap:30px; }
+  nav.main-nav a{ font-size:.87rem; font-weight:500; color:var(--text-light-muted); transition:color .25s var(--ease); }
+  nav.main-nav a:hover{ color:var(--accent-light); }
+  .header-actions{ display:flex; align-items:center; gap:14px; }
 
-  nav ul{ list-style:none; display:flex; gap:34px; }
-  nav a{ text-decoration:none; font-size:14px; font-weight:500; color:var(--ink-soft); }
-  nav a:hover{ color:var(--wood-light); }
-  .burger{ display:none; background:none; border:none; cursor:pointer; padding:10px; margin:-10px; }
-  .burger span{ display:block; width:22px; height:1.5px; background:var(--ink); margin:5px 0; transition:transform .3s ease, opacity .3s ease; }
-  .burger.active span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+  .btn{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-sans); font-weight:600; font-size:.85rem; padding:12px 24px; border-radius:999px; cursor:pointer; border:1.5px solid transparent; transition:transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); position:relative; overflow:hidden; white-space:nowrap; }
+  .btn svg{ width:15px; height:15px; }
+  .btn-accent{ background:var(--accent); color:var(--ink); }
+  .btn-accent:hover{ background:var(--accent-light); transform:translateY(-2px); }
+  .btn-outline-dark{ border-color:var(--text-light); color:var(--text-light); }
+  .btn-outline-dark:hover{ background:var(--text-light); color:var(--ink); transform:translateY(-2px); }
+  @keyframes ripple{ to{ transform:scale(4); opacity:0; } }
+
+  /* ---------- MENU MOVIL ---------- */
+  .burger{ display:none; flex-direction:column; justify-content:center; gap:5px; width:32px; height:32px; background:none; border:none; cursor:pointer; padding:4px; z-index:210; position:relative; }
+  .burger span{ display:block; width:100%; height:2px; background:var(--text-light); transition:transform .3s var(--ease), opacity .3s var(--ease); }
+  .burger.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
   .burger.active span:nth-child(2){ opacity:0; }
-  .burger.active span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
-  @media (max-width:860px){
-    nav{
-      position:fixed; top:0; right:0; bottom:0; width:min(320px,85vw);
-      background:var(--paper-soft); border-left:1px solid var(--line);
-      padding:100px 32px 40px; transform:translateX(100%);
-      transition:transform .4s var(--ease); z-index:99; overflow-y:auto;
-    }
-    nav.is-active{ transform:translateX(0); }
-    nav ul{ flex-direction:column; gap:26px; }
-    nav a{ font-size:18px; }
-    .burger{ display:block; }
+  .burger.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  @media (max-width:920px){
+    .header-actions .btn{ display:none; }
+    .burger{ display:flex; }
+    nav.main-nav{ position:fixed; inset:0; z-index:150; background:var(--ink); display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility .4s var(--ease); }
+    nav.main-nav.is-active{ opacity:1; visibility:visible; }
+    nav.main-nav ul{ flex-direction:column; align-items:center; gap:30px; }
+    nav.main-nav a{ font-size:1.3rem; }
   }
 
-  .hero{ padding:90px 0; text-align:center; }
-  .hero h1{ font-size:clamp(30px,4.4vw,46px); margin:18px 0 20px; line-height:1.15; }
-  .hero p{ font-size:16.5px; color:var(--ink-soft); max-width:56ch; margin:0 auto 34px; }
+  /* ---------- HERO ---------- */
+  .hero{ background:linear-gradient(160deg, var(--ink) 0%, var(--ink-deep) 100%); color:var(--text-light); position:relative; overflow:hidden; padding:80px 0 0; }
+  .hero::before{ content:''; position:absolute; top:-120px; right:-120px; width:520px; height:520px; background:radial-gradient(circle, rgba(154,161,168,.18) 0%, transparent 70%); border-radius:50%; pointer-events:none; }
+  .hero-inner{ position:relative; z-index:1; max-width:640px; padding-bottom:64px; }
+  .hero h1{ font-size:clamp(2.2rem, 4.6vw, 3.4rem); line-height:1.1; margin-top:16px; }
+  .hero h1 em{ font-style:normal; color:var(--accent-light); }
+  .hero p.lead{ margin-top:20px; max-width:520px; font-size:1.03rem; color:var(--text-light-muted); }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+  @media (max-width:480px){ .hero-actions{ flex-direction:column; } .hero-actions .btn{ width:100%; justify-content:center; } }
 
-  .swatch-strip{ display:flex; justify-content:center; gap:10px; margin-bottom:40px; flex-wrap:wrap; }
-  .swatch-strip div{ width:56px; height:56px; border-radius:4px; border:1px solid var(--line); }
+  .hero-info-card{ margin-top:30px; background:rgba(245,241,233,.05); border:1px solid rgba(154,161,168,.28); border-radius:12px; padding:22px 24px; max-width:520px; }
+  .hero-info-card h3{ font-family:var(--font-display); font-size:.95rem; font-weight:600; color:var(--text-light); margin-bottom:10px; }
+  .hero-info-card ul{ padding-left:18px; color:var(--text-light-muted); font-size:.85rem; display:flex; flex-direction:column; gap:7px; }
+  .hero-info-card .note{ font-family:var(--font-mono); font-size:.7rem; color:var(--text-light-muted); margin-top:14px; line-height:1.6; }
 
-  .info-card{ background:var(--paper-soft); border:1px solid var(--line); padding:30px; text-align:left; max-width:640px; margin:0 auto 50px; border-radius:4px; }
-  .info-card h3{ font-size:16px; margin-bottom:12px; }
-  .info-card ul{ padding-left:20px; color:var(--ink-soft); font-size:14.5px; display:flex; flex-direction:column; gap:8px; }
+  .hero-bg-image{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+  .hero-bg-image img{ width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s ease; }
+  .hero-bg-image::after{ content:''; position:absolute; inset:0; background:linear-gradient(100deg, rgba(14,14,14,.94) 0%, rgba(14,14,14,.72) 38%, rgba(14,14,14,.3) 68%, rgba(14,14,14,.05) 100%); }
 
-  .btn{ font-family:var(--font-sans); font-weight:600; font-size:14px; padding:14px 26px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; border:1.5px solid transparent; cursor:pointer; transition:transform .2s var(--ease), background .2s var(--ease); }
-  .btn-wood{ background:var(--wood); color:#fff; }
-  .btn-wood:hover{ background:var(--wood-dark); transform:translateY(-2px); }
-  .btn-outline{ border-color:var(--ink); color:var(--ink); }
-  .btn-outline:hover{ background:var(--ink); color:var(--paper-soft); }
-  .hero-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .trust-strip{ position:relative; z-index:1; background:rgba(245,241,233,.05); border-top:1px solid rgba(154,161,168,.2); padding:22px 0; }
+  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px 30px; }
+  .trust-item{ font-family:var(--font-mono); font-size:.76rem; letter-spacing:.03em; color:var(--text-light-muted); display:flex; align-items:center; gap:8px; }
+  .trust-item::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); }
 
-  /* trust strip */
-  .trust-strip{ background:linear-gradient(90deg, var(--panel) 0%, var(--panel) 38%, var(--wood) 50%, var(--panel) 62%, var(--panel) 100%); background-size:220% 100%; animation:glow-pulse-wood 4s ease-in-out infinite; padding:24px 0; }
-  @keyframes glow-pulse-wood{ 0%,100%{box-shadow:0 0 20px rgba(139,142,147,0.1);} 50%{box-shadow:0 0 30px rgba(139,142,147,0.25);} }
-  .trust-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px 32px; }
-  .trust-item{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; color:var(--ink-soft); display:flex; align-items:center; gap:8px; }
-  .trust-item::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--wood); }
+  /* ---------- SECCIÓN HEAD ---------- */
+  .sec-head{ max-width:600px; margin-bottom:44px; }
+  .sec-head h2{ font-size:clamp(1.8rem,3vw,2.3rem); margin-top:10px; }
+  .sec-head p{ color:var(--text-secondary); margin-top:12px; }
+  .sec-head.on-dark p{ color:var(--text-light-muted); }
 
-  /* catálogo (tipos de acabado UV, ejemplo) */
-  .cat-head{ margin-bottom:44px; }
-  .cat-head h2{ font-size:clamp(26px,3.4vw,38px); margin-top:14px; max-width:600px; }
-  .cat-head p{ color:var(--ink-soft); margin-top:14px; max-width:60ch; }
-  .grid-select{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-  @media (max-width:860px){ .grid-select{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .grid-select{ grid-template-columns:1fr; } }
-  .sel-card{ background:var(--paper-soft); display:flex; flex-direction:column; transition:all .4s var(--ease); border-radius:8px; overflow:hidden; border:1px solid var(--line); box-shadow:0 4px 16px rgba(0,0,0,.35); position:relative; }
-  .sel-card:hover{ transform:translateY(-8px); border-color:var(--wood); box-shadow:0 16px 40px rgba(0,0,0,.5); }
-  .sel-swatch{ aspect-ratio:4/3; position:relative; }
-  .sel-swatch img{ width:100%; height:100%; object-fit:cover; opacity:0; position:absolute; inset:0; transition:opacity .5s ease; }
-  .sel-body{ padding:22px 22px 26px; }
-  .sel-body h3{ font-size:16.5px; font-weight:600; margin-bottom:8px; }
-  .sel-body p{ font-size:13px; color:var(--ink-soft); line-height:1.6; }
-  .sel-tag{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--wood-light); margin-top:12px; display:block; }
+  /* ---------- CATÁLOGO DE ACABADOS ---------- */
+  #catalogo{ background:var(--paper); }
+  .cat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  @media (max-width:860px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .cat-grid{ grid-template-columns:1fr; } }
+  .cat-card{ background:var(--cream); border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
+  .cat-card:hover{ transform:translateY(-6px); box-shadow:0 14px 30px rgba(0,0,0,.1); }
+  .cat-media{ aspect-ratio:4/3; position:relative; }
+  .cat-media img{ width:100%; height:100%; object-fit:cover; opacity:0; position:absolute; inset:0; transition:opacity .5s ease; }
+  .cat-body{ padding:20px 20px 22px; }
+  .cat-body h3{ font-size:1.05rem; font-weight:600; margin-bottom:8px; }
+  .cat-body p{ font-size:.86rem; color:var(--text-secondary); }
+  .cat-tag{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--accent-dark); margin-top:12px; display:block; }
+  .cat-card.cat-pending{ display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; border:1.5px dashed var(--line); background:transparent; box-shadow:none; }
+  .cat-card.cat-pending p{ font-family:var(--font-mono); font-size:.8rem; color:var(--text-muted); }
 
-  /* cómo funciona (proceso) */
-  .proceso-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-  @media (max-width:992px){ .proceso-flow{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:576px){ .proceso-flow{ grid-template-columns:1fr; } }
-  .flow-card{ background:var(--panel); padding:28px 24px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.25); }
-  .flow-card .flow-num{ font-family:var(--font-mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--wood); font-weight:700; margin-bottom:16px; display:block; }
-  .flow-card h3{ font-size:16.5px; margin-bottom:10px; }
-  .flow-card p{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
+  /* ---------- CÓMO FUNCIONA (PROCESO) ---------- */
+  #proceso{ background:var(--ink); color:var(--text-light); }
+  .proceso-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(245,241,233,.1); border-radius:10px; overflow:hidden; margin-top:10px; }
+  @media (max-width:860px){ .proceso-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .proceso-grid{ grid-template-columns:1fr; } }
+  .proceso-item{ background:var(--ink-soft); padding:30px 26px; }
+  .proceso-item .flow-num{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-light); font-weight:600; margin-bottom:14px; display:block; }
+  .proceso-item h3{ font-size:1rem; font-weight:600; margin-bottom:8px; color:var(--text-light); }
+  .proceso-item p{ font-size:.85rem; color:var(--text-light-muted); }
 
-  /* contacto */
-  .contacto-section{ background:#000; }
-  .contacto-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
-  @media (max-width:900px){ .contacto-grid{ grid-template-columns:1fr; gap:40px; } }
-  .info-list{ list-style:none; display:flex; flex-direction:column; gap:16px; margin-top:26px; }
-  .info-list li{ display:flex; gap:14px; font-size:14px; color:var(--ink-soft); }
-  .info-list b{ color:#FAFAF9; display:block; font-weight:600; margin-bottom:2px; }
-
-  /* ════════════════════════════════════════════════════════════════════
-     MESA DE CONTROL — mismo patrón/JS que braita-innovacion.html
-     (ver mesa-control.js), adaptado a la paleta gris/plata de TUV.
-     Aquí "material" es el tipo de acabado UV que el cliente quiere que
-     le apliquemos a SU tablero, no un tablero que vendemos nosotros.
-     ═════════════════════════════════════════════════════════════════════ */
-  .mesa-control-section{ padding:70px 0 90px; background:var(--panel); }
-  .mesa-control-section h2{ color:var(--ink); font-size:clamp(26px,3.6vw,36px); margin:14px 0 10px; }
-  .mesa-control-section p{ color:var(--ink-soft); line-height:1.7; max-width:60ch; }
-  .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:36px; margin-top:36px; align-items:start; }
+  /* ---------- MESA DE CONTROL ---------- */
+  #mesa-control{ background:var(--cream); }
+  .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:24px; margin-top:36px; align-items:start; }
   @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
-  .blueprint-panel, .control-form{ background:var(--paper-soft); border:1px solid var(--line); padding:26px; border-radius:4px; min-width:0; }
-  .panel-header{ display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:12px; margin-bottom:18px; }
-  .panel-header h3{ color:var(--ink); font-size:16px; font-family:var(--font-display); font-weight:700; }
+  .mesa-panel{ background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:26px; min-width:0; }
+  .panel-header{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:20px; }
+  .panel-header h3{ font-size:1rem; }
   .table-responsive{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  .despiece-table{ width:100%; min-width:560px; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:16px; }
-  .despiece-table th{ background:var(--paper); color:var(--ink-soft); padding:9px; font-weight:500; border-bottom:2px solid var(--line); }
-  .despiece-table td{ padding:7px 9px; border-bottom:1px solid var(--line); vertical-align:middle; }
-  .despiece-table input, .despiece-table select{ width:100%; background:var(--paper); border:1px solid var(--line); color:var(--ink); padding:7px; font-family:var(--font-mono); font-size:12px; }
-  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-color:var(--wood); }
-  .btn-remove-row{ background:transparent; border:none; color:#EF4444; cursor:pointer; padding:4px; display:inline-flex; align-items:center; }
-  .btn-add-row{ background:transparent; border:1px dashed var(--line); color:var(--ink); font-family:var(--font-mono); font-size:12px; padding:9px 14px; cursor:pointer; width:100%; text-transform:uppercase; transition:all .2s ease; }
-  .btn-add-row:hover{ border-color:var(--ink); background:rgba(255,255,255,.03); }
+  .despiece-table{ width:100%; min-width:540px; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:16px; }
+  .despiece-table th{ color:var(--text-secondary); padding:8px 8px; font-weight:500; border-bottom:2px solid var(--line); }
+  .despiece-table td{ padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:middle; }
+  .despiece-table input, .despiece-table select{ width:100%; background:#fff; border:1px solid var(--line); border-radius:6px; color:var(--text-primary); padding:7px 8px; font-family:var(--font-mono); font-size:12px; }
+  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-color:var(--accent); }
+  .btn-remove-row{ background:transparent; border:none; color:#B4483C; cursor:pointer; padding:4px; display:inline-flex; align-items:center; }
+  .btn-add-row{ background:transparent; border:1.5px dashed var(--line); border-radius:999px; color:var(--text-primary); font-family:var(--font-mono); font-size:12px; padding:10px 16px; cursor:pointer; width:100%; text-transform:uppercase; transition:all .2s ease; }
+  .btn-add-row:hover{ border-color:var(--accent); color:var(--accent-dark); }
   .form-group{ margin-bottom:18px; }
-  .form-group label{ display:block; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:6px; color:var(--ink-soft); }
-  .form-group input, .form-group select, .form-group textarea{ width:100%; background:var(--paper); border:none; border-bottom:1px solid var(--line); padding:10px 4px; color:var(--ink); font-family:inherit; font-size:14px; transition:border-color .3s ease; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-bottom-color:var(--wood); }
-  .summary-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:16px; }
+  .form-group label{ display:block; font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:7px; color:var(--text-secondary); }
+  .form-group input, .form-group select, .form-group textarea{ width:100%; background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px; color:var(--text-primary); font-family:var(--font-sans); font-size:.88rem; transition:border-color .2s ease; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(154,161,168,.15); }
+  .summary-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin-top:16px; }
   @media (max-width:620px){ .summary-strip{ grid-template-columns:repeat(2,1fr); } }
-  .summary-item{ background:var(--paper); padding:12px 14px; text-align:center; }
-  .summary-num{ display:block; font-family:var(--font-display); font-weight:700; font-size:19px; color:var(--wood-light); }
-  .summary-label{ font-family:var(--font-mono); font-size:9.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); margin-top:4px; display:block; }
-  .btn-copy-summary{ width:100%; margin-top:12px; background:transparent; border:1px solid var(--line); color:var(--ink); font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; padding:11px; cursor:pointer; transition:all .2s ease; }
-  .btn-copy-summary:hover{ border-color:var(--ink); }
+  .summary-item{ background:var(--paper); padding:12px 10px; text-align:center; }
+  .summary-num{ display:block; font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--accent-dark); }
+  .summary-label{ font-family:var(--font-mono); font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); margin-top:4px; display:block; }
+  .btn-copy-summary{ width:100%; margin-top:14px; background:transparent; border:1.5px solid var(--line); border-radius:999px; color:var(--text-primary); font-family:var(--font-mono); font-size:.7rem; letter-spacing:.04em; text-transform:uppercase; padding:11px; cursor:pointer; transition:all .2s ease; }
+  .btn-copy-summary:hover{ border-color:var(--accent); color:var(--accent-dark); }
 
-  #toast-container{ position:fixed; bottom:28px; left:28px; z-index:1000; display:flex; flex-direction:column; gap:12px; }
-  .toast{ background:var(--paper-soft); color:var(--ink); font-family:var(--font-mono); font-size:13px; padding:14px 20px; border-left:4px solid var(--wood); box-shadow:0 16px 40px rgba(0,0,0,.4); transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards; display:flex; align-items:center; gap:12px; border-radius:2px; }
+  #toast-container{ position:fixed; bottom:32px; left:32px; right:32px; z-index:1000; display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+  @media (max-width:480px){ #toast-container{ left:16px; right:16px; bottom:16px; } }
+  .toast{ background:var(--ink); color:var(--text-light); font-family:var(--font-mono); font-size:13px; padding:14px 20px; border-left:4px solid var(--accent); border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,.35); transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards; display:flex; align-items:center; gap:14px; max-width:100%; }
   @keyframes slideIn{ to{ transform:translateX(0); } }
   .toast.fade-out{ animation:slideOut .4s var(--ease) forwards; }
   @keyframes slideOut{ to{ transform:translateX(-120%); opacity:0; } }
 
-  footer{ padding:30px 0; border-top:1px solid var(--line); }
-  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:12.5px; color:var(--ink-soft); font-family:var(--font-mono); }
+  /* ---------- CONTACTO ---------- */
+  #contacto{ background:var(--ink); color:var(--text-light); }
+  .contacto-layout{ display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; margin-top:10px; }
+  @media (max-width:900px){ .contacto-layout{ grid-template-columns:1fr; gap:30px; } }
+  .info-list{ display:flex; flex-direction:column; gap:16px; margin-top:26px; }
+  .info-list li{ display:flex; flex-direction:column; gap:2px; font-size:.9rem; color:var(--text-light-muted); }
+  .info-list b{ color:var(--text-light); font-weight:600; font-size:.78rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.05em; }
 
-  .admin-link-row{ margin-top:16px; text-align:center; }
-  .admin-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--ink-soft); text-decoration:none; }
-  .admin-link:hover{ color:var(--wood-dark); }
+  footer{ background:var(--ink-deep); color:var(--text-muted); padding:32px 0; }
+  .foot-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:.78rem; font-family:var(--font-mono); }
+  .foot-row a{ color:var(--accent-light); }
+  .admin-link-row{ margin-top:14px; text-align:center; }
+  .admin-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-sans); font-size:.76rem; color:var(--text-muted); }
   .admin-link::before{ content:'●'; font-size:8px; color:#3F7D4C; }
+  .admin-link:hover{ color:var(--accent-light); }
 
-  /* ═══════════════════════════════════════════════════════════════
-     DISEÑO VISUAL PREMIUM — GRADIENTES, COLORES Y DECORATIVOS
-     BRAITA TUV — Terminados UV (gris plata, provisional)
-     ═══════════════════════════════════════════════════════════════ */
+  .wa-float{ position:fixed; right:26px; bottom:26px; z-index:80; width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.28); transition:transform .3s var(--ease); }
+  .wa-float:hover{ transform:scale(1.08); }
+  .wa-float svg{ width:27px; height:27px; }
 
-  body {
-    background: linear-gradient(135deg, #131311 0%, #17160f 100%);
-  }
+  #scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent-light)); z-index:300; transition:width .12s linear; }
 
-  .hero {
-    background: linear-gradient(135deg, rgba(139,142,147,0.06) 0%, rgba(139,142,147,0.02) 100%),
-                linear-gradient(180deg, #131311 0%, #17160f 100%);
-    position: relative;
-    overflow: visible;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: -100px;
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(139,142,147,0.12) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(40px);
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -80px;
-    right: -80px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(139,142,147,0.08) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  main {
-    position: relative;
-    z-index: 1;
-  }
-
-  .info-card {
-    background: linear-gradient(135deg, #1c1c1a 0%, #17160f 100%);
-    border: 1px solid rgba(139,142,147,0.15);
-    box-shadow: 0 4px 16px rgba(139,142,147,0.06);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .info-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--wood) 0%, transparent 100%);
-    z-index: 1;
-  }
-
-  .info-card h3, .info-card ul { position: relative; z-index: 2; }
-
-  /* LÍNEA DECORATIVA EN HERO */
-  .hero h1::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--wood) 0%, transparent 100%);
-    margin: 20px auto 0;
-    border-radius: 2px;
-  }
-
-  /* BOTÓN CON EFECTO */
-  .btn-wood {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-wood::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
-    z-index: -1;
-  }
-
-  /* FOOTER CON GRADIENTE MADERA */
-  footer {
-    background: linear-gradient(135deg, rgba(139,142,147,0.04) 0%, rgba(139,142,147,0.08) 100%);
-    border-top: 2px solid rgba(139,142,147,0.15);
-  }
-
-  /* GRID SWATCHES DECORATIVO */
-  .badge-beta {
-    box-shadow: 0 2px 8px rgba(139,142,147,0.2);
-  }
-
-  /* ---- Preloader (mismo patrón que braita-innovacion.html) ---- */
-  #preloader{
-    position:fixed; inset:0; z-index:5000;
-    background:var(--paper);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    transition:opacity .7s var(--ease), visibility .7s var(--ease);
-  }
+  #preloader{ position:fixed; inset:0; z-index:5000; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity .7s var(--ease), visibility .7s var(--ease); }
   #preloader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
-  #preloader .pre-logo{
-    display:flex; align-items:center; gap:12px;
-    font-family:var(--font-display); font-weight:700; font-size:26px;
-    color:var(--ink); text-transform:uppercase; letter-spacing:.04em;
-    opacity:0; animation:preFade 1.2s var(--ease) forwards;
-  }
-  #preloader .pre-logo span{ color:var(--wood); }
-  @keyframes preFade{ 0%{opacity:0; letter-spacing:.3em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
-  #preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(229,226,222,.12); overflow:hidden; position:relative; }
-  #preloader .pre-bar::after{
-    content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%;
-    background:var(--wood); animation:preBar 1.3s var(--ease) forwards .25s;
-  }
+  #preloader .pre-logo{ display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-weight:700; font-size:28px; color:var(--text-light); text-transform:uppercase; letter-spacing:.04em; opacity:0; animation:preFade 1.2s var(--ease) forwards; }
+  #preloader .pre-logo b{ color:var(--accent-light); }
+  @keyframes preFade{ 0%{opacity:0; letter-spacing:.1em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
+  #preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(245,241,233,.14); overflow:hidden; position:relative; }
+  #preloader .pre-bar::after{ content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%; background:var(--accent); animation:preBar 1.3s var(--ease) forwards .25s; }
   @keyframes preBar{ to{ left:0; } }
-  #preloader .pre-caption{ margin-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
-  @media (prefers-reduced-motion: reduce){
-    #preloader .pre-logo{ animation:none; opacity:1; }
-    #preloader .pre-bar::after{ animation:none; left:0; }
-  }
-
+  #preloader .pre-caption{ margin-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-light-muted); }
+  @media (prefers-reduced-motion: reduce){ #preloader .pre-logo{ animation:none; opacity:1; } #preloader .pre-bar::after{ animation:none; left:0; } }
 </style>
 </head>
 <body>
 
 <div id="preloader">
-  <div class="pre-logo">BRAITA <span>TUV</span></div>
+  <div class="pre-logo">BRAITA <b>TUV</b></div>
   <div class="pre-bar"></div>
   <span class="pre-caption">Cargando</span>
 </div>
 
 <div id="toast-container"></div>
+<div id="scroll-progress"></div>
 
 <div class="group-switcher">
   <div class="gs-wrap">
     <a href="index.html" class="gs-label">Grupo Braita</a>
-    <a href="braita-innovacion.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
-    <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
-    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Machinery</a>
-    <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
-    <a href="braita-tuv.html" class="active"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
+    <a href="braita-innovacion.html"><span class="gs-dot" style="background:#FFFFFF"></span>Innovación</a>
+    <a href="braita-select.html"><span class="gs-dot" style="background:#C9974B"></span>Select</a>
+    <a href="braita-sinc.html"><span class="gs-dot" style="background:#5F9A5A"></span>Sync</a>
+    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#C9564A"></span>Machinery</a>
+    <a href="braita-tuv.html" class="active"><span class="gs-dot" style="background:#9AA1A8"></span>TUV</a>
   </div>
 </div>
 
 <header>
-  <div class="wrap nav-row">
+  <div class="wrap nav">
     <a href="#inicio" class="logo">
-      <img class="logo-mark" src="logo-tuv.png" alt="Braita TUV" style="width:32px; height:32px; object-fit:contain;">
-      <span class="logo-text">BRAITA <span>TUV</span></span>
+      <div class="logo-box"><span class="g1">BRAITA</span><span class="g2">TUV</span></div>
     </a>
-    <nav id="main-nav"><ul>
-      <li><a href="#catalogo">Acabados</a></li>
-      <li><a href="#proceso">Cómo funciona</a></li>
-      <li><a href="#mesa-control">Cotizar maquila</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul></nav>
-    <div style="display:flex; gap:14px; align-items:center;">
-      <span class="badge-beta">Maquila de acabados UV</span>
-      <a href="#" id="waTop" class="btn btn-wood" target="_blank">Cotizar</a>
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#catalogo">Acabados</a></li>
+        <li><a href="#proceso">Cómo funciona</a></li>
+        <li><a href="#mesa-control">Solicitar maquila</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="#" id="waTop" class="btn btn-accent" target="_blank">Cotizar</a>
       <button class="burger" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
-<main id="inicio">
-  <section class="hero">
-    <div class="wrap">
-      <img src="logo-tuv.png" alt="Braita TUV — Maquila de Acabados UV" style="max-width:160px; margin:0 auto 26px;">
-      <span class="eyebrow" style="justify-content:center;">Maquila de Acabados UV · Grupo Braita</span>
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap hero-inner">
+      <span class="eyebrow on-dark">Maquila de Acabados UV · Grupo Braita</span>
       <h1>Le damos acabado UV a tu material.</h1>
-      <p>TUV es la división de maquila especializada en acabados UV de Braita. Recibimos los tableros y superficies de nuestros clientes para aplicar procesos de pintura y acabado UV con altos estándares de calidad, ofreciendo soluciones precisas, uniformes y confiables para fabricantes, diseñadores e industrias que buscan resultados profesionales.</p>
+      <p class="lead">Maquilamos acabado UV sobre tus tableros y superficies, con procesos precisos y uniformes.</p>
 
-      <div class="info-card">
+      <div class="hero-info-card">
         <h3>¿En qué se diferencia de Braita Innovación?</h3>
         <ul>
-          <li>Innovación vende tableros propios que ya salen de fábrica con el acabado UV aplicado.</li>
-          <li>TUV es maquila: tú nos traes tu tablero o superficie, y nosotros le aplicamos el acabado UV.</li>
-          <li>Pensado para fabricantes, diseñadores e industrias que necesitan un proceso de acabado confiable y uniforme.</li>
+          <li>Innovación vende tableros propios, ya con el acabado UV de fábrica.</li>
+          <li>TUV es maquila: tú traes el material y nosotros aplicamos el acabado UV.</li>
+          <li>Para fabricantes, diseñadores e industrias que buscan un proceso confiable y uniforme.</li>
         </ul>
-        <p class="mono" style="font-size:11px; color:var(--ink-soft); margin-top:16px; line-height:1.6;">Pendiente de confirmar con el cliente: color oficial de marca, precios/capacidad de maquila, tiempos de entrega y fotos reales del proceso.</p>
+        <p class="note">Pendiente de confirmar: color de marca, precios, tiempos de entrega y fotos del proceso.</p>
       </div>
 
-      <div class="hero-ctas">
-        <a href="#mesa-control" class="btn btn-wood">Cotizar maquila de acabado UV</a>
-        <a href="index.html" class="btn btn-outline">Ver el resto del grupo Braita</a>
+      <div class="hero-actions">
+        <a href="#mesa-control" class="btn btn-accent">Solicita tu acabado UV</a>
+        <a href="index.html" class="btn btn-outline-dark">Ver el resto del grupo Braita</a>
       </div>
     </div>
-
     <div class="trust-strip">
       <div class="wrap trust-grid">
         <div class="trust-item">Maquila para terceros</div>
@@ -442,70 +326,63 @@
        alto brillo, mate, sincronizado, metalizado y rayado — aquí en TUV
        representan los procesos que se le pueden aplicar al material que
        trae el cliente, no colores de catálogo propio.
-       Convención de imágenes compartida con el resto del sitio:
-         imagen75.png -> Alto Brillo      imagen78.png -> Metalizado
-         imagen76.png -> Mate             imagen79.png -> Rayado
-         imagen77.png -> Sincronizado
-       Cada <img> ya tiene onerror: si el archivo no existe se ve el
-       degradado de fondo, y en cuanto subas la foto con el nombre
-       exacto aparece sola, sin tocar código.
   ============================================================ -->
   <section id="catalogo">
     <div class="wrap">
-      <div class="cat-head reveal">
+      <div class="sec-head reveal">
         <span class="eyebrow">Acabados</span>
         <h2>Tipos de acabado UV que aplicamos</h2>
-        <p>Ejemplo de los procesos de acabado que ofrecemos sobre tu material — fotos reales del proceso pendientes de confirmar con Braita.</p>
+        <p>Procesos de acabado UV que aplicamos sobre tu material.</p>
       </div>
-      <div class="grid-select">
-        <div class="sel-card reveal">
-          <div class="sel-swatch" style="background:linear-gradient(150deg,#E8E6E1,#C7C2B4);">
+      <div class="cat-grid">
+        <div class="cat-card reveal">
+          <div class="cat-media" style="background:linear-gradient(150deg,#E8E6E1,#C7C2B4);">
             <img src="imagen75.png" alt="Alto Brillo" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
-          <div class="sel-body">
+          <div class="cat-body">
             <h3>Alto Brillo</h3>
             <p>Acabado espejo de alto impacto visual.</p>
-            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+            <span class="cat-tag">Ejemplo · pendiente confirmar</span>
           </div>
         </div>
-        <div class="sel-card reveal">
-          <div class="sel-swatch" style="background:linear-gradient(150deg,#8B8E93,#5F6368);">
+        <div class="cat-card reveal">
+          <div class="cat-media" style="background:linear-gradient(150deg,#8B8E93,#5F6368);">
             <img src="imagen76.png" alt="Mate" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
-          <div class="sel-body">
+          <div class="cat-body">
             <h3>Mate</h3>
             <p>Acabado uniforme sin reflejos, tacto suave.</p>
-            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+            <span class="cat-tag">Ejemplo · pendiente confirmar</span>
           </div>
         </div>
-        <div class="sel-card reveal">
-          <div class="sel-swatch" style="background:linear-gradient(150deg,#8c6a3f,#5a4128);">
+        <div class="cat-card reveal">
+          <div class="cat-media" style="background:linear-gradient(150deg,#8c6a3f,#5a4128);">
             <img src="imagen77.png" alt="Sincronizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
-          <div class="sel-body">
+          <div class="cat-body">
             <h3>Sincronizado</h3>
             <p>Textura y veta alineadas para un efecto realista.</p>
-            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+            <span class="cat-tag">Ejemplo · pendiente confirmar</span>
           </div>
         </div>
-        <div class="sel-card reveal">
-          <div class="sel-swatch" style="background:linear-gradient(150deg,#c9a876,#8a6a42);">
+        <div class="cat-card reveal">
+          <div class="cat-media" style="background:linear-gradient(150deg,#c9a876,#8a6a42);">
             <img src="imagen78.png" alt="Metalizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
-          <div class="sel-body">
+          <div class="cat-body">
             <h3>Metalizado</h3>
             <p>Efecto metálico con acabado de alto impacto.</p>
-            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+            <span class="cat-tag">Ejemplo · pendiente confirmar</span>
           </div>
         </div>
-        <div class="sel-card reveal">
-          <div class="sel-swatch" style="background:linear-gradient(150deg,#2A2C2E,#111214);">
+        <div class="cat-card reveal">
+          <div class="cat-media" style="background:linear-gradient(150deg,#2A2C2E,#111214);">
             <img src="imagen79.png" alt="Rayado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
-          <div class="sel-body">
+          <div class="cat-body">
             <h3>Rayado</h3>
             <p>Textura lineal para un acabado con carácter.</p>
-            <span class="sel-tag">Ejemplo · pendiente confirmar</span>
+            <span class="cat-tag">Ejemplo · pendiente confirmar</span>
           </div>
         </div>
       </div>
@@ -519,30 +396,30 @@
   ============================================================ -->
   <section id="proceso">
     <div class="wrap">
-      <div class="reveal" style="margin-bottom:44px;">
-        <span class="eyebrow">Cómo funciona</span>
-        <h2 style="font-size:clamp(24px,3.2vw,34px); margin-top:14px; max-width:600px;">De tu material a un acabado UV profesional.</h2>
+      <div class="sec-head on-dark reveal">
+        <span class="eyebrow on-dark">Cómo funciona</span>
+        <h2 style="color:var(--text-light);">De tu material a un acabado UV profesional.</h2>
       </div>
-      <div class="proceso-flow">
-        <div class="flow-card reveal">
+      <div class="proceso-grid">
+        <div class="proceso-item reveal">
           <span class="flow-num">01 · Recepción</span>
           <h3>Nos envías tu material</h3>
-          <p>Recibimos tus tableros o superficies con las especificaciones del acabado que buscas.</p>
+          <p>Recibimos tu material con las especificaciones del acabado que buscas.</p>
         </div>
-        <div class="flow-card reveal">
+        <div class="proceso-item reveal">
           <span class="flow-num">02 · Preparación</span>
           <h3>Preparación de superficie</h3>
-          <p>Revisamos y preparamos cada pieza para asegurar una aplicación uniforme.</p>
+          <p>Preparamos cada pieza para una aplicación uniforme.</p>
         </div>
-        <div class="flow-card reveal">
+        <div class="proceso-item reveal">
           <span class="flow-num">03 · Aplicación</span>
           <h3>Aplicación de acabado UV</h3>
-          <p>Aplicamos el proceso de pintura y acabado UV elegido, con altos estándares de calidad.</p>
+          <p>Aplicamos el acabado UV elegido con altos estándares de calidad.</p>
         </div>
-        <div class="flow-card reveal">
+        <div class="proceso-item reveal">
           <span class="flow-num">04 · Entrega</span>
           <h3>Control de calidad y entrega</h3>
-          <p>Revisamos cada lote antes de entregarlo, con resultados precisos y confiables.</p>
+          <p>Revisamos cada lote antes de entregarlo.</p>
         </div>
       </div>
     </div>
@@ -550,24 +427,25 @@
 
   <!-- ============================================================
        MESA DE CONTROL — mismo sistema que braita-innovacion.html
-       (ver mesa-control.js), adaptado a un servicio de maquila: aquí
-       el cliente especifica las piezas que va a mandar y el tipo de
-       acabado UV que quiere que se les aplique, en vez de elegir un
-       tablero que vendemos nosotros.
+       (ver mesa-control.js): arma un listado de piezas, calcula un
+       resumen en vivo y lo manda por WhatsApp; guarda copia en la
+       misma base de Supabase (tabla pedidos_maquila). Aquí el
+       cliente especifica las piezas que va a mandar y el tipo de
+       acabado UV que quiere que se les aplique.
   ============================================================ -->
-  <section id="mesa-control" class="mesa-control-section">
+  <section id="mesa-control">
     <div class="wrap">
-      <div class="reveal">
+      <div class="sec-head reveal">
         <span class="eyebrow">Cotizar Maquila</span>
         <h2>Arma tu Solicitud de Maquila</h2>
-        <p>Añade las piezas que vas a enviar para su acabado UV. El sistema estructura el listado técnico listo para mandarse por WhatsApp.</p>
+        <p>Añade las piezas a maquilar; el listado queda listo para enviarse por WhatsApp.</p>
       </div>
 
       <div class="mesa-layout">
-        <div class="blueprint-panel reveal">
+        <div class="mesa-panel reveal">
           <div class="panel-header">
             <h3>Listado de Piezas</h3>
-            <span class="mono" style="font-size:11px; color:var(--ink-soft);" id="row-counter">1 Pieza añadida</span>
+            <span class="mono" style="font-size:11px; color:var(--text-secondary);" id="row-counter">1 Pieza añadida</span>
           </div>
 
           <div class="table-responsive">
@@ -613,11 +491,11 @@
             <div class="summary-item"><span class="summary-num" id="sumCanto">0.00 m</span><span class="summary-label">Canto lineal</span></div>
             <div class="summary-item"><span class="summary-num" id="sumTableros">0</span><span class="summary-label">Tableros aprox.*</span></div>
           </div>
-          <p class="mono" style="font-size:10.5px; color:var(--ink-soft); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma. Referencia rápida, no sustituye la cotización formal.</p>
+          <p class="mono" style="font-size:10.5px; color:var(--text-secondary); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma; no sustituye la cotización formal.</p>
           <button class="btn-copy-summary" type="button" onclick="copiarResumen()">Copiar resumen del pedido</button>
         </div>
 
-        <div class="control-form reveal">
+        <div class="mesa-panel reveal">
           <div class="form-group">
             <label for="client-name">Nombre Comercial / Solicitante</label>
             <input type="text" id="client-name" required placeholder="Ej: Marco Gutiérrez">
@@ -644,27 +522,27 @@
             <label for="client-notes">Notas Especiales</label>
             <textarea id="client-notes" placeholder="Indicar tipo de material que envías, color base, etc..."></textarea>
           </div>
-          <button class="btn btn-wood" style="width:100%; margin-top:8px;" onclick="processOrderToWhatsApp()">Exportar y Enviar por WhatsApp</button>
+          <button class="btn btn-accent" style="width:100%; margin-top:8px; justify-content:center;" onclick="processOrderToWhatsApp()">Exportar y Enviar por WhatsApp</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contacto" class="contacto-section">
-    <div class="wrap contacto-grid">
+  <section id="contacto">
+    <div class="wrap contacto-layout">
       <div class="reveal">
-        <span class="eyebrow">Contacto</span>
-        <h2 style="font-size:clamp(24px,3.2vw,32px); margin:14px 0 10px;">¿Tienes material para maquilar?</h2>
-        <p style="color:var(--ink-soft); max-width:44ch;">Braita TUV comparte oficina y contacto con el resto del grupo, en Ocotlán, Jalisco.</p>
+        <span class="eyebrow on-dark">Contacto</span>
+        <h2 style="color:var(--text-light); margin:14px 0 10px;">¿Tienes material para maquilar?</h2>
+        <p style="color:var(--text-light-muted); max-width:44ch;">Braita TUV comparte oficina y contacto con el resto del grupo Braita, en Ocotlán, Jalisco.</p>
         <ul class="info-list">
-          <li><span><b>Dirección</b>Av. Universidad #1350, Ocotlán, Jal.</span></li>
-          <li><span><b>Teléfono</b>392 931 3919</span></li>
-          <li><span><b>WhatsApp</b>392 128 7299</span></li>
-          <li><span><b>Correo</b>Tableros.braita@gmail.com</span></li>
+          <li><b>Dirección</b><span>Av. Universidad #1350, Ocotlán, Jal.</span></li>
+          <li><b>Teléfono</b><span>392 931 3919</span></li>
+          <li><b>WhatsApp</b><span>392 128 7299</span></li>
+          <li><b>Correo</b><span>Tableros.braita@gmail.com</span></li>
         </ul>
       </div>
       <div class="reveal" style="display:flex; align-items:center; justify-content:center;">
-        <a href="#" id="waBottom" class="btn btn-wood" target="_blank" style="padding:20px 36px; font-size:15px;">Escribir por WhatsApp →</a>
+        <a href="#" id="waBottom" class="btn btn-accent" target="_blank" style="padding:20px 36px; font-size:15px;">Escribir por WhatsApp →</a>
       </div>
     </div>
   </section>
@@ -673,18 +551,23 @@
 <footer>
   <div class="wrap foot-row">
     <span>© 2026 Braita TUV — maquila de acabados UV del Grupo Braita, Ocotlán, Jal.</span>
-    <a href="index.html" style="color:var(--wood-dark);">← Volver al grupo Braita</a>
+    <a href="index.html">← Volver al grupo Braita</a>
   </div>
   <div class="wrap admin-link-row">
     <a href="braita-innovacion.html#panel-admin" class="admin-link">Ver historial de pedidos (panel administrador)</a>
   </div>
 </footer>
 
+<a href="#" id="waFloat" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 448 512" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+
 <script>
-  const WA = '523921287299'; // Número real de Braita (antes era 523929313919, incorrecto)
+  const WA = '523921287299'; // Número real de Braita
   const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
   document.getElementById('waTop').href = wa('Hola, vi Braita TUV y quiero información sobre el servicio de maquila de acabados UV.');
   document.getElementById('waBottom').href = wa('Hola, vi Braita TUV y quiero información sobre el servicio de maquila de acabados UV.');
+  document.getElementById('waFloat').href = wa('Hola, vi Braita TUV y quiero información sobre el servicio de maquila de acabados UV.');
 
   window.addEventListener('load', () => {
     setTimeout(() => {

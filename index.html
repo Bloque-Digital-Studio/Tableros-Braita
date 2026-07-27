@@ -5,733 +5,333 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Braita Group — Acabados UV, Tableros y Maquinaria | Ocotlán, Jalisco</title>
 <meta name="description" content="Braita Group: acabados UV, tableros MDF, cantos y maquinaria industrial. Cinco marcas especializadas trabajando en conjunto desde Ocotlán, Jalisco.">
+<link rel="icon" href="logo-group-favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
 /* ==========================================================================
-   BRAITA GROUP — Design tokens
-   Display: Space Grotesk / Body: Inter
+   BRAITA GROUP — Design tokens (sistema "página prueba")
    ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
-
 :root{
-  /* base */
-  --ink-950:#0a0a09;
-  --ink-900:#131210;
-  --ink-850:#19170f;
-  --ink-800:#211e17;
-  --line:rgba(243,239,230,0.10);
-  --line-strong:rgba(243,239,230,0.18);
-  --paper:#f2ede2;
-  --paper-dim:#e7e0d0;
-  --bone:#c9c2b0;
-  --ash:#8f8a7d;
-
-  /* accent */
-  --gold:#c8974f;
-  --gold-light:#e3c48b;
-
-  /* brand accents */
-  --b-innovacion:#d8d2c0;
-  --b-select:#c8974f;
-  --b-sync:#78915c;
-  --b-machinery:#af3a2e;
-  --b-tuv:#9497a1;
-
+  --ink:#0E0E0E;
+  --ink-soft:#1C1B19;
+  --ink-deep:#050505;
+  --cream:#F2ECE1;
+  --cream-deep:#E6DCC8;
+  --paper:#FBF9F5;
+  --gold:#C9974B;
+  --gold-dark:#A97D34;
+  --gold-light:#E4C68C;
+  --text-primary:#1C1B19;
+  --text-secondary:#5A564D;
+  --text-muted:#8B8781;
+  --text-light:#F5F1E9;
+  --text-light-muted:#C7C0B2;
+  --line:#DED4BF;
+  --line-dark:#33312C;
   --font-display:'Space Grotesk', sans-serif;
-  --font-body:'Inter', sans-serif;
-
-  --container:1240px;
-  --radius:2px;
-  --ease:cubic-bezier(.16,.8,.24,1);
-  /* premium, slow, "creamy" curve — soft acceleration, long gentle settle */
-  --ease-premium:cubic-bezier(.19,1,.22,1);
-  /* Genuine ease-IN-out: starts slow, builds speed through the middle,
-     settles slowly at the end. This is what actually reads as a slow
-     "unfold" — a fast-start/slow-tail curve (like --ease-premium above)
-     concentrates almost all the visible motion in the first ~300ms no
-     matter how long the transition-duration is, which is why the old
-     version still looked like it "popped" even at 1.9s. */
-  --ease-unfold:cubic-bezier(.76,0,.24,1);
-  --dur-fast:.4s;
-  --dur-medium:.9s;
-  --dur-slow:1.4s;
-  --dur-reveal:2.2s; /* dedicated, slower — only for scroll "unfold", never for hover */
+  --font-sans:'Inter', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+  --ease: cubic-bezier(.22,.61,.36,1);
 }
-
-*,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth; overflow-x:hidden;}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; overflow-x:hidden; }
 body{
-  margin:0;
-  background:var(--ink-950);
-  color:var(--paper);
-  font-family:var(--font-body);
-  font-size:16px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  background:var(--paper); color:var(--text-primary); font-family:var(--font-sans);
+  line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-wrap:break-word;
 }
-img{max-width:100%;display:block;}
-a{color:inherit;text-decoration:none;}
-ul{list-style:none;margin:0;padding:0;}
-h1,h2,h3,h4{font-family:var(--font-display);margin:0;letter-spacing:-0.01em;}
-p{margin:0;}
-button{font:inherit;}
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+h1,h2,h3,h4{ font-family:var(--font-display); font-weight:700; letter-spacing:-.01em; }
+.wrap{ max-width:1240px; margin:0 auto; padding:0 32px; }
+@media (max-width:640px){ .wrap{ padding:0 20px; } }
+section{ padding:100px 0; }
+@media (max-width:768px){ section{ padding:64px 0; } }
+section[id]{ scroll-margin-top:96px; }
+.mono{ font-family:var(--font-mono); }
 
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
 }
 
-.wrap{max-width:var(--container);margin:0 auto;padding:0 32px;}
+.eyebrow{ font-family:var(--font-mono); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-dark); display:inline-flex; align-items:center; gap:10px; }
+.eyebrow::before{ content:''; width:22px; height:2px; background:var(--gold); }
+.eyebrow.on-dark{ color:var(--gold-light); }
+.eyebrow.on-dark::before{ background:var(--gold); }
 
-.eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--font-display);
-  font-size:12px;font-weight:600;
-  letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--gold);
-}
-.eyebrow::before{
-  content:"";width:22px;height:1px;background:var(--gold);
-}
+.reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.is-visible, .reveal.in, .reveal.active{ opacity:1; transform:translateY(0); }
 
-.btn{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:15px 28px;
-  font-family:var(--font-display);
-  font-size:13px;font-weight:600;
-  letter-spacing:0.06em;text-transform:uppercase;
-  border-radius:var(--radius);
-  border:1px solid transparent;
-  cursor:pointer;
-  transition:background var(--dur-medium) var(--ease-premium),
-             color var(--dur-medium) var(--ease-premium),
-             border-color var(--dur-medium) var(--ease-premium),
-             transform var(--dur-medium) var(--ease-premium),
-             box-shadow var(--dur-medium) var(--ease-premium);
-  white-space:nowrap;
-}
-.btn-primary{background:var(--gold);color:var(--ink-950);}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(200,151,79,.45);}
-.btn-ghost{border-color:var(--line-strong);color:var(--paper);background:transparent;}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-2px);}
-.btn svg{width:15px;height:15px;transition:transform var(--dur-medium) var(--ease-premium);}
-.btn:hover svg{transform:translateX(4px);}
-
-/* ---------------------------------- HEADER ---------------------------------- */
-.site-header{
-  position:sticky;top:0;left:0;right:0;z-index:100;
-  padding:22px 0;
-  background:linear-gradient(180deg, rgba(10,10,9,.92), rgba(10,10,9,0));
-  transition:background .35s var(--ease), padding .35s var(--ease), border-color .35s var(--ease);
-  border-bottom:1px solid transparent;
-}
-.site-header.is-scrolled{
-  padding:14px 0;
-  background:rgba(10,10,9,.86);
-  backdrop-filter:blur(10px);
-  border-bottom-color:var(--line);
-}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;}
-
-.logo{display:flex;align-items:center;gap:10px;}
-.logo-mark{
-  border:1px solid var(--line-strong);
-  padding:7px 12px;
-  font-family:var(--font-display);font-weight:700;font-size:17px;
-  letter-spacing:0.04em;
-}
-.logo-mark span{display:block;font-size:9px;font-weight:500;letter-spacing:0.32em;color:var(--gold);text-align:center;margin-top:2px;}
-
-.main-nav ul{display:flex;gap:34px;}
-.main-nav a{
-  font-family:var(--font-display);font-size:12.5px;font-weight:600;
-  letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--bone);
-  position:relative;padding-bottom:4px;
-  transition:color .25s;
-}
-.main-nav a::after{
-  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
-  background:var(--gold);transition:width .3s var(--ease);
-}
-.main-nav a:hover{color:var(--paper);}
-.main-nav a:hover::after{width:100%;}
-
-.header-actions{display:flex;align-items:center;gap:18px;}
-.nav-toggle{display:none;background:none;border:none;color:var(--paper);cursor:pointer;padding:10px;margin:-10px;}
-.nav-toggle svg{width:24px;height:24px;}
-
-@media (max-width:900px){
-  .main-nav{
-    position:fixed;inset:0;top:0;
-    background:var(--ink-950);
-    display:flex;align-items:center;justify-content:center;
-    transform:translateX(100%);
-    transition:transform .4s var(--ease);
-    z-index:99;
-  }
-  .main-nav.is-open{transform:translateX(0);}
-  .main-nav ul{flex-direction:column;align-items:center;gap:30px;}
-  .main-nav a{font-size:20px;}
-  .header-actions .btn-primary{display:none;}
-  .nav-toggle{display:block;z-index:101;}
-}
-
-/* ---------------------------------- HERO ---------------------------------- */
-.hero{
-  position:relative;
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:64px 0 90px;
-  overflow:hidden;
-}
-.hero .wrap{display:block;max-width:640px;}
-.hero-copy h1{
-  font-size:clamp(2.6rem, 4.6vw, 4.4rem);
-  font-weight:700;line-height:1.04;
-  color:var(--paper);
-}
-.hero-copy h1 em{
-  font-style:normal;color:var(--gold);
-}
-.hero-copy .eyebrow{margin-bottom:22px;}
-.hero-copy p.lead{
-  margin-top:24px;max-width:480px;
-  color:var(--bone);font-size:16.5px;line-height:1.75;
-}
-.hero-actions{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
-
-.hero-meta{display:flex;gap:36px;margin-top:56px;padding-top:28px;border-top:1px solid var(--line);}
-.hero-meta div{display:flex;flex-direction:column;gap:4px;}
-.hero-meta strong{font-family:var(--font-display);font-size:1.6rem;color:var(--paper);}
-.hero-meta span{font-size:12px;letter-spacing:0.04em;color:var(--ash);text-transform:uppercase;}
-
-/* Fondo del hero: foto real (imagen29-hub.png) con degradado a la izquierda
-   para mantener el texto legible, mismo patrón que ya usa
-   braita-innovacion.html (.hero-bg-image) — con onerror: si el archivo no
-   existe todavía, la capa se oculta sola y el hero se ve igual que antes
-   (solo el gradiente de fondo). En cuanto subas la foto con ese nombre
-   exacto, aparece sola sin tocar código. */
-.hero .wrap{position:relative;z-index:1;}
-.hero-bg-image{
-  position:absolute;inset:0;z-index:0;
-  overflow:hidden;pointer-events:none;
-}
-.hero-bg-image img{
-  width:100%;height:100%;object-fit:cover;opacity:0;
-  transition:opacity .6s ease;
-}
-.hero-bg-image::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(100deg, rgba(10,10,9,.94) 0%, rgba(10,10,9,.7) 38%, rgba(10,10,9,.25) 68%, rgba(10,10,9,.05) 100%);
-}
-
-@media (max-width:900px){
-  .hero-meta{gap:22px;flex-wrap:wrap;}
-}
-
-/* ---------------------------------- SECTION SHELLS ---------------------------------- */
-section{position:relative;}
-.section-pad{padding:120px 0;}
-.band-dark{background:var(--ink-950);}
-.band-alt{background:var(--ink-900);}
-.band-paper{background:var(--paper);color:var(--ink-950);}
-.band-paper .eyebrow{color:#9a6a2c;}
-.band-paper .eyebrow::before{background:#9a6a2c;}
-
-.section-head{max-width:640px;margin-bottom:64px;}
-.section-head h2{font-size:clamp(1.9rem,2.8vw,2.7rem);font-weight:700;margin-top:16px;}
-.section-head p{margin-top:18px;color:var(--ash);font-size:16px;line-height:1.7;}
-.band-paper .section-head p{color:#5b5648;}
-
-/* ---------------------------------- ESENCIA (pillars) ---------------------------------- */
-.pillars{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
-  background:rgba(10,10,9,0.08);
-  border:1px solid rgba(10,10,9,0.08);
-}
-.pillar{
-  background:var(--paper);padding:36px 26px;
-  display:flex;flex-direction:column;gap:16px;
-}
-.pillar svg{width:30px;height:30px;stroke:#9a6a2c;}
-.pillar h3{font-size:15px;font-weight:600;letter-spacing:0.03em;}
-.pillar p{font-size:14px;color:#5b5648;line-height:1.6;}
-
-@media (max-width:900px){
-  .pillars{grid-template-columns:repeat(2,1fr);}
-}
-
-/* ---------------------------------- STATS ---------------------------------- */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);}
-.stat{
-  padding:44px 30px;border-right:1px solid var(--line);
-  display:flex;flex-direction:column;gap:10px;
-}
-.stat:last-child{border-right:none;}
-.stat strong{font-family:var(--font-display);font-size:2.6rem;color:var(--gold-light);font-weight:700;}
-.stat span{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ash);}
-
-@media (max-width:900px){
-  .stats{grid-template-columns:repeat(2,1fr);}
-  .stat{border-bottom:1px solid var(--line);}
-}
-
-/* ---------------------------------- MARCAS (brand cards) ---------------------------------- */
-.brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
-.brand-card{
-  --accent: var(--gold);
-  background:var(--ink-900);
-  padding:44px 36px 40px;
-  min-height:400px;
-  display:flex;flex-direction:column;
-  position:relative;
-  overflow:hidden;
-  transition:background var(--dur-slow) var(--ease-premium),
-             transform var(--dur-slow) var(--ease-premium),
-             box-shadow var(--dur-slow) var(--ease-premium);
-}
-.brand-card::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--accent);
-}
-.brand-card::after{
-  content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;
-  border-radius:50%;
-  background:var(--accent);opacity:0;filter:blur(40px);
-  transition:opacity var(--dur-slow) var(--ease-premium);
-}
-.brand-card:hover{
-  background:var(--ink-850);
-  transform:translateY(-8px);
-  box-shadow:0 34px 60px -28px rgba(0,0,0,.6);
-}
-.brand-card:hover::after{opacity:.16;}
-.brand-card:hover::after{opacity:.16;}
-
-.brand-card.card-innovacion{--accent:var(--b-innovacion);}
-.brand-card.card-select{--accent:var(--b-select);}
-.brand-card.card-sync{--accent:var(--b-sync);}
-.brand-card.card-machinery{--accent:var(--b-machinery);}
-.brand-card.card-tuv{--accent:var(--b-tuv);}
-
-.brand-mark{
-  width:64px;height:64px;border-radius:8px;
-  background:#fff;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:26px;
-  padding:8px;
-  box-shadow:0 12px 24px -12px rgba(0,0,0,.5);
-}
-.brand-mark img{width:100%;height:100%;object-fit:contain;}
-.brand-mark.text-mark{
-  background:transparent;border:1px solid var(--accent);
-  font-family:var(--font-display);font-weight:700;font-size:20px;
-  color:var(--accent);
-}
-
-.brand-card h3{font-size:1.5rem;font-weight:700;margin-bottom:6px;}
-.brand-card .brand-sub{
-  font-family:var(--font-display);font-size:11px;font-weight:600;
-  letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);
-  margin-bottom:18px;
-}
-.brand-card p.desc{color:var(--bone);font-size:14.5px;line-height:1.7;flex:1;}
-.brand-card .feats{margin:20px 0 26px;display:flex;flex-direction:column;gap:9px;}
-.brand-card .feats li{
-  font-size:13px;color:var(--ash);display:flex;align-items:center;gap:10px;
-}
-.brand-card .feats li::before{
-  content:"";width:5px;height:5px;background:var(--accent);border-radius:50%;flex:none;
-}
-.brand-card .card-link{
-  margin-top:auto;
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-display);font-size:12px;font-weight:600;
-  letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--paper);
-  padding-top:18px;border-top:1px solid var(--line);
-}
-.brand-card .card-link svg{width:14px;height:14px;transition:transform .3s var(--ease);}
-.brand-card:hover .card-link svg{transform:translateX(4px);}
-.brand-card.card-wide{grid-column:span 1;}
-
-@media (max-width:1050px){
-  .brand-grid{grid-template-columns:repeat(2,1fr);}
-}
-@media (max-width:640px){
-  .brand-grid{grid-template-columns:1fr;}
-}
-
-/* ---------------------------------- UBICACION / CONTACTO ---------------------------------- */
-.contact-block{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;
-  border:1px solid var(--line);
-}
-.contact-info{padding:56px;}
-.contact-info h2{font-size:2rem;margin-top:14px;}
-.contact-info p.lead{color:var(--bone);margin-top:16px;max-width:420px;}
-.info-list{margin-top:40px;display:flex;flex-direction:column;gap:26px;}
-.info-list .row{display:flex;gap:16px;align-items:flex-start;}
-.info-list svg{width:20px;height:20px;stroke:var(--gold);flex:none;margin-top:2px;}
-.info-list strong{display:block;font-family:var(--font-display);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ash);margin-bottom:4px;}
-.info-list span, .info-list a{font-size:15px;color:var(--paper);}
-
-.map-visual{
-  position:relative;background:var(--ink-900);
-  display:flex;align-items:center;justify-content:center;
-  min-height:380px;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size:36px 36px;
-}
-.map-pin{display:flex;flex-direction:column;align-items:center;gap:14px;}
-.map-pin svg{width:40px;height:40px;stroke:var(--gold);animation:pulse-pin 2.6s ease-in-out infinite;}
-.map-pin span{font-family:var(--font-display);font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--paper);}
-.map-pin small{color:var(--ash);font-size:12.5px;}
-@keyframes pulse-pin{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-
-@media (max-width:900px){
-  .contact-block{grid-template-columns:1fr;}
-  .contact-info{padding:40px 28px;}
-}
-
-/* ---------------------------------- PROYECTOS ---------------------------------- */
-.proy-filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;}
-.proy-filter-btn{
-  font-family:var(--font-display);font-size:12px;font-weight:600;
-  letter-spacing:0.06em;text-transform:uppercase;
-  padding:10px 18px;border:1px solid var(--line-strong);border-radius:var(--radius);
-  background:transparent;color:var(--bone);cursor:pointer;
-  transition:all .25s var(--ease);
-}
-.proy-filter-btn:hover{border-color:var(--gold);color:var(--paper);}
-.proy-filter-btn.is-active{background:var(--gold);border-color:var(--gold);color:var(--ink-950);}
-
-.proyecto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:44px;}
-.proyecto-card{
-  position:relative;background:var(--ink-900);overflow:hidden;
-  display:block;transition:transform var(--dur-slow) var(--ease-premium);
-}
-.proyecto-card.is-hidden{display:none;}
-.proyecto-card:hover{transform:translateY(-6px);}
-.proyecto-media{position:relative;aspect-ratio:4/3.1;overflow:hidden;background:linear-gradient(150deg,var(--ink-850),var(--ink-950));}
-.proyecto-media img{width:100%;height:100%;object-fit:cover;opacity:0;position:absolute;inset:0;transition:opacity .5s var(--ease), transform var(--dur-slow) var(--ease-premium);}
-.proyecto-card:hover .proyecto-media img{transform:scale(1.06);}
-.proyecto-media::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(0deg, rgba(10,10,9,.82) 0%, rgba(10,10,9,.05) 55%);
-}
-.proyecto-cat{
-  position:absolute;top:14px;left:14px;z-index:2;
-  font-family:var(--font-display);font-size:10.5px;font-weight:600;
-  letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-950);
-  background:var(--gold-light);padding:5px 10px;border-radius:2px;
-}
-.proyecto-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px 24px 24px;}
-.proyecto-body h3{font-size:1.15rem;font-weight:700;color:var(--paper);margin-bottom:6px;}
-.proyecto-body .proyecto-meta{font-size:12.5px;color:var(--bone);}
-.proyecto-body .proyecto-meta b{color:var(--gold-light);font-weight:600;}
-
-@media (max-width:1050px){ .proyecto-grid{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:640px){ .proyecto-grid{grid-template-columns:1fr;} }
-
-/* ---------------------------------- CATÁLOGOS ---------------------------------- */
-.cat-toolbar{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-top:8px;}
-.cat-filters{display:flex;gap:10px;flex-wrap:wrap;}
-.cat-filter-btn{
-  font-family:var(--font-display);font-size:12px;font-weight:600;
-  letter-spacing:0.06em;text-transform:uppercase;
-  padding:10px 18px;border:1px solid var(--line-strong);border-radius:var(--radius);
-  background:transparent;color:var(--bone);cursor:pointer;
-  transition:all .25s var(--ease);
-}
-.cat-filter-btn:hover{border-color:var(--gold);color:var(--paper);}
-.cat-filter-btn.is-active{background:var(--gold);border-color:var(--gold);color:var(--ink-950);}
-
-.catalogo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:36px;}
-.catalogo-card{background:var(--ink-900);transition:transform var(--dur-slow) var(--ease-premium), box-shadow var(--dur-slow) var(--ease-premium);}
-.catalogo-card.is-hidden{display:none;}
-.catalogo-card:hover{transform:translateY(-6px);box-shadow:0 30px 50px -26px rgba(0,0,0,.55);}
-.catalogo-swatch{position:relative;aspect-ratio:1/0.82;overflow:hidden;}
-.catalogo-swatch img{width:100%;height:100%;object-fit:cover;opacity:0;position:absolute;inset:0;}
-.catalogo-body{padding:24px 26px 26px;}
-.catalogo-body h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;}
-.catalogo-body .cat-meta{font-size:13px;color:var(--ash);line-height:1.8;}
-.catalogo-body .cat-meta b{color:var(--bone);font-weight:600;}
-.catalogo-tag{
-  display:inline-flex;align-items:center;gap:6px;margin-top:14px;
-  font-family:var(--font-display);font-size:10.5px;font-weight:600;
-  letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-light);
-}
-.catalogo-tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);}
-
-@media (max-width:1050px){ .catalogo-grid{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:640px){ .catalogo-grid{grid-template-columns:1fr;} .cat-toolbar{align-items:flex-start;} }
-
-.cat-utility{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:1px;border-top:1px solid var(--line);}
-.cat-utility-item{background:var(--ink-900);padding:32px 28px;}
-.cat-utility-item h4{font-family:var(--font-display);font-size:14px;font-weight:600;margin-bottom:8px;}
-.cat-utility-item p{font-size:13px;color:var(--ash);line-height:1.6;}
-.cat-utility-item a{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-light);}
-.cat-utility-item.is-cta{background:var(--gold);color:var(--ink-950);}
-.cat-utility-item.is-cta h4{color:var(--ink-950);}
-.cat-utility-item.is-cta p{color:rgba(10,10,9,.72);}
-.cat-utility-item.is-cta a{color:var(--ink-950);}
-
-@media (max-width:900px){ .cat-utility{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:560px){ .cat-utility{grid-template-columns:1fr;} }
-
-/* ---------------------------------- CONTACT FORM ---------------------------------- */
-.contact-right{display:flex;flex-direction:column;}
-.map-embed{position:relative;min-height:220px;flex:1;}
-.map-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05);}
-.map-embed-label{
-  position:absolute;top:14px;left:14px;z-index:2;
-  background:rgba(10,10,9,.82);backdrop-filter:blur(6px);
-  padding:8px 14px;border:1px solid var(--line-strong);border-radius:2px;
-  font-family:var(--font-display);font-size:11.5px;letter-spacing:0.06em;
-  display:flex;align-items:center;gap:8px;
-}
-.map-embed-label svg{width:14px;height:14px;stroke:var(--gold);}
-
-.contact-form{padding:40px 40px 44px;border-top:1px solid var(--line);}
-.contact-form .form-title{font-family:var(--font-display);font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.form-field{display:flex;flex-direction:column;gap:8px;}
-.form-field.full{grid-column:1/-1;}
-.form-field label{font-size:12px;color:var(--ash);letter-spacing:0.02em;}
-.form-field input,.form-field select,.form-field textarea{
-  background:var(--ink-950);border:1px solid var(--line-strong);border-radius:var(--radius);
-  color:var(--paper);font-family:var(--font-body);font-size:14px;
-  padding:12px 14px;transition:border-color .2s, box-shadow .2s;
-}
-.form-field textarea{resize:vertical;min-height:96px;}
-.form-field input:focus,.form-field select:focus,.form-field textarea:focus{
-  outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,151,79,.15);
-}
-.contact-form .btn{margin-top:22px;width:100%;justify-content:center;}
-
-@media (max-width:560px){ .form-grid{grid-template-columns:1fr;} .contact-form{padding:32px 24px 36px;} }
-
-/* ---------------------------------- TRUST ROW ---------------------------------- */
-.trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:1px;}
-.trust-item-full{background:var(--ink-950);padding:30px 26px;display:flex;gap:14px;align-items:flex-start;}
-.trust-item-full svg{width:22px;height:22px;stroke:var(--gold);flex:none;margin-top:2px;}
-.trust-item-full h5{font-family:var(--font-display);font-size:13.5px;font-weight:600;margin-bottom:5px;}
-.trust-item-full p{font-size:12.5px;color:var(--ash);line-height:1.6;}
-
-@media (max-width:900px){ .trust-row{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:560px){ .trust-row{grid-template-columns:1fr;} }
-
-/* ---- Cascade stagger for the new grids (same local nth-child pattern) ---- */
-.proyecto-grid.reveal.is-visible .proyecto-card,
-.catalogo-grid.reveal.is-visible .catalogo-card,
-.trust-row.reveal.is-visible .trust-item-full{
-  animation:card-rise .7s var(--ease-premium) both;
-}
-.proyecto-grid .proyecto-card:nth-child(1), .catalogo-grid .catalogo-card:nth-child(1), .trust-row .trust-item-full:nth-child(1){animation-delay:.08s;}
-.proyecto-grid .proyecto-card:nth-child(2), .catalogo-grid .catalogo-card:nth-child(2), .trust-row .trust-item-full:nth-child(2){animation-delay:.18s;}
-.proyecto-grid .proyecto-card:nth-child(3), .catalogo-grid .catalogo-card:nth-child(3), .trust-row .trust-item-full:nth-child(3){animation-delay:.28s;}
-.proyecto-grid .proyecto-card:nth-child(4), .catalogo-grid .catalogo-card:nth-child(4), .trust-row .trust-item-full:nth-child(4){animation-delay:.38s;}
-.proyecto-grid .proyecto-card:nth-child(5), .catalogo-grid .catalogo-card:nth-child(5){animation-delay:.48s;}
-.catalogo-grid .catalogo-card:nth-child(6){animation-delay:.58s;}
-
-@media (prefers-reduced-motion: reduce){
-  .proyecto-grid .proyecto-card, .catalogo-grid .catalogo-card, .trust-row .trust-item-full{animation:none !important;}
-}
-
-/* ---------------------------------- FOOTER ---------------------------------- */
-.site-footer{background:var(--ink-950);border-top:1px solid var(--line);padding:70px 0 30px;}
-.footer-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:44px;padding-bottom:50px;border-bottom:1px solid var(--line);}
-.footer-brand p{color:var(--ash);margin-top:18px;max-width:320px;font-size:14px;line-height:1.7;}
-.footer-col h4{font-family:var(--font-display);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ash);margin-bottom:20px;}
-.footer-col ul{display:flex;flex-direction:column;gap:12px;}
-.footer-col a{font-size:14px;color:var(--bone);transition:color .2s;}
-.footer-col a:hover{color:var(--gold-light);}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:16px;}
-.footer-bottom p{font-size:13px;color:var(--ash);}
-.admin-link-row{margin-top:18px;text-align:center;}
-.admin-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:12px;letter-spacing:.02em;color:var(--ash);text-decoration:none;transition:color .2s;}
-.admin-link:hover{color:var(--gold-light);}
-.admin-link::before{content:'●';font-size:8px;color:#3F7D4C;}
-.socials{display:flex;gap:14px;}
-.socials a{
-  width:36px;height:36px;border:1px solid var(--line-strong);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;transition:all .25s;
-}
-.socials a:hover{border-color:var(--gold);color:var(--gold-light);}
-.socials svg{width:16px;height:16px;}
-
-@media (max-width:900px){
-  .footer-top{grid-template-columns:1fr;gap:36px;}
-}
-
-/* ---------------------------------- WHATSAPP FAB ---------------------------------- */
-.wa-fab{
-  position:fixed;bottom:28px;right:28px;z-index:90;
-  width:56px;height:56px;border-radius:50%;
-  background:#25D366;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
-  transition:transform var(--dur-medium) var(--ease-premium);
-  animation:wa-breathe 3.6s var(--ease-premium) infinite;
-}
-.wa-fab:hover{transform:scale(1.08);animation-play-state:paused;}
-.wa-fab svg{width:28px;height:28px;fill:#fff;}
-@keyframes wa-breathe{
-  0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.4), 0 0 0 0 rgba(37,211,102,.35);}
-  50%{box-shadow:0 10px 30px rgba(0,0,0,.4), 0 0 0 10px rgba(37,211,102,0);}
-}
-
-/* ---------------------------------- REVEAL ---------------------------------- */
-/* FIX (2026-07): la versión anterior usaba 2.2s + blur(10px) + scale — en la
-   práctica eso se sentía "atrasado"/lento en celular (el blur es pesado en
-   GPUs móviles) y en algunos navegadores de escritorio el combo de blur +
-   scale + transform simultáneos hacía que el navegador simplemente saltara
-   directo al estado final sin pintar la transición (los elementos
-   "aparecían normales", sin animación). Se reemplaza por el mismo patrón
-   simple y rápido (solo opacity + translateY, sin blur ni scale) que ya
-   usan las otras 5 páginas del grupo — es más liviano y se ve consistente
-   en todo el sitio. */
-.reveal{
-  opacity:0;
-  transform:translateY(28px);
-  transition:opacity .7s var(--ease-premium),
-             transform .7s var(--ease-premium);
-}
-.reveal.is-visible{opacity:1;transform:translateY(0);}
-
-/* ---- Per-section cascade ----
-   Each group below reveals its own children in a short, LOCAL stagger
-   (delays only ever count 1..5 within that one group — never a running
-   count across the whole page, which is what causes far-down sections to
-   take seconds to appear). Every group uses the same card-rise keyframe
-   so the cascade feels consistent across the whole site. */
-@keyframes card-rise{
-  from{opacity:0;transform:translateY(22px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-.brand-grid.reveal.is-visible .brand-card,
-.pillars.reveal.is-visible .pillar,
-.wrap.reveal.is-visible .stat,
-.wrap.reveal.is-visible .info-list .row{
-  animation:card-rise .7s var(--ease-premium) both;
-}
-
-.brand-grid .brand-card:nth-child(1),
-.pillars .pillar:nth-child(1),
-.stat:nth-child(1),
-.info-list .row:nth-child(1){animation-delay:.08s;}
-
-.brand-grid .brand-card:nth-child(2),
-.pillars .pillar:nth-child(2),
-.stat:nth-child(2),
-.info-list .row:nth-child(2){animation-delay:.2s;}
-
-.brand-grid .brand-card:nth-child(3),
-.pillars .pillar:nth-child(3),
-.stat:nth-child(3),
-.info-list .row:nth-child(3){animation-delay:.32s;}
-
-.brand-grid .brand-card:nth-child(4),
-.pillars .pillar:nth-child(4),
-.stat:nth-child(4),
-.info-list .row:nth-child(4){animation-delay:.44s;}
-
-.brand-grid .brand-card:nth-child(5),
-.pillars .pillar:nth-child(5){animation-delay:.56s;}
-
-@media (prefers-reduced-motion: reduce){
-  .reveal{filter:none;}
-  .brand-grid .brand-card, .pillars .pillar, .stat, .info-list .row{animation:none !important;}
-}
-
-/* ---------------------------------- SCROLL PROGRESS BAR ---------------------------------- */
-#scroll-progress{
-  position:fixed;top:0;left:0;height:3px;width:0%;
-  background:linear-gradient(90deg, var(--gold), var(--gold-light));
-  z-index:200;
-  transition:width .12s linear; /* short + linear on purpose: this one tracks scroll position directly, it isn't a "reveal" */
-}
-
-/* ---------------------------------- BUTTON RIPPLE ---------------------------------- */
-/* Circle is spawned by JS on click; only the keyframe lives in CSS. */
-.btn{position:relative;overflow:hidden;} /* needed so the ripple clips inside the button */
-@keyframes btn-ripple{
-  to{transform:scale(4);opacity:0;}
-}
-
-/* ---------------------------------- GOLD TEXT SHIMMER ---------------------------------- */
-/* Used sparingly on a single emphasis word — a slow shifting gold gradient,
-   not a flashy effect. Falls back to solid --gold-light if the browser
-   can't clip a gradient to text. */
-.text-shimmer{
-  background:linear-gradient(100deg, var(--gold) 20%, var(--gold-light) 50%, var(--gold) 80%);
-  background-size:220% auto;
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:shimmer-shift 6s ease-in-out infinite;
-}
-@keyframes shimmer-shift{
-  0%,100%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-}
-@media (prefers-reduced-motion: reduce){
-  .text-shimmer{animation:none;}
-}
-
-/* ---------------------------------- BARRA "GRUPO BRAITA" ----------------------------------
-   Misma barra que ya usan braita-select.html / braita-maquinaria.html / braita-sinc.html /
-   braita-tuv.html / braita-innovacion.html, para poder saltar de marca en marca desde
-   cualquier página — incluido el propio hub, que antes no la tenía. */
-.group-switcher{ background:#0a0a09; padding:10px 0; }
-.group-switcher .gs-wrap{ max-width:1200px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-body); font-size:11.5px; }
+/* ---------- BARRA GRUPO BRAITA ---------- */
+.group-switcher{ background:#000; padding:10px 0; }
+.group-switcher .gs-wrap{ max-width:1240px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
 @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
-.group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:var(--ash); text-decoration:none; transition:color .2s ease; }
-.group-switcher .gs-label:hover{ color:var(--gold-light); }
+.group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
 .group-switcher a{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
 .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 .group-switcher a:hover{ color:#F5F5F2; }
-.group-switcher a.active{ color:#F5F5F2; border-bottom-color:currentColor; }
 .group-switcher a .gs-beta{ opacity:.85; font-size:10px; color:var(--gold); }
 
-/* ---------------------------------- PRELOADER ----------------------------------
-   Mismo patrón que braita-innovacion.html, adaptado a la paleta oro/papel del hub. */
-#preloader{
-  position:fixed; inset:0; z-index:5000;
-  background:var(--ink-950);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  transition:opacity .7s var(--ease-premium), visibility .7s var(--ease-premium);
+/* ---------- HEADER / NAV ---------- */
+header{ position:sticky; top:0; z-index:200; background:var(--ink); border-bottom:1px solid rgba(201,151,75,.18); }
+.nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:20px; }
+.logo{ display:flex; align-items:center; gap:10px; }
+.logo-box{ border:1.5px solid var(--gold); border-radius:6px; padding:6px 12px; display:flex; flex-direction:column; align-items:center; line-height:1; }
+.logo-box .g1{ font-family:var(--font-display); font-weight:700; font-size:1.05rem; color:var(--text-light); letter-spacing:.02em; }
+.logo-box .g2{ font-family:var(--font-mono); font-size:.52rem; letter-spacing:.24em; color:var(--gold); margin-top:2px; }
+nav.main-nav ul{ display:flex; gap:30px; }
+nav.main-nav a{ font-size:.87rem; font-weight:500; color:var(--text-light-muted); transition:color .25s var(--ease); }
+nav.main-nav a:hover{ color:var(--gold-light); }
+.header-actions{ display:flex; align-items:center; gap:14px; }
+
+.btn{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-sans); font-weight:600; font-size:.85rem; padding:12px 24px; border-radius:999px; cursor:pointer; border:1.5px solid transparent; transition:transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); position:relative; overflow:hidden; white-space:nowrap; }
+.btn svg{ width:15px; height:15px; }
+.btn-accent{ background:var(--gold); color:var(--ink); }
+.btn-accent:hover{ background:var(--gold-light); transform:translateY(-2px); }
+.btn-outline-dark{ border-color:var(--text-light); color:var(--text-light); }
+.btn-outline-dark:hover{ background:var(--text-light); color:var(--ink); transform:translateY(-2px); }
+.btn-outline-ink{ border-color:var(--ink); color:var(--ink); }
+.btn-outline-ink:hover{ background:var(--ink); color:var(--text-light); transform:translateY(-2px); }
+@keyframes ripple{ to{ transform:scale(4); opacity:0; } }
+
+/* ---------- MENU MOVIL (burger + overlay pantalla completa) ---------- */
+.burger{ display:none; flex-direction:column; justify-content:center; gap:5px; width:32px; height:32px; background:none; border:none; cursor:pointer; padding:4px; z-index:210; position:relative; }
+.burger span{ display:block; width:100%; height:2px; background:var(--text-light); transition:transform .3s var(--ease), opacity .3s var(--ease); }
+.burger.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.burger.active span:nth-child(2){ opacity:0; }
+.burger.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+@media (max-width:920px){
+  .header-actions .btn{ display:none; }
+  .burger{ display:flex; }
+  nav.main-nav{
+    position:fixed; inset:0; z-index:150;
+    background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; visibility:hidden;
+    transition:opacity .4s var(--ease), visibility .4s var(--ease);
+  }
+  nav.main-nav.is-active{ opacity:1; visibility:visible; }
+  nav.main-nav ul{ flex-direction:column; align-items:center; gap:30px; }
+  nav.main-nav a{ font-size:1.3rem; }
 }
+
+/* ---------- HERO ---------- */
+.hero{ background:linear-gradient(160deg, var(--ink) 0%, var(--ink-deep) 100%); color:var(--text-light); position:relative; overflow:hidden; padding:64px 0; }
+.hero::before{ content:''; position:absolute; top:-120px; right:-120px; width:520px; height:520px; background:radial-gradient(circle, rgba(201,151,75,.16) 0%, transparent 70%); border-radius:50%; pointer-events:none; }
+.hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1.1fr .9fr; gap:50px; align-items:center; }
+@media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; } }
+.hero h1{ font-size:clamp(2.4rem, 4.8vw, 3.8rem); line-height:1.08; margin-top:16px; color:var(--text-light); }
+.hero h1 em{ font-style:normal; color:var(--gold-light); }
+.hero p.lead{ margin-top:20px; max-width:480px; font-size:1.05rem; color:var(--text-light-muted); }
+.hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
+.hero-meta{ display:flex; gap:32px; flex-wrap:wrap; margin-top:46px; padding-top:26px; border-top:1px solid rgba(245,241,233,.14); }
+.hero-meta div{ display:flex; flex-direction:column; gap:4px; }
+.hero-meta strong{ font-family:var(--font-display); font-size:1.5rem; color:var(--text-light); }
+.hero-meta span{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--text-light-muted); }
+.hero-art{ aspect-ratio:4/3.3; background:linear-gradient(155deg, #232019 0%, #100E0A 100%); border:1px solid rgba(201,151,75,.25); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; border-radius:10px; }
+.hero-art img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s ease; }
+.hero-art svg{ width:100px; height:100px; stroke:var(--gold); opacity:.85; }
+.hero-art .tag{ position:absolute; bottom:14px; left:14px; font-family:var(--font-mono); font-size:11px; color:rgba(245,241,233,.4); }
+
+/* ---------- BLOQUE DE SECCIÓN (heads reutilizables) ---------- */
+.sec-head{ max-width:640px; margin-bottom:46px; }
+.sec-head h2{ font-size:clamp(1.9rem,2.8vw,2.5rem); margin-top:10px; }
+.sec-head p{ color:var(--text-secondary); margin-top:14px; font-size:1rem; }
+.sec-head.on-dark p{ color:var(--text-light-muted); }
+
+/* ---------- NOSOTROS (esencia) ---------- */
+#nosotros{ background:var(--cream); }
+.esencia-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:10px; border-radius:10px; overflow:hidden; }
+@media (max-width:920px){ .esencia-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .esencia-grid{ grid-template-columns:1fr; } }
+.esencia-item{ background:var(--paper); padding:30px 24px; }
+.esencia-item svg{ width:30px; height:30px; stroke:var(--gold-dark); margin-bottom:16px; }
+.esencia-item h3{ font-size:.96rem; font-weight:600; margin-bottom:8px; }
+.esencia-item p{ font-size:.86rem; color:var(--text-secondary); }
+
+/* ---------- STATS ---------- */
+#stats-band{ background:var(--ink); padding:64px 0; }
+.stats-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(245,241,233,.1); border-radius:10px; overflow:hidden; }
+@media (max-width:560px){ .stats-strip{ grid-template-columns:repeat(2,1fr); } }
+.stat-item{ background:var(--ink); padding:26px 18px; text-align:center; }
+.stat-item .num{ font-family:var(--font-display); font-weight:700; font-size:2rem; color:var(--gold-light); }
+.stat-item .label{ font-family:var(--font-mono); font-size:.66rem; letter-spacing:.05em; text-transform:uppercase; color:var(--text-light-muted); margin-top:6px; display:block; }
+
+/* ---------- MARCAS ---------- */
+#marcas{ background:var(--paper); }
+.marca-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:10px; }
+@media (max-width:1050px){ .marca-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:640px){ .marca-grid{ grid-template-columns:1fr; } }
+.marca-card{
+  --accent:var(--gold);
+  background:var(--cream); border-radius:12px; padding:34px 30px; display:flex; flex-direction:column;
+  border-top:3px solid var(--accent); box-shadow:0 4px 14px rgba(0,0,0,.05);
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.marca-card:hover{ transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,.1); }
+.marca-card.m-innovacion{ --accent:#B9BDC2; }
+.marca-card.m-select{ --accent:var(--gold); }
+.marca-card.m-sync{ --accent:#5F9A5A; }
+.marca-card.m-machinery{ --accent:#C9564A; }
+.marca-card.m-tuv{ --accent:#9AA1A8; }
+.marca-mark{ width:56px; height:56px; border-radius:8px; background:#fff; display:flex; align-items:center; justify-content:center; margin-bottom:22px; padding:8px; box-shadow:0 8px 18px -8px rgba(0,0,0,.35); }
+.marca-mark img{ width:100%; height:100%; object-fit:contain; }
+.marca-mark.text-mark{ background:transparent; border:1.5px solid var(--accent); font-family:var(--font-display); font-weight:700; font-size:18px; color:var(--accent); }
+.marca-card h3{ font-size:1.25rem; margin-bottom:6px; }
+.marca-sub{ font-family:var(--font-mono); font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+.marca-card p.desc{ color:var(--text-secondary); font-size:.9rem; flex:1; }
+.marca-feats{ margin:18px 0 22px; display:flex; flex-direction:column; gap:8px; }
+.marca-feats li{ font-size:.82rem; color:var(--text-secondary); display:flex; align-items:center; gap:9px; }
+.marca-feats li::before{ content:''; width:5px; height:5px; background:var(--accent); border-radius:50%; flex:none; }
+.marca-link{ margin-top:auto; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); font-size:.8rem; font-weight:600; color:var(--text-primary); padding-top:16px; border-top:1px solid var(--line); }
+.marca-link svg{ width:14px; height:14px; transition:transform .3s var(--ease); }
+.marca-card:hover .marca-link svg{ transform:translateX(4px); }
+
+/* ---------- PARA QUIÉN (movido de Innovación) ---------- */
+#para-quien{ background:var(--ink); color:var(--text-light); }
+.porque-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(245,241,233,.1); border-radius:10px; overflow:hidden; margin-top:10px; }
+@media (max-width:768px){ .porque-grid{ grid-template-columns:1fr; } }
+.porque-item{ background:var(--ink-soft); padding:30px 26px; }
+.porque-item svg{ width:28px; height:28px; stroke:var(--gold-light); margin-bottom:16px; }
+.porque-item h3{ font-size:.96rem; font-weight:600; margin-bottom:8px; color:var(--text-light); }
+.porque-item p{ font-size:.86rem; color:var(--text-light-muted); }
+
+/* ---------- PROCESO (movido de Innovación) ---------- */
+#proceso{ background:var(--cream); }
+.proceso-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:10px; }
+@media (max-width:920px){ .proceso-flow{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .proceso-flow{ grid-template-columns:1fr; } }
+.proceso-step{ background:var(--paper); border-radius:10px; padding:26px 22px; border:1px solid var(--line); }
+.proceso-step .step-num{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; color:var(--gold-dark); }
+.proceso-step h3{ font-size:1rem; margin-top:10px; margin-bottom:8px; }
+.proceso-step p{ font-size:.85rem; color:var(--text-secondary); }
+
+/* ---------- CATALOGO / TARJETAS (proyectos y catálogos) ---------- */
+.filter-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:26px; }
+.filter-btn{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; padding:9px 18px; border-radius:999px; border:1.5px solid var(--line); background:transparent; color:var(--text-secondary); cursor:pointer; transition:all .25s var(--ease); }
+.filter-row.on-dark .filter-btn{ border-color:rgba(245,241,233,.2); color:var(--text-light-muted); }
+.filter-btn:hover{ border-color:var(--gold); color:var(--text-primary); }
+.filter-row.on-dark .filter-btn:hover{ color:var(--text-light); }
+.filter-btn.is-active{ background:var(--gold); border-color:var(--gold); color:var(--ink); }
+
+.cat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:36px; }
+@media (max-width:900px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .cat-grid{ grid-template-columns:1fr; } }
+.cat-card{ background:var(--paper); border-radius:12px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.06); transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
+.cat-card.is-hidden{ display:none; }
+.cat-card:hover{ transform:translateY(-6px); box-shadow:0 16px 32px rgba(0,0,0,.12); }
+.cat-media{ position:relative; aspect-ratio:4/3.1; overflow:hidden; background:linear-gradient(150deg,#2B2419,#150F09); }
+.cat-media img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s ease, transform .5s var(--ease); }
+.cat-card:hover .cat-media img{ transform:scale(1.05); }
+.cat-media::after{ content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(14,14,14,.75) 0%, rgba(14,14,14,0) 55%); }
+.cat-tag{ position:absolute; top:12px; left:12px; z-index:2; font-family:var(--font-mono); font-size:.62rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink); background:var(--gold-light); padding:5px 10px; border-radius:999px; }
+.cat-tag.tag-confirmado{ background:var(--gold-light); }
+.cat-overlay-body{ position:absolute; left:0; right:0; bottom:0; z-index:2; padding:16px 18px; }
+.cat-overlay-body h4{ font-size:1rem; color:var(--text-light); margin-bottom:3px; }
+.cat-overlay-body .cat-overlay-meta{ font-family:var(--font-mono); font-size:.68rem; color:var(--text-light-muted); }
+.cat-overlay-meta b{ color:var(--gold-light); font-weight:600; }
+.cat-body{ padding:18px 18px 20px; }
+.cat-body h4{ font-family:var(--font-display); font-weight:600; font-size:1rem; margin-bottom:8px; }
+.cat-body p{ font-family:var(--font-mono); font-size:11px; color:var(--text-secondary); line-height:1.8; }
+
+.util-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:36px; }
+@media (max-width:900px){ .util-strip{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .util-strip{ grid-template-columns:1fr; } }
+.util-item{ background:var(--paper); border-radius:10px; padding:24px 22px; border:1px solid var(--line); }
+.util-item h4{ font-family:var(--font-display); font-size:.92rem; font-weight:600; margin-bottom:8px; }
+.util-item p{ font-size:.82rem; color:var(--text-secondary); }
+.util-item a{ display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-family:var(--font-mono); font-size:.72rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--gold-dark); }
+.util-item.is-cta{ background:var(--ink); border-color:var(--ink); }
+.util-item.is-cta h4{ color:var(--text-light); }
+.util-item.is-cta p{ color:var(--text-light-muted); }
+.util-item.is-cta a{ color:var(--gold-light); }
+
+/* ---------- CONTACTO ---------- */
+#contacto{ background:var(--ink); color:var(--text-light); }
+.contacto-layout{ display:grid; grid-template-columns:1fr 1fr; gap:44px; margin-top:10px; }
+@media (max-width:960px){ .contacto-layout{ grid-template-columns:1fr; } }
+.contacto-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:rgba(245,241,233,.08); border:1px solid rgba(245,241,233,.08); border-radius:10px; overflow:hidden; margin-top:30px; }
+@media (max-width:480px){ .contacto-grid{ grid-template-columns:1fr; } }
+.contacto-item{ background:var(--ink); padding:22px 20px; }
+.contacto-item svg{ width:20px; height:20px; stroke:var(--gold); margin-bottom:10px; }
+.contacto-item h5{ font-family:var(--font-display); font-weight:600; font-size:.86rem; margin-bottom:6px; }
+.contacto-item p{ font-size:.82rem; color:var(--text-light-muted); line-height:1.6; }
+.contacto-item a{ color:var(--gold-light); text-decoration:underline; }
+
+.map-box{ position:relative; min-height:200px; border-radius:12px; overflow:hidden; border:1px solid rgba(245,241,233,.12); }
+.map-box iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; filter:grayscale(.35) contrast(1.05); }
+.map-box-label{ position:absolute; top:12px; left:12px; z-index:2; background:rgba(14,14,14,.82); backdrop-filter:blur(6px); padding:7px 12px; border-radius:999px; font-family:var(--font-mono); font-size:.68rem; letter-spacing:.04em; display:flex; align-items:center; gap:7px; }
+.map-box-label svg{ width:13px; height:13px; stroke:var(--gold); }
+
+.contact-form{ background:var(--ink-soft); border-radius:12px; padding:30px; margin-top:20px; }
+.contact-form .form-title{ font-family:var(--font-mono); font-size:.72rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-light-muted); margin-bottom:18px; }
+.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.form-field{ display:flex; flex-direction:column; gap:7px; }
+.form-field.full{ grid-column:1/-1; }
+.form-field label{ font-size:.76rem; color:var(--text-light-muted); }
+.form-field input, .form-field select, .form-field textarea{
+  background:var(--ink); border:1px solid rgba(245,241,233,.18); border-radius:8px;
+  color:var(--text-light); font-family:var(--font-sans); font-size:.86rem; padding:11px 13px;
+  transition:border-color .2s, box-shadow .2s;
+}
+.form-field textarea{ resize:vertical; min-height:88px; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,151,75,.18); }
+.contact-form .btn{ margin-top:18px; width:100%; justify-content:center; }
+@media (max-width:480px){ .form-grid{ grid-template-columns:1fr; } .contact-form{ padding:22px; } }
+
+.trust-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:56px; }
+@media (max-width:900px){ .trust-row{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:480px){ .trust-row{ grid-template-columns:1fr; } }
+.trust-item{ display:flex; gap:12px; align-items:flex-start; }
+.trust-item svg{ width:20px; height:20px; stroke:var(--gold); flex:none; margin-top:2px; }
+.trust-item h5{ font-family:var(--font-display); font-size:.82rem; font-weight:600; margin-bottom:4px; }
+.trust-item p{ font-size:.76rem; color:var(--text-light-muted); line-height:1.5; }
+
+/* ---------- FOOTER ---------- */
+footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 0 26px; }
+.footer-top{ display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:38px; padding-bottom:40px; border-bottom:1px solid rgba(245,241,233,.1); }
+@media (max-width:900px){ .footer-top{ grid-template-columns:1fr; gap:30px; } }
+.footer-brand p{ margin-top:16px; max-width:320px; font-size:.86rem; line-height:1.7; }
+.footer-col h4{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:16px; }
+.footer-col ul{ display:flex; flex-direction:column; gap:11px; }
+.footer-col a{ font-size:.86rem; color:var(--text-light-muted); transition:color .2s; }
+.footer-col a:hover{ color:var(--gold-light); }
+.footer-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:22px; flex-wrap:wrap; gap:14px; font-size:.78rem; font-family:var(--font-mono); }
+.socials{ display:flex; gap:12px; }
+.socials a{ width:34px; height:34px; border:1px solid rgba(245,241,233,.16); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all .25s; }
+.socials a:hover{ border-color:var(--gold); color:var(--gold-light); }
+.socials svg{ width:15px; height:15px; }
+.admin-link-row{ margin-top:16px; text-align:center; }
+.admin-link{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-sans); font-size:.76rem; color:var(--text-muted); }
+.admin-link::before{ content:'●'; font-size:8px; color:#3F7D4C; }
+.admin-link:hover{ color:var(--gold-light); }
+
+.wa-float{ position:fixed; right:26px; bottom:26px; z-index:80; width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.28); transition:transform .3s var(--ease); }
+.wa-float:hover{ transform:scale(1.08); }
+.wa-float svg{ width:27px; height:27px; }
+
+/* ---------- SCROLL PROGRESS ---------- */
+#scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg, var(--gold), var(--gold-light)); z-index:300; transition:width .12s linear; }
+
+/* ---------- PRELOADER ---------- */
+#preloader{ position:fixed; inset:0; z-index:5000; background:var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; transition:opacity .7s var(--ease), visibility .7s var(--ease); }
 #preloader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
-#preloader .pre-logo{
-  display:flex; align-items:center; gap:12px;
-  font-family:var(--font-display); font-weight:700; font-size:26px;
-  color:var(--paper); text-transform:uppercase; letter-spacing:.04em;
-  opacity:0; animation:preFade 1.2s var(--ease-premium) forwards;
-}
+#preloader .pre-logo{ display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-weight:700; font-size:28px; color:var(--text-light); text-transform:uppercase; letter-spacing:.04em; opacity:0; animation:preFade 1.2s var(--ease) forwards; }
 #preloader .pre-logo span{ color:var(--gold); }
-@keyframes preFade{ 0%{opacity:0; letter-spacing:.3em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
-#preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(243,239,230,.12); overflow:hidden; position:relative; }
-#preloader .pre-bar::after{
-  content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%;
-  background:var(--gold); animation:preBar 1.3s var(--ease-premium) forwards .25s;
-}
+@keyframes preFade{ 0%{opacity:0; letter-spacing:.1em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.04em;} }
+#preloader .pre-bar{ margin-top:26px; width:200px; height:2px; background:rgba(245,241,233,.14); overflow:hidden; position:relative; }
+#preloader .pre-bar::after{ content:''; position:absolute; left:-100%; top:0; bottom:0; width:100%; background:var(--gold); animation:preBar 1.3s var(--ease) forwards .25s; }
 @keyframes preBar{ to{ left:0; } }
-#preloader .pre-caption{ margin-top:16px; font-family:var(--font-body); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ash); }
+#preloader .pre-caption{ margin-top:16px; font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-light-muted); }
 @media (prefers-reduced-motion: reduce){
   #preloader .pre-logo{ animation:none; opacity:1; }
   #preloader .pre-bar::after{ animation:none; left:0; }
 }
-
-/* ---------------------------------- ANCHOR SCROLL OFFSET ---------------------------------- */
-/* So sections don't end up hidden under the fixed header when jumped to
-   via #nosotros / #marcas / #ubicacion links. */
-section[id]{scroll-margin-top:96px;}
-
 </style>
 </head>
 <body>
@@ -742,117 +342,99 @@ section[id]{scroll-margin-top:96px;}
   <span class="pre-caption">Innovación que se ve y se siente</span>
 </div>
 
-<!-- BARRA DE GRUPO: navegación entre las 5 marcas, igual que en las páginas de marca. -->
 <div class="group-switcher">
   <div class="gs-wrap">
-    <a href="index.html" class="gs-label">Grupo Braita</a>
-    <a href="braita-innovacion.html"><span class="gs-dot" style="background:#2F6690"></span>Innovación</a>
-    <a href="braita-select.html"><span class="gs-dot" style="background:#C6A24D"></span>Select</a>
-    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#E4610F"></span>Machinery</a>
-    <a href="braita-sinc.html"><span class="gs-dot" style="background:#3F7D4C"></span>Sync</a>
-    <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV <span class="gs-beta">(nuevo)</span></a>
+    <span class="gs-label">Grupo Braita</span>
+    <a href="braita-innovacion.html"><span class="gs-dot" style="background:#FFFFFF"></span>Innovación</a>
+    <a href="braita-select.html"><span class="gs-dot" style="background:#C9974B"></span>Select</a>
+    <a href="braita-sinc.html"><span class="gs-dot" style="background:#5F9A5A"></span>Sync</a>
+    <a href="braita-maquinaria.html"><span class="gs-dot" style="background:#C9564A"></span>Machinery</a>
+    <a href="braita-tuv.html"><span class="gs-dot" style="background:#9AA1A8"></span>TUV</a>
   </div>
 </div>
 
 <div id="scroll-progress"></div>
 
-
-<!-- ============================= HEADER ============================= -->
-<header class="site-header">
-  <div class="wrap">
+<header>
+  <div class="wrap nav">
     <a href="index.html" class="logo">
-      <div class="logo-mark">BRAITA<span>GROUP</span></div>
+      <div class="logo-box"><span class="g1">BRAITA</span><span class="g2">GROUP</span></div>
     </a>
-
-    <nav class="main-nav">
+    <nav class="main-nav" id="main-nav">
       <ul>
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="#inicio">Inicio</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#marcas">Nuestras Marcas</a></li>
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#catalogos">Catálogos</a></li>
-        <li><a href="#ubicacion">Contacto</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
-
     <div class="header-actions">
-      <a class="btn btn-primary" href="https://wa.me/523921287299" target="_blank" rel="noopener">
-        Cotizar por WhatsApp
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
+      <a href="#" id="navWA" class="btn btn-accent" target="_blank">Cotizar por WhatsApp</a>
+      <button class="burger" id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <main>
 
-  <!-- ============================= HERO ============================= -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-copy">
-        <span class="eyebrow">Ocotlán, Jalisco · México</span>
-        <h1>Superficies que se ven,<br>acabados que se <em class="text-shimmer">sienten</em>.</h1>
-        <p class="lead">Braita Group desarrolla acabados UV, tableros, cantos y maquinaria para transformar superficies planas en experiencias de alto desempeño. Cinco marcas, un mismo estándar de calidad.</p>
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow on-dark">Ocotlán, Jalisco · México</span>
+        <h1>Superficies que se ven,<br>acabados que se <em>sienten</em>.</h1>
+        <p class="lead">Acabados UV, tableros, cantos y maquinaria. Cinco marcas, un mismo estándar de calidad.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#marcas">
-            Explorar marcas
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn btn-ghost" href="https://wa.me/523921287299" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <a href="#marcas" class="btn btn-accent">Explorar marcas</a>
+          <a href="#" id="heroWA" class="btn btn-outline-dark" target="_blank">Cotizar por WhatsApp</a>
         </div>
-
         <div class="hero-meta">
           <div><strong>10+</strong><span>Años de experiencia</span></div>
           <div><strong>5</strong><span>Marcas especializadas</span></div>
           <div><strong>500+</strong><span>Acabados disponibles</span></div>
         </div>
       </div>
-
-    </div>
-
-    <!-- imagen68.png — foto real de fondo del hero (pendiente). Con onerror:
-         si el archivo no existe todavía, la capa se oculta sola y el hero
-         se ve igual que antes (solo el degradado de fondo). -->
-    <div class="hero-bg-image" aria-hidden="true">
-      <img src="imagen68.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
+      <div class="hero-art reveal">
+        <img src="imagen68.png" alt="" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 15l5-5 4 4 5-6 4 5"/></svg>
+        <span class="tag">Espacio para foto real</span>
+      </div>
     </div>
   </section>
 
-  <!-- ============================= NOSOTROS ============================= -->
-  <section id="nosotros" class="band-paper section-pad">
+  <!-- ================= NOSOTROS ================= -->
+  <section id="nosotros">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="sec-head reveal">
         <span class="eyebrow">Nosotros</span>
         <h2>Somos Braita, somos innovación.</h2>
-        <p>Empresa mexicana especializada en acabados UV de alto desempeño para tableros y superficies planas, con sede en Ocotlán, Jalisco. Combinamos tecnología, diseño y precisión en cada detalle, y acompañamos cada proyecto de principio a fin a través de cinco marcas que trabajan en conjunto.</p>
+        <p>Especialistas en acabados UV para tableros y superficies, desde Ocotlán, Jalisco. Cinco marcas, un mismo estándar de calidad, de principio a fin.</p>
       </div>
-
-      <div class="pillars reveal">
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      <div class="esencia-grid">
+        <div class="esencia-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <h3>Innovación</h3>
-          <p>Tecnología UV de vanguardia para acabados que marcan la diferencia.</p>
+          <p>Tecnología UV de vanguardia en cada acabado.</p>
         </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+        <div class="esencia-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
           <h3>Calidad</h3>
-          <p>Procesos controlados y materiales seleccionados para resultados consistentes.</p>
+          <p>Procesos controlados, resultados consistentes.</p>
         </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>
+        <div class="esencia-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>
           <h3>Diseño</h3>
           <p>Tendencias, texturas y vetas que inspiran proyectos únicos.</p>
         </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <div class="esencia-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
           <h3>Sostenibilidad</h3>
-          <p>Comprometidos con el cuidado del entorno y el uso responsable de recursos.</p>
+          <p>Uso responsable de recursos, cuidado del entorno.</p>
         </div>
-        <div class="pillar">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        <div class="esencia-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           <h3>Cercanía</h3>
           <p>Acompañamos a nuestros clientes en cada etapa del proyecto.</p>
         </div>
@@ -860,366 +442,324 @@ section[id]{scroll-margin-top:96px;}
     </div>
   </section>
 
-  <!-- ============================= STATS ============================= -->
-  <section class="band-dark section-pad" style="padding-top:80px;padding-bottom:80px;">
+  <!-- ================= STATS ================= -->
+  <section id="stats-band">
     <div class="wrap reveal">
-      <div class="stats">
-        <div class="stat"><strong>10+</strong><span>Años de experiencia</span></div>
-        <div class="stat"><strong>5</strong><span>Marcas especializadas</span></div>
-        <div class="stat"><strong>500+</strong><span>Acabados disponibles</span></div>
-        <div class="stat"><strong>100%</strong><span>Comprometidos con el cliente</span></div>
+      <div class="stats-strip">
+        <div class="stat-item"><span class="num">10+</span><span class="label">Años de experiencia</span></div>
+        <div class="stat-item"><span class="num">5</span><span class="label">Marcas especializadas</span></div>
+        <div class="stat-item"><span class="num">500+</span><span class="label">Acabados disponibles</span></div>
+        <div class="stat-item"><span class="num">100%</span><span class="label">Comprometidos con el cliente</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================= MARCAS ============================= -->
-  <section id="marcas" class="band-alt section-pad">
+  <!-- ================= MARCAS ================= -->
+  <section id="marcas">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="sec-head reveal">
         <span class="eyebrow">Nuestras marcas</span>
         <h2>Un ecosistema, soluciones completas.</h2>
-        <p>Cinco marcas especializadas que trabajan en conjunto para ofrecerte innovación, diseño, funcionalidad y tecnología en cada etapa de tu proyecto.</p>
+        <p>Cinco marcas, una sola solución para tu proyecto.</p>
       </div>
-    </div>
-
-    <div class="brand-grid reveal">
-
-      <!-- Innovación -->
-      <a href="braita-innovacion.html" class="brand-card card-innovacion">
-        <div class="brand-mark text-mark">BI</div>
-        <div class="brand-sub">Braita Innovación</div>
-        <h3>Acabados UV que transforman superficies</h3>
-        <p class="desc">Tableros MDF con acabados UV, vetas y texturas que convierten superficies planas en experiencias únicas.</p>
-        <ul class="feats">
-          <li>Tableros MDF con acabados UV</li>
-          <li>Amplia variedad de diseños y texturas</li>
-          <li>Tecnología UV de última generación</li>
-        </ul>
-        <span class="card-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-      <!-- Select -->
-      <a href="braita-select.html" class="brand-card card-select">
-        <div class="brand-mark text-mark">BS</div>
-        <div class="brand-sub">Braita Select</div>
-        <h3>Colecciones exclusivas de alto diseño</h3>
-        <p class="desc">Línea de acabados seleccionados con una propuesta exclusiva, sofisticada y de la más alta calidad.</p>
-        <ul class="feats">
-          <li>Colecciones exclusivas</li>
-          <li>Diseños de tendencia</li>
-          <li>Acabados premium</li>
-        </ul>
-        <span class="card-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-      <!-- Sync -->
-      <a href="braita-sinc.html" class="brand-card card-sync">
-        <div class="brand-mark text-mark">BC</div>
-        <div class="brand-sub">Braita Sync</div>
-        <h3>Cantos que sincronizan cada acabado</h3>
-        <p class="desc">Línea especializada en cantos para MDF: integración perfecta entre el tablero y el canto, con calidad, precisión y una amplia variedad de opciones.</p>
-        <ul class="feats">
-          <li>Cantos de alta calidad</li>
-          <li>Compatibilidad de diseños</li>
-          <li>Resistencia y durabilidad</li>
-        </ul>
-        <span class="card-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-      <!-- Machinery -->
-      <a href="braita-maquinaria.html" class="brand-card card-machinery">
-        <div class="brand-mark"><img src="logo-machinery.png" alt="Braita Machinery"></div>
-        <div class="brand-sub">Braita Machinery</div>
-        <h3>Tecnología que impulsa la producción</h3>
-        <p class="desc">Soluciones, tecnología y maquinaria especializada para impulsar la productividad y la eficiencia de la industria.</p>
-        <ul class="feats">
-          <li>Maquinaria especializada</li>
-          <li>Asesoría y soporte técnico</li>
-          <li>Soluciones a la medida</li>
-        </ul>
-        <span class="card-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-      <!-- TUV -->
-      <a href="braita-tuv.html" class="brand-card card-tuv">
-        <div class="brand-mark"><img src="logo-tuv.png" alt="Braita TUV — Terminados UV"></div>
-        <div class="brand-sub">Braita TUV · Maquila de Acabados UV</div>
-        <h3>Le damos acabado UV a tu material</h3>
-        <p class="desc">División de maquila especializada en acabados UV: aplicamos pintura y acabado UV sobre los tableros y superficies que nos traen nuestros clientes.</p>
-        <ul class="feats">
-          <li>Maquila de acabado UV para terceros</li>
-          <li>Procesos precisos y uniformes</li>
-          <li>Para fabricantes, diseñadores e industrias</li>
-        </ul>
-        <span class="card-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ============================================================
-       PROYECTOS — galería de aplicaciones reales de los acabados.
-       PENDIENTE: fotos reales de proyecto. Convención de imágenes
-       compartida con el resto del grupo (ver braita-innovacion.html
-       para imagen1-14, braita-select.html imagen15, braita-maquinaria.html
-       imagen16, braita-sinc.html imagen17):
-         imagen18.jpg -> Cocina Residencial (subida como .jpg)
-         imagen19.png -> Sala Contemporánea
-         imagen20.png -> Vestidor Residencial
-         imagen21.jpg -> Recepción Corporativa (subida como .jpg)
-         imagen22.png -> Comercio Minorista
-       Cada <img> ya tiene onerror: si el archivo no existe se ve el
-       degradado de fondo, y en cuanto subas la foto con el nombre
-       exacto aparece sola, sin tocar código. Contenido de ejemplo
-       tomado de la referencia que mandó el cliente — reemplazar por
-       proyectos reales cuando estén confirmados.
-  ============================================================ -->
-  <section id="proyectos" class="band-alt section-pad">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Proyectos</span>
-        <h2>Inspiración que se transforma.</h2>
-        <p>Conoce aplicaciones reales de nuestros acabados en proyectos que inspiran y marcan la diferencia.</p>
-      </div>
-      <div class="proy-filters reveal" id="proyFilters">
-        <button class="proy-filter-btn is-active" data-cat="all">Todos</button>
-        <button class="proy-filter-btn" data-cat="cocinas">Cocinas</button>
-        <button class="proy-filter-btn" data-cat="mobiliario">Mobiliario</button>
-        <button class="proy-filter-btn" data-cat="oficinas">Oficinas</button>
-        <button class="proy-filter-btn" data-cat="comerciales">Comerciales</button>
-        <button class="proy-filter-btn" data-cat="residenciales">Residenciales</button>
-      </div>
-    </div>
-
-    <div class="proyecto-grid reveal" id="proyectoGrid">
-      <a href="#ubicacion" class="proyecto-card" data-cat="cocinas">
-        <div class="proyecto-media">
-          <img src="imagen18.jpg" alt="Cocina Residencial" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-        </div>
-        <span class="proyecto-cat">Cocinas</span>
-        <div class="proyecto-body">
-          <h3>Cocina Residencial</h3>
-          <p class="proyecto-meta">Acabado: <b>Kenya Nogal Inglés</b> · Línea: Braita Innovación</p>
-        </div>
-      </a>
-      <a href="#ubicacion" class="proyecto-card" data-cat="mobiliario">
-        <div class="proyecto-media">
-          <img src="imagen19.png" alt="Sala Contemporánea" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-        </div>
-        <span class="proyecto-cat">Mobiliario</span>
-        <div class="proyecto-body">
-          <h3>Sala Contemporánea</h3>
-          <p class="proyecto-meta">Acabado: <b>Lino Arena</b> · Línea: Braita Select</p>
-        </div>
-      </a>
-      <a href="#ubicacion" class="proyecto-card" data-cat="residenciales">
-        <div class="proyecto-media">
-          <img src="imagen20.png" alt="Vestidor Residencial" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-        </div>
-        <span class="proyecto-cat">Residencial</span>
-        <div class="proyecto-body">
-          <h3>Vestidor Residencial</h3>
-          <p class="proyecto-meta">Acabado: <b>Timber Arena</b> · Línea: Braita Innovación</p>
-        </div>
-      </a>
-      <a href="#ubicacion" class="proyecto-card" data-cat="oficinas">
-        <div class="proyecto-media">
-          <img src="imagen21.jpg" alt="Recepción Corporativa" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-        </div>
-        <span class="proyecto-cat">Oficinas</span>
-        <div class="proyecto-body">
-          <h3>Recepción Corporativa</h3>
-          <p class="proyecto-meta">Acabado: <b>Roble Natural</b> · Línea: Braita Select</p>
-        </div>
-      </a>
-      <a href="#ubicacion" class="proyecto-card" data-cat="comerciales">
-        <div class="proyecto-media">
-          <img src="imagen22.png" alt="Comercio Minorista" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-        </div>
-        <span class="proyecto-cat">Comercial</span>
-        <div class="proyecto-body">
-          <h3>Comercio Minorista</h3>
-          <p class="proyecto-meta">Acabado: <b>Rústico Americano</b> · Línea: Braita Innovación</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="wrap" style="margin-top:44px;">
-      <div class="reveal" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-top:36px;border-top:1px solid var(--line);">
-        <div>
-          <strong style="font-family:var(--font-display);font-size:16px;color:var(--paper);">¿Tienes un proyecto en mente?</strong>
-          <p style="color:var(--ash);font-size:14px;margin-top:4px;">Cuéntanos tu idea y te ayudamos a hacerla realidad con el acabado ideal.</p>
-        </div>
-        <a class="btn btn-primary" href="https://wa.me/523921287299" target="_blank" rel="noopener">
-          Cotiza tu proyecto
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="marca-grid">
+        <a href="braita-innovacion.html" class="marca-card m-innovacion reveal">
+          <div class="marca-mark text-mark">BI</div>
+          <div class="marca-sub">Braita Innovación</div>
+          <h3>Acabados UV que transforman superficies</h3>
+          <p class="desc">Tableros MDF con acabados UV, vetas y texturas únicas.</p>
+          <ul class="marca-feats">
+            <li>Tableros MDF con acabados UV</li>
+            <li>Amplia variedad de diseños y texturas</li>
+            <li>Tecnología UV de última generación</li>
+          </ul>
+          <span class="marca-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="braita-select.html" class="marca-card m-select reveal">
+          <div class="marca-mark text-mark">BS</div>
+          <div class="marca-sub">Braita Select</div>
+          <h3>Colecciones exclusivas de alto diseño</h3>
+          <p class="desc">Acabados exclusivos, sofisticados, de la más alta calidad.</p>
+          <ul class="marca-feats">
+            <li>Colecciones exclusivas</li>
+            <li>Diseños de tendencia</li>
+            <li>Acabados premium</li>
+          </ul>
+          <span class="marca-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="braita-sinc.html" class="marca-card m-sync reveal">
+          <div class="marca-mark text-mark">BC</div>
+          <div class="marca-sub">Braita Sync</div>
+          <h3>Cantos que sincronizan cada acabado</h3>
+          <p class="desc">Cantos para MDF con integración perfecta entre tablero y canto.</p>
+          <ul class="marca-feats">
+            <li>Cantos de alta calidad</li>
+            <li>Compatibilidad de diseños</li>
+            <li>Resistencia y durabilidad</li>
+          </ul>
+          <span class="marca-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="braita-maquinaria.html" class="marca-card m-machinery reveal">
+          <div class="marca-mark"><img src="logo-machinery.png" alt="Braita Machinery"></div>
+          <div class="marca-sub">Braita Machinery</div>
+          <h3>Tecnología que impulsa la producción</h3>
+          <p class="desc">Maquinaria especializada para impulsar tu producción.</p>
+          <ul class="marca-feats">
+            <li>Maquinaria especializada</li>
+            <li>Asesoría y soporte técnico</li>
+            <li>Soluciones a la medida</li>
+          </ul>
+          <span class="marca-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="braita-tuv.html" class="marca-card m-tuv reveal">
+          <div class="marca-mark"><img src="logo-tuv.png" alt="Braita TUV — Terminados UV"></div>
+          <div class="marca-sub">Braita TUV · Maquila de Acabados UV</div>
+          <h3>Le damos acabado UV a tu material</h3>
+          <p class="desc">Maquila de acabado UV sobre los materiales que nos traes.</p>
+          <ul class="marca-feats">
+            <li>Maquila de acabado UV para terceros</li>
+            <li>Procesos precisos y uniformes</li>
+            <li>Para fabricantes, diseñadores e industrias</li>
+          </ul>
+          <span class="marca-link">Conocer marca <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       CATÁLOGOS — vitrina de acabados de las 4 marcas de superficie
-       (Innovación / Select / Sync / TUV). Maquinaria no aplica aquí
-       porque vende equipo, no acabados — tiene su propio catálogo en
-       braita-maquinaria.html.
-       PENDIENTE: fotografía real de cada acabado. Convención de
-       imágenes compartida con el resto del sitio:
-         imagen23.png -> Kenya Nogal Inglés     imagen26.png -> Lino Arena
-         imagen24.png -> Roble Natural          imagen27.png -> Rosa Metalizado
-         imagen25.png -> Mármol Blanco y Negro  imagen28.png -> Timber Arena
-       Los 4 de Innovación son nombres reales del catálogo PDF oficial
-       (2026) — antes esta grilla tenía "Kenya Polar", "Pietra Nero",
-       "Ónix Grafito" y "Fresno Ártico", que resultaron ser nombres de
-       las capturas de referencia del cliente (mockup), no del catálogo
-       real; ver DATABASE_PRODUCTS en braita-innovacion.html para las
-       39 opciones completas. Roble Natural y Lino Arena (Select) se
-       dejaron igual, confirmados por separado en braita-select.html.
-       El degradado de cada swatch es solo un marcador visual mientras
-       llega la foto real — con onerror, en cuanto subas la imagen con
-       el nombre exacto aparece sola.
-  ============================================================ -->
-  <section id="catalogos" class="band-dark section-pad">
+  <!-- ================= PARA QUIÉN (movido de Innovación) ================= -->
+  <section id="para-quien">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow">Catálogos</span>
-        <h2>Descubre nuestros acabados y soluciones.</h2>
-        <p>Explora nuestra variedad de tableros, acabados UV, cantos y soluciones para cada proyecto.</p>
+      <div class="sec-head on-dark reveal">
+        <span class="eyebrow on-dark">Para quién trabajamos</span>
+        <h2 style="color:var(--text-light);">Si tu trabajo depende del material correcto, es para ti.</h2>
       </div>
-
-      <div class="cat-toolbar reveal">
-        <div class="cat-filters" id="catFilters">
-          <button class="cat-filter-btn is-active" data-marca="all">Todas las marcas</button>
-          <button class="cat-filter-btn" data-marca="innovacion">Innovación</button>
-          <button class="cat-filter-btn" data-marca="select">Select</button>
-          <button class="cat-filter-btn" data-marca="sync">Sync</button>
-          <button class="cat-filter-btn" data-marca="tuv">TUV</button>
+      <div class="porque-grid">
+        <div class="porque-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg>
+          <h3>Arquitectos y diseñadores</h3>
+          <p>Fichas técnicas claras y acabados consistentes para especificar sin sorpresas en obra.</p>
         </div>
-      </div>
-    </div>
-
-    <div class="wrap">
-      <div class="catalogo-grid reveal" id="catalogoGrid">
-        <div class="catalogo-card" data-marca="innovacion">
-          <div class="catalogo-swatch" style="background:linear-gradient(150deg,#8c6a3f,#4a3520);">
-            <img src="imagen23.png" alt="Kenya Nogal Inglés" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-          </div>
-          <div class="catalogo-body">
-            <h3>Kenya Nogal Inglés</h3>
-            <p class="cat-meta"><b>Línea:</b> Braita Innovación<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Sincronizado</p>
-            <span class="catalogo-tag">Confirmado</span>
-          </div>
+        <div class="porque-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V4h8v3"/></svg>
+          <h3>Fabricantes de muebles</h3>
+          <p>Corte a tu listado y enchapado para que tu taller ensamble directo, sin retrabajo.</p>
         </div>
-        <div class="catalogo-card" data-marca="select">
-          <div class="catalogo-swatch" style="background:linear-gradient(150deg,#8c6a3f,#5a4128);">
-            <img src="imagen24.png" alt="Roble Natural" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-          </div>
-          <div class="catalogo-body">
-            <h3>Roble Natural</h3>
-            <p class="cat-meta"><b>Línea:</b> Braita Select<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Mate</p>
-            <span class="catalogo-tag">Confirmado</span>
-          </div>
+        <div class="porque-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21V9l8-6 8 6v12M9 21v-8h6v8"/></svg>
+          <h3>Fabricantes de cocinas</h3>
+          <p>Melamina y alto brillo con existencia constante para no detener tu producción.</p>
         </div>
-        <div class="catalogo-card" data-marca="innovacion">
-          <div class="catalogo-swatch" style="background:linear-gradient(150deg,#f2f0ec,#1a1a1a);">
-            <img src="imagen25.png" alt="Mármol Blanco y Negro" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-          </div>
-          <div class="catalogo-body">
-            <h3>Mármol Blanco y Negro</h3>
-            <p class="cat-meta"><b>Línea:</b> Braita Innovación<br><b>Tipo:</b> Piedra<br><b>Acabado:</b> UV Alto Brillo</p>
-            <span class="catalogo-tag">Confirmado</span>
-          </div>
-        </div>
-        <div class="catalogo-card" data-marca="select">
-          <div class="catalogo-swatch" style="background:linear-gradient(150deg,#d8cbb6,#b3a488);">
-            <img src="imagen26.png" alt="Lino Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-          </div>
-          <div class="catalogo-body">
-            <h3>Lino Arena</h3>
-            <p class="cat-meta"><b>Línea:</b> Braita Select<br><b>Tipo:</b> Textil<br><b>Acabado:</b> UV Mate</p>
-            <span class="catalogo-tag">Confirmado</span>
-          </div>
-        </div>
-        <div class="catalogo-card" data-marca="innovacion">
-          <div class="catalogo-swatch" style="background:linear-gradient(150deg,#e0a8b0,#a9646f);">
-            <img src="imagen27.png" alt="Rosa Metalizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-          </div>
-          <div class="catalogo-body">
-            <h3>Rosa Metalizado</h3>
-            <p class="cat-meta"><b>Línea:</b> Braita Innovación<br><b>Tipo:</b> Metalizado<br><b>Acabado:</b> UV Metalizado</p>
-            <span class="catalogo-tag">Confirmado</span>
-          </div>
-        </div>
-        <div class="catalogo-card" data-marca="innovacion">
-          <div class="catalogo-swatch" style="background:linear-gradient(150deg,#c9a876,#8a6a42);">
-            <img src="imagen28.png" alt="Timber Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-          </div>
-          <div class="catalogo-body">
-            <h3>Timber Arena</h3>
-            <p class="cat-meta"><b>Línea:</b> Braita Innovación<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Sincronizado</p>
-            <span class="catalogo-tag">Confirmado</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cat-utility">
-      <div class="cat-utility-item">
-        <h4>Catálogo digital</h4>
-        <p>Descarga el catálogo completo de acabados en PDF.</p>
-        <a href="braita-innovacion.html#catalogo">Ver catálogo técnico →</a>
-      </div>
-      <div class="cat-utility-item">
-        <h4>Fichas técnicas</h4>
-        <p>Información de usos y recomendaciones por acabado.</p>
-        <a href="braita-select.html#coleccion">Ver colección Select →</a>
-      </div>
-      <div class="cat-utility-item">
-        <h4>Solicita muestras</h4>
-        <p>Recibe muestras físicas de tus acabados favoritos.</p>
-        <a href="https://wa.me/523921287299" target="_blank" rel="noopener">Solicitar muestras →</a>
-      </div>
-      <div class="cat-utility-item is-cta">
-        <h4>¿Necesitas ayuda para elegir?</h4>
-        <p>Nuestro equipo está listo para asesorarte en tu proyecto.</p>
-        <a href="https://wa.me/523921287299" target="_blank" rel="noopener">Cotizar por WhatsApp →</a>
       </div>
     </div>
   </section>
 
-  <!-- ============================= UBICACIÓN / CONTACTO ============================= -->
-  <section id="ubicacion" class="band-dark section-pad">
-    <div class="wrap reveal">
-      <div class="contact-block">
-        <div class="contact-info">
-          <span class="eyebrow">Contacto</span>
-          <h2>Estamos para ayudarte.</h2>
-          <p class="lead">¿Tienes un proyecto en mente? Nuestro equipo está listo para asesorarte y ofrecerte la mejor solución en acabados UV, tableros, cantos y maquinaria.</p>
+  <!-- ================= PROCESO (movido de Innovación) ================= -->
+  <section id="proceso">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Cómo trabajamos</span>
+        <h2>Metodología de suministro exacto.</h2>
+      </div>
+      <div class="proceso-flow">
+        <div class="proceso-step reveal">
+          <span class="step-num">S01 // CONFIGURACIÓN</span>
+          <h3>Definir Despiece</h3>
+          <p>Carga tus medidas en el cotizador digital o entrega tu archivo técnico.</p>
+        </div>
+        <div class="proceso-step reveal">
+          <span class="step-num">S02 // OPTIMIZACIÓN</span>
+          <h3>Optimización de Corte</h3>
+          <p>Acomodamos tus piezas para aprovechar mejor el material y bajar el costo.</p>
+        </div>
+        <div class="proceso-step reveal">
+          <span class="step-num">S03 // MAQUILA</span>
+          <h3>Corte y Habilitado</h3>
+          <p>Se corta, cantea y habilita cada pieza según tu listado, lista para ensamble.</p>
+        </div>
+        <div class="proceso-step reveal">
+          <span class="step-num">S04 // LOGÍSTICA</span>
+          <h3>Embarque o Retiro</h3>
+          <p>Paletizado y etiquetado por módulos, listo para descarga rápida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div class="info-list">
-            <div class="row">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <div><strong>Ubicación</strong><span>Av. Universidad #1350, Ocotlán, Jalisco, México.</span></div>
+  <!-- ================= PROYECTOS ================= -->
+  <section id="proyectos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Proyectos</span>
+        <h2>Inspiración que se transforma.</h2>
+        <p>Aplicaciones reales de nuestros acabados.</p>
+      </div>
+      <div class="filter-row reveal" id="proyFilters">
+        <button class="filter-btn is-active" data-cat="all">Todos</button>
+        <button class="filter-btn" data-cat="cocinas">Cocinas</button>
+        <button class="filter-btn" data-cat="mobiliario">Mobiliario</button>
+        <button class="filter-btn" data-cat="oficinas">Oficinas</button>
+        <button class="filter-btn" data-cat="comerciales">Comerciales</button>
+        <button class="filter-btn" data-cat="residenciales">Residenciales</button>
+      </div>
+      <div class="cat-grid reveal" id="proyectoGrid">
+        <a href="#contacto" class="cat-card" data-cat="cocinas">
+          <div class="cat-media">
+            <img src="imagen18.jpg" alt="Cocina Residencial" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <span class="cat-tag">Cocinas</span>
+            <div class="cat-overlay-body"><h4>Cocina Residencial</h4><p class="cat-overlay-meta">Acabado: <b>Kenya Nogal Inglés</b> · Innovación</p></div>
+          </div>
+        </a>
+        <a href="#contacto" class="cat-card" data-cat="mobiliario">
+          <div class="cat-media">
+            <img src="imagen19.png" alt="Sala Contemporánea" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <span class="cat-tag">Mobiliario</span>
+            <div class="cat-overlay-body"><h4>Sala Contemporánea</h4><p class="cat-overlay-meta">Acabado: <b>Lino Arena</b> · Select</p></div>
+          </div>
+        </a>
+        <a href="#contacto" class="cat-card" data-cat="residenciales">
+          <div class="cat-media">
+            <img src="imagen20.png" alt="Vestidor Residencial" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <span class="cat-tag">Residencial</span>
+            <div class="cat-overlay-body"><h4>Vestidor Residencial</h4><p class="cat-overlay-meta">Acabado: <b>Timber Arena</b> · Innovación</p></div>
+          </div>
+        </a>
+        <a href="#contacto" class="cat-card" data-cat="oficinas">
+          <div class="cat-media">
+            <img src="imagen21.jpg" alt="Recepción Corporativa" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <span class="cat-tag">Oficinas</span>
+            <div class="cat-overlay-body"><h4>Recepción Corporativa</h4><p class="cat-overlay-meta">Acabado: <b>Roble Natural</b> · Select</p></div>
+          </div>
+        </a>
+        <a href="#contacto" class="cat-card" data-cat="comerciales">
+          <div class="cat-media">
+            <img src="imagen22.png" alt="Comercio Minorista" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <span class="cat-tag">Comercial</span>
+            <div class="cat-overlay-body"><h4>Comercio Minorista</h4><p class="cat-overlay-meta">Acabado: <b>Rústico Americano</b> · Innovación</p></div>
+          </div>
+        </a>
+      </div>
+      <div class="reveal" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-top:36px;margin-top:40px;border-top:1px solid var(--line);">
+        <div>
+          <strong style="font-family:var(--font-display);font-size:16px;">¿Tienes un proyecto en mente?</strong>
+          <p style="color:var(--text-secondary);font-size:14px;margin-top:4px;">Cuéntanos tu idea, te ayudamos con el acabado ideal.</p>
+        </div>
+        <a class="btn btn-accent" href="#" id="proyWA" target="_blank">Cotiza tu proyecto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATÁLOGOS ================= -->
+  <section id="catalogos" style="background:var(--cream);">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Catálogos</span>
+        <h2>Descubre nuestros acabados y soluciones.</h2>
+        <p>Tableros, acabados UV y cantos para cada proyecto.</p>
+      </div>
+      <div class="filter-row reveal" id="catFilters">
+        <button class="filter-btn is-active" data-marca="all">Todas las marcas</button>
+        <button class="filter-btn" data-marca="innovacion">Innovación</button>
+        <button class="filter-btn" data-marca="select">Select</button>
+        <button class="filter-btn" data-marca="sync">Sync</button>
+        <button class="filter-btn" data-marca="tuv">TUV</button>
+      </div>
+      <div class="cat-grid reveal" id="catalogoGrid">
+        <div class="cat-card" data-marca="innovacion">
+          <div class="cat-media" style="background:linear-gradient(150deg,#8c6a3f,#4a3520);">
+            <img src="imagen23.png" alt="Kenya Nogal Inglés" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="cat-body"><h4>Kenya Nogal Inglés</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Sincronizado</p></div>
+        </div>
+        <div class="cat-card" data-marca="select">
+          <div class="cat-media" style="background:linear-gradient(150deg,#8c6a3f,#5a4128);">
+            <img src="imagen24.png" alt="Roble Natural" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="cat-body"><h4>Roble Natural</h4><p><b>Línea:</b> Select<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Mate</p></div>
+        </div>
+        <div class="cat-card" data-marca="innovacion">
+          <div class="cat-media" style="background:linear-gradient(150deg,#f2f0ec,#1a1a1a);">
+            <img src="imagen25.png" alt="Mármol Blanco y Negro" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="cat-body"><h4>Mármol Blanco y Negro</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Piedra<br><b>Acabado:</b> UV Alto Brillo</p></div>
+        </div>
+        <div class="cat-card" data-marca="select">
+          <div class="cat-media" style="background:linear-gradient(150deg,#d8cbb6,#b3a488);">
+            <img src="imagen26.png" alt="Lino Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="cat-body"><h4>Lino Arena</h4><p><b>Línea:</b> Select<br><b>Tipo:</b> Textil<br><b>Acabado:</b> UV Mate</p></div>
+        </div>
+        <div class="cat-card" data-marca="innovacion">
+          <div class="cat-media" style="background:linear-gradient(150deg,#e0a8b0,#a9646f);">
+            <img src="imagen27.png" alt="Rosa Metalizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="cat-body"><h4>Rosa Metalizado</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Metalizado<br><b>Acabado:</b> UV Metalizado</p></div>
+        </div>
+        <div class="cat-card" data-marca="innovacion">
+          <div class="cat-media" style="background:linear-gradient(150deg,#c9a876,#8a6a42);">
+            <img src="imagen28.png" alt="Timber Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+          </div>
+          <div class="cat-body"><h4>Timber Arena</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Sincronizado</p></div>
+        </div>
+      </div>
+      <div class="util-strip reveal">
+        <div class="util-item">
+          <h4>Catálogo digital</h4><p>Catálogo completo de acabados en PDF.</p>
+          <a href="braita-innovacion.html#catalogo">Ver catálogo técnico →</a>
+        </div>
+        <div class="util-item">
+          <h4>Fichas técnicas</h4><p>Usos y recomendaciones por acabado.</p>
+          <a href="braita-select.html#coleccion">Ver colección Select →</a>
+        </div>
+        <div class="util-item">
+          <h4>Solicita muestras</h4><p>Muestras físicas de tus acabados favoritos.</p>
+          <a href="#" id="muestrasWA" target="_blank">Solicitar muestras →</a>
+        </div>
+        <div class="util-item is-cta">
+          <h4>¿Necesitas ayuda para elegir?</h4><p>Te asesoramos en tu proyecto.</p>
+          <a href="#" id="catalogosWA" target="_blank">Cotizar por WhatsApp →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO ================= -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="sec-head on-dark reveal">
+        <span class="eyebrow on-dark">Contacto</span>
+        <h2 style="color:var(--text-light);">Estamos para ayudarte.</h2>
+        <p>Cuéntanos tu proyecto y te ayudamos a encontrar el acabado ideal.</p>
+      </div>
+
+      <div class="contacto-layout">
+        <div class="reveal">
+          <div class="contacto-grid">
+            <div class="contacto-item">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <h5>Ubicación</h5>
+              <p>Av. Universidad #1350, Ocotlán, Jalisco, México.</p>
             </div>
-            <div class="row">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              <div><strong>Teléfono</strong><a href="tel:+523929313919">392 931 3919</a><br><span>Lunes a viernes, 8:00 am – 6:00 pm.</span></div>
+            <div class="contacto-item">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <h5>Teléfono</h5>
+              <p><a href="tel:+523929313919">392 931 3919</a><br>Lun–vie, 8:00 am – 6:00 pm.</p>
             </div>
-            <div class="row">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-              <div><strong>WhatsApp</strong><a href="https://wa.me/523921287299" target="_blank" rel="noopener">392 128 7299</a><br><span>Atención rápida y personalizada.</span></div>
+            <div class="contacto-item">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              <h5>WhatsApp</h5>
+              <p><a href="https://wa.me/523921287299" target="_blank" rel="noopener">392 128 7299</a><br>Atención rápida y personalizada.</p>
             </div>
-            <div class="row">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
-              <div><strong>Correo</strong><a href="mailto:Tableros.braita@gmail.com">Tableros.braita@gmail.com</a></div>
+            <div class="contacto-item">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <h5>Correo</h5>
+              <p><a href="mailto:Tableros.braita@gmail.com">Tableros.braita@gmail.com</a></p>
             </div>
           </div>
-        </div>
 
-        <div class="contact-right">
-          <div class="map-embed">
-            <div class="map-embed-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="map-box" style="margin-top:20px;">
+            <div class="map-box-label">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
               Cedis Tableros Braita
             </div>
             <iframe
@@ -1227,66 +767,64 @@ section[id]{scroll-margin-top:96px;}
               loading="lazy" referrerpolicy="no-referrer-when-downgrade"
               title="Ubicación de Braita en Ocotlán, Jalisco"></iframe>
           </div>
-
-          <form class="contact-form" id="contactForm">
-            <div class="form-title">Envíanos un mensaje</div>
-            <div class="form-grid">
-              <div class="form-field">
-                <label for="cf-name">Nombre completo</label>
-                <input type="text" id="cf-name" name="nombre" required placeholder="Tu nombre">
-              </div>
-              <div class="form-field">
-                <label for="cf-company">Empresa</label>
-                <input type="text" id="cf-company" name="empresa" placeholder="Opcional">
-              </div>
-              <div class="form-field">
-                <label for="cf-phone">Teléfono</label>
-                <input type="tel" id="cf-phone" name="telefono" required placeholder="10 dígitos">
-              </div>
-              <div class="form-field">
-                <label for="cf-email">Correo electrónico</label>
-                <input type="email" id="cf-email" name="correo" placeholder="tucorreo@ejemplo.com">
-              </div>
-              <div class="form-field full">
-                <label for="cf-subject">Asunto</label>
-                <select id="cf-subject" name="asunto">
-                  <option>Cotización de acabados</option>
-                  <option>Braita Select — línea premium</option>
-                  <option>Braita Sync — cantos</option>
-                  <option>Braita TUV — terminados UV</option>
-                  <option>Braita Maquinaria — equipo</option>
-                  <option>Otro</option>
-                </select>
-              </div>
-              <div class="form-field full">
-                <label for="cf-message">Cuéntanos sobre tu proyecto</label>
-                <textarea id="cf-message" name="mensaje" placeholder="Descríbenos qué necesitas..."></textarea>
-              </div>
-            </div>
-            <button class="btn btn-primary" type="submit">
-              Enviar mensaje
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </button>
-          </form>
         </div>
-      </div>
-    </div>
 
-    <div class="wrap">
+        <form class="contact-form reveal" id="contactForm">
+          <div class="form-title">Envíanos un mensaje</div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="cf-name">Nombre completo</label>
+              <input type="text" id="cf-name" name="nombre" required placeholder="Tu nombre">
+            </div>
+            <div class="form-field">
+              <label for="cf-company">Empresa</label>
+              <input type="text" id="cf-company" name="empresa" placeholder="Opcional">
+            </div>
+            <div class="form-field">
+              <label for="cf-phone">Teléfono</label>
+              <input type="tel" id="cf-phone" name="telefono" required placeholder="10 dígitos">
+            </div>
+            <div class="form-field">
+              <label for="cf-email">Correo electrónico</label>
+              <input type="email" id="cf-email" name="correo" placeholder="tucorreo@ejemplo.com">
+            </div>
+            <div class="form-field full">
+              <label for="cf-subject">Asunto</label>
+              <select id="cf-subject" name="asunto">
+                <option>Cotización de acabados</option>
+                <option>Braita Select — línea premium</option>
+                <option>Braita Sync — cantos</option>
+                <option>Braita TUV — terminados UV</option>
+                <option>Braita Maquinaria — equipo</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="cf-message">Cuéntanos sobre tu proyecto</label>
+              <textarea id="cf-message" name="mensaje" placeholder="Descríbenos qué necesitas..."></textarea>
+            </div>
+          </div>
+          <button class="btn btn-accent" type="submit">
+            Enviar mensaje
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+      </div>
+
       <div class="trust-row reveal">
-        <div class="trust-item-full">
+        <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
           <div><h5>Atención personalizada</h5><p>Te acompañamos en cada etapa de tu proyecto.</p></div>
         </div>
-        <div class="trust-item-full">
+        <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          <div><h5>Respuesta rápida</h5><p>Nos comprometemos a responder tu consulta a la brevedad.</p></div>
+          <div><h5>Respuesta rápida</h5><p>Respondemos tu consulta a la brevedad.</p></div>
         </div>
-        <div class="trust-item-full">
+        <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 15a4 4 0 100-8 4 4 0 000 8z"/><path d="M8.5 13.5L7 21l5-3 5 3-1.5-7.5"/></svg>
           <div><h5>Experiencia y calidad</h5><p>Soluciones con la más alta calidad y tecnología.</p></div>
         </div>
-        <div class="trust-item-full">
+        <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           <div><h5>Compromiso</h5><p>Tu satisfacción es nuestra prioridad.</p></div>
         </div>
@@ -1296,13 +834,12 @@ section[id]{scroll-margin-top:96px;}
 
 </main>
 
-<!-- ============================= FOOTER ============================= -->
-<footer class="site-footer">
+<footer>
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="logo-mark">BRAITA<span>GROUP</span></div>
-        <p>Innovación que se ve y se siente. Acabados UV, tableros, cantos y maquinaria para transformar tus proyectos, desde Ocotlán, Jalisco.</p>
+        <div class="logo-box"><span class="g1">BRAITA</span><span class="g2">GROUP</span></div>
+        <p>Acabados UV, tableros, cantos y maquinaria, desde Ocotlán, Jalisco.</p>
       </div>
       <div class="footer-col">
         <h4>Marcas</h4>
@@ -1329,13 +866,13 @@ section[id]{scroll-margin-top:96px;}
           <li><a href="tel:+523929313919">392 931 3919</a></li>
           <li><a href="https://wa.me/523921287299" target="_blank" rel="noopener">WhatsApp: 392 128 7299</a></li>
           <li><a href="mailto:Tableros.braita@gmail.com">Tableros.braita@gmail.com</a></li>
-          <li><a href="#ubicacion">Ocotlán, Jalisco, México</a></li>
+          <li><a href="#contacto">Ocotlán, Jalisco, México</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; <span data-year>2026</span> Braita Group. Todos los derechos reservados.</p>
+      <p>© <span data-year>2026</span> Braita Group. Todos los derechos reservados.</p>
       <div class="socials">
         <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
@@ -1352,207 +889,92 @@ section[id]{scroll-margin-top:96px;}
   </div>
 </footer>
 
-<a class="wa-fab" href="https://wa.me/523921287299" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2.004 6.482 2.004 12c0 1.85.505 3.58 1.38 5.065L2 22l5.06-1.362A9.94 9.94 0 0012.004 22C17.522 22 22 17.518 22 12S17.522 2 12.004 2zm0 18.086a8.05 8.05 0 01-4.31-1.246l-.31-.184-3.005.808.812-2.933-.202-.302A8.06 8.06 0 013.918 12c0-4.464 3.632-8.086 8.086-8.086 4.454 0 8.086 3.622 8.086 8.086 0 4.464-3.632 8.086-8.086 8.086z"/></svg>
+<a href="#" id="waFloat" class="wa-float" target="_blank" aria-label="Cotizar por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.902 6.482L4 29l7.72-1.865A11.94 11.94 0 0 0 16.001 27C22.629 27 28 21.627 28 15S22.629 3 16.001 3zm0 21.818c-2.05 0-3.953-.6-5.556-1.633l-.398-.243-4.583 1.107 1.127-4.463-.26-.412A9.77 9.77 0 0 1 5.182 15c0-5.964 4.855-10.818 10.819-10.818S26.818 9.036 26.818 15 21.965 24.818 16.001 24.818zm5.892-8.114c-.322-.16-.192-.24-.53-.623-.11-.123-.584-.764-.674-.88-.09-.115-.175-.164-.29-.098-.115.065-.584.23-.715.344-.13.115-.262.13-.393.065-.13-.065-.557-.206-1.06-.656-.393-.35-1.03-.787-1.128-.967-.1-.18-.01-.28.08-.37.08-.08.197-.23.295-.344.1-.115.13-.197.197-.328.066-.13.033-.246-.016-.344-.05-.098-.443-1.066-.607-1.46-.16-.393-.337-.34-.46-.34-.122 0-.262-.016-.403-.016-.14 0-.368.05-.56.262-.193.213-.738.72-.738 1.754s.754 2.033.86 2.18c.107.148 1.484 2.263 3.596 3.173.503.217.896.347 1.2.443.505.16.964.137 1.327.083.404-.06 1.24-.508 1.414-.997.175-.492.175-.915.123-.997-.05-.082-.19-.13-.513-.29z"/></svg>
 </a>
 
+<script src="premium-interactions.js"></script>
 <script>
-// ============================================================
-// BRAITA GROUP — hub interactions (vanilla JS, no dependencies)
-// ============================================================
+  const WA = '523921287299';
+  const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+  document.getElementById('navWA').href = wa('Hola, quiero cotizar con Braita Group.');
+  document.getElementById('heroWA').href = wa('Hola, quiero cotizar con Braita Group.');
+  document.getElementById('proyWA').href = wa('Hola, tengo un proyecto en mente y quiero cotizar con Braita Group.');
+  document.getElementById('muestrasWA').href = wa('Hola, quiero solicitar muestras físicas de acabados.');
+  document.getElementById('catalogosWA').href = wa('Hola, necesito ayuda para elegir un acabado.');
+  document.getElementById('waFloat').href = wa('Hola, me encuentro en el sitio de Braita Group y necesito asistencia.');
 
-/* ---- Preloader ---- */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const pre = document.getElementById('preloader');
-    if (pre) pre.classList.add('hide');
-  }, 400);
-});
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const pre = document.getElementById('preloader');
+      if (pre) pre.classList.add('hide');
+    }, 400);
+  });
 
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const yearEl = document.querySelector('[data-year]');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---- Sticky header state ---- */
-  const header = document.querySelector('.site-header');
-  const onScroll = () => {
-    if (window.scrollY > 40) header.classList.add('is-scrolled');
-    else header.classList.remove('is-scrolled');
-  };
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  /* ---- Mobile nav toggle ---- */
-  const navToggle = document.querySelector('.nav-toggle');
-  const mainNav = document.querySelector('.main-nav');
-  if (navToggle && mainNav) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = mainNav.classList.toggle('is-open');
-      navToggle.setAttribute('aria-expanded', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-    });
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mainNav.classList.remove('is-open');
-        document.body.style.overflow = '';
+    /* ---- Proyectos: filtro por categoría ---- */
+    const proyFilters = document.getElementById('proyFilters');
+    const proyectoGrid = document.getElementById('proyectoGrid');
+    if (proyFilters && proyectoGrid) {
+      const proyectoCards = Array.from(proyectoGrid.querySelectorAll('.cat-card'));
+      proyFilters.addEventListener('click', (e) => {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        proyFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const cat = btn.dataset.cat;
+        proyectoCards.forEach(card => {
+          card.classList.toggle('is-hidden', cat !== 'all' && card.dataset.cat !== cat);
+        });
       });
-    });
-  }
+    }
 
-  /* ---- Scroll reveal ----
-     FIX (2026-07): threshold:0 with a fast .7s transition meant the reveal
-     could finish before the section was meaningfully on screen, and on
-     some setups the class got added before the browser painted the
-     "hidden" frame at all (no visible transition, "just appears"). Now it
-     waits until the element is a bit more into view (rootMargin -10% on
-     the bottom) before triggering — same behavior already proven on the
-     other 5 pages of the group — and the class add is pushed one frame
-     out so the browser always paints the initial state first. */
-  const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const target = entry.target;
-          io.unobserve(target);
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            target.classList.add('is-visible');
-          }));
+    /* ---- Catálogos: filtro por marca ---- */
+    const catFilters = document.getElementById('catFilters');
+    const catalogoGrid = document.getElementById('catalogoGrid');
+    if (catFilters && catalogoGrid) {
+      const catalogoCards = Array.from(catalogoGrid.querySelectorAll('.cat-card'));
+      catFilters.addEventListener('click', (e) => {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+        catFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const marca = btn.dataset.marca;
+        catalogoCards.forEach(card => {
+          card.classList.toggle('is-hidden', marca !== 'all' && card.dataset.marca !== marca);
+        });
+      });
+    }
+
+    /* ---- Formulario de contacto: arma un mensaje y lo abre en WhatsApp ---- */
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(contactForm);
+        const nombre = (data.get('nombre') || '').toString().trim();
+        const telefono = (data.get('telefono') || '').toString().trim();
+        if (!nombre || !telefono) {
+          contactForm.reportValidity();
+          return;
         }
+        const lineas = [
+          'Hola, quiero información de Braita Group.',
+          `Nombre: ${nombre}`,
+          data.get('empresa') ? `Empresa: ${data.get('empresa')}` : null,
+          `Teléfono: ${telefono}`,
+          data.get('correo') ? `Correo: ${data.get('correo')}` : null,
+          `Asunto: ${data.get('asunto')}`,
+          data.get('mensaje') ? `Mensaje: ${data.get('mensaje')}` : null,
+        ].filter(Boolean);
+        const texto = encodeURIComponent(lineas.join('\n'));
+        window.open(`https://wa.me/523921287299?text=${texto}`, '_blank');
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('is-visible'));
-  }
-
-  /* ---- Current year in footer ---- */
-  const yearEl = document.querySelector('[data-year]');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-  /* ---- Scroll progress bar ---- */
-  const progressBar = document.getElementById('scroll-progress');
-  if (progressBar) {
-    const updateProgress = () => {
-      const scrollable = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-      progressBar.style.width = pct + '%';
-    };
-    updateProgress();
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    window.addEventListener('resize', updateProgress);
-  }
-
-  /* ---- Button ripple effect ---- */
-  // Purely decorative, self-cleaning: the span removes itself after the
-  // animation ends, so it never piles up or interferes with .btn's own
-  // hover transition (that one still runs on the button itself).
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      const ripple = document.createElement('span');
-      ripple.style.position = 'absolute';
-      ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-      ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-      ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.borderRadius = '50%';
-      ripple.style.background = 'rgba(255,255,255,0.35)';
-      ripple.style.pointerEvents = 'none';
-      ripple.style.animation = 'btn-ripple 0.7s ease-out';
-      btn.appendChild(ripple);
-      ripple.addEventListener('animationend', () => ripple.remove());
-    });
+    }
   });
-
-  /* ---- Soft fade when leaving to another page of the group ----
-     Only intercepts real same-site page navigations — explicitly leaves
-     #anchors, external http(s) links, target="_blank", mailto: and tel:
-     links alone, so WhatsApp/Instagram/Facebook/phone/email links keep
-     working normally. */
-  document.querySelectorAll('a[href]').forEach(link => {
-    const href = link.getAttribute('href');
-    const isInternalPage = href
-      && !href.startsWith('#')
-      && !href.startsWith('http')
-      && !href.startsWith('mailto:')
-      && !href.startsWith('tel:')
-      && link.target !== '_blank';
-
-    if (!isInternalPage) return;
-
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      document.body.style.transition = 'opacity .35s ease';
-      document.body.style.opacity = '0.85';
-      setTimeout(() => { window.location.href = href; }, 180);
-    });
-  });
-
-  /* ---- Proyectos: filtro por categoría ---- */
-  const proyFilters = document.getElementById('proyFilters');
-  const proyectoGrid = document.getElementById('proyectoGrid');
-  if (proyFilters && proyectoGrid) {
-    const proyectoCards = Array.from(proyectoGrid.querySelectorAll('.proyecto-card'));
-    proyFilters.addEventListener('click', (e) => {
-      const btn = e.target.closest('.proy-filter-btn');
-      if (!btn) return;
-      proyFilters.querySelectorAll('.proy-filter-btn').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const cat = btn.dataset.cat;
-      proyectoCards.forEach(card => {
-        card.classList.toggle('is-hidden', cat !== 'all' && card.dataset.cat !== cat);
-      });
-    });
-  }
-
-  /* ---- Catálogos: filtro por marca ---- */
-  const catFilters = document.getElementById('catFilters');
-  const catalogoGrid = document.getElementById('catalogoGrid');
-  if (catFilters && catalogoGrid) {
-    const catalogoCards = Array.from(catalogoGrid.querySelectorAll('.catalogo-card'));
-    catFilters.addEventListener('click', (e) => {
-      const btn = e.target.closest('.cat-filter-btn');
-      if (!btn) return;
-      catFilters.querySelectorAll('.cat-filter-btn').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const marca = btn.dataset.marca;
-      catalogoCards.forEach(card => {
-        card.classList.toggle('is-hidden', marca !== 'all' && card.dataset.marca !== marca);
-      });
-    });
-  }
-
-  /* ---- Formulario de contacto: arma un mensaje y lo abre en WhatsApp ----
-     No hay backend propio en el sitio (todo el grupo funciona así, ver
-     Mesa de Control en braita-innovacion.html) — el formulario junta los
-     campos en un mensaje legible y lo manda por WhatsApp en vez de fingir
-     un envío a un servidor que no existe. */
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(contactForm);
-      const nombre = (data.get('nombre') || '').toString().trim();
-      const telefono = (data.get('telefono') || '').toString().trim();
-      if (!nombre || !telefono) {
-        contactForm.reportValidity();
-        return;
-      }
-      const lineas = [
-        'Hola, quiero información de Braita Group.',
-        `Nombre: ${nombre}`,
-        data.get('empresa') ? `Empresa: ${data.get('empresa')}` : null,
-        `Teléfono: ${telefono}`,
-        data.get('correo') ? `Correo: ${data.get('correo')}` : null,
-        `Asunto: ${data.get('asunto')}`,
-        data.get('mensaje') ? `Mensaje: ${data.get('mensaje')}` : null,
-      ].filter(Boolean);
-      const texto = encodeURIComponent(lineas.join('\n'));
-      window.open(`https://wa.me/523921287299?text=${texto}`, '_blank');
-    });
-  }
-
-});
-
 </script>
 </body>
 </html>

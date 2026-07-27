@@ -25,8 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('active', 'in');
-        observer.unobserve(entry.target);
+        const target = entry.target;
+        observer.unobserve(target);
+        // Fuerza un reflow síncrono y recién ahí pide el frame: así el
+        // navegador no puede "fusionar" el estado oculto y el visible en
+        // un solo paint (que es lo que hace que el elemento aparezca de
+        // golpe, sin transición — típico en secciones que ya están cerca
+        // del viewport al cargar la página, antes de que el usuario
+        // llegue a hacer scroll).
+        void target.offsetHeight;
+        requestAnimationFrame(() => {
+          target.classList.add('active', 'in');
+        });
       }
     });
   }, observerOptions);
@@ -134,14 +144,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (menuToggle && navMenu) {
     menuToggle.addEventListener('click', function() {
-      this.classList.toggle('active');
+      const isOpen = this.classList.toggle('active');
       navMenu.classList.toggle('is-active');
+      // Bloquea el scroll del fondo mientras el overlay de navegación está
+      // abierto — sin esto, el contenido de la página se podía seguir
+      // desplazando detrás del menú de pantalla completa en móvil.
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
     navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         menuToggle.classList.remove('active');
         navMenu.classList.remove('is-active');
+        document.body.style.overflow = '';
       });
     });
   }
