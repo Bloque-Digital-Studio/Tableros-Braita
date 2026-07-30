@@ -70,9 +70,9 @@
 
   /* ---------- BARRA GRUPO BRAITA ---------- */
   .group-switcher{ background:#000; padding:10px 0; }
-  .group-switcher .gs-wrap{ max-width:1240px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
+  .group-switcher .gs-wrap{ max-width:1240px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-display); font-size:13px; font-weight:500; letter-spacing:.01em; }
   @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
-  .group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+  .group-switcher .gs-label{ font-weight:700; letter-spacing:.02em; color:#8a8a82; }
   .group-switcher a{ display:inline-flex; align-items:center; gap:7px; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
   .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
   .group-switcher a:hover{ color:#F5F5F2; }
@@ -122,6 +122,12 @@
   .hero p.lead{ margin-top:20px; max-width:520px; font-size:1.03rem; color:var(--text-light-muted); }
   .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
   @media (max-width:480px){ .hero-actions{ flex-direction:column; } .hero-actions .btn{ width:100%; justify-content:center; } }
+  .hero-brands{ margin-top:38px; position:relative; z-index:1; }
+  .hero-brands .label{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-light-muted); margin-bottom:12px; display:block; }
+  .hero-brands .row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .hero-brand-pill{ display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; border:1.5px solid rgba(245,241,233,.18); font-family:var(--font-display); font-size:.82rem; font-weight:600; color:var(--text-light); transition:border-color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease); }
+  .hero-brand-pill .dot{ width:8px; height:8px; border-radius:50%; flex:none; }
+  .hero-brand-pill:hover{ transform:translateY(-2px); background:rgba(245,241,233,.07); }
 
   .hero-bg-image{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
   .hero-bg-image img{ width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s ease; }
@@ -288,6 +294,16 @@
       <div class="hero-actions">
         <a href="#catalogo" class="btn btn-accent">Ver catálogo</a>
         <a href="index.html" class="btn btn-outline-dark">Ver el resto del grupo Braita</a>
+      </div>
+      <div class="hero-brands">
+        <span class="label">Otras marcas del grupo</span>
+        <div class="row">
+          <a href="index.html" class="hero-brand-pill" style="border-color:rgba(201,151,75,.55); color:#E4C68C;">← Braita Group</a>
+          <a href="braita-innovacion.html" class="hero-brand-pill" style="border-color:rgba(255,255,255,.4);"><span class="dot" style="background:#FFFFFF"></span>Innovación</a>
+          <a href="braita-select.html" class="hero-brand-pill" style="border-color:rgba(201,151,75,.4);"><span class="dot" style="background:#C9974B"></span>Select</a>
+          <a href="braita-maquinaria.html" class="hero-brand-pill" style="border-color:rgba(201,86,74,.4);"><span class="dot" style="background:#C9564A"></span>Machinery</a>
+          <a href="braita-tuv.html" class="hero-brand-pill" style="border-color:rgba(154,161,168,.4);"><span class="dot" style="background:#9AA1A8"></span>TUV</a>
+        </div>
       </div>
     </div>
     <div class="hero-bg-image" aria-hidden="true">

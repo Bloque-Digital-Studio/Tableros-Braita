@@ -68,9 +68,9 @@ section[id]{ scroll-margin-top:96px; }
 
 /* ---------- BARRA GRUPO BRAITA ---------- */
 .group-switcher{ background:#000; padding:10px 0; }
-.group-switcher .gs-wrap{ max-width:1240px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; }
+.group-switcher .gs-wrap{ max-width:1240px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; font-family:var(--font-display); font-size:13px; font-weight:500; letter-spacing:.01em; }
 @media (max-width:640px){ .group-switcher .gs-wrap{ padding:0 20px; gap:14px; } }
-.group-switcher .gs-label{ text-transform:uppercase; letter-spacing:.08em; color:#6B6E68; }
+.group-switcher .gs-label{ font-weight:700; letter-spacing:.02em; color:#8a8a82; }
 .group-switcher a{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:#ABAAA1; padding:3px 0; border-bottom:2px solid transparent; transition:color .2s ease; }
 .group-switcher a .gs-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 .group-switcher a:hover{ color:#F5F5F2; }
@@ -127,7 +127,13 @@ nav.main-nav a:hover{ color:var(--gold-light); }
 .hero h1 em{ font-style:normal; color:var(--gold-light); }
 .hero p.lead{ margin-top:20px; max-width:480px; font-size:1.05rem; color:var(--text-light-muted); }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top:30px; }
-.hero-meta{ display:flex; gap:32px; flex-wrap:wrap; margin-top:46px; padding-top:26px; border-top:1px solid rgba(245,241,233,.14); }
+.hero-brands{ margin-top:38px; }
+.hero-brands .label{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-light-muted); margin-bottom:12px; display:block; }
+.hero-brands .row{ display:flex; gap:10px; flex-wrap:wrap; }
+.hero-brand-pill{ display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; border:1.5px solid rgba(245,241,233,.18); font-family:var(--font-display); font-size:.82rem; font-weight:600; color:var(--text-light); transition:border-color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease); }
+.hero-brand-pill .dot{ width:8px; height:8px; border-radius:50%; flex:none; }
+.hero-brand-pill:hover{ transform:translateY(-2px); background:rgba(245,241,233,.07); }
+.hero-meta{ display:flex; gap:32px; flex-wrap:wrap; margin-top:34px; padding-top:26px; border-top:1px solid rgba(245,241,233,.14); }
 .hero-meta div{ display:flex; flex-direction:column; gap:4px; }
 .hero-meta strong{ font-family:var(--font-display); font-size:1.5rem; color:var(--text-light); }
 .hero-meta span{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--text-light-muted); }
@@ -151,14 +157,6 @@ nav.main-nav a:hover{ color:var(--gold-light); }
 .esencia-item h3{ font-size:.96rem; font-weight:600; margin-bottom:8px; }
 .esencia-item p{ font-size:.86rem; color:var(--text-secondary); }
 
-/* ---------- STATS ---------- */
-#stats-band{ background:var(--ink); padding:64px 0; }
-.stats-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(245,241,233,.1); border-radius:10px; overflow:hidden; }
-@media (max-width:560px){ .stats-strip{ grid-template-columns:repeat(2,1fr); } }
-.stat-item{ background:var(--ink); padding:26px 18px; text-align:center; }
-.stat-item .num{ font-family:var(--font-display); font-weight:700; font-size:2rem; color:var(--gold-light); }
-.stat-item .label{ font-family:var(--font-mono); font-size:.66rem; letter-spacing:.05em; text-transform:uppercase; color:var(--text-light-muted); margin-top:6px; display:block; }
-
 /* ---------- MARCAS ---------- */
 #marcas{ background:var(--paper); }
 .marca-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:10px; }
@@ -176,11 +174,11 @@ nav.main-nav a:hover{ color:var(--gold-light); }
 .marca-card.m-sync{ --accent:#5F9A5A; }
 .marca-card.m-machinery{ --accent:#C9564A; }
 .marca-card.m-tuv{ --accent:#9AA1A8; }
-.marca-mark{ width:56px; height:56px; border-radius:8px; background:#fff; display:flex; align-items:center; justify-content:center; margin-bottom:22px; padding:8px; box-shadow:0 8px 18px -8px rgba(0,0,0,.35); }
+.marca-mark{ width:84px; height:84px; border-radius:10px; background:#fff; display:flex; align-items:center; justify-content:center; margin-bottom:22px; padding:10px; box-shadow:0 8px 18px -8px rgba(0,0,0,.35); }
 .marca-mark img{ width:100%; height:100%; object-fit:contain; }
-.marca-mark.text-mark{ background:transparent; border:1.5px solid var(--accent); font-family:var(--font-display); font-weight:700; font-size:18px; color:var(--accent); }
+.marca-mark.text-mark{ background:transparent; border:1.5px solid var(--accent); font-family:var(--font-display); font-weight:700; font-size:24px; color:var(--accent); }
 .marca-card h3{ font-size:1.25rem; margin-bottom:6px; }
-.marca-sub{ font-family:var(--font-mono); font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+.marca-sub{ font-family:var(--font-display); font-size:.8rem; font-weight:600; letter-spacing:.03em; color:var(--accent); margin-bottom:14px; }
 .marca-card p.desc{ color:var(--text-secondary); font-size:.9rem; flex:1; }
 .marca-feats{ margin:18px 0 22px; display:flex; flex-direction:column; gap:8px; }
 .marca-feats li{ font-size:.82rem; color:var(--text-secondary); display:flex; align-items:center; gap:9px; }
@@ -197,16 +195,6 @@ nav.main-nav a:hover{ color:var(--gold-light); }
 .porque-item svg{ width:28px; height:28px; stroke:var(--gold-light); margin-bottom:16px; }
 .porque-item h3{ font-size:.96rem; font-weight:600; margin-bottom:8px; color:var(--text-light); }
 .porque-item p{ font-size:.86rem; color:var(--text-light-muted); }
-
-/* ---------- PROCESO (movido de Innovación) ---------- */
-#proceso{ background:var(--cream); }
-.proceso-flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:10px; }
-@media (max-width:920px){ .proceso-flow{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:560px){ .proceso-flow{ grid-template-columns:1fr; } }
-.proceso-step{ background:var(--paper); border-radius:10px; padding:26px 22px; border:1px solid var(--line); }
-.proceso-step .step-num{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; color:var(--gold-dark); }
-.proceso-step h3{ font-size:1rem; margin-top:10px; margin-bottom:8px; }
-.proceso-step p{ font-size:.85rem; color:var(--text-secondary); }
 
 /* ---------- CATALOGO / TARJETAS (proyectos y catálogos) ---------- */
 .filter-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:26px; }
@@ -389,10 +377,20 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
         <a href="#marcas" class="btn btn-accent">Explorar marcas</a>
         <a href="#" id="heroWA" class="btn btn-outline-dark" target="_blank">Cotizar por WhatsApp</a>
       </div>
+      <div class="hero-brands">
+        <span class="label">Nuestras marcas</span>
+        <div class="row">
+          <a href="braita-innovacion.html" class="hero-brand-pill" style="border-color:rgba(255,255,255,.4);"><span class="dot" style="background:#FFFFFF"></span>Innovación</a>
+          <a href="braita-select.html" class="hero-brand-pill" style="border-color:rgba(201,151,75,.4);"><span class="dot" style="background:#C9974B"></span>Select</a>
+          <a href="braita-sinc.html" class="hero-brand-pill" style="border-color:rgba(95,154,90,.4);"><span class="dot" style="background:#5F9A5A"></span>Sync</a>
+          <a href="braita-maquinaria.html" class="hero-brand-pill" style="border-color:rgba(201,86,74,.4);"><span class="dot" style="background:#C9564A"></span>Machinery</a>
+          <a href="braita-tuv.html" class="hero-brand-pill" style="border-color:rgba(154,161,168,.4);"><span class="dot" style="background:#9AA1A8"></span>TUV</a>
+        </div>
+      </div>
       <div class="hero-meta">
-        <div><strong>10+</strong><span>Años de experiencia</span></div>
+        <div><strong>2018</strong><span>Operando desde</span></div>
         <div><strong>5</strong><span>Marcas especializadas</span></div>
-        <div><strong>500+</strong><span>Acabados disponibles</span></div>
+        <div><strong>65</strong><span>Acabados disponibles</span></div>
       </div>
     </div>
   </section>
@@ -431,18 +429,6 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
           <h3>Cercanía</h3>
           <p>Acompañamos a nuestros clientes en cada etapa del proyecto.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= STATS ================= -->
-  <section id="stats-band">
-    <div class="wrap reveal">
-      <div class="stats-strip">
-        <div class="stat-item"><span class="num">10+</span><span class="label">Años de experiencia</span></div>
-        <div class="stat-item"><span class="num">5</span><span class="label">Marcas especializadas</span></div>
-        <div class="stat-item"><span class="num">500+</span><span class="label">Acabados disponibles</span></div>
-        <div class="stat-item"><span class="num">100%</span><span class="label">Comprometidos con el cliente</span></div>
       </div>
     </div>
   </section>
@@ -530,7 +516,7 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
       <div class="porque-grid">
         <div class="porque-item reveal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg>
-          <h3>Arquitectos y diseñadores</h3>
+          <h3>Arquitectos, diseñadores e interioristas</h3>
           <p>Fichas técnicas claras y acabados consistentes para especificar sin sorpresas en obra.</p>
         </div>
         <div class="porque-item reveal">
@@ -540,40 +526,8 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
         </div>
         <div class="porque-item reveal">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21V9l8-6 8 6v12M9 21v-8h6v8"/></svg>
-          <h3>Fabricantes de cocinas</h3>
+          <h3>Fabricantes de cocinas, closets y puertas</h3>
           <p>Melamina y alto brillo con existencia constante para no detener tu producción.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= PROCESO (movido de Innovación) ================= -->
-  <section id="proceso">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="eyebrow">Cómo trabajamos</span>
-        <h2>Metodología de suministro exacto.</h2>
-      </div>
-      <div class="proceso-flow">
-        <div class="proceso-step reveal">
-          <span class="step-num">S01 // CONFIGURACIÓN</span>
-          <h3>Definir Despiece</h3>
-          <p>Carga tus medidas en el cotizador digital o entrega tu archivo técnico.</p>
-        </div>
-        <div class="proceso-step reveal">
-          <span class="step-num">S02 // OPTIMIZACIÓN</span>
-          <h3>Optimización de Corte</h3>
-          <p>Acomodamos tus piezas para aprovechar mejor el material y bajar el costo.</p>
-        </div>
-        <div class="proceso-step reveal">
-          <span class="step-num">S03 // MAQUILA</span>
-          <h3>Corte y Habilitado</h3>
-          <p>Se corta, cantea y habilita cada pieza según tu listado, lista para ensamble.</p>
-        </div>
-        <div class="proceso-step reveal">
-          <span class="step-num">S04 // LOGÍSTICA</span>
-          <h3>Embarque o Retiro</h3>
-          <p>Paletizado y etiquetado por módulos, listo para descarga rápida.</p>
         </div>
       </div>
     </div>
@@ -632,13 +586,6 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
           </div>
         </a>
       </div>
-      <div class="reveal" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-top:36px;margin-top:40px;border-top:1px solid var(--line);">
-        <div>
-          <strong style="font-family:var(--font-display);font-size:16px;">¿Tienes un proyecto en mente?</strong>
-          <p style="color:var(--text-secondary);font-size:14px;margin-top:4px;">Cuéntanos tu idea, te ayudamos con el acabado ideal.</p>
-        </div>
-        <a class="btn btn-accent" href="#" id="proyWA" target="_blank">Cotiza tu proyecto</a>
-      </div>
     </div>
   </section>
 
@@ -656,6 +603,7 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
         <button class="filter-btn" data-marca="select">Select</button>
         <button class="filter-btn" data-marca="sync">Sync</button>
         <button class="filter-btn" data-marca="tuv">TUV</button>
+        <button class="filter-btn" data-marca="machinery">Machinery</button>
       </div>
       <div class="cat-grid reveal" id="catalogoGrid">
         <div class="cat-card" data-marca="innovacion">
@@ -693,6 +641,18 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
             <img src="imagen28.png" alt="Timber Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body"><h4>Timber Arena</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Sincronizado</p></div>
+        </div>
+        <div class="cat-card" data-marca="machinery">
+          <div class="cat-media" style="background:linear-gradient(150deg,#3a2420,#1a1210); display:flex; align-items:center; justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#E39A90" stroke-width="1.5" style="width:44px; height:44px;"><rect x="3" y="6" width="18" height="12" rx="1"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+          </div>
+          <div class="cat-body"><h4>Seccionadoras</h4><p><b>Línea:</b> Machinery<br><b>Tipo:</b> Equipo<br><b>Uso:</b> Corte de tableros a medida</p></div>
+        </div>
+        <div class="cat-card" data-marca="machinery">
+          <div class="cat-media" style="background:linear-gradient(150deg,#3a2420,#1a1210); display:flex; align-items:center; justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#E39A90" stroke-width="1.5" style="width:44px; height:44px;"><path d="M4 12h16M4 12a4 4 0 014-4h8a4 4 0 014 4M4 12a4 4 0 004 4h8a4 4 0 004-4"/></svg>
+          </div>
+          <div class="cat-body"><h4>Canteadoras</h4><p><b>Línea:</b> Machinery<br><b>Tipo:</b> Equipo<br><b>Uso:</b> Aplicación de cubrecanto</p></div>
         </div>
       </div>
       <div class="util-strip reveal">
@@ -892,7 +852,6 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
   const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
   document.getElementById('navWA').href = wa('Hola, quiero cotizar con Braita Group.');
   document.getElementById('heroWA').href = wa('Hola, quiero cotizar con Braita Group.');
-  document.getElementById('proyWA').href = wa('Hola, tengo un proyecto en mente y quiero cotizar con Braita Group.');
   document.getElementById('muestrasWA').href = wa('Hola, quiero solicitar muestras físicas de acabados.');
   document.getElementById('catalogosWA').href = wa('Hola, necesito ayuda para elegir un acabado.');
   document.getElementById('waFloat').href = wa('Hola, me encuentro en el sitio de Braita Group y necesito asistencia.');
