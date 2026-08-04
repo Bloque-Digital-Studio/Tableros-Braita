@@ -31,9 +31,9 @@
   degradado de fondo; en cuanto se suba la foto con el nombre exacto
   aparece sola, sin tocar código.
 
-  Mesa de Control: mismo módulo compartido que el resto del grupo
-  (ver mesa-control.js) — aquí el cliente especifica las piezas que
-  va a enviar y el tipo de acabado UV que quiere que se les aplique.
+  Contacto rápido: formulario simple (nombre, teléfono, correo opcional,
+  mensaje) que envía los datos por WhatsApp. Sustituye a la antigua
+  Mesa de Control / despiece de piezas que usaba este sitio.
   ================================================================
 -->
 <html lang="es">
@@ -183,40 +183,13 @@
   .proceso-item h3{ font-size:1rem; font-weight:600; margin-bottom:8px; color:var(--text-light); }
   .proceso-item p{ font-size:.85rem; color:var(--text-light-muted); }
 
-  /* ---------- MESA DE CONTROL ---------- */
-  #mesa-control{ background:var(--cream); }
-  .mesa-layout{ display:grid; grid-template-columns:1.2fr .8fr; gap:24px; margin-top:36px; align-items:start; }
-  @media (max-width:1024px){ .mesa-layout{ grid-template-columns:1fr; } }
+  /* ---------- CONTACTO RÁPIDO ---------- */
+  #contacto-rapido{ background:var(--cream); }
   .mesa-panel{ background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:26px; min-width:0; }
-  .panel-header{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:20px; }
-  .panel-header h3{ font-size:1rem; }
-  .table-responsive{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  .despiece-table{ width:100%; min-width:540px; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left; margin-bottom:16px; }
-  .despiece-table th{ color:var(--text-secondary); padding:8px 8px; font-weight:500; border-bottom:2px solid var(--line); }
-  .despiece-table td{ padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:middle; }
-  .despiece-table input, .despiece-table select{ width:100%; background:#fff; border:1px solid var(--line); border-radius:6px; color:var(--text-primary); padding:7px 8px; font-family:var(--font-mono); font-size:12px; }
-  .despiece-table input:focus, .despiece-table select:focus{ outline:none; border-color:var(--accent); }
-  .btn-remove-row{ background:transparent; border:none; color:#B4483C; cursor:pointer; padding:4px; display:inline-flex; align-items:center; }
-  .btn-add-row{ background:transparent; border:1.5px dashed var(--line); border-radius:999px; color:var(--text-primary); font-family:var(--font-mono); font-size:12px; padding:10px 16px; cursor:pointer; width:100%; text-transform:uppercase; transition:all .2s ease; }
-  .btn-add-row:hover{ border-color:var(--accent); color:var(--accent-dark); }
   .form-group{ margin-bottom:18px; }
   .form-group label{ display:block; font-family:var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:7px; color:var(--text-secondary); }
   .form-group input, .form-group select, .form-group textarea{ width:100%; background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px; color:var(--text-primary); font-family:var(--font-sans); font-size:.88rem; transition:border-color .2s ease; }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus{ outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(154,161,168,.15); }
-  .summary-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; margin-top:16px; }
-  @media (max-width:620px){ .summary-strip{ grid-template-columns:repeat(2,1fr); } }
-  .summary-item{ background:var(--paper); padding:12px 10px; text-align:center; }
-  .summary-num{ display:block; font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--accent-dark); }
-  .summary-label{ font-family:var(--font-mono); font-size:.6rem; letter-spacing:.05em; text-transform:uppercase; color:var(--text-secondary); margin-top:4px; display:block; }
-  .btn-copy-summary{ width:100%; margin-top:14px; background:transparent; border:1.5px solid var(--line); border-radius:999px; color:var(--text-primary); font-family:var(--font-mono); font-size:.7rem; letter-spacing:.04em; text-transform:uppercase; padding:11px; cursor:pointer; transition:all .2s ease; }
-  .btn-copy-summary:hover{ border-color:var(--accent); color:var(--accent-dark); }
-
-  #toast-container{ position:fixed; bottom:32px; left:32px; right:32px; z-index:1000; display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
-  @media (max-width:480px){ #toast-container{ left:16px; right:16px; bottom:16px; } }
-  .toast{ background:var(--ink); color:var(--text-light); font-family:var(--font-mono); font-size:13px; padding:14px 20px; border-left:4px solid var(--accent); border-radius:8px; box-shadow:0 16px 40px rgba(0,0,0,.35); transform:translateX(-120%); animation:slideIn .4s var(--ease) forwards; display:flex; align-items:center; gap:14px; max-width:100%; }
-  @keyframes slideIn{ to{ transform:translateX(0); } }
-  .toast.fade-out{ animation:slideOut .4s var(--ease) forwards; }
-  @keyframes slideOut{ to{ transform:translateX(-120%); opacity:0; } }
 
   /* ---------- CONTACTO ---------- */
   #contacto{ background:var(--ink); color:var(--text-light); }
@@ -237,6 +210,15 @@
   .wa-float{ position:fixed; right:26px; bottom:26px; z-index:80; width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.28); transition:transform .3s var(--ease); }
   .wa-float:hover{ transform:scale(1.08); }
   .wa-float svg{ width:27px; height:27px; }
+
+  /* ---------- LIGHTBOX ---------- */
+  .cat-media{ cursor:zoom-in; }
+  .lightbox{ position:fixed; inset:0; z-index:9000; background:rgba(5,5,5,.94); display:none; align-items:center; justify-content:center; padding:40px; cursor:zoom-out; }
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-width:100%; max-height:100%; object-fit:contain; border-radius:6px; box-shadow:0 30px 80px rgba(0,0,0,.5); cursor:default; }
+  .lightbox-close{ position:fixed; top:20px; right:24px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:26px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:9001; }
+  .lightbox-close:hover{ background:rgba(255,255,255,.2); }
+  @media (max-width:640px){ .lightbox{ padding:20px; } }
 
   #scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent-light)); z-index:300; transition:width .12s linear; }
 
@@ -260,7 +242,6 @@
   <span class="pre-caption">Cargando</span>
 </div>
 
-<div id="toast-container"></div>
 <div id="scroll-progress"></div>
 
 <div class="group-switcher">
@@ -284,7 +265,7 @@
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#catalogo">Acabados</a></li>
         <li><a href="#proceso">Cómo funciona</a></li>
-        <li><a href="#mesa-control">Solicitar maquila</a></li>
+        <li><a href="#contacto-rapido">Solicitar maquila</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -312,7 +293,7 @@
       </div>
 
       <div class="hero-actions">
-        <a href="#mesa-control" class="btn btn-accent">Solicita tu acabado UV</a>
+        <a href="#contacto-rapido" class="btn btn-accent">Solicita tu acabado UV</a>
         <a href="index.html" class="btn btn-outline-dark">Ver el resto del grupo Braita</a>
       </div>
       <div class="hero-brands">
@@ -352,7 +333,7 @@
       <div class="cat-grid">
         <div class="cat-card reveal">
           <div class="cat-media" style="background:linear-gradient(150deg,#E8E6E1,#C7C2B4);">
-            <img src="imagen75.png" alt="Alto Brillo" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Alto Brillo.png" alt="Alto Brillo" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body">
             <h3>Alto Brillo</h3>
@@ -360,7 +341,7 @@
         </div>
         <div class="cat-card reveal">
           <div class="cat-media" style="background:linear-gradient(150deg,#8B8E93,#5F6368);">
-            <img src="imagen76.png" alt="Mate" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Mate.png" alt="Mate" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body">
             <h3>Mate</h3>
@@ -368,7 +349,7 @@
         </div>
         <div class="cat-card reveal">
           <div class="cat-media" style="background:linear-gradient(150deg,#8c6a3f,#5a4128);">
-            <img src="imagen77.png" alt="Sincronizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Sincronizado.png" alt="Sincronizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body">
             <h3>Sincronizado</h3>
@@ -376,7 +357,7 @@
         </div>
         <div class="cat-card reveal">
           <div class="cat-media" style="background:linear-gradient(150deg,#c9a876,#8a6a42);">
-            <img src="imagen78.png" alt="Metalizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Metalizado.png" alt="Metalizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body">
             <h3>Metalizado</h3>
@@ -384,7 +365,7 @@
         </div>
         <div class="cat-card reveal">
           <div class="cat-media" style="background:linear-gradient(150deg,#2A2C2E,#111214);">
-            <img src="imagen79.png" alt="Rayado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Rayado.png" alt="Rayado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body">
             <h3>Rayado</h3>
@@ -431,105 +412,38 @@
   </section>
 
   <!-- ============================================================
-       MESA DE CONTROL — mismo sistema que braita-innovacion.html
-       (ver mesa-control.js): arma un listado de piezas, calcula un
-       resumen en vivo y lo manda por WhatsApp; guarda copia en la
-       misma base de Supabase (tabla pedidos_maquila). Aquí el
-       cliente especifica las piezas que va a mandar y el tipo de
-       acabado UV que quiere que se les aplique.
+       CONTACTO RÁPIDO — formulario simple que sustituye a la antigua
+       Mesa de Control (listado de piezas / despiece). El cliente deja
+       sus datos y el mensaje se envía por WhatsApp.
   ============================================================ -->
-  <section id="mesa-control">
+  <section id="contacto-rapido">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">Cotizar Maquila</span>
-        <h2>Arma tu Solicitud de Maquila</h2>
-        <p>Añade las piezas a maquilar; el listado queda listo para enviarse por WhatsApp.</p>
+        <span class="eyebrow">Contacto</span>
+        <h2>Cuéntanos qué necesitas.</h2>
+        <p>Déjanos tus datos y te contactamos por WhatsApp.</p>
       </div>
-
-      <div class="mesa-layout">
-        <div class="mesa-panel reveal">
-          <div class="panel-header">
-            <h3>Listado de Piezas</h3>
-            <span class="mono" style="font-size:11px; color:var(--text-secondary);" id="row-counter">1 Pieza añadida</span>
-          </div>
-
-          <div class="table-responsive">
-            <table class="despiece-table" id="despiece-table">
-              <thead>
-                <tr>
-                  <th>Pieza / Etiqueta</th>
-                  <th style="width:100px;">Largo (mm)</th>
-                  <th style="width:100px;">Ancho (mm)</th>
-                  <th style="width:80px;">Cant.</th>
-                  <th>Chapeado (Cantos)</th>
-                  <th style="width:40px;"></th>
-                </tr>
-              </thead>
-              <tbody id="table-body-rows">
-                <tr>
-                  <td><input type="text" placeholder="Ej: Puerta de Cocina" value="Puerta de Cocina"></td>
-                  <td><input type="number" placeholder="0" value="600"></td>
-                  <td><input type="number" placeholder="0" value="450"></td>
-                  <td><input type="number" placeholder="1" value="6"></td>
-                  <td>
-                    <select>
-                      <option value="Ninguno">Ninguno</option>
-                      <option value="2 Largos">2 Largos</option>
-                      <option value="1 Largo 1 Ancho">1 Largo / 1 Ancho</option>
-                      <option value="Perimetral (4 lados)">Perimetral (4 lados)</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button class="btn-remove-row" title="Eliminar fila" onclick="deleteRow(this)">
-                      <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <button class="btn-add-row" onclick="addNewRow()">+ Añadir Fila de Despiece</button>
-
-          <div class="summary-strip" id="summaryStrip">
-            <div class="summary-item"><span class="summary-num" id="sumPiezas">0</span><span class="summary-label">Piezas totales</span></div>
-            <div class="summary-item"><span class="summary-num" id="sumArea">0.00 m²</span><span class="summary-label">Área total</span></div>
-            <div class="summary-item"><span class="summary-num" id="sumCanto">0.00 m</span><span class="summary-label">Canto lineal</span></div>
-            <div class="summary-item"><span class="summary-num" id="sumTableros">0</span><span class="summary-label">Tableros aprox.*</span></div>
-          </div>
-          <p class="mono" style="font-size:10.5px; color:var(--text-secondary); margin-top:10px; line-height:1.5;">*Estimado sobre tablero de 244 × 122 cm con 15% de merma; no sustituye la cotización formal.</p>
-          <button class="btn-copy-summary" type="button" onclick="copiarResumen()">Copiar resumen del pedido</button>
+      <form class="mesa-panel reveal" id="quickContactForm" style="max-width:560px;">
+        <div class="form-group">
+          <label for="qc-name">Nombre completo</label>
+          <input type="text" id="qc-name" name="nombre" required placeholder="Tu nombre">
         </div>
-
-        <div class="mesa-panel reveal">
-          <div class="form-group">
-            <label for="client-name">Nombre Comercial / Solicitante</label>
-            <input type="text" id="client-name" required placeholder="Ej: Marco Gutiérrez">
-          </div>
-          <div class="form-group">
-            <label for="client-company">Fábrica / Carpintería</label>
-            <input type="text" id="client-company" placeholder="Opcional">
-          </div>
-          <div class="form-group">
-            <label for="client-phone">Línea Móvil (WhatsApp)</label>
-            <input type="tel" id="client-phone" required placeholder="Ej: 3921002030">
-          </div>
-          <div class="form-group">
-            <label for="master-material">Tipo de acabado UV deseado</label>
-            <select id="master-material">
-              <option value="Alto Brillo (material propio)">Alto Brillo</option>
-              <option value="Mate (material propio)">Mate</option>
-              <option value="Sincronizado (material propio)">Sincronizado</option>
-              <option value="Metalizado (material propio)">Metalizado</option>
-              <option value="Rayado (material propio)">Rayado</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="client-notes">Notas Especiales</label>
-            <textarea id="client-notes" placeholder="Indicar tipo de material que envías, color base, etc..."></textarea>
-          </div>
-          <button class="btn btn-accent" style="width:100%; margin-top:8px; justify-content:center;" onclick="processOrderToWhatsApp()">Exportar y Enviar por WhatsApp</button>
+        <div class="form-group">
+          <label for="qc-phone">Teléfono</label>
+          <input type="tel" id="qc-phone" name="telefono" required placeholder="10 dígitos">
         </div>
-      </div>
+        <div class="form-group">
+          <label for="qc-email">Correo electrónico</label>
+          <input type="email" id="qc-email" name="correo" placeholder="Opcional">
+        </div>
+        <div class="form-group">
+          <label for="qc-message">Mensaje</label>
+          <textarea id="qc-message" name="mensaje" placeholder="Cuéntanos qué necesitas..."></textarea>
+        </div>
+        <button class="btn btn-accent" type="submit" style="width:100%; justify-content:center;">
+          Enviar por WhatsApp
+        </button>
+      </form>
     </div>
   </section>
 
@@ -567,6 +481,11 @@
   <svg viewBox="0 0 448 512" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
 </a>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Cerrar" type="button">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <script>
   const WA = '523921287299'; // Número real de Braita
   const wa = (t) => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
@@ -581,12 +500,26 @@
     }, 400);
   });
 
-  // Config para mesa-control.js (Mesa de Control compartida, ver ese archivo)
-  const MESA_WA_NUMBER = '523921287299';
-  const MESA_MARCA = 'Braita TUV';
+  const quickContactForm = document.getElementById('quickContactForm');
+  if (quickContactForm) {
+    quickContactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(quickContactForm);
+      const nombre = (data.get('nombre') || '').toString().trim();
+      const telefono = (data.get('telefono') || '').toString().trim();
+      if (!nombre || !telefono) { quickContactForm.reportValidity(); return; }
+      const lineas = [
+        'Hola, quiero información de Braita TUV.',
+        `Nombre: ${nombre}`,
+        `Teléfono: ${telefono}`,
+        data.get('correo') ? `Correo: ${data.get('correo')}` : null,
+        data.get('mensaje') ? `Mensaje: ${data.get('mensaje')}` : null,
+      ].filter(Boolean);
+      const texto = encodeURIComponent(lineas.join('\n'));
+      window.open(`https://wa.me/${WA}?text=${texto}`, '_blank');
+    });
+  }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="mesa-control.js"></script>
 <script src="premium-interactions.js"></script>
 
 </body>

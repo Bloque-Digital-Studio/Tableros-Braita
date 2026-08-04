@@ -177,6 +177,7 @@ nav.main-nav a:hover{ color:var(--gold-light); }
 .marca-mark{ width:84px; height:84px; border-radius:10px; background:#fff; display:flex; align-items:center; justify-content:center; margin-bottom:22px; padding:10px; box-shadow:0 8px 18px -8px rgba(0,0,0,.35); }
 .marca-mark img{ width:100%; height:100%; object-fit:contain; }
 .marca-mark.text-mark{ background:transparent; border:1.5px solid var(--accent); font-family:var(--font-display); font-weight:700; font-size:24px; color:var(--accent); }
+.marca-mark:not(.text-mark){ width:132px; height:132px; padding:8px; }
 .marca-card h3{ font-size:1.25rem; margin-bottom:6px; }
 .marca-sub{ font-family:var(--font-display); font-size:.8rem; font-weight:600; letter-spacing:.03em; color:var(--accent); margin-bottom:14px; }
 .marca-card p.desc{ color:var(--text-secondary); font-size:.9rem; flex:1; }
@@ -300,6 +301,15 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
 .wa-float:hover{ transform:scale(1.08); }
 .wa-float svg{ width:27px; height:27px; }
 
+/* ---------- LIGHTBOX ---------- */
+.cat-media{ cursor:zoom-in; }
+.lightbox{ position:fixed; inset:0; z-index:9000; background:rgba(5,5,5,.94); display:none; align-items:center; justify-content:center; padding:40px; cursor:zoom-out; }
+.lightbox.open{ display:flex; }
+.lightbox img{ max-width:100%; max-height:100%; object-fit:contain; border-radius:6px; box-shadow:0 30px 80px rgba(0,0,0,.5); cursor:default; }
+.lightbox-close{ position:fixed; top:20px; right:24px; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:26px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:9001; }
+.lightbox-close:hover{ background:rgba(255,255,255,.2); }
+@media (max-width:640px){ .lightbox{ padding:20px; } }
+
 /* ---------- SCROLL PROGRESS ---------- */
 #scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg, var(--gold), var(--gold-light)); z-index:300; transition:width .12s linear; }
 
@@ -367,7 +377,7 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
   <!-- ================= HERO ================= -->
   <section class="hero" id="inicio">
     <div class="hero-bg-image" aria-hidden="true">
-      <img src="imagen68.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
+      <img src="Hero Grupo Braita.png" alt="" onload="this.style.opacity='1';" onerror="this.parentElement.style.display='none';">
     </div>
     <div class="wrap hero-inner">
       <span class="eyebrow on-dark">Ocotlán, Jalisco · México</span>
@@ -552,35 +562,35 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
       <div class="cat-grid reveal" id="proyectoGrid">
         <a href="#contacto" class="cat-card" data-cat="cocinas">
           <div class="cat-media">
-            <img src="imagen18.jpg" alt="Cocina Residencial" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Cocina Residencial.jpg" alt="Cocina Residencial" onload="this.style.opacity='1';" onerror="this.style.display='none';">
             <span class="cat-tag">Cocinas</span>
             <div class="cat-overlay-body"><h4>Cocina Residencial</h4><p class="cat-overlay-meta">Acabado: <b>Kenya Nogal Inglés</b> · Innovación</p></div>
           </div>
         </a>
         <a href="#contacto" class="cat-card" data-cat="mobiliario">
           <div class="cat-media">
-            <img src="imagen19.png" alt="Sala Contemporánea" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Sala Contemporánea.avif" alt="Sala Contemporánea" onload="this.style.opacity='1';" onerror="this.style.display='none';">
             <span class="cat-tag">Mobiliario</span>
             <div class="cat-overlay-body"><h4>Sala Contemporánea</h4><p class="cat-overlay-meta">Acabado: <b>Lino Arena</b> · Select</p></div>
           </div>
         </a>
         <a href="#contacto" class="cat-card" data-cat="residenciales">
           <div class="cat-media">
-            <img src="imagen20.png" alt="Vestidor Residencial" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Vestidor Residencial.avif" alt="Vestidor Residencial" onload="this.style.opacity='1';" onerror="this.style.display='none';">
             <span class="cat-tag">Residencial</span>
             <div class="cat-overlay-body"><h4>Vestidor Residencial</h4><p class="cat-overlay-meta">Acabado: <b>Timber Arena</b> · Innovación</p></div>
           </div>
         </a>
         <a href="#contacto" class="cat-card" data-cat="oficinas">
           <div class="cat-media">
-            <img src="imagen21.jpg" alt="Recepción Corporativa" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Recepción Corporativa.jpg" alt="Recepción Corporativa" onload="this.style.opacity='1';" onerror="this.style.display='none';">
             <span class="cat-tag">Oficinas</span>
             <div class="cat-overlay-body"><h4>Recepción Corporativa</h4><p class="cat-overlay-meta">Acabado: <b>Roble Natural</b> · Select</p></div>
           </div>
         </a>
         <a href="#contacto" class="cat-card" data-cat="comerciales">
           <div class="cat-media">
-            <img src="imagen22.png" alt="Comercio Minorista" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Comercio Minorista.png" alt="Comercio Minorista" onload="this.style.opacity='1';" onerror="this.style.display='none';">
             <span class="cat-tag">Comercial</span>
             <div class="cat-overlay-body"><h4>Comercio Minorista</h4><p class="cat-overlay-meta">Acabado: <b>Rústico Americano</b> · Innovación</p></div>
           </div>
@@ -608,37 +618,31 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
       <div class="cat-grid reveal" id="catalogoGrid">
         <div class="cat-card" data-marca="innovacion">
           <div class="cat-media" style="background:linear-gradient(150deg,#8c6a3f,#4a3520);">
-            <img src="imagen23.png" alt="Kenya Nogal Inglés" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Kenya Nogal Inglés.png" alt="Kenya Nogal Inglés" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body"><h4>Kenya Nogal Inglés</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Sincronizado</p></div>
         </div>
         <div class="cat-card" data-marca="select">
           <div class="cat-media" style="background:linear-gradient(150deg,#8c6a3f,#5a4128);">
-            <img src="imagen24.png" alt="Roble Natural" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Roble Natural.png" alt="Roble Natural" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body"><h4>Roble Natural</h4><p><b>Línea:</b> Select<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Mate</p></div>
         </div>
-        <div class="cat-card" data-marca="innovacion">
-          <div class="cat-media" style="background:linear-gradient(150deg,#f2f0ec,#1a1a1a);">
-            <img src="imagen25.png" alt="Mármol Blanco y Negro" onload="this.style.opacity='1';" onerror="this.style.display='none';">
-          </div>
-          <div class="cat-body"><h4>Mármol Blanco y Negro</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Piedra<br><b>Acabado:</b> UV Alto Brillo</p></div>
-        </div>
         <div class="cat-card" data-marca="select">
           <div class="cat-media" style="background:linear-gradient(150deg,#d8cbb6,#b3a488);">
-            <img src="imagen26.png" alt="Lino Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Lino Arena.png" alt="Lino Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body"><h4>Lino Arena</h4><p><b>Línea:</b> Select<br><b>Tipo:</b> Textil<br><b>Acabado:</b> UV Mate</p></div>
         </div>
         <div class="cat-card" data-marca="innovacion">
           <div class="cat-media" style="background:linear-gradient(150deg,#e0a8b0,#a9646f);">
-            <img src="imagen27.png" alt="Rosa Metalizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Rosa Metalizado.png" alt="Rosa Metalizado" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body"><h4>Rosa Metalizado</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Metalizado<br><b>Acabado:</b> UV Metalizado</p></div>
         </div>
         <div class="cat-card" data-marca="innovacion">
           <div class="cat-media" style="background:linear-gradient(150deg,#c9a876,#8a6a42);">
-            <img src="imagen28.png" alt="Timber Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
+            <img src="Timber Arena.png" alt="Timber Arena" onload="this.style.opacity='1';" onerror="this.style.display='none';">
           </div>
           <div class="cat-body"><h4>Timber Arena</h4><p><b>Línea:</b> Innovación<br><b>Tipo:</b> Madera<br><b>Acabado:</b> UV Sincronizado</p></div>
         </div>
@@ -845,6 +849,11 @@ footer{ background:var(--ink-deep); color:var(--text-light-muted); padding:56px 
 <a href="#" id="waFloat" class="wa-float" target="_blank" aria-label="Cotizar por WhatsApp">
   <svg viewBox="0 0 448 512" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
 </a>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Cerrar" type="button">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <script src="premium-interactions.js"></script>
 <script>

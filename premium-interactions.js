@@ -188,6 +188,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // LIGHTBOX — click en cualquier foto de catálogo/producto abre la
+  // imagen completa. Usa delegación de eventos sobre document.body, así
+  // que también cubre las tarjetas que renderiza JS después (el catálogo
+  // de 41 productos de Innovación), sin tener que re-enganchar nada.
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  if (lightbox && lightboxImg) {
+    const openLightbox = (src, alt) => {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeLightbox = () => {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+    };
+    document.body.addEventListener('click', (e) => {
+      const media = e.target.closest('.cat-media, .prod-media');
+      if (!media) return;
+      const img = media.querySelector('img');
+      // Solo abre si la foto real ya cargó (si sigue en el placeholder
+      // por onerror, img.naturalWidth es 0 y no hay nada que mostrar).
+      if (img && img.complete && img.naturalWidth > 0) {
+        e.preventDefault();
+        e.stopPropagation();
+        openLightbox(img.src, img.alt);
+      }
+    });
+    lightbox.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+
   // SCROLL PROGRESS BAR
   const progressBar = document.getElementById('scroll-progress');
   if (progressBar) {
